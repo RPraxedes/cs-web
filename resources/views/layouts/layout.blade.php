@@ -9,8 +9,10 @@
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<!-- Bootstrap -->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="{{ asset('js/bootstrap.js') }}" defer></script>
+		<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+		<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
 		<!-- CSS -->
 		<link rel="stylesheet" href="{{asset('css/styles.css')}}">
         <!-- Fonts -->
@@ -21,7 +23,7 @@
     </head>
     <body>
 		<!-- Navbar -->
-        <nav class="navbar navbar-light shadow-sm navbar-expand-md bg-white">
+        <nav class="navbar navbar-light sticky-top shadow-sm navbar-expand-md bg-white">
 			<div class="container">
 			<a class="navbar-brand" href="{{url('/')}}">Home</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -32,16 +34,25 @@
 			<!-- Left side of the navbar, Page Links -->
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item">
-						<a class="nav-link {{request()->is('about')?'active':''}}" href="{{url('/about')}}">Academics</a>
+						<a class="nav-link {{request()->is('academics')?'active':''}}" href="{{url('/academics')}}">Academics</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Academics
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item {{request()->is('faculty')?'active':''}}" href="{{url('/research')}}">Faculty</a>
+							<a class="dropdown-item {{request()->is('courses')?'active':''}}" href="{{url('/courses')}}">Courses</a>
+						</div>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link {{request()->is('about')?'active':''}}" href="{{url('/about')}}">Research</a>
+						<a class="nav-link {{request()->is('research')?'active':''}}" href="{{url('/research')}}">Research</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link {{request()->is('about')?'active':''}}" href="{{url('/about')}}">Publications</a>
+						<a class="nav-link {{request()->is('publications')?'active':''}}" href="{{url('/publications')}}">Publications</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link {{request()->is('about')?'active':''}}" href="{{url('/about')}}">SINSM</a>
+						<a class="nav-link {{request()->is('sinsm')?'active':''}}" href="{{url('/sinsm')}}">SINSM</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link {{request()->is('about')?'active':''}}" href="{{url('/about')}}">About Us</a>

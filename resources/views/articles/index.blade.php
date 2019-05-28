@@ -30,5 +30,8 @@
 			@endforeach
 			</div>
 		</div>
+		<div class="row justify-content-md-center">
+			{{$articles->render()}}
+		</div>
 	</div>
 @endsection

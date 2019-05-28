@@ -13,7 +13,7 @@ class ArticlesController extends Controller
 			$articles = Article::all()->where('id','=',request('id'));
 			return view('articles.page', ['articles' => $articles]);
 		}
-		$articles = Article::all();		//format to JSON
+		$articles = Article::paginate(15);		//format to JSON
 		return view('articles.index', ['articles' => $articles]);
 	}
 }

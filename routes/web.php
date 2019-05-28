@@ -12,8 +12,13 @@
 */
 
 Route::get('/', 'PagesController@home');
-Route::get('/about', 'PagesController@about');
+Route::get('/academics', 'PagesController@academics');
+Route::get('/faculty', 'PagesController@faculty');
+Route::get('/courses', 'PagesController@courses');
+Route::get('/research', 'PagesController@research');
+Route::get('/publications', 'PagesController@publications');
 Route::get('/sinsm', 'PagesController@sinsm');
+Route::get('/about', 'PagesController@about');
 
 Auth::routes();
 

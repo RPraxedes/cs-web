@@ -106,6 +106,16 @@ img.flip {
 	float: right;
 }
 
+.btn-primary{
+	background-color: #7b1113;
+	border-color: #b43c25;
+}
+
+.btn-primary:hover {
+	background-color: #b43c25;
+	border-color: #b43c25;
+}
+
 .card {
 	margin-top: 10px;
 	margin-bottom: 10px;
