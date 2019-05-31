@@ -22,6 +22,6 @@ Route::get('/about', 'PagesController@about');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index')->name('dash');
 
 Route::get('/articles', 'ArticlesController@index');

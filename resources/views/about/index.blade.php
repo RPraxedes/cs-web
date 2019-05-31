@@ -22,11 +22,11 @@
 
 					The College offers four undergraduate programs, namely, BS Biology, BS Mathematics, BS Computer Science and BS Physics, and one graduate program, MS Mathematics. All these academic programs prepare students for a career in education, research, or post-graduate studies. These academic programs are regularly reviewed and upgraded to address the developments of the times. In 1998, the College of Science was designated by the Commission on Higher Education as Centers of Development in Biology, Mathematics and Physics.
 					</p>
-					<button type="button" class="btn btn-info" data-container="body" data-toggle="popover" data-placement="bottom" data-content="cs.upbaguio@up.edu.ph">
+					<button type="button" class="btn btn-info" data-container="body" data-toggle="popover" data-placement="left" data-content="cs.upbaguio@up.edu.ph">
 						E-mail
 					</button>
-					<button type="button" class="btn btn-info" data-container="body" data-toggle="popover" data-placement="bottom" data-content="(074) XXX XXXX">
-						Phone
+					<button type="button" class="btn btn-info" data-container="body" data-toggle="popover" data-placement="right" data-content="(074) XXX XXXX">
+						Landline
 					</button>
 				</div>
 			</div>
