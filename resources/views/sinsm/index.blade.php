@@ -19,7 +19,7 @@
 					<p>
 					For more details, please visit our website at <a href="sites.google.com/up.edu.ph/sinsm2019">sites.google.com/up.edu.ph/sinsm2019</a>.
 					</p>
-					<button type="button" class="btn btn-info" data-container="body" data-toggle="popover" data-placement="top" data-html=true data-content="sinsm.upbaguio@up.edu.ph<br> CC: rslagunero@up.edu.ph">
+					<button type="button" class="btn btn-info" data-container="body" data-toggle="popover" data-placement="top" data-html=true data-content="sinsm.upbaguio@up.edu.ph <br> CC: rslagunero@up.edu.ph">
 						E-mail
 					</button>
 					<button type="button" class="btn btn-info" data-container="body" data-toggle="popover" data-placement="bottom" data-content="(074) 444 7132">

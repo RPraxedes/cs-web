@@ -20,7 +20,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 		<!-- Scripts -->
 		<!--<script src="{{ asset('js/app.js') }}" defer></script>-->
-
+		@yield('head')	<!-- Additional HEAD -->
     </head>
     <body>
 		<!-- Navbar -->
@@ -121,7 +121,8 @@
     </body>
 	<script>
 		$(function () {
-			$('[data-toggle="popover"]').popover()
+			$('[data-toggle="popover"]').popover();
+			$('[data-toggle="tooltip"]').tooltip();
 		})
 	</script>
 </html>

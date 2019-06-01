@@ -25,4 +25,14 @@ class HomeController extends Controller
     {
         return view('dash');
     }
+	
+	public function create(){	// returns article builder page
+		if(request('type')){
+			return view('user.create', ['type' => request('type')]);
+		}else{
+			return view('user.create', ['type' => 'Article']);			
+		}
+	}
+	
+	
 }

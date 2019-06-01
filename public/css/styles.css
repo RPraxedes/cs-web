@@ -106,7 +106,7 @@ img.flip {
 	float: right;
 }
 
-.btn-primary{
+.btn-primary, .btn-primary:disabled {
 	background-color: #7b1113;
 	border-color: #b43c25;
 }
@@ -130,6 +130,12 @@ img.flip {
 .card-img {
 	border-radius: 0;
 }
+
+.title-button {
+	border: none;
+	font-size: 4.5rem;
+}
+
 
 @media only screen and (min-width : 768px) {
 	.title-text{ margin-top: 90px; }

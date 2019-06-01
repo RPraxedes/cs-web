@@ -19,7 +19,7 @@
 						</button>
 					</div>
 				@endif
-
+				<a class="btn btn-success" href="{{url()->current()}}/create" role="button">Create an Article</a>
 			</div>
         </div>
     </div>

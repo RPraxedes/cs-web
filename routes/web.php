@@ -23,5 +23,6 @@ Route::get('/about', 'PagesController@about');
 Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('dash');
+Route::get('/dashboard/create', 'HomeController@create');
 
 Route::get('/articles', 'ArticlesController@index');
