@@ -33,13 +33,13 @@
 			<div class="card">
 				<div class="row">
 					<div class="col-md-2">
-						<img src="{{asset($news->image_path)}}" class="card-img" alt="{{$news->image_alt}}">
+						<img src="{{asset('assets/images/nao-banner.jpg')}}" class="card-img" alt="{{$news->image_alt}}">
 					</div>
 					<div class="col-md-10">
 						<div class="card-body">
 							<h4 class="card-title "><strong>{{$news->title}}</strong></h4>
 							<p class="card-text"><small class="text-muted">Published on {{date('F d, Y', strtotime($news->created_at))}} at {{date('h:i A', strtotime($news->created_at))}}</small></p>
-							<p class="card-text">{{$content = str_limit($news->body, 440)}}</p>
+							<p class="card-text">{!!$content = str_limit($news->body, 440)!!}</p>
 							<a href="{{url('articles?id='.$news->id)}}" role="button" class="btn btn-primary">Read More</a>
 						</div>
 					</div>

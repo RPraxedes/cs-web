@@ -6,7 +6,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xl-12 display-1 title text-center">
-				The College of Science
+				Articles
 			</div>
 		</div>
 		<div class="row">

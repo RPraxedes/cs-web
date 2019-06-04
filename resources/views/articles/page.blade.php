@@ -8,18 +8,14 @@
 			<div class="col-md-10">
 			<!-- Foreach needed since it is JSON -->
 			@foreach ($articles as $article)
-				<div class="card">
-					<div class="row">
-						<div class="col-md-7">
-							<div class="card-body">
-								<h1 class="card-title "><strong>{{$article->title}}</strong></h1>
-								<p class="card-text"><small class="text-muted">Published on {{date('F d, Y', strtotime($article->created_at))}} at {{date('h:i A', strtotime($article->created_at))}}</small></p>
-								<p class="card-text">{{$article->body}}</p>
-							</div>
-						</div>
-						<div class="col-md-5">
-							<img src="{{asset($article->image_path)}}" class="card-img" alt="{{$article->image_alt}}">
-						</div>
+				<div class="row">
+					<div class="col-md-7">
+						<h1 class="display-3"><strong>{{$article->title}}</strong></h1>
+						<small class="text-muted">Published on {{date('F d, Y', strtotime($article->created_at))}} at {{date('h:i A', strtotime($article->created_at))}}</small><br>
+						<p>{!!$article->body!!}</p>
+					</div>
+					<div class="col-md-5">
+						<!--<img src="{{asset('assets/images/u7zqem98m3s21.gif')}}" alt="...">-->
 					</div>
 				</div>
 				<div class="row">				

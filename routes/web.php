@@ -15,8 +15,6 @@ Route::get('/', 'PagesController@home');
 Route::get('/academics', 'PagesController@academics');
 Route::get('/faculty', 'PagesController@faculty');
 Route::get('/courses', 'PagesController@courses');
-Route::get('/research', 'PagesController@research');
-Route::get('/publications', 'PagesController@publications');
 Route::get('/sinsm', 'PagesController@sinsm');
 Route::get('/about', 'PagesController@about');
 
@@ -26,3 +24,5 @@ Route::get('/dashboard', 'HomeController@index')->name('dash');
 Route::get('/dashboard/create', 'HomeController@create');
 
 Route::get('/articles', 'ArticlesController@index');
+Route::get('/research', 'ArticlesController@research');
+Route::get('/publications', 'ArticlesController@publications');

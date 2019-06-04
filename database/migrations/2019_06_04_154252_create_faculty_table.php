@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMediaTable extends Migration
+class CreateFacultyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateMediaTable extends Migration
      */
     public function up()
     {
-        Schema::create('media', function (Blueprint $table) {
+        Schema::create('faculty', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->string('name');
-			$table->string('type');	// 'image', 'video', 'audio'
-			$table->string('path');
+			$table->string('first_name');
+			$table->string('middle_name');
+			$table->string('last_name');
+			$table->mediumText('bio');
+			$table->string('position');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateMediaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('media');
+        Schema::dropIfExists('faculty');
     }
 }

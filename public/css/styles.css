@@ -2,7 +2,6 @@ html, body {
 	background-color: #fff;
 	color: #636b6f;
 	font-family: 'Nunito', sans-serif;
-	font-weight: 200;
 	height: 100vh;
 	margin: 0;
 }
@@ -71,6 +70,7 @@ main > .container, main > .container-fluid {
 
 .tint:before {
 	content: "";
+	pointer-events: none;
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -80,9 +80,9 @@ main > .container, main > .container-fluid {
 	transition: all .3s linear;
 }
 
-.tint:hover:before {
+/*.tint:hover:before{
 	background: none;
-}
+}*/
 
 .crop-height {
 	max-height: 950px;
@@ -117,8 +117,7 @@ img.flip {
 }
 
 .card {
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin: 10px;
 	border-radius: 0;
 }
 
@@ -131,10 +130,47 @@ img.flip {
 	border-radius: 0;
 }
 
+.card-img-top {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.no-padding {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.card-text-over {
+	z-index: 1;
+	text-decoration: none;
+	color: white;
+	position: absolute;
+	top: 70%;
+	left: 6%;
+	/*transform: translate(-50%, -50%);*/
+}
+
+.dropleft > .droopdown-menu {
+	padding-top: 15px;
+}
+
 .title-button {
 	border: none;
 	font-size: 4.5rem;
 }
+
+strong {
+	text-decoration: bold;
+}
+
+#spin {
+	-webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 3600s linear infinite;
+    animation:spin 3600s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 
 @media only screen and (min-width : 768px) {

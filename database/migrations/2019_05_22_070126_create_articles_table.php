@@ -16,12 +16,15 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
 			$table->string('title');
-			$table->text('body');
-			$table->string('image_path');
-			$table->string('image_alt');
-			$table->boolean('thumbnail')->default(false);
-			$table->string('category')->default('Uncategorized');
-            $table->timestamps();	// includes created_at and updated_at
+			$table->bigInteger('author_id')->unsigned();
+			$table->mediumText('body');
+			$table->string('category')->default('uncategorized');
+            $table->timestamps();
+			
+			$table->foreign('author_id')
+					->references('id')
+					->on('users')
+					->onDelete('cascade');
         });
     }
 
