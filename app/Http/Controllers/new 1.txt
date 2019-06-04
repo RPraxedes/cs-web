@@ -7,3 +7,5 @@ article builder for registered users
 prevent client-side "editing"
 website should have all info on the courses, checklists, course description
 research titles only for research
+
+include calendar, transparency corner. eFOI
