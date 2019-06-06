@@ -23,6 +23,7 @@ Route::get('/about', 'PagesController@about');
 
 Route::get('/dashboard', 'HomeController@index')->name('dash');
 Route::get('/dashboard/create', 'HomeController@create');
+Route::post('/create', 'HomeController@create');
 
 Route::get('/articles', 'ArticlesController@index');
 Route::get('/research', 'ArticlesController@research');

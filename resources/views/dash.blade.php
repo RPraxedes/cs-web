@@ -19,7 +19,19 @@
 						</button>
 					</div>
 				@endif
-				<a class="btn btn-success" href="{{url()->current()}}/create" role="button">Create an Article</a>
+				<div class="btn-group" role="group" aria-level="Article Management">
+					<div class="btn-group" role="group">
+						<div class="dropdown">
+							<a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create an Article</a>
+							<div class="dropdown-menu" aria-labelledby="btnGroupDrop">
+								<a class="dropdown-item" href="{{url()->current()}}/create?type=news">News</a>
+								<a class="dropdown-item" href="{{url()->current()}}/create?type=research">Research</a>
+								<a class="dropdown-item" href="{{url()->current()}}/create?type=publication">Publication</a>
+							</div>
+						</div>
+					</div>
+					<a class="btn btn-secondary" href="#" role="button">View Your Articles</a>
+				</div>
 			</div>
         </div>
     </div>

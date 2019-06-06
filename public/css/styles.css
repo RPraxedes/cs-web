@@ -106,9 +106,15 @@ img.flip {
 	float: right;
 }
 
-.btn-primary, .btn-primary:disabled {
+/*Changes to btn-primary to UP Maroon*/
+
+.btn-primary, .btn-primary:disabled, .show > .btn-primary.dropdown-toggle {
 	background-color: #7b1113;
 	border-color: #b43c25;
+}
+
+.show > .btn-primary.dropdown-toggle:focus {
+	box-shadow: 0 0 0 .2rem rgba(123, 17, 19,0.5);
 }
 
 .btn-primary:hover {
@@ -150,10 +156,6 @@ img.flip {
 	/*transform: translate(-50%, -50%);*/
 }
 
-.dropleft > .droopdown-menu {
-	padding-top: 15px;
-}
-
 .title-button {
 	border: none;
 	font-size: 4.5rem;
@@ -162,15 +164,6 @@ img.flip {
 strong {
 	text-decoration: bold;
 }
-
-#spin {
-	-webkit-animation:spin 4s linear infinite;
-    -moz-animation:spin 3600s linear infinite;
-    animation:spin 3600s linear infinite;
-}
-@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 
 @media only screen and (min-width : 768px) {

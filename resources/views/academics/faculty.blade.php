@@ -10,7 +10,7 @@
 			</div>
 		</div>
 		<div class="row justify-content-md-center">
-			<div class="card col-3 no-padding">
+			<div class="card col-2 no-padding">
 				<img src="{{asset('assets/images/nao-banner.png')}}" class="card-img-top" alt="...">
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
@@ -18,7 +18,7 @@
 					<a href="#" class="btn btn-primary">More</a>
 				</div>
 			</div>
-			<div class="card col-3 no-padding">
+			<div class="card col-2 no-padding">
 				<img src="{{asset('assets/images/nao-banner.png')}}" class="card-img-top" alt="...">
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
@@ -26,7 +26,7 @@
 					<a href="#" class="btn btn-primary">More</a>
 				</div>
 			</div>
-			<div class="card col-3 no-padding">
+			<div class="card col-2 no-padding">
 				<img src="{{asset('assets/images/nao-banner.jpg')}}" class="card-img-top" alt="...">
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
@@ -34,7 +34,7 @@
 					<a href="#" class="btn btn-primary">More</a>
 				</div>
 			</div>
-			<div class="card col-3 no-padding">
+			<div class="card col-2 no-padding">
 				<img src="{{asset('assets/images/nao-banner.png')}}" class="card-img-top" alt="...">
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
@@ -42,7 +42,31 @@
 					<a href="#" class="btn btn-primary">More</a>
 				</div>
 			</div>
-			<div class="card col-3 no-padding">
+			<div class="card col-2 no-padding">
+				<img src="{{asset('assets/images/nao-banner.png')}}" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">Card title</h5>
+					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					<a href="#" class="btn btn-primary">More</a>
+				</div>
+			</div>
+			<div class="card col-2 no-padding">
+				<img src="{{asset('assets/images/nao-banner.png')}}" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">Card title</h5>
+					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					<a href="#" class="btn btn-primary">More</a>
+				</div>
+			</div>
+			<div class="card col-2 no-padding">
+				<img src="{{asset('assets/images/nao-banner.png')}}" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">Card title</h5>
+					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					<a href="#" class="btn btn-primary">More</a>
+				</div>
+			</div>
+			<div class="card col-2 no-padding">
 				<img src="{{asset('assets/images/nao-banner.png')}}" class="card-img-top" alt="...">
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>

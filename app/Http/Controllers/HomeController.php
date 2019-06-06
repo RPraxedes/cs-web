@@ -27,12 +27,22 @@ class HomeController extends Controller
     }
 	
 	public function create(){	// returns article builder page
-		if(request('type')){
+		$type = request('type');
+		if($type == 'news' || $type == 'research' || $type == 'publication'){
 			return view('user.create', ['type' => request('type')]);
 		}else{
-			return view('user.create', ['type' => 'Article']);			
+			return response(view('errors.404'), 404);
 		}
 	}
 	
+	public function save(){	//not publish
+		$article->title = request('title');
+		$article->author_id = Auth::id();
+		$article->body = request('body');
+		$article->type = request('type');
+		$article->category = request('category');
+		
+		$article->save();
+	}
 	
 }
