@@ -11,10 +11,10 @@ main > .container, main > .container-fluid {
 }
 
 .full-height {
-	height: 100vh;
+	height: 720px;
 }
 .half-height {
-	height: 50vh;
+	height: 360px;;
 }
 
 .flex-center {
@@ -108,20 +108,33 @@ img.flip {
 
 /*Changes to btn-primary to UP Maroon*/
 
-.btn-primary, .btn-primary:disabled, .show > .btn-primary.dropdown-toggle {
+.btn-primary{
+	color:#fff;
 	background-color: #7b1113;
 	border-color: #b43c25;
 }
-
-.show > .btn-primary.dropdown-toggle:focus {
-	box-shadow: 0 0 0 .2rem rgba(123, 17, 19,0.5);
-}
-
 .btn-primary:hover {
+	color:#fff;
 	background-color: #b43c25;
 	border-color: #b43c25;
 }
-
+.btn-primary.focus,.btn-primary:focus {
+	box-shadow: 0 0 0 .2rem rgba(123, 17, 19,0.5);
+}
+.btn-primary.disabled,.btn-primary:disabled {
+	color:#fff;
+	background-color: #7b1113;
+	border-color: #b43c25;
+}
+.btn-primary:not(:disabled):not(.disabled).active,.btn-primary:not(:disabled):not(.disabled):active,.show>.btn-primary.dropdown-toggle {
+	color:#fff;
+	background-color: #b43c25;
+	border-color: #b43c25;
+}
+.btn-primary:not(:disabled):not(.disabled).active:focus,.btn-primary:not(:disabled):not(.disabled):active:focus,.show>.btn-primary.dropdown-toggle:focus {
+	box-shadow: 0 0 0 .2rem rgba(123, 17, 19,0.5);
+}
+/*-----------------*/
 .card {
 	margin: 10px;
 	border-radius: 0;

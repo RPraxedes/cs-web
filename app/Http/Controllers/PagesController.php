@@ -26,14 +26,6 @@ class PagesController extends Controller
 		return view('academics.courses');
 	}
 	
-	public function research(){
-		return view('research.index');
-	}
-	
-	public function publications(){
-		return view('publications.index');
-	}
-	
 	public function sinsm(){
 		return view('sinsm.index');
 	}

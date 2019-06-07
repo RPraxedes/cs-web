@@ -19,11 +19,11 @@
 					</div>
 				</div>
 				<div class="row">				
-					<div class="col-md-1">
+					<div class="col-md-2">
 					<a href="{{url('/')}}" role="button" class="btn btn-primary">&larr; Home</a>
 					</div>
-					<div class="col-md-2">
-					<a href="{{url('/articles')}}" role="button" class="btn btn-primary">&larr; All News</a>
+					<div class="col-md-10">
+					<a href="{{url('/articles')}}" role="button" class="btn btn-primary float-right">All News &rarr;</a>
 					</div>
 				</div>
 			@endforeach

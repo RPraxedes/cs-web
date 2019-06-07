@@ -33,7 +33,7 @@
 			<div class="card">
 				<div class="row">
 					<div class="col-md-2">
-						<img src="{{asset('assets/images/nao-banner.jpg')}}" class="card-img" alt="{{$news->image_alt}}">
+						<img src="{{asset('assets/images/nao-banner.jpg')}}" class="card-img" alt="...">
 					</div>
 					<div class="col-md-10">
 						<div class="card-body">
