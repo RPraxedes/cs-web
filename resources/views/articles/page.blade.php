@@ -3,7 +3,7 @@
 @section('title' , 'Articles')
 
 @section('content')
-	<div class="container-fluid">
+	<div class="container-fluid" style="margin-top: 60px">
 		<div class="row justify-content-md-center">
 			<div class="col-md-10">
 			<!-- Foreach needed since it is JSON -->
@@ -15,7 +15,7 @@
 						<p>{!!$article->body!!}</p>
 					</div>
 					<div class="col-md-5">
-						<!--<img src="{{asset('assets/images/u7zqem98m3s21.gif')}}" alt="...">-->
+						<img src="{{asset($article->header_image)}}" class="card-img" alt="{{$article->header_alt}}">
 					</div>
 				</div>
 				<div class="row">				

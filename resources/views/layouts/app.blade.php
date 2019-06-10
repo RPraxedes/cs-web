@@ -121,9 +121,9 @@
 		
     </body>
 	<script>
-		/*$(function () {
+		$(function () {
 			$('[data-toggle="popover"]').popover();
 			$('[data-toggle="tooltip"]').tooltip();
-		})*/
+		})
 	</script>
 </html>

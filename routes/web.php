@@ -23,8 +23,9 @@ Route::get('/about', 'PagesController@about');
 
 Route::get('/dashboard', 'HomeController@index')->name('dash');
 Route::get('/dashboard/create', 'HomeController@create');
-Route::post('/create', 'HomeController@create');
+Route::get('/dashboard/view', 'HomeController@view');
 
 Route::get('/articles', 'ArticlesController@index');
+Route::get('/news', 'ArticlesController@news');
 Route::get('/research', 'ArticlesController@research');
 Route::get('/publications', 'ArticlesController@publications');

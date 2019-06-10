@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Research')
-
+<!-- USED WHEN NEWS, RESEARCH, AND PUBLICATIONS HAVE DIFFERENT LAYOUTS -->
 @section('content')
 	<div class="container-fluid">
 		<div class="row">
@@ -15,13 +15,16 @@
 				<div class="card">
 					<div class="row">
 						<div class="col-md-2">
-							<img src="{{asset($article->image_path)}}" class="card-img" alt="{{$article->image_alt}}">
+							<img src="{{asset($article->header_image)}}" class="card-img" alt="{{$article->header_alt}}">
 						</div>
 						<div class="col-md-10">
 							<div class="card-body">
 								<h4 class="card-title "><strong>{{$article->title}}</strong></h4>
 								<p class="card-text"><small class="text-muted">Published at {{$article->created_at}}</small></p>
-								<p class="card-text">{!!$content = str_limit($article->body, 440)!!}</p>
+								<div class="card-text">
+									{!!Str::words(strip_tags($article->body), 100)!!}
+								</div>
+								<br>
 								<a href="{{url('articles?id='.$article->id)}}" role="button" class="btn btn-primary">Read More</a>
 							</div>
 						</div>

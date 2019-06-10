@@ -10,7 +10,7 @@ class PagesController extends Controller
 {
     public function home(){
 		$alerts = ['Alert for students!', 'Another alert just in case!'];
-		$news_preview = Article::all()->take(3)->where('category', '=', 'news');
+		$news_preview = Article::all()->where('type', '=', 'news')->take(3);
 		return view('welcome', ['alerts' => $alerts] , ['news_preview' => $news_preview]);
 	}
 	

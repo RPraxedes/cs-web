@@ -30,7 +30,7 @@
 							</div>
 						</div>
 					</div>
-					<a class="btn btn-secondary" href="#" role="button">View Your Articles</a>
+					<a class="btn btn-secondary" href="{{url()->current()}}/view" role="button">View Your Articles</a>
 				</div>
 			</div>
         </div>

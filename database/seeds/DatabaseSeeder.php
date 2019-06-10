@@ -11,10 +11,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-       $this->call([
-			factory(App\User::class, 50)->create()->each(function ($user){
-				$user->posts()->save(factory)
-			});
-		]);
+		DB::table('users')->insert([
+            'name' => 'test',
+			'first_name' => 'Richard Angelo',
+			'middle_name' => 'Villanueva',
+			'last_name' => 'Praxedes',
+            'email' => 'test@mail.com',
+            'password' => bcrypt('test'),
+        ]);
+		
+		factory(App\User::class, 50)->create();
+		factory(App\Article::class, 100)->create();
     }
 }

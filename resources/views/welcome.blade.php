@@ -33,20 +33,22 @@
 			<div class="card">
 				<div class="row">
 					<div class="col-md-2">
-						<img src="{{asset('assets/images/nao-banner.jpg')}}" class="card-img" alt="...">
+						<img src="{{asset($news->header_image)}}" class="card-img" alt="{{$news->header_alt}}">
 					</div>
 					<div class="col-md-10">
 						<div class="card-body">
-							<h4 class="card-title "><strong>{{$news->title}}</strong></h4>
+							<h4 class="card-title"><strong>{{$news->title}}</strong></h4>
 							<p class="card-text"><small class="text-muted">Published on {{date('F d, Y', strtotime($news->created_at))}} at {{date('h:i A', strtotime($news->created_at))}}</small></p>
-							<p class="card-text">{!!$content = str_limit($news->body, 440)!!}</p>
+							<div class="card-text">
+							{!!Str::words(strip_tags($news->body), 100, '...')!!}
+							</div>
 							<a href="{{url('articles?id='.$news->id)}}" role="button" class="btn btn-primary">Read More</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		@endforeach
-		<a href ="{{url('/articles')}}" role="button" class="btn btn-primary">Show All News</a>
+		<a href ="{{url('/news')}}" role="button" class="btn btn-primary">Show All News</a>
 	<!-- Research and Publications Section-->
 	</div>
 @endsection

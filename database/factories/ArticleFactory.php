@@ -2,15 +2,22 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Model;
+use App\Article;
+use App\User;
 use Faker\Generator as Faker;
 
-$factory->define(Model::class, function (Faker $faker) {
+$factory->define(Article::class, function (Faker $faker) {
+	$faker->addProvider(new BlogArticleFaker\FakerProvider($faker));
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'remember_token' => Str::random(10),
+        'title' => $faker->articleTitle,
+		'author_id' => User::all()->random()->id,
+        'body' => $faker->articleContent,
+        'header_image' => 'http://127.0.0.1:8000/assets/images/nao-banner.jpg',
+        'header_alt' => 'image',
+        'type' => $faker->randomElement(['news', 'research', 'publication']),
+        'category' => 'Uncategorized',
+		'created_at' => now(),
+		'updated_at' => now(),
+		
     ];
 });

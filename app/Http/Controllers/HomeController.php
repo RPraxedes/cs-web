@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -31,13 +32,19 @@ class HomeController extends Controller
 		if($type == 'news' || $type == 'research' || $type == 'publication'){
 			return view('user.create', ['type' => request('type')]);
 		}else{
-			return response(view('errors.404'), 404);
+			return response(view('errors.405'), 405);
 		}
 	}
 	
-	public function save(){	//not publish
+	public function view(){
+		//$users = \App\Models\Category::with('users')->get();
+		$articles = Article::where('author_id','=',auth()->user()->id)->paginate(15);
+		return view('user.view', ['articles' => $articles]);
+	}
+	
+	protected function save(){	//not publish
 		$article->title = request('title');
-		$article->author_id = Auth::id();
+		
 		$article->body = request('body');
 		$article->type = request('type');
 		$article->category = request('category');

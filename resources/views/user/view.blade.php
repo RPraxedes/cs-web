@@ -6,7 +6,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xl-12 display-1 title text-center">
-				News
+				Your Articles
 			</div>
 		</div>
 		<div class="row">
@@ -32,9 +32,6 @@
 				</div>
 			@endforeach
 			</div>
-		</div>
-		<div class="row justify-content-md-center">
-			{{$articles->render()}}
 		</div>
 	</div>
 @endsection

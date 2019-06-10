@@ -13,7 +13,7 @@ class ArticlesTableSeeder extends Seeder
     {
         DB::table('articles')->insert([
 			'title' => Str::random(10),
-			'author_id' => 1,
+			'author_id' => User::list('id'),
 			'body' => Str::random(500),
 			'category' => 'Uncategorized'
 		]);
