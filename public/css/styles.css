@@ -76,7 +76,7 @@ main > .container, main > .container-fluid {
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background: rgba(123, 17, 19, 0.5);
+	background: rgba(0,0,0, 0.3);
 	transition: all .3s linear;
 }
 
@@ -190,7 +190,6 @@ img.flip {
 strong {
 	text-decoration: bold;
 }
-
 
 @media only screen and (min-width : 768px) {
 	.title-text{ margin-top: 90px; }

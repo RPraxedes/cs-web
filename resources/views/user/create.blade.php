@@ -8,11 +8,15 @@
 	<script>
 		tinymce.init({
 			selector: '#tinytextarea',
-			plugins: ["placeholder", "autosave", "image"],
+			plugins: ["placeholder", "autosave", "image", "table"],
 			height: '600px',
-			menubar: "file edit view insert format",
-			toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | image",
+			menubar: "file edit view insert format table",
+			toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | image | table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol",
 			autosave_restore_when_empty: true,
+			table_advtab: true,
+			table_default_attributes: {
+				class: 'table'
+			},
 			image_advtab: true,
 			/* Automatic Image Upload (wip)
 			image_uploadtab: true,
@@ -63,25 +67,18 @@
 			@if (request()->has('type'))
 				<div class="row justify-content-md-center">
 					<div class="col-md-10">
-						<form method="POST" action="/create">
+						<form method="POST" action="/dashboard/create">
 							@csrf
-							<div class="form-group" action="/create">
+							<div class="form-group">
 								<input name="title" class="form-control form-control-lg" type="text" placeholder="{{Str::title($type)}} Title" required>
-								<input name="type" class="form-control form-control-lg" type="hidden" value="{{Str::title($type)}}" required>
+								<input name="type" class="form-control form-control-lg" type="hidden" value="{{$type}}" required>
+								<!--<label for="exampleFormControlFile1">Example file input</label>
+								<input type="file" class="form-control-file" id="exampleFormControlFile1">-->
 								<br>
 								<textarea name="body" id="tinytextarea" class="w-100" placeholder="What's the scoop?"></textarea>
 							</div>
 							
-							<div class="btn-group float-right">
-								<button type="button" class="btn btn-primary" {{request()->has('type')?'':'disabled'}}>Save</button>
-								<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" {{request()->has('type')?'':'disabled'}}>
-									<span class="sr-only">Toggle Save Options</span>
-								</button>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="#">Save and Exit</a>
-									<a class="dropdown-item" href="#">Save and Publish</a>
-								</div>
-							</div>
+							<button type="submit" class="btn btn-primary float-right" {{request()->has('type')?'':'disabled'}}>Save</button>
 						</form>
 					</div>
 				</div>

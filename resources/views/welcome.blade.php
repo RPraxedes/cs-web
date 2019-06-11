@@ -38,7 +38,7 @@
 					<div class="col-md-10">
 						<div class="card-body">
 							<h4 class="card-title"><strong>{{$news->title}}</strong></h4>
-							<p class="card-text"><small class="text-muted">Published on {{date('F d, Y', strtotime($news->created_at))}} at {{date('h:i A', strtotime($news->created_at))}}</small></p>
+							<p class="card-text"><small class="text-muted">Published on {{\Carbon\Carbon::parse($news->from_date)->toFormattedDateString()}} at {{date('h:i A', strtotime($news->published_at))}}</small></p>
 							<div class="card-text">
 							{!!Str::words(strip_tags($news->body), 100, '...')!!}
 							</div>

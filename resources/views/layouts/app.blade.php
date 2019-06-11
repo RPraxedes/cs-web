@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="{{asset('favicon.ico')}}" type="image/gif"> 
 
 		<title>@yield('title') - College of Science</title>
 		
@@ -20,7 +21,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 		<!-- Scripts -->
-		<!--<script src="{{ asset('js/app.js') }}" defer></script>-->
+		<script src="{{ asset('js/app.js') }}"></script>
 		@yield('head')	<!-- Additional HEAD -->
     </head>
     <body>

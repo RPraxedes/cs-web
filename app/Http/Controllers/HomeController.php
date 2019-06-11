@@ -38,18 +38,21 @@ class HomeController extends Controller
 	
 	public function view(){
 		//$users = \App\Models\Category::with('users')->get();
-		$articles = Article::where('author_id','=',auth()->user()->id)->paginate(15);
+		$articles = Article::where('author_id','=',auth()->user()->id)->paginate(10);
 		return view('user.view', ['articles' => $articles]);
 	}
 	
 	protected function save(){	//not publish
-		$article->title = request('title');
+		var_dump(request('title'));
+		var_dump(request('type'));
+		var_dump(request('body'));
+		/* $article->title = request('title');
 		
 		$article->body = request('body');
 		$article->type = request('type');
 		$article->category = request('category');
 		
-		$article->save();
+		$article->save(); */
 	}
 	
 }

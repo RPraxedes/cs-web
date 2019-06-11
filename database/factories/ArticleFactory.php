@@ -16,6 +16,7 @@ $factory->define(Article::class, function (Faker $faker) {
         'header_alt' => 'image',
         'type' => $faker->randomElement(['news', 'research', 'publication']),
         'category' => 'Uncategorized',
+		'published_at' => now(),
 		'created_at' => now(),
 		'updated_at' => now(),
 		

@@ -32,6 +32,10 @@
 					</div>
 					<a class="btn btn-secondary" href="{{url()->current()}}/view" role="button">View Your Articles</a>
 				</div>
+				<div class="btn-group" role="group" aria-level="Article Management">
+					<a class="btn btn-secondary" href="#" role="button">Add Course</a>
+					<a class="btn btn-secondary" href="#" role="button">View Courses</a>
+				</div>
 			</div>
         </div>
     </div>
