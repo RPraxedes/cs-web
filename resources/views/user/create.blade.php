@@ -15,7 +15,7 @@
 			autosave_restore_when_empty: true,
 			table_advtab: true,
 			table_default_attributes: {
-				class: 'table'
+				class: 'table table-striped'
 			},
 			image_advtab: true,
 			/* Automatic Image Upload (wip)

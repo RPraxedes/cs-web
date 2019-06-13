@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
 		
 		factory(App\User::class, 50)->create();
 		factory(App\Article::class, 100)->create();
+		
+		$this->call('ChecklistSeeder');
     }
 }
