@@ -36,11 +36,12 @@ class PagesController extends Controller
 		return view('academics.checklist', ['title' => 'Bachelor of Science in Biology', 'subtitle' => 'Microbiology']);
 	}
 	public function computerscience(){
-		$pages = Checklist::all()->where('title','=','Bachelor of Science in Computer Science');
+		$pages = Checklist::whereTitle('Bachelor of Science in Computer Science')->get();
 		return view('academics.checklist', ['pages' => $pages]);
 	}
 	public function mathematics(){
-		return view('academics.checklist', ['title' => 'Bachelor of Science in Mathematics', 'subtitle' => '']);
+		$pages = Checklist::whereTitle('Bachelor of Science in Mathematics')->get();
+		return view('academics.checklist', ['pages' => $pages]);
 	}
 	public function physics(){
 		return view('academics.checklist', ['title' => 'Bachelor of Science in Physics', 'subtitle' => '']);
