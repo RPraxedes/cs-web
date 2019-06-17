@@ -27,13 +27,16 @@ class PagesController extends Controller
 		return view('academics.courses');
 	}
 	public function ecologysystematics(){
-		return view('academics.checklist', ['title' => 'Bachelor of Science in Biology', 'subtitle' => 'Ecology and Systematics']);
+		$pages = Checklist::whereTitle('Bachelor of Science in Biology (Ecology and Systematics)')->get();
+		return view('academics.checklist', ['pages' => $pages]);
 	}
 	public function generalbiology(){
-		return view('academics.checklist', ['title' => 'Bachelor of Science in Biology', 'subtitle' => 'General Biology']);
+		$pages = Checklist::whereTitle('Bachelor of Science in Biology (General Biology)')->get();
+		return view('academics.checklist', ['pages' => $pages]);
 	}
 	public function microbiology(){
-		return view('academics.checklist', ['title' => 'Bachelor of Science in Biology', 'subtitle' => 'Microbiology']);
+		$pages = Checklist::whereTitle('Bachelor of Science in Biology (Microbiology)')->get();
+		return view('academics.checklist', ['pages' => $pages]);
 	}
 	public function computerscience(){
 		$pages = Checklist::whereTitle('Bachelor of Science in Computer Science')->get();
@@ -44,7 +47,8 @@ class PagesController extends Controller
 		return view('academics.checklist', ['pages' => $pages]);
 	}
 	public function physics(){
-		return view('academics.checklist', ['title' => 'Bachelor of Science in Physics', 'subtitle' => '']);
+		$pages = Checklist::whereTitle('Bachelor of Science in Physics')->get();
+		return view('academics.checklist', ['pages' => $pages]);
 	}
 	
 	public function sinsm(){

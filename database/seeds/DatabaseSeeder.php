@@ -25,5 +25,9 @@ class DatabaseSeeder extends Seeder
 		
 		$this->call('CMSCChecklistSeeder');
 		$this->call('MathChecklistSeeder');
+		$this->call('PhysicsChecklistSeeder');
+		$this->call('GeneralBiologyChecklistSeeder');
+		$this->call('MicrobiologyChecklistSeeder');
+		$this->call('EcologySystematicsChecklistSeeder');
     }
 }
