@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
+use Auth;
+use App\Models\Article;
 use Illuminate\Http\Request;
+use App\Http\Requests\ArticleRequest;
 
 class HomeController extends Controller
 {
@@ -30,7 +32,7 @@ class HomeController extends Controller
 	public function create(){	// returns article builder page
 		$type = request('type');
 		if($type == 'news' || $type == 'research' || $type == 'publication'){
-			return view('user.create', ['type' => request('type')]);
+			return view('user.create', ['type' => request('type')], ['alert' => false]);
 		}else{
 			return response(view('errors.405'), 405);
 		}
@@ -38,21 +40,14 @@ class HomeController extends Controller
 	
 	public function view(){
 		//$users = \App\Models\Category::with('users')->get();
-		$articles = Article::where('author_id','=',auth()->user()->id)->paginate(10);
-		return view('user.view', ['articles' => $articles]);
+		$user = Auth::user();
+		return view('user.view', ['articles' => $user->articles]);
 	}
 	
-	protected function save(){	//not publish
-		var_dump(request('title'));
-		var_dump(request('type'));
-		var_dump(request('body'));
-		/* $article->title = request('title');
-		
-		$article->body = request('body');
-		$article->type = request('type');
-		$article->category = request('category');
-		
-		$article->save(); */
+	public function save(ArticleRequest $request){
+		$article = new Article($request->all());
+		Auth::user()->articles()->save($article);
+		//return redirect('dashboard');
 	}
 	
 }

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title' , 'Articles')
+@section('title' , 'Your Articles')
 
 @section('content')
 	<div class="container-fluid">
@@ -20,7 +20,7 @@
 						<div class="col-md-10">
 							<div class="card-body">
 								<h4 class="card-title "><strong>{{$article->title}}</strong></h4>
-								<p class="card-text"><small class="text-muted">Published at {{$article->created_at}}</small></p>
+								<p class="card-text"><small class="text-muted">Published on {{\Carbon\Carbon::parse($article->from_date)->toFormattedDateString()}} at {{date('h:i A', strtotime($article->published_at))}} by {{$article->user->name}}</small></p>
 								<div class="card-text">
 									{!!Str::words(strip_tags($article->body), 100)!!}
 								</div>

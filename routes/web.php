@@ -30,7 +30,7 @@ Route::get('/about', 'PagesController@about');
 Route::get('/dashboard', 'HomeController@index')->name('dash');
 Route::get('/dashboard/create', 'HomeController@create');
 Route::get('/dashboard/view', 'HomeController@view');
-Route::post('/dashboard/create', 'HomeController@save');
+Route::post('/dashboard/save', 'HomeController@save');
 
 Route::get('/articles', 'ArticlesController@index');
 Route::get('/news', 'ArticlesController@news');

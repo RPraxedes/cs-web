@@ -31,6 +31,11 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
 			<div class="row justify-content-md-center title">
+			@if($alert)
+				<div class="col-md-5 alert alert-danger" role="alert">
+					Invalid request!
+				</div>
+			@endif
 			@if (!request()->has('type'))
 				<div class="col-md-5 alert alert-info" role="alert">
 					Choose a type of article below!
@@ -67,7 +72,7 @@
 			@if (request()->has('type'))
 				<div class="row justify-content-md-center">
 					<div class="col-md-10">
-						<form method="POST" action="/dashboard/create">
+						<form method="POST" action="/dashboard/save">
 							@csrf
 							<div class="form-group">
 								<input name="title" class="form-control form-control-lg" type="text" placeholder="{{Str::title($type)}} Title" required>
@@ -80,6 +85,7 @@
 							
 							<button type="submit" class="btn btn-primary float-right" {{request()->has('type')?'':'disabled'}}>Save</button>
 						</form>
+						{{var_dump($errors)}}
 					</div>
 				</div>
 			@else

@@ -1,16 +1,25 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
     protected $table = 'articles';
-
+	protected $fillable = [
+		'title',
+		'body',
+		'header_image',
+		'header_alt',
+		'category',
+		'user_id'
+		
+	];
+	
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
 
     /*public function category()

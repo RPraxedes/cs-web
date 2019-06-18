@@ -16,7 +16,7 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
 			$table->string('title');
-			$table->bigInteger('author_id')->unsigned();
+			$table->bigInteger('user_id')->unsigned();
 			$table->mediumText('body');
 			$table->text('header_image');
 			$table->text('header_alt');
@@ -25,10 +25,9 @@ class CreateArticlesTable extends Migration
 			$table->timestamp('published_at')->nullable();
             $table->timestamps();
 			
-			$table->foreign('author_id')
+			$table->foreign('user_id')
 					->references('id')
-					->on('users')
-					->onDelete('cascade');
+					->on('users');
         });
     }
 

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;	// fetches Article model
-use App\Checklist;
+use App\Models\Article;	// fetches Article model
+use App\Models\Checklist;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 
@@ -11,7 +12,8 @@ class PagesController extends Controller
 {
     public function home(){
 		$alerts = ['Alert for students!', 'Another alert just in case!'];
-		$news_preview = Article::all()->where('type', '=', 'news')->where('published_at','!=',NULL)->take(3);
+		$news_preview = Article::with('user')->whereType('news')->where('published_at','!=',NULL)->take(3)->get();
+		//$authors = User::where('id', '=', $news_preview->author_id)->get();
 		return view('welcome', ['alerts' => $alerts] , ['news_preview' => $news_preview]);
 	}
 	

@@ -19,7 +19,7 @@
 		<!-- CSS -->
 		<link rel="stylesheet" href="{{asset('css/styles.css')}}">
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <!--<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">-->
 		<!-- Scripts -->
 		<script src="{{ asset('js/app.js') }}"></script>
 		@yield('head')	<!-- Additional HEAD -->

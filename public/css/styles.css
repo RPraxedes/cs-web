@@ -1,7 +1,7 @@
 html, body {
 	background-color: #fff;
 	color: #636b6f;
-	font-family: 'Nunito', sans-serif;
+	/*font-family: 'Nunito', sans-serif;*/
 	height: 100vh;
 	margin: 0;
 }
@@ -177,8 +177,8 @@ img.flip {
 	text-decoration: none;
 	color: white;
 	position: absolute;
-	top: 70%;
-	left: 6%;
+	top: 60%;
+	left: 4%;
 	/*transform: translate(-50%, -50%);*/
 }
 

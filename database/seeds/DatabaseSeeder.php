@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('test'),
         ]);
 		
-		factory(App\User::class, 50)->create();
-		factory(App\Article::class, 100)->create();
+		factory(App\Models\User::class, 50)->create();
+		factory(App\Models\Article::class, 100)->create();
 		
 		$this->call('CMSCChecklistSeeder');
 		$this->call('MathChecklistSeeder');

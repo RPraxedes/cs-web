@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
+use App\Models\Article;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,8 +12,12 @@ class ArticlesController extends Controller
 {
 	public function index(){	//display article page
 		if(request('id')){
-			$articles = Article::all()->where('id','=',request('id'))->where('published_at','!=',NULL);
-			return view('articles.page', ['articles' => $articles]);
+			$article = Article::find(request('id'));
+			if(!$article->published_at){
+				$article = NULL;
+			}else{
+				return view('articles.page', ['article' => $article]);
+			}
 		}
 	}
     public function news(){
