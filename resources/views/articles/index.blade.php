@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title' , 'Articles')
+@section('title' , $title.' Articles')
 
 @section('content')
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xl-12 display-1 title text-center">
-				News
+				{{$title}}
 			</div>
 		</div>
 		<div class="row">
@@ -15,12 +15,12 @@
 				<div class="card">
 					<div class="row">
 						<div class="col-md-2">
-							<img src="{{asset($article->header_image)}}" class="card-img" alt="{{$article->header_alt}}">
+							<img src="{{asset('images/'.$article->header_image)}}" class="card-img" alt="{{$article->header_alt}}">
 						</div>
 						<div class="col-md-10">
 							<div class="card-body">
 								<h4 class="card-title "><strong>{{$article->title}}</strong></h4>
-								<p class="card-text"><small class="text-muted">Published on {{\Carbon\Carbon::parse($article->from_date)->toFormattedDateString()}} at {{date('h:i A', strtotime($article->published_at))}}</small></p>
+								<p class="card-text"><small class="text-muted">Published on {{\Carbon\Carbon::parse($article->published_at)->toFormattedDateString()}} at {{date('h:i A', strtotime($article->published_at))}} by {{$article->user->name}}</small></p>
 								<div class="card-text">
 									{!!Str::words(strip_tags($article->body), 100)!!}
 								</div>

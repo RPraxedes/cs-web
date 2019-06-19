@@ -9,11 +9,11 @@
 				<div class="row">
 					<div class="col-md-7">
 						<h1 class="display-4">{{$article->first()->title}}</h1>
-						<small class="text-muted">Published on {{date('F d, Y', strtotime($article->first()->published_at))}} at {{date('h:i A', strtotime($article->published_at))}} by</small><br>
+						<small class="text-muted">Published on {{date('F d, Y', strtotime($article->first()->published_at))}} at {{date('h:i A', strtotime($article->published_at))}} by {{$article->user->name}}</small><br>
 						<p>{!!$article->first()->body!!}</p>
 					</div>
 					<div class="col-md-5">
-						<img src="{{asset($article->header_image)}}" class="card-img" alt="{{$article->header_alt}}">
+						<img src="{{asset('images/'.$article->header_image)}}" class="card-img" alt="{{$article->header_alt}}">
 					</div>
 				</div>
 				<div class="row">				

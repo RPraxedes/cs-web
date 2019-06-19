@@ -33,7 +33,7 @@
 			<div class="card">
 				<div class="row">
 					<div class="col-md-2">
-						<img src="{{asset($news->header_image)}}" class="card-img" alt="{{$news->header_alt}}">
+						<img src="{{asset('images/'.$news->header_image)}}" class="card-img" alt="{{$news->header_alt}}">
 					</div>
 					<div class="col-md-10">
 						<div class="card-body">

@@ -26,7 +26,8 @@ class ArticleRequest extends FormRequest
         return [
             'title' => 'required',
 			'body' => 'required',
-			'type' => ['required','regex:/\bnews\b|\bresearch\b|\bpublication\b/']
+			'type' => ['required','regex:/\bnews\b|\bresearch\b|\bpublication\b/'],
+			'header_image' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ];
     }
 	

@@ -10,6 +10,7 @@ class Article extends Model
 	protected $fillable = [
 		'title',
 		'body',
+		'type',
 		'header_image',
 		'header_alt',
 		'category',
@@ -22,8 +23,8 @@ class Article extends Model
         return $this->belongsTo('App\Models\User', 'user_id');
     }
 
-    /*public function category()
+    public function category()
     {
         return $this->belongsTo('App\Models\Category');
-    }*/
+    }
 }

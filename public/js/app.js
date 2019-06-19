@@ -8,4 +8,16 @@ if(window.addEventListener){
 	if(kkeys.toString().indexOf(kode)>=0){
 		audioElement.play();kkeys=[];}
 	}, true);
-}
+};
+
+$(function () {
+	$('[data-toggle="popover"]').popover();
+	$('[data-toggle="tooltip"]').tooltip();
+});
+
+$('#inputGroupFile01').on('change',function(){
+	//get the file name
+	var fileName = $(this).val().replace('C:\\fakepath\\', " ");
+	//replace the "Choose a file" label
+	$(this).next('.custom-file-label').html(fileName);
+});
