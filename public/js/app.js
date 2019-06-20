@@ -1,3 +1,17 @@
+$(document).ready(function () {
+	$('#inputGroupFile01').on('change',function(){
+		//get the file name
+		var fileName = $(this).val().replace('C:\\fakepath\\', " ");
+		//replace the "Choose a file" label
+		$(this).next('.custom-file-label').html(fileName);
+	});
+
+	$(function () {
+		$('[data-toggle="popover"]').popover();
+		$('[data-toggle="tooltip"]').tooltip();
+	});
+});
+
 if(window.addEventListener){
 	var kkeys=[],
 	kode="38,38,40,40,37,39,37,39,66,65",
@@ -9,15 +23,3 @@ if(window.addEventListener){
 		audioElement.play();kkeys=[];}
 	}, true);
 };
-
-$(function () {
-	$('[data-toggle="popover"]').popover();
-	$('[data-toggle="tooltip"]').tooltip();
-});
-
-$('#inputGroupFile01').on('change',function(){
-	//get the file name
-	var fileName = $(this).val().replace('C:\\fakepath\\', " ");
-	//replace the "Choose a file" label
-	$(this).next('.custom-file-label').html(fileName);
-});

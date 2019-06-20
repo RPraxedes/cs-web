@@ -30,10 +30,11 @@ Route::get('/about', 'PagesController@about');
 Route::get('/dashboard', 'HomeController@index')->name('dash');
 Route::get('/dashboard/create', 'HomeController@create')->name('article.create');
 Route::get('/dashboard/view', 'HomeController@view')->name('article.view');
+Route::get('/dashboard/edit', 'HomeController@edit')->name('article.edit');
 Route::post('/dashboard/save', 'HomeController@save')->name('article.save');
 Route::post('/dashboard/publish', 'HomeController@publish')->name('article.publish');
 Route::post('/dashboard/delete', 'HomeController@delete')->name('article.delete');
-Route::get('/dashboard/edit', 'HomeController@edit')->name('article.edit');
+Route::post('/dashboard/modify', 'HomeController@modify')->name('article.modify');
 
 Route::get('/articles', 'ArticlesController@index');
 Route::get('/news', 'ArticlesController@news');

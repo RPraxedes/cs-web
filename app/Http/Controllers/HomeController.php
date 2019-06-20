@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
+use App\Http\Requests\ArticleEditRequest;
 
 class HomeController extends Controller
 {
@@ -50,6 +51,30 @@ class HomeController extends Controller
 		return view('user.edit', ['article' => $article]);
 	}
 	
+	public function modify(ArticleEditRequest $request){	// modification
+		$requestData = $request->all();
+		$article = Article::find((int)$requestData['id']);
+		if(isset($requestData['header_image'])){	// there is change to header image
+			File::delete(public_path().'\\images\\'.$article->header_image);	// delete old image
+			$imageName = time().'.'.request()->file('header_image')->getClientOriginalExtension();
+			$requestData['header_image'] = $imageName;
+			request()->file('header_image')->move(public_path('images'), $imageName);	//upload new image
+			$article->update([
+				'title' => $requestData['title'],
+				'body' => $requestData['body'],
+				'header_image' => $requestData['header_image'],
+				'header_alt' => $requestData['header_alt']
+			]);
+		}else{	// no change to header image 
+			$article->update([
+				'title' => $requestData['title'],
+				'body' => $requestData['body'],
+				'header_alt' => $requestData['header_alt']
+			]);
+		}
+		return redirect('dashboard')->with('alert-success', 'Article successfully saved!');
+	}
+	
 	public function delete(){
 		$article = Article::find((int)request('id'));
 		File::delete(public_path().'\\images\\'.$article->header_image);
@@ -57,20 +82,15 @@ class HomeController extends Controller
 		return redirect('dashboard')->with('alert-success', 'Article successfully removed!');
 	}
 	
-	public function save(ArticleRequest $request){
-		//if($requ){	//article has ID, then edit mode
-		//	var_dump($request->id);
-		//}else{	//article has no ID, create mode
-		var_dump($request);
-		/* 	$requestData = $request->all();
-			$imageName = time().'.'.request()->file('header_image')->getClientOriginalExtension();
-			$requestData['header_image'] = $imageName;
-			$article = new Article($requestData);
-			request()->file('header_image')->move(public_path('images'), $imageName);
-			Auth::user()->articles()->save($article);
-			$request->session()->flash('alert-success', 'Article successfully saved!');
-			return redirect('dashboard');
-		} */
+	public function save(ArticleRequest $request){	// first time save
+		$requestData = $request->all();
+		$imageName = time().'.'.request()->file('header_image')->getClientOriginalExtension();
+		$requestData['header_image'] = $imageName;
+		$article = new Article($requestData);
+		request()->file('header_image')->move(public_path('images'), $imageName);
+		Auth::user()->articles()->save($article);
+		$request->session()->flash('alert-success', 'Article successfully saved!');
+		return redirect('dashboard');
 	}
 	
 	public function publish(){

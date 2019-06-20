@@ -34,28 +34,14 @@
 				<div class="col-md-12">
 					<div class="display-3 text-center">{{Str::title($article->type)}} Builder</div>
 				</div>
-				<!--<div class="col-md-12">
-					<div class="row justify-content-center">
-						<div class="col-md-auto text-center">
-							<a href="{{url()->current()}}?type=news">News</a>
-						</div>
-						<div class="col-md-auto text-center">
-							<a href="{{url()->current()}}?type=research">Research</a>
-						</div>
-						<div class="col-md-auto text-center">
-							<a href="{{url()->current()}}?type=publication">Publication</a>
-						</div>
-					</div>
-				</div>-->
 			</div>
 			<div class="row justify-content-md-center">
 				<div class="col-md-10">
-					<form method="POST" action="{{route('article.save')}}" enctype="multipart/form-data">
+					<form method="POST" action="{{route('article.modify')}}" enctype="multipart/form-data">
 						@csrf
 						<div class="form-group">
-							<input name="title" class="form-control form-control-lg" type="text" placeholder="{{Str::title($article->type)}} Title" value="{{$article->title}}" required>
-							<input name="type" type="hidden" value="{{$article->id}}" required>
-							<input name="type" type="hidden" value="{{$article->type}}" required><br>
+							<input name="title" class="form-control form-control-lg" type="text" placeholder="{{Str::title($article->type)}} Title" value="{{$article->title}}" required><br>
+							<input name="id" type="hidden" value="{{$article->id}}" required>
 							<div class="input-group">
 								<div class="input-group-prepend">
 									<span class="input-group-text" id="inputGroupFileAddon01">Header image</span>
