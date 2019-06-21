@@ -1,0 +1,29 @@
+PDF viewer for checklists, sana hindi for lighter load
+article builder for registered users
+
+prevent client-side "editing"
+website should have all info on the courses, checklists, course description
+research titles only for research
+
+include calendar, transparency corner. eFOI
+
+------------------------------
+
+2 columns checklist
+editable after publish
+last updated @ in article
+@faculty page: specify degree
+editable checklist & courses by admin
+'add alert with lifespan' function for admin
+TinyMCE toggle to html or source code
+add 'preview article'
+registration: generate from full name
+	if cs admin, display cs admin only
+	after registraion, give generated password. upon login, redirect user to change password screen.
+	set up mailer system
+
+Faculty:
+add status dropdown/field (active, on study leave, etc.)
+	research interests/topics: (textbox)
+	
+fix routing to be independent with url

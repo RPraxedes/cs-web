@@ -23,7 +23,7 @@
 						E-mail
 					</button>
 					<button type="button" class="btn btn-info" data-container="body" data-toggle="popover" data-placement="bottom" data-content="(074) 444 7132">
-						Landline
+						Telephone
 					</button>
 				</div>
 			</div>

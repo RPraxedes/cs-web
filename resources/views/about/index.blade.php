@@ -26,7 +26,7 @@
 						E-mail
 					</button>
 					<button type="button" class="btn btn-info" data-container="body" data-toggle="popover" data-placement="right" data-content="(074) XXX XXXX">
-						Landline
+						Telephone
 					</button>
 				</div>
 			</div>
