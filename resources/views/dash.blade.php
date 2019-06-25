@@ -42,6 +42,7 @@
 				<div class="btn-group" role="group" aria-level="Article Management">
 					<a class="btn btn-secondary" href="#" role="button">Add Course</a>
 					<a class="btn btn-secondary" href="#" role="button">View Courses</a>
+					<a class="btn btn-success" href="#" role="button">Create an Alert</a>
 				</div>
 			</div>
         </div>

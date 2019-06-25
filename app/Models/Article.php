@@ -13,9 +13,7 @@ class Article extends Model
 		'type',
 		'header_image',
 		'header_alt',
-		'category',
-		'user_id'
-		
+		'category',	
 	];
 	
     public function user()

@@ -13,22 +13,12 @@
 			<img src="{{asset('assets/images/UPBaguio-El-blurred.png')}}" class="d-block w-100 titleBackground flip" alt="UPB Oblation">
 		</div>
 	</div>
-	<!-- Alert Section -->
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-12">
-			@foreach ($alerts as $alert)
-				<div class="alert alert-success alert-dismissible fade show" role="alert">
-					{{$alert}}
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-			@endforeach
-			</div>
+			<h1 class="display-4">News</h1>
 		</div>
-	<!-- News and Announcements Section -->	
-		<h1 class="display-4">News</h1>
+			<!-- News and Announcements Section -->	
+		<div class="row">
 		@foreach ($news_preview as $news)
 			<div class="card">
 				<div class="row">
@@ -48,6 +38,7 @@
 				</div>
 			</div>
 		@endforeach
+		</div>
 		<a href ="{{url('/news')}}" role="button" class="btn btn-primary">Show All News</a>
 	<!-- Research and Publications Section-->
 	</div>

@@ -26,9 +26,9 @@
     </head>
     <body>
 		<!-- Navbar -->
-        <nav class="navbar navbar-light shadow-sm navbar-expand-md bg-white">
+        <nav class="navbar navbar-light navbar-clear navbar-expand-md">
 			<div class="container">
-				<a class="navbar-brand" href="{{url('/')}}">Home</a>
+				<a class="navbar-brand" href="{{url('/')}}">College of Science</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -37,7 +37,7 @@
 				<!-- Left side of the navbar, Page Links -->
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAcademics" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<a class="nav-link dropdown-toggle animated fadeInDown delay-1" href="#" id="navbarDropdownAcademics" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Academics
 							</a>
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAcademics">
@@ -47,23 +47,26 @@
 							</div>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('research')?'active':''}}" href="{{url('/research')}}">Research</a>
+							<a class="nav-link {{request()->is('research')?'active':''}} animated fadeInDown delay-2" href="{{url('/research')}}">Research</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('publications')?'active':''}}" href="{{url('/publications')}}">Publications</a>
+							<a class="nav-link {{request()->is('publications')?'active':''}} animated fadeInDown delay-3" href="{{url('/publications')}}">Publications</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('sinsm')?'active':''}}" href="{{url('/sinsm')}}">SINSM</a>
+							<a class="nav-link {{request()->is('sinsm')?'active':''}} animated fadeInDown delay-4" href="{{url('/sinsm')}}">SINSM</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('about')?'active':''}}" href="{{url('/about')}}">About Us</a>
+							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-5" href="{{url('/about')}}">About Us</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('about')?'active':''}}" href="{{url('/about')}}">Gallery</a>
+							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-6" href="{{url('/about')}}">Gallery</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-7" href="{{url('/secret')}}">Secret</a>
 						</li>
 					</ul>
 				<!-- Right side of the navbar, Authentication Links -->
-					<ul class="navbar-nav ml-auto">
+					<ul class="navbar-nav ml-auto animated fadeInDown delay-7">
 					<!-- Authentication Links -->
 						@guest
 							<li class="nav-item">

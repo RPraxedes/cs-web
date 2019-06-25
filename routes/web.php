@@ -13,30 +13,32 @@
 
 Auth::routes();
 
-Route::get('/', 'PagesController@home');
-Route::get('/academics', 'PagesController@academics');
-Route::get('/faculty', 'PagesController@faculty');
-Route::get('/courses', 'PagesController@courses');
-Route::get('/courses/ecology-and-systematics', 'PagesController@ecologysystematics');
-Route::get('/courses/general-biology', 'PagesController@generalbiology');
-Route::get('/courses/microbiology', 'PagesController@microbiology');
-Route::get('/courses/computer-science', 'PagesController@computerscience');
-Route::get('/courses/physics', 'PagesController@physics');
-Route::get('/courses/mathematics', 'PagesController@mathematics');
-Route::get('/sinsm', 'PagesController@sinsm');
-Route::get('/about', 'PagesController@about');
-
+Route::get('/', 'PagesController@home')->name('welcome');
+Route::get('/academics', 'PagesController@academics')->name('academics');
+Route::get('/faculty', 'PagesController@faculty')->name('faculty');
+Route::get('/courses', 'PagesController@courses')->name('courses');
+Route::get('/courses/ecology-and-systematics', 'PagesController@ecologysystematics')->name('ecologysystematics');
+Route::get('/courses/general-biology', 'PagesController@generalbiology')->name('generalbiology');
+Route::get('/courses/microbiology', 'PagesController@microbiology')->name('microbiology');
+Route::get('/courses/computer-science', 'PagesController@computerscience')->name('computerscience');
+Route::get('/courses/physics', 'PagesController@physics')->name('physics');
+Route::get('/courses/mathematics', 'PagesController@mathematics')->name('mathematics');
+Route::get('/sinsm', 'PagesController@sinsm')->name('sinsm');
+Route::get('/about', 'PagesController@about')->name('about');
 
 Route::get('/dashboard', 'HomeController@index')->name('dash');
 Route::get('/dashboard/create', 'HomeController@create')->name('article.create');
 Route::get('/dashboard/view', 'HomeController@view')->name('article.view');
-Route::get('/dashboard/edit', 'HomeController@edit')->name('article.edit');
+Route::post('/dashboard/edit', 'HomeController@edit')->name('article.edit');
 Route::post('/dashboard/save', 'HomeController@save')->name('article.save');
 Route::post('/dashboard/publish', 'HomeController@publish')->name('article.publish');
 Route::post('/dashboard/delete', 'HomeController@delete')->name('article.delete');
 Route::post('/dashboard/modify', 'HomeController@modify')->name('article.modify');
+Route::post('/dashboard/preview', 'HomeController@preview')->name('article.preview');
 
-Route::get('/articles', 'ArticlesController@index');
-Route::get('/news', 'ArticlesController@news');
-Route::get('/research', 'ArticlesController@research');
-Route::get('/publications', 'ArticlesController@publications');
+Route::get('/articles', 'ArticlesController@index')->name('articles');
+Route::get('/news', 'ArticlesController@news')->name('news');
+Route::get('/research', 'ArticlesController@research')->name('research');
+Route::get('/publications', 'ArticlesController@publications')->name('publications');
+
+Route::get('/secret', 'PagesController@secret')->name('secret');

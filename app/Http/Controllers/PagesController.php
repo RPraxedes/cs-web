@@ -11,10 +11,10 @@ use Illuminate\Http\Request;
 class PagesController extends Controller
 {
     public function home(){
-		$alerts = ['Alert for students!', 'Another alert just in case!'];
+		//$alerts = ['Alert for students!', 'Another alert just in case!'];
 		$news_preview = Article::with('user')->whereType('news')->where('published_at','!=',NULL)->take(3)->get();
 		//$authors = User::where('id', '=', $news_preview->author_id)->get();
-		return view('welcome', ['alerts' => $alerts] , ['news_preview' => $news_preview]);
+		return view('welcome', ['news_preview' => $news_preview]);
 	}
 	
 	public function academics(){
@@ -59,5 +59,8 @@ class PagesController extends Controller
 	
 	public function about(){
 		return view('about.index');
+	}
+	public function secret(){
+		return view('welcome.index');
 	}
 }

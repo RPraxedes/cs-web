@@ -31,7 +31,7 @@ class MathChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -80,7 +80,7 @@ class MathChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -129,7 +129,7 @@ class MathChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -186,7 +186,7 @@ class MathChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -243,7 +243,7 @@ class MathChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -292,7 +292,7 @@ class MathChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -341,7 +341,7 @@ class MathChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -391,7 +391,7 @@ class MathChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -485,10 +485,10 @@ class MathChecklistSeeder extends Seeder
 			<td style="text-align: center;" colspan="4"><strong>Major Courses (44 units)</strong></td>
 		</tr>
 		<tr>
-			<td style="text-align: center;"><strong>Course</strong></td>
-			<td style="text-align: center;"><strong>Title</strong></td>
+			<td><strong>Course</strong></td>
+			<td><strong>Title</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
-			<td style="text-align: center;"><strong>Prerequisites</strong></td>
+			<td><strong>Prerequisites</strong></td>
 		</tr>
 		<tr>
 			<td>Math 101</td>
@@ -584,10 +584,10 @@ class MathChecklistSeeder extends Seeder
 			<td style="text-align: center;" colspan="4"><strong>Qualified Electives (12 units)</strong></td>
 		</tr>
 		<tr>
-			<td style="text-align: center;"><strong>Course</strong></td>
-			<td style="text-align: center;"><strong>Title</strong></td>
+			<td><strong>Course</strong></td>
+			<td><strong>Title</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
-			<td style="text-align: center;"><strong>Prerequisites</strong></td>
+			<td><strong>Prerequisites</strong></td>
 		</tr>
 		<tr>
 			<td>Math 123</td>
@@ -683,10 +683,10 @@ class MathChecklistSeeder extends Seeder
 			<td style="text-align: center;" colspan="4"><strong>Physical Science Courses (15 units)</strong></td>
 		</tr>
 		<tr>
-			<td style="text-align: center;"><strong>Course</strong></td>
-			<td style="text-align: center;"><strong>Title</strong></td>
+			<td><strong>Course</strong></td>
+			<td><strong>Title</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
-			<td style="text-align: center;"><strong>Prerequisites</strong></td>
+			<td><strong>Prerequisites</strong></td>
 		</tr>
 		<tr>
 			<td>Physics 101</td>
@@ -728,8 +728,8 @@ class MathChecklistSeeder extends Seeder
 			<td style="text-align: center;" colspan="4"><strong>Other Required Courses (48 units)</strong></td>
 		</tr>
 		<tr>
-			<td style="text-align: center;"><strong>Course</strong></td>
-			<td style="text-align: center;" colspan="2"><strong>Title</strong></td>
+			<td><strong>Course</strong></td>
+			<td colspan="2"><strong>Title</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>

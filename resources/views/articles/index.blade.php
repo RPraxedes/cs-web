@@ -20,7 +20,7 @@
 						<div class="col-md-10">
 							<div class="card-body">
 								<h4 class="card-title "><strong>{{$article->title}}</strong></h4>
-								<p class="card-text"><small class="text-muted">Published on {{\Carbon\Carbon::parse($article->published_at)->toFormattedDateString()}} at {{date('h:i A', strtotime($article->published_at))}} by {{$article->user->name}}</small></p>
+								<p class="card-text"><small class="text-muted">Published on {{\Carbon\Carbon::parse($article->published_at)->toFormattedDateString()}} at {{date('h:i A', strtotime($article->published_at))}} by {{$article->user->name}} @if(\Carbon\Carbon::parse($article->updated_at)->gt(\Carbon\Carbon::parse($article->published_at))) (Modified on {{\Carbon\Carbon::parse($article->updated_at)->toFormattedDateString()}} at {{date('h:i A', strtotime($article->updated_at))}}) @endif</small></p>
 								<div class="card-text">
 									{!!Str::words(strip_tags($article->body), 100)!!}
 								</div>

@@ -31,7 +31,7 @@ class EcologySystematicsChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -80,7 +80,7 @@ class EcologySystematicsChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -129,7 +129,7 @@ class EcologySystematicsChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -186,7 +186,7 @@ class EcologySystematicsChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -239,7 +239,7 @@ class EcologySystematicsChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -292,7 +292,7 @@ class EcologySystematicsChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -341,7 +341,7 @@ class EcologySystematicsChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -390,7 +390,7 @@ class EcologySystematicsChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -435,10 +435,10 @@ class EcologySystematicsChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Course</strong></td>
-			<td style="text-align: center;"><strong>Title</strong></td>
+			<td><strong>Course</strong></td>
+			<td><strong>Title</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
-			<td style="text-align: center;"><strong>Prerequisites</strong></td>
+			<td><strong>Prerequisites</strong></td>
 		</tr>
 		<tr>
 			<td>Biology 100</td>

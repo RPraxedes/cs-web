@@ -18,28 +18,35 @@
 							<img src="{{asset('images/'.$article->header_image)}}" class="card-img" alt="{{$article->header_alt}}">
 						</div>
 						<div class="col-md-10">
+							<div class="card-body">
+								<h4 class="card-title "><strong>{{$article->title}}</strong></h4>
+								<p class="card-text"><small class="text-muted">Published on {{\Carbon\Carbon::parse($article->published_at)->toFormattedDateString()}} at {{date('h:i A', strtotime($article->published_at))}} by {{$article->user->name}} @if(\Carbon\Carbon::parse($article->updated_at)->gt(\Carbon\Carbon::parse($article->published_at))) (Modified on {{\Carbon\Carbon::parse($article->updated_at)->toFormattedDateString()}} at {{date('h:i A', strtotime($article->updated_at))}}) @endif</small></p>
+								<div class="card-text">
+									{!!Str::words(strip_tags($article->body), 100)!!}
+								</div>
+								<br>
 							@if($article->published_at != NULL)
-							<div class="card-body">
-								<h4 class="card-title "><strong>{{$article->title}}</strong></h4>
-								<p class="card-text"><small class="text-muted">Published on {{\Carbon\Carbon::parse($article->published_at)->toFormattedDateString()}} at {{date('h:i A', strtotime($article->published_at))}} by {{$article->user->name}}</small></p>
-								<div class="card-text">
-									{!!Str::words(strip_tags($article->body), 100)!!}
-								</div>
-								<br>
 								<a href="{{url('articles?id='.$article->id)}}" role="button" class="btn btn-primary">Read More</a>
-							</div>
+								<form action="{{route('article.edit')}}" method="POST">
+								@csrf
+									<input type="hidden" name="id" value={{$article->id}}>
+									<button type="submit" class="btn btn-secondary">Edit</button>
+								</form>
 							@else
-							<div class="card-body">
-								<h4 class="card-title "><strong>{{$article->title}}</strong></h4>
-								<p class="card-text"><small class="text-muted">Saved on {{\Carbon\Carbon::parse($article->updated_at)->toFormattedDateString()}} at {{date('h:i A', strtotime($article->updated_at))}} by {{$article->user->name}}</small></p>
-								<div class="card-text">
-									{!!Str::words(strip_tags($article->body), 100)!!}
-								</div>
-								<br>
+								<form action="{{route('article.preview')}}" method="POST">
+									@csrf
+									<input type="hidden" name="id" value={{$article->id}}>
+									<button type="submit" class="btn btn-primary">Preview</button>
+								</form>
 								<form action="{{route('article.delete')}}" method="POST">
 									@csrf
 									<input type="hidden" name="id" value={{$article->id}}>
 									<button type="submit" class="btn btn-danger">Delete</button>
+								</form>
+								<form action="{{route('article.edit')}}" method="POST">
+									@csrf
+									<input type="hidden" name="id" value={{$article->id}}>
+									<button type="submit" class="btn btn-secondary">Edit</button>
 								</form>
 								<form action="{{route('article.publish')}}" method="POST">
 									@csrf
@@ -54,7 +61,7 @@
 													<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 												</div>
 												<div class="modal-body">
-													Are you sure you want to publish this article? You won't be able to edit or delete this after.
+												Are you sure you want to publish this article? You won't be able to edit or delete this after.
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -64,9 +71,9 @@
 										</div>
 									</div>
 								</form>
-								<a href="{{route('article.edit')}}?id={{$article->id}}" role="button" class="btn btn-secondary">Edit</a>
 							</div>
 							@endif
+							</div>
 						</div>
 					</div>
 				</div>

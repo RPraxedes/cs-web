@@ -8,7 +8,7 @@
 	<script>
 		tinymce.init({
 			selector: '#tinytextarea',
-			plugins: ["placeholder", "autosave", "image", "table"],
+			plugins: ["placeholder", "autosave", "image", "table", "code"],
 			height: '600px',
 			menubar: "file edit view insert format table",
 			toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | image | table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol",

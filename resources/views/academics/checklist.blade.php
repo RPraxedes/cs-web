@@ -9,25 +9,22 @@
 				{{$pages->first()->title}}
 			</div>
 		</div>
-		<div class="row">
-			@foreach($pages as $page)
-			<div class="col-md-12 highlight" data-spy="scroll" data-target="#navbar-example3" data-offset="0">
-				{!!$page->body!!}
-			</div>
-			@endforeach
-			<!--<nav id="navbar-example3" class="navbar navbar-light bg-light col-md-2 float-right">
-				<a class="navbar-brand" href="#">Checklist</a>
-				<nav class="nav nav-pills flex-column">
-					<a class="nav-link" href="#1st-1st">1st Yr., 1st Sem</a>
-					<a class="nav-link" href="#1st-2nd">1st Yr., 2nd Sem</a>
-					<a class="nav-link" href="#2nd-1st">2nd Yr., 1st Sem</a>
-					<a class="nav-link" href="#2nd-2nd">2nd Yr., 2nd Sem</a>
-					<a class="nav-link" href="#3rd-1st">3rd Yr., 1st Sem</a>
-					<a class="nav-link" href="#3rd-2nd">3rd Yr., 2nd Sem</a>
-					<a class="nav-link" href="#4th-1st">4th Yr., 1st Sem</a>
-					<a class="nav-link" href="#4th-2nd">4th Yr., 2nd Sem</a>
-				</nav>
-			</nav>-->
+		<div class="row col-md-11 justify-content-end">
+			{!!$pages->first()->body!!}
 		</div>
+		<div class="row justify-content-md-center">
+			@for ($i=1; $i<9; $i++)	<!--consists of total units and subjects per sem-->
+			<div class="col-md-5 highlight">
+				{!!$pages[$i]->body!!}
+			</div>
+			@endfor
+		</div>
+		@for ($i=9; $i<$pages->count(); $i++)	<!--contains list of subjects and retention policy (list @ 9, retention policy @ 10+)-->
+		<div class="row">
+			<div class="col-md-12 highlight">
+				{!!$pages[$i]->body!!}
+			</div>
+		</div>
+		@endfor
 	</div>
 @endsection

@@ -63,13 +63,15 @@ class HomeController extends Controller
 				'title' => $requestData['title'],
 				'body' => $requestData['body'],
 				'header_image' => $requestData['header_image'],
-				'header_alt' => $requestData['header_alt']
+				'header_alt' => $requestData['header_alt'],
+				'updated_at' => Carbon::now()->toDateTimeString(),
 			]);
 		}else{	// no change to header image 
 			$article->update([
 				'title' => $requestData['title'],
 				'body' => $requestData['body'],
-				'header_alt' => $requestData['header_alt']
+				'header_alt' => $requestData['header_alt'],
+				'updated_at' => Carbon::now()->toDateTimeString(),
 			]);
 		}
 		return redirect('dashboard')->with('alert-success', 'Article successfully saved!');
@@ -98,5 +100,10 @@ class HomeController extends Controller
 		$article->published_at = Carbon::now()->toDateTimeString();
 		$article->save();
 		return redirect('dashboard')->with('alert-success', 'Article successfully published!');
+	}
+	
+	public function preview(){
+		$article = Article::find((int)request('id'));
+		return view('articles.page', ['article' => $article]);
 	}
 }

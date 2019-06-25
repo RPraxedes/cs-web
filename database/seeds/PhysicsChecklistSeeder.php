@@ -31,7 +31,7 @@ class PhysicsChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -84,7 +84,7 @@ class PhysicsChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -133,7 +133,7 @@ class PhysicsChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -190,7 +190,7 @@ class PhysicsChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -247,7 +247,7 @@ class PhysicsChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -296,7 +296,7 @@ class PhysicsChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -345,7 +345,7 @@ class PhysicsChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -398,7 +398,7 @@ class PhysicsChecklistSeeder extends Seeder
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;"><strong>Subjects</strong></td>
+			<td><strong>Subjects</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
 		</tr>
 		<tr>
@@ -438,25 +438,23 @@ class PhysicsChecklistSeeder extends Seeder
 '<table class="table table-striped" id="list-course" style="border-collapse: collapse;">
 	<thead>
 		<tr>
-			<td style="text-align: center;" colspan="5"><strong>List of Courses in the BS Physics Program</strong></td>
+			<td style="text-align: center;" colspan="4"><strong>List of Courses in the BS Physics Program</strong></td>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<td style="text-align: center;" colspan="5"><strong>Foundation Courses</strong></td>
+			<td style="text-align: center;" colspan="4"><strong>Foundation Courses</strong></td>
 		</tr>
 		<tr>
-			<td style="text-align: center;"><strong>Course</strong></td>
-			<td style="text-align: center;"><strong>Title</strong></td>
+			<td><strong>Course</strong></td>
+			<td><strong>Title</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
-			<td style="text-align: center;"><strong>Prerequisites</strong></td>
-			<td style="text-align: center;"><strong>Corequisites</strong></td>
+			<td><strong>Prerequisites</strong></td>
 		</tr>
 		<tr>
 			<td>Math 53</td>
 			<td>Elementary Analysis I</td>
 			<td style="text-align: center;">5</td>
-			<td>None</td>
 			<td>None</td>
 		</tr>
 		<tr>
@@ -464,230 +462,203 @@ class PhysicsChecklistSeeder extends Seeder
 			<td>Elementary Analysis II</td>
 			<td style="text-align: center;">5</td>
 			<td>Math 53</td>
-			<td>None</td>
 		</tr>
 		<tr>
 			<td>Geology 11</td>
 			<td>Principles of Geology</td>
 			<td style="text-align: center;">3</td>
 			<td>None</td>
-			<td>None</td>
 		</tr>
 		<tr>
 			<td>Chemistry 18</td>
 			<td>Introductory Physical Chemistry</td>
 			<td style="text-align: center;">4</td>
-			<td>None</td>
-			<td>Chemistry 18.1</td>
+			<td>Corequisite: Chemistry 18.1</td>
 		</tr>
 		<tr>
 			<td>Chemistry 18.1</td>
 			<td>Introductory Physical Chemistry Laboratory</td>
 			<td style="text-align: center;">1</td>
-			<td>None</td>
-			<td>Chemistry 18</td>
+			<td>Corequisite: Chemistry 18</td>
 		</tr>
 		<tr>
-			<td style="text-align: center;" colspan="5"><strong>Major Courses</strong></td>
+			<td style="text-align: center;" colspan="4"><strong>Major Courses</strong></td>
 		</tr>
 		<tr>
-			<td style="text-align: center;"><strong>Course</strong></td>
-			<td style="text-align: center;"><strong>Title</strong></td>
+			<td><strong>Course</strong></td>
+			<td><strong>Title</strong></td>
 			<td style="text-align: center;"><strong>Units</strong></td>
-			<td style="text-align: center;"><strong>Prerequisites</strong></td>
-			<td style="text-align: center;"><strong>Corequisites</strong></td>
+			<td><strong>Prerequisites</strong></td>
 		</tr>
 		<tr>
 			<td>Physics 101</td>
 			<td>Fundamental Physics I</td>
 			<td style="text-align: center;">4</td>
-			<td>None</td>
-			<td>Math 53</td>
+			<td>Corequisite: Math 53</td>
 		</tr>
 		<tr>
 			<td>Physics 101.1</td>
 			<td>Fundamental Physics I Laboratory</td>
 			<td style="text-align: center;">1</td>
-			<td>None</td>
-			<td>Physics 101</td>
+			<td>Corequisite: Physics 101</td>
 		</tr>
 		<tr>
 			<td>Physics 102</td>
 			<td>Fundamental Physics II</td>
 			<td style="text-align: center;">4</td>
-			<td>Physics 101/equiv., Physics 101.1/equiv., and Math 53</td>
-			<td>Math 54</td>
+			<td>Physics 101/equiv., Physics 101.1/equiv., and Math 53; Corequisite: Math 54</td>
 		</tr>
 		<tr>
 			<td>Physics 102.1</td>
 			<td>Fundamental Physics II Laboratory</td>
 			<td style="text-align: center;">1</td>
-			<td>None</td>
-			<td>Physics 102</td>
+			<td>Corequisite: Physics 102</td>
 		</tr>
 		<tr>
 			<td>Physics 103</td>
 			<td>Fundamental Physics III</td>
 			<td style="text-align: center;">4</td>
 			<td>Physics 102/equiv., Physics 102.1/equiv., and Math 54</td>
-			<td>None</td>
 		</tr>
 		<tr>
 			<td>Physics 103.1</td>
 			<td>Fundamental Physics III Laboratory</td>
 			<td style="text-align: center;">1</td>
-			<td>None</td>
-			<td>Physics 103</td>
+			<td>Corequisite: Physics 103</td>
 		</tr>
 		<tr>
 			<td>Physics 104</td>
 			<td>Modern Physics I</td>
 			<td style="text-align: center;">4</td>
-			<td>Physics 103</td>
-			<td>Physics 121</td>
+			<td>Physics 103; Corequisite: Physics 121</td>
 		</tr>
 		<tr>
 			<td>Physics 104.1</td>
 			<td>Modern Physics I Laboratory</td>
 			<td style="text-align: center;">1</td>
-			<td>None</td>
-			<td>Physics 104</td>
+			<td>Corequisite: Physics 104</td>
 		</tr>
 		<tr>
 			<td>Physics 121</td>
 			<td>Mathematical Methods in Physics I</td>
 			<td style="text-align: center;">4</td>
 			<td>Math 53</td>
-			<td>None</td>
 		</tr>
 		<tr>
 			<td>Physics 122</td>
 			<td>Mathematical Methods in Physics II</td>
 			<td style="text-align: center;">4</td>
 			<td>Physics 121 or Consent of Instructor (COI)</td>
-			<td>None</td>
 		</tr>
 		<tr>
 			<td>Physics 123</td>
 			<td>Mathematical Methods in Physics III</td>
 			<td style="text-align: center;">4</td>
 			<td>Physics 121</td>
-			<td>None</td>
 		</tr>
 		<tr>
 			<td>Physics 131</td>
 			<td>Computational Physics</td>
 			<td style="text-align: center;">4</td>
 			<td>Physics 121 or Consent of Instructor (COI)</td>
-			<td>None</td>
 		</tr>
 		<tr>
 			<td>Physics 161</td>
 			<td>Theoretical Mechanics I</td>
 			<td style="text-align: center;">3</td>
-			<td>Physics 101</td>
-			<td>Physics 123 or Consent of Instructor (COI)</td>
+			<td>Physics 101; Corequisite: Physics 123 or Consent of Instructor (COI)</td>
 		</tr>
 		<tr>
 			<td>Physics 162</td>
 			<td>Theoretical Mechanics II</td>
 			<td style="text-align: center;">3</td>
 			<td>Physics 161</td>
-			<td>None</td>
 		</tr>
 		<tr>
 			<td>Physics 165</td>
 			<td>Statistical Physics I</td>
 			<td style="text-align: center;">3</td>
 			<td>Physics 161 or Consent of Instructor (COI)</td>
-			<td>None</td>
 		</tr>
 		<tr>
 			<td>Physics 171</td>
 			<td>Electromagnetic Theory I</td>
 			<td style="text-align: center;">3</td>
-			<td>Physics 102</td>
-			<td>Physics 123</td>
+			<td>Physics 102; Corequisite: Physics 123</td>
 		</tr>
 		<tr>
 			<td>Physics 172</td>
 			<td>Electromagnetic Theory II</td>
 			<td style="text-align: center;">3</td>
 			<td>Physics 171</td>
-			<td>None</td>
 		</tr>
 		<tr>
 			<td>Physics 173</td>
 			<td>Electronic Physics</td>
 			<td style="text-align: center;">4</td>
 			<td>Physics 102, Physics 102.1</td>
-			<td>None</td>
 		</tr>
 		<tr>
 			<td>Physics 175</td>
 			<td>Optical Physics</td>
 			<td style="text-align: center;">3</td>
 			<td>Physics 172 or Consent of Instructor (COI)</td>
-			<td>None</td>
 		</tr>
 		<tr>
 			<td>Physics 181</td>
 			<td>Quantum Physics I</td>
 			<td style="text-align: center;">3</td>
 			<td>Physics 104</td>
-			<td>None</td>
 		</tr>
 		<tr>
 			<td>Physics 182</td>
 			<td>Quantum Physics II</td>
 			<td style="text-align: center;">3</td>
 			<td>Physics 181</td>
-			<td>None</td>
 		</tr>
 		<tr>
 			<td>Physics 183</td>
 			<td>Solid State Physics</td>
 			<td style="text-align: center;">3</td>
 			<td>Physics 165 and Physics 181</td>
-			<td>None</td>
 		</tr>
-		
 		<tr>
 			<td>Physics 195</td>
 			<td>Special Topics in Physics and Applied Physics</td>
 			<td style="text-align: center;">3</td>
 			<td>Consent of Instructor (COI); Must be taken twice with different topics</td>
-			<td>None</td>
 		</tr>
 		<tr>
 			<td>Physics 196</td>
 			<td>Undergraduate Seminar</td>
 			<td style="text-align: center;">1</td>
 			<td>Senior Standing</td>
-			<td>None</td>
 		</tr>
 		<tr>
 			<td>Physics 199</td>
 			<td>Undergraduate Research</td>
 			<td style="text-align: center;">3</td>
 			<td>Consent of Instructor (COI)</td>
-			<td>None</td>
 		</tr>
 		<tr>
 			<td>Physics 200</td>
 			<td>Undergraduate Thesis</td>
 			<td style="text-align: center;">3</td>
 			<td>Physics 199</td>
-			<td>None</td>
 		</tr>
 		<tr>
 			<td style="text-align: center;" colspan="4"><strong>Electives</strong></td>
 		</tr>
 		<tr>
+			<td><strong>Course</strong></td>
+			<td><strong>Title</strong></td>
+			<td style="text-align: center;"><strong>Units</strong></td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>Two (2) Free Electives</td>
 			<td>Any Electives from the 3 colleges</td>
 			<td style="text-align: center;">6</td>
-			<td></td>
 			<td></td>
 		</tr>
 	</tbody>
