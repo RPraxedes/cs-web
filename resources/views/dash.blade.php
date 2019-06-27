@@ -27,23 +27,15 @@
 			</div>
 			<div class="row">
 				<div class="btn-group" role="group" aria-level="Article Management">
-					<div class="btn-group" role="group">
-						<div class="dropdown">
-							<a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create an Article</a>
-							<div class="dropdown-menu" aria-labelledby="btnGroupDrop">
-								<a class="dropdown-item" href="{{route('article.create')}}?type=news">News</a>
-								<a class="dropdown-item" href="{{route('article.create')}}?type=research">Research</a>
-								<a class="dropdown-item" href="{{route('article.create')}}?type=publication">Publication</a>
-							</div>
-						</div>
-					</div>
-					<a class="btn btn-secondary" href="{{route('article.view')}}" role="button">View Your Articles</a>
+						<a class="btn btn-secondary" href="{{route('article.create')}}?type=news">Create a News Article</a>
+						<a class="btn btn-secondary" href="{{route('article.create')}}?type=research">Create a Research Article</a>
+						<a class="btn btn-secondary" href="{{route('article.create')}}?type=publication">Create a Publication</a>
 				</div>
-				<div class="btn-group" role="group" aria-level="Article Management">
-					<a class="btn btn-secondary" href="#" role="button">Add Course</a>
-					<a class="btn btn-secondary" href="#" role="button">View Courses</a>
-					<a class="btn btn-success" href="#" role="button">Create an Alert</a>
-				</div>
+				<a class="btn btn-secondary" href="{{route('article.view')}}" role="button">View Your Articles</a>
+				<a class="btn btn-secondary" href="{{route('article.edit')}}" role="button">Edit Checklist</a>
+				<a class="btn btn-secondary" href="#" role="button">View Courses</a>
+				<a class="btn btn-success" href="#" role="button">Create an Alert</a>
+				<a class="btn btn-success" href="{{route('user.profile')}}" role="button">Edit Profile</a>
 			</div>
         </div>
     </div>

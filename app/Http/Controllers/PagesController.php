@@ -22,7 +22,12 @@ class PagesController extends Controller
 	}
 	
 	public function faculty(){
-		return view('academics.faculty');
+		return view('faculty.index');
+	}
+	
+	public function facultyprofile(){
+		
+		return view('faculty.page');
 	}
 	
 	public function courses(){

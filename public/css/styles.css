@@ -10,6 +10,10 @@ main > .container, main > .container-fluid {
 	margin-bottom: 40px;
 }
 
+nav {
+	z-index: 5;
+}
+
 .full-height {
 	height: 720px;
 }

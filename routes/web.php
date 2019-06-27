@@ -16,6 +16,7 @@ Auth::routes();
 Route::get('/', 'PagesController@home')->name('welcome');
 Route::get('/academics', 'PagesController@academics')->name('academics');
 Route::get('/faculty', 'PagesController@faculty')->name('faculty');
+Route::get('/faculty/page/', 'PagesController@facultyprofile')->name('faculty.page');
 Route::get('/courses', 'PagesController@courses')->name('courses');
 Route::get('/courses/ecology-and-systematics', 'PagesController@ecologysystematics')->name('ecologysystematics');
 Route::get('/courses/general-biology', 'PagesController@generalbiology')->name('generalbiology');
@@ -27,9 +28,13 @@ Route::get('/sinsm', 'PagesController@sinsm')->name('sinsm');
 Route::get('/about', 'PagesController@about')->name('about');
 
 Route::get('/dashboard', 'HomeController@index')->name('dash');
+Route::get('/dashboard/profile', 'HomeController@profile')->name('user.profile');
+Route::post('/dashboard/profile/save', 'HomeController@saveprofile')->name('user.saveprofile');
+Route::post('/dashboard/profile/faculty/save', 'HomeController@facultysaveprofile')->name('faculty.saveprofile');
+
 Route::get('/dashboard/create', 'HomeController@create')->name('article.create');
-Route::get('/dashboard/view', 'HomeController@view')->name('article.view');
-Route::post('/dashboard/edit', 'HomeController@edit')->name('article.edit');
+Route::get('/dashboard/view', 'HomeController@viewarticle')->name('article.view');
+Route::post('/dashboard/edit', 'HomeController@editarticle')->name('article.edit');
 Route::post('/dashboard/save', 'HomeController@save')->name('article.save');
 Route::post('/dashboard/publish', 'HomeController@publish')->name('article.publish');
 Route::post('/dashboard/delete', 'HomeController@delete')->name('article.delete');

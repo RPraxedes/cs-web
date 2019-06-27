@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Register')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -61,6 +63,23 @@
                             </div>
                         </div>
 
+						<div class="form-group row">
+							<label for="selectPosition" class="col-md-4 col-form-label text-md-right">Position</label>
+							<div class="col-md-6">
+								<select class="form-control" id="selectPosition" name="position">
+									<option>Select position</option>
+									<option value="admin">Administrator</option>
+									<option value="faculty">Faculty</option>
+								</select>
+								
+								@error('position')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+							</div>
+						</div>
+						
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

@@ -7,16 +7,11 @@ include calendar, transparency corner. eFOI
 ------------------------------
 
 editable checklists
-@faculty page: specify degree
 editable checklist & courses by admin
 'add alert with lifespan/destroy datetime' function for admin
 registration: generate from full name
 	if cs admin, display cs admin only
 	after registraion, give generated password. upon login, redirect user to change password screen.
 	set up mailer system
-
-Faculty:
-add status dropdown/field (active, on study leave, etc.)
-	research interests/topics: (textbox)
 	
 fix routing to be independent with url

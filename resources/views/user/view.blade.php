@@ -11,6 +11,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
+		@if($articles->count() != 0)
 			@foreach ($articles as $article)
 				<div class="card">
 					<div class="row">
@@ -78,6 +79,11 @@
 					</div>
 				</div>
 			@endforeach
+		@else
+			<div class="alert alert-warning" role="alert">
+				Nothing over here but us chickens!
+			</div>
+		@endif
 			</div>
 		</div>
 	</div>

@@ -14,13 +14,23 @@ class CreateFacultyTable extends Migration
     public function up()
     {
         Schema::create('faculty', function (Blueprint $table) {
-            $table->bigIncrements('id');
-			$table->string('first_name');
-			$table->string('middle_name');
-			$table->string('last_name');
-			$table->mediumText('bio');
-			$table->string('position');
+            $table->bigInteger('user_id')->unsigned();
+			$table->string('first_name')->nullable();
+			$table->string('middle_name')->nullable();
+			$table->string('last_name')->nullable();
+			$table->mediumText('bio')->nullable();
+			$table->string('position')->nullable();
+			$table->string('degree')->nullable();
+			$table->string('research_interest')->nullable();
+			$table->bigInteger('status_id')->unsigned();
             $table->timestamps();
+			
+			$table->foreign('user_id')
+					->references('id')
+					->on('users');
+			$table->foreign('status_id')
+					->references('id')
+					->on('faculty_status');
         });
     }
 

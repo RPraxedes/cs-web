@@ -6,9 +6,12 @@ use Auth;
 use File;
 use Carbon\Carbon;
 use App\Models\Article;
+use App\Models\User;
+use App\Models\Checklist;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
 use App\Http\Requests\ArticleEditRequest;
+use App\Http\Requests\EditProfileRequest;
 
 class HomeController extends Controller
 {
@@ -32,7 +35,40 @@ class HomeController extends Controller
         return view('dash');
     }
 	
-	public function view(){
+	public function profile()
+    {
+        return view('user.profile', [
+		'name' => Auth::user()->name,
+		'email' => Auth::user()->email,
+		'position' => Auth::user()->position,
+		]);
+    }
+	
+	public function saveprofile(EditProfileRequest $request){
+		$requestData = $request->all();
+		$user = User::find((int)Auth::user()->id);
+		$user->update([
+			'name' => $requestData['name'],
+			'email' => $requestData['email'],
+			'position' => $requestData['position'],
+			'updated_at' => Carbon::now()->toDateTimeString(),
+		]);
+		return redirect('dashboard')->with('alert-success', 'Profile successfully saved!');
+	}
+	
+	public function facultysaveprofile(EditProfileRequest $request){
+		$requestData = $request->all();
+		$user = User::find((int)Auth::user()->id);
+		$user->update([
+			'name' => $requestData['name'],
+			'email' => $requestData['email'],
+			'position' => $requestData['position'],
+			'updated_at' => Carbon::now()->toDateTimeString(),
+		]);
+		return redirect('dashboard')->with('alert-success', 'Profile successfully saved!');
+	}
+	
+	public function viewarticle(){
 		$user = Auth::user();
 		return view('user.view', ['articles' => $user->articles]);
 	}
@@ -46,7 +82,7 @@ class HomeController extends Controller
 		}
 	}
 	
-	public function edit(){
+	public function editarticle(){
 		$article = Article::find((int)request('id'));
 		return view('user.edit', ['article' => $article]);
 	}
@@ -105,5 +141,15 @@ class HomeController extends Controller
 	public function preview(){
 		$article = Article::find((int)request('id'));
 		return view('articles.page', ['article' => $article]);
+	}
+	
+	public function viewchecklist(){
+	$articles = Checklist::all();
+	return view('user.view', ['articles' => $articles]);
+	}
+	
+	public function editchecklist(){
+		$article = Checklist::find((int)request('id'));
+		return view('user.edit', ['article' => $article]);
 	}
 }
