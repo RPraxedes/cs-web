@@ -18,10 +18,14 @@ class CreateFacultyTable extends Migration
 			$table->string('first_name')->nullable();
 			$table->string('middle_name')->nullable();
 			$table->string('last_name')->nullable();
-			$table->mediumText('bio')->nullable();
 			$table->string('position')->nullable();
-			$table->string('degree')->nullable();
+			$table->string('bs_degree')->nullable();
+			$table->string('ms_degree')->nullable();
+			$table->string('phd_degree')->nullable();
+			$table->mediumText('bio')->nullable();
 			$table->string('research_interest')->nullable();
+			$table->string('profile_image')->nullable();
+			$table->string('profile_alt')->nullable();		//for profile image
 			$table->bigInteger('status_id')->unsigned();
             $table->timestamps();
 			

@@ -56,11 +56,18 @@
 					<label class="form-check-label" for="facultyPosition">Faculty Position</label>
 					<input name="faculty_position" class="form-control" type="text" placeholder="Faculty Position" id="facultyPosition" required><br>
 					
-					<label class="form-check-label" for="facultyDegree">Degree</label>
-					<input name="degree" class="form-control" type="text" placeholder="Degree" id="facultyDegree" required><br>
+					<label class="form-check-label" for="facultyBSDegree">B.S. Degree</label>
+					<input name="bs_degree" class="form-control" type="text" placeholder="Example: B.S. Math, cum laude, University of the Philippines, 2015" id="facultyBSDegree"data-toggle="tooltip" data-placement="top" title="B.S. Degree, College or University, Year obtained"><br>
+					<label class="form-check-label" for="facultyMSDegree">M.S. Degree</label>
+					<input name="ms_degree" class="form-control" type="text" placeholder="Example: M.S. Math, University of the Philippines, 2018" id="facultyMSDegree" data-toggle="tooltip" data-placement="top" title="M.S. Degree, College or University, Year obtained"><br>
+					<label class="form-check-label" for="facultyPhDDegree">Ph.D. Degree</label>
+					<input name="phd_degree" class="form-control" type="text" placeholder="Example: Ph.D. Math, University of the Philippines, 2020" id="facultyPhDDegree" data-toggle="tooltip" data-placement="top" title="Ph.D. Degree, College or University, Year obtained"><br>
 					
 					<label class="form-check-label" for="researchInterest">Research Interest/s</label>
 					<input name="research_interest" class="form-control" type="text" placeholder="Topic/s (separated by commas)" id="researchInterest"><br>
+					
+					<label class="form-check-label" for="contactInfo">Contact Information</label>
+					<input name="contact" class="form-control" type="text" placeholder="Phone, Email" id="contactInfo"><br>
 					
 					<label for="facultyStatus">Status</label>
 					<select name=""class="form-control" id="facultyStatus">

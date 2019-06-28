@@ -6,8 +6,7 @@ include calendar, transparency corner. eFOI
 
 ------------------------------
 
-editable checklists
-editable checklist & courses by admin
+editable courses by admin
 'add alert with lifespan/destroy datetime' function for admin
 registration: generate from full name
 	if cs admin, display cs admin only
@@ -15,3 +14,22 @@ registration: generate from full name
 	set up mailer system
 	
 fix routing to be independent with url
+
+conference and publication format from sir lee
+
+Faculty page:
+Image (have proper default image)
+
+name
+educational attainment
+contact info
+
+(in tabs)(in bullets)
+publications (with specific fields) (Title. author.(Type))(sort accdg to publication date)
+research disseminations (with specific fields)(conference)
+current research projects (with specific fields following publications)
+
+other achievements such as grants use text editor
+(dissertations, theses, grants, memberships, recognitions)
+
+implement ajax

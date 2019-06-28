@@ -152,4 +152,13 @@ class HomeController extends Controller
 		$article = Checklist::find((int)request('id'));
 		return view('user.edit', ['article' => $article]);
 	}
+	
+	public function createalert(){
+		var_dump(request('alert_body'));
+		var_dump(request('start_date'));
+		var_dump(request('start_time'));
+		var_dump(request('end_date'));
+		var_dump(request('end_time'));
+		var_dump(request('alert_style'));
+	}
 }

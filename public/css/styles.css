@@ -138,6 +138,10 @@ img.flip {
 .btn-primary:not(:disabled):not(.disabled).active:focus,.btn-primary:not(:disabled):not(.disabled):active:focus,.show>.btn-primary.dropdown-toggle:focus {
 	box-shadow: 0 0 0 .2rem rgba(123, 17, 19,0.5);
 }
+
+.text-primary {
+	color: #b43c25!important;
+}
 /*-----------------*/
 .card {
 	margin: 10px;

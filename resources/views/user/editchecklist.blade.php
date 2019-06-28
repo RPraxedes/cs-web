@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title' , 'Edit Article')
+@section('title' , 'Edit Checklist')
 
 @section('head')
 	<!-- TinyMCE -->
@@ -32,28 +32,16 @@
         <div class="col-md-10">
 			<div class="row justify-content-md-center title">
 				<div class="col-md-12">
-					<div class="display-3 text-center">{{Str::title($article->type)}} Builder</div>
+					<div class="display-4 text-center">Checklist Editor</div>
 				</div>
 			</div>
 			<div class="row justify-content-md-center">
 				<div class="col-md-10">
-					<form method="POST" action="{{route('article.modify')}}" enctype="multipart/form-data">
+					<form method="POST" action="{{route('checklist.save', ['id' => $page->id])}}">
 						@csrf
 						<div class="form-group">
-							<input name="title" class="form-control form-control-lg" type="text" placeholder="{{Str::title($article->type)}} Title" value="{{$article->title}}" required><br>
-							<input name="id" type="hidden" value="{{$article->id}}" required>
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroupFileAddon01">Header image</span>
-								</div>
-								<div class="custom-file">
-									<input type="file" name="header_image" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-									<label class="custom-file-label" for="inputGroupFile01">{{$article->header_image}}</label>
-								</div>
-							</div>
-							<input name="header_alt" class="form-control" type="text" placeholder="Header image description" value="{{$article->header_alt}}" required>
-							<br>
-							<textarea name="body" id="tinytextarea" class="w-100" placeholder="What's the scoop?">{{$article->body}}</textarea>
+							<input name="title" class="form-control form-control-lg" type="text" placeholder="Course Title" value="{{$page->title}}" required data-toggle="tooltip" data-placement="top" title="Which degree program checklist does this belong?"><br>
+							<textarea name="body" id="tinytextarea" class="w-100" placeholder="What's the scoop?">{{$page->body}}</textarea>
 						</div>
 						
 						<button type="submit" class="btn btn-primary float-right">Save</button>
@@ -62,7 +50,7 @@
 			</div>
 			<div class="row justify-content-md-center">
 				<div class="col-md-10">
-					<a href="{{url('/dashboard')}}" role="button" class="btn btn-primary"> &larr; Dashboard</a>
+					<a href="{{route('dash')}}" role="button" class="btn btn-primary"> &larr; Dashboard</a>
 				</div>
 			</div>
         </div>

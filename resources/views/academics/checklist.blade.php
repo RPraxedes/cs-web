@@ -9,13 +9,27 @@
 				{{$pages->first()->title}}
 			</div>
 		</div>
-		<div class="row col-md-11 justify-content-end">
-			{!!$pages->first()->body!!}
+		<div class="row">
+			<div class="col-md-4 offset-md-7 highlight">
+				{!!$pages->first()->body!!}
+			@if($position == 'admin')
+				<form action="{{route('checklist.edit', ['id' => $pages->first()->id])}}" method="post">
+					@csrf
+					<button type="submit" class="btn btn-secondary btn-sm edit-button float-right">Edit Section</a>
+				</form>
+			@endif
+			</div>
 		</div>
 		<div class="row justify-content-md-center">
 			@for ($i=1; $i<9; $i++)	<!--consists of total units and subjects per sem-->
 			<div class="col-md-5 highlight">
 				{!!$pages[$i]->body!!}
+				@if($position == 'admin')
+					<form action="{{route('checklist.edit', ['id' => $pages[$i]->id])}}" method="post">
+						@csrf
+						<button type="submit" class="btn btn-secondary btn-sm edit-button float-right">Edit Section</a>
+					</form>
+				@endif
 			</div>
 			@endfor
 		</div>
@@ -23,6 +37,12 @@
 		<div class="row">
 			<div class="col-md-12 highlight">
 				{!!$pages[$i]->body!!}
+				@if($position == 'admin')
+					<form action="{{route('checklist.edit', ['id' => $pages[$i]->id])}}" method="post">
+						@csrf
+						<button type="submit" class="btn btn-secondary btn-sm edit-button float-right">Edit Section</a>
+					</form>
+				@endif
 			</div>
 		</div>
 		@endfor

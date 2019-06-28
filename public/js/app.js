@@ -10,6 +10,8 @@ $(document).ready(function () {
 		$('[data-toggle="popover"]').popover();
 		$('[data-toggle="tooltip"]').tooltip();
 	});
+	
+	$('.edit-button').hide();
 });
 
 if(window.addEventListener){
@@ -23,3 +25,13 @@ if(window.addEventListener){
 		audioElement.play();kkeys=[];}
 	}, true);
 };
+
+$(document).on('mouseenter', '.highlight', function () {
+	$(this).find(".edit-button").show();
+}).on('mouseleave', '.highlight', function () {
+	$(this).find(".edit-button").hide();
+});
+
+$(function () {
+	$('#datetimepicker1').datetimepicker();
+});
