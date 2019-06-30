@@ -31,7 +31,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
 			<div class="row justify-content-md-center title">
-			@if (!request()->has('type'))
+			@if (!isset($type))
 				<div class="col-md-5 alert alert-info" role="alert">
 					Choose a type of article below!
 				</div>
@@ -42,21 +42,21 @@
 				<div class="col-md-12">
 					<div class="row justify-content-center">
 						<div class="col-md-auto text-center">
-							<a href="{{url()->current()}}?type=news">News</a>
+							<a href="{{route('article.createbuilder', ['type' => 'news'])}}">News</a>
 						</div>
 						<div class="col-md-auto text-center">
-							<a href="{{url()->current()}}?type=research">Research</a>
+							<a href="{{route('article.createbuilder', ['type' => 'research'])}}">Research</a>
 						</div>
 						<div class="col-md-auto text-center">
-							<a href="{{url()->current()}}?type=publication">Publication</a>
+							<a href="{{route('article.createbuilder', ['type' => 'publication'])}}">Publication</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			@if (request()->has('type'))
+			@if (isset($type))
 				<div class="row justify-content-md-center">
 					<div class="col-md-10">
-						<form method="POST" action="{{route('article.save')}}" enctype="multipart/form-data">
+						<form method="POST" action="{{route('article.create')}}" enctype="multipart/form-data">
 							@csrf
 							<div class="form-group">
 								<input name="title" class="form-control form-control-lg" type="text" placeholder="{{Str::title($type)}} Title" required>
@@ -75,7 +75,7 @@
 								<textarea name="body" id="tinytextarea" class="w-100" placeholder="What's the scoop?"></textarea>
 							</div>
 							
-							<button type="submit" class="btn btn-primary float-right" {{request()->has('type')?'':'disabled'}}>Save</button>
+							<button type="submit" class="btn btn-primary float-right" {{$type?'':'disabled'}}>Save</button>
 						</form>
 					</div>
 				</div>
@@ -86,7 +86,7 @@
 			@endif
 			<div class="row justify-content-md-center">
 				<div class="col-md-10">
-					<a href="{{url('/dashboard')}}" role="button" class="btn btn-primary"> &larr; Dashboard</a>
+					<a href="{{route('dash')}}" role="button" class="btn btn-primary"> &larr; Dashboard</a>
 				</div>
 			</div>
         </div>

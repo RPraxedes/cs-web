@@ -35,3 +35,21 @@ $(document).on('mouseenter', '.highlight', function () {
 $(function () {
 	$('#datetimepicker1').datetimepicker();
 });
+
+$(function() {
+    toggle_start();
+    toggle_end();
+	$(document).ready(function(){
+		$("#Start").prop('checked', toggle_start);
+		$("#End").prop('checked', toggle_end);
+	});
+    $("#Start").click(toggle_start);
+    $("#End").click(toggle_end);
+});
+
+function toggle_start() {
+    $("input.start-input").prop("disabled", this.checked).prop("required", !this.checked);
+}
+function toggle_end() {
+    $("input.end-input").prop("disabled", this.checked).prop("required", !this.checked);
+}

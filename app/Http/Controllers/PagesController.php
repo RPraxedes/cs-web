@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Auth;
 use Carbon\Carbon;
 use App\Models\Article;	// fetches Article model
@@ -15,8 +16,9 @@ class PagesController extends Controller
     public function home(){
 		//$alerts = ['Alert for students!', 'Another alert just in case!'];
 		$news_preview = Article::with('user')->whereType('news')->where('published_at','!=',NULL)->take(3)->get();
+		$alerts = DB::table('alerts')->where('display_at', '<', Carbon::now())->where('destroy_at', '>', Carbon::now())->orWhereNull('destroy_at')->get();
 		//$authors = User::where('id', '=', $news_preview->author_id)->get();
-		return view('welcome', ['news_preview' => $news_preview]);
+		return view('welcome', ['news_preview' => $news_preview], ['alerts' => $alerts]);
 	}
 	
 	public function academics(){
@@ -93,5 +95,30 @@ class PagesController extends Controller
 	}
 	public function secret(){
 		return view('welcome.index');
+	}
+	
+	public function articles($id){	//display article page
+		if(isset($id)){
+			$article = Article::with('user')->find((int)$id);
+			if(!$article->published_at){
+				return redirect('/');
+			}else{
+				return view('articles.page', ['article' => $article]);
+			}
+		}
+	}
+    public function news(){
+		$articles = Article::with('user')->whereType('news')->where('published_at','!=',NULL)->paginate(10);
+		return view('articles.index', ['articles' => $articles], ['title' => 'News']);
+	}
+	
+	 public function research(){
+		$articles = Article::with('user')->whereType('research')->where('published_at','!=',NULL)->paginate(10);
+		return view('articles.index', ['articles' => $articles], ['title' => 'Research']);
+	}
+	
+	 public function publications(){
+		$articles = Article::with('user')->whereType('publication')->where('published_at','!=',NULL)->paginate(10);
+		return view('articles.index', ['articles' => $articles], ['title' => 'Publications']);
 	}
 }

@@ -28,6 +28,7 @@ class ArticleRequest extends FormRequest
 			'body' => 'required',
 			'type' => ['required','regex:/\bnews\b|\bresearch\b|\bpublication\b/'],
 			'header_image' => 'image|mimes:jpeg,png,jpg,gif,svg',
+			'header_alt' => 'required'
         ];
     }
 	

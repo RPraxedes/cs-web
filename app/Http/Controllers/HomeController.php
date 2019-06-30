@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Auth;
 use File;
 use Carbon\Carbon;
@@ -70,10 +71,47 @@ class HomeController extends Controller
 	
 	public function viewarticle(){
 		$user = Auth::user();
-		return view('user.view', ['articles' => $user->articles]);
+		$userArray = $user->articles->makeHidden('user_id');
+		$obj_name = "My Articles";
+		$obj_columns = [
+			"id",
+			"title",
+			"body",
+			"header_image",
+			"header_alt",
+			"type",
+			"published_at",
+			"created_at",
+			"updated_at",
+		];
+		$obj_actions = [
+			[
+				'name' => 'Preview',
+				'route' => 'article.preview',
+				'method' => 'post',
+				'button' => 'primary'
+			],
+			[
+				'name' => 'Edit',
+				'route' => 'article.edit',
+				'method' => 'post',
+				'button' => 'success'
+			],
+			[
+				'name' => 'Delete',
+				'route' => 'article.delete',
+				'method' => 'post',
+				'button' => 'warning'
+			],
+		];
+		return view('user.viewall')
+			->with('objects', $userArray)
+			->with('obj_columns', $obj_columns)
+			->with('obj_name', $obj_name)
+			->with('obj_actions', $obj_actions);
 	}
 	
-	public function create(){	// returns article builder page
+	public function createbuilder(){	// returns article builder page
 		$type = request('type');
 		if($type == 'news' || $type == 'research' || $type == 'publication'){
 			return view('user.create', ['article' => NULL], ['type' => request('type')]);
@@ -82,12 +120,12 @@ class HomeController extends Controller
 		}
 	}
 	
-	public function editarticle(){
-		$article = Article::find((int)request('id'));
+	public function editarticle($id){
+		$article = Article::find((int)$id);
 		return view('user.edit', ['article' => $article]);
 	}
 	
-	public function modify(ArticleEditRequest $request){	// modification
+	public function save(ArticleEditRequest $request){	// modification
 		$requestData = $request->all();
 		$article = Article::find((int)$requestData['id']);
 		if(isset($requestData['header_image'])){	// there is change to header image
@@ -110,25 +148,24 @@ class HomeController extends Controller
 				'updated_at' => Carbon::now()->toDateTimeString(),
 			]);
 		}
-		return redirect('dashboard')->with('alert-success', 'Article successfully saved!');
+		return redirect()->route('user.viewall')->with('alert-success', 'Article successfully saved!');
 	}
 	
-	public function delete(){
-		$article = Article::find((int)request('id'));
+	public function delete($id){
+		$article = Article::find((int)$id);
 		File::delete(public_path().'\\images\\'.$article->header_image);
 		Article::find((int)request('id'))->delete();
-		return redirect('dashboard')->with('alert-success', 'Article successfully removed!');
+		return redirect()->route('user.viewall')->with('alert-success', 'Article successfully removed!');
 	}
 	
-	public function save(ArticleRequest $request){	// first time save
+	public function create(ArticleRequest $request){	// first time save
 		$requestData = $request->all();
 		$imageName = time().'.'.request()->file('header_image')->getClientOriginalExtension();
 		$requestData['header_image'] = $imageName;
 		$article = new Article($requestData);
 		request()->file('header_image')->move(public_path('images'), $imageName);
 		Auth::user()->articles()->save($article);
-		$request->session()->flash('alert-success', 'Article successfully saved!');
-		return redirect('dashboard');
+		return redirect()->route('user.viewall')->with('alert-success', 'Article successfully saved!');
 	}
 	
 	public function publish(){
@@ -138,8 +175,8 @@ class HomeController extends Controller
 		return redirect('dashboard')->with('alert-success', 'Article successfully published!');
 	}
 	
-	public function preview(){
-		$article = Article::find((int)request('id'));
+	public function preview($id){
+		$article = Article::find((int)$id);
 		return view('articles.page', ['article' => $article]);
 	}
 	
@@ -153,12 +190,31 @@ class HomeController extends Controller
 		return view('user.edit', ['article' => $article]);
 	}
 	
+	public function viewalerts(){
+		echo "Wa ha ha!";
+		//return view('');
+	}
+	
 	public function createalert(){
-		var_dump(request('alert_body'));
-		var_dump(request('start_date'));
-		var_dump(request('start_time'));
-		var_dump(request('end_date'));
-		var_dump(request('end_time'));
-		var_dump(request('alert_style'));
+		if(request()->has('start_date', 'start_time')){
+			$starttime = Carbon::createFromFormat('Y-m-d H:i:s', request('start_date').' '.request('start_time').':00')->toDateTimeString();
+		}else if(request()->has('startNow')){
+			$starttime = Carbon::createFromTime(Carbon::now()->hour, Carbon::now()->minute, 00);
+		}
+		if(request()->has('end_date', 'end_time')){
+			$endtime = Carbon::createFromFormat('Y-m-d H:i:s', request('end_date').' '.request('end_time').':00')->toDateTimeString();
+		}else if(request()->has('endNever')){
+			$endtime = NULL;
+		}
+		
+		DB::table('alerts')->insert([
+			'body' => request('alert_body'),
+			'style' => request('alert_style'),
+			'display_at' => $starttime,
+			'destroy_at' => $endtime,
+			'created_at' => Carbon::now(),
+			'updated_at' => Carbon::now()
+		]);
+		return redirect('dashboard')->with('alert-success', 'Alert successfully posted!');
 	}
 }

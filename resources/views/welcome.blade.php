@@ -14,6 +14,14 @@
 		</div>
 	</div>
 	<div class="container-fluid">
+		@foreach($alerts as $alert)
+		<div class="alert alert-{{$alert->style}} alert-dismissible fade show" role="alert">
+			{!!$alert->body!!}
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		@endforeach
 		<div class="row">
 			<h1 class="display-4">News</h1>
 		</div>
@@ -32,7 +40,7 @@
 							<div class="card-text">
 							{!!Str::words(strip_tags($news->body), 100, '...')!!}
 							</div>
-							<a href="{{url('articles?id='.$news->id)}}" role="button" class="btn btn-primary">Read More</a>
+							<a href="{{route('article.page', ['id' => $news->id])}}" role="button" class="btn btn-primary">Read More</a>
 						</div>
 					</div>
 				</div>

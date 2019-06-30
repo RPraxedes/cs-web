@@ -33,19 +33,30 @@ Route::get('/dashboard', 'HomeController@index')->name('dash');
 Route::get('/dashboard/profile', 'HomeController@profile')->name('user.profile');
 Route::post('/dashboard/profile/save', 'HomeController@saveprofile')->name('user.saveprofile');
 Route::post('/dashboard/profile/faculty/save', 'HomeController@facultysaveprofile')->name('faculty.saveprofile');
-Route::get('/dashboard/create', 'HomeController@create')->name('article.create');
-Route::get('/dashboard/view', 'HomeController@viewarticle')->name('article.view');
-Route::post('/dashboard/edit', 'HomeController@editarticle')->name('article.edit');
-Route::post('/dashboard/save', 'HomeController@save')->name('article.save');
-Route::post('/dashboard/publish', 'HomeController@publish')->name('article.publish');
-Route::post('/dashboard/delete', 'HomeController@delete')->name('article.delete');
-Route::post('/dashboard/modify', 'HomeController@modify')->name('article.modify');
-Route::post('/dashboard/preview', 'HomeController@preview')->name('article.preview');
+
+//views your articles
+Route::get('/dashboard/view', 'ArticlesController@viewarticle')->name('article.view');
+//opens article builder
+Route::get('/dashboard/create/{type}', ['uses' => 'ArticlesController@createbuilder'])->name('article.createbuilder');
+//edit an article
+Route::post('/dashboard/edit/{id}', ['uses' => 'ArticlesController@editarticle'])->name('article.edit');
+//save modified work
+Route::post('/dashboard/save', 'ArticlesController@save')->name('article.save');
+//delete an article
+Route::post('/dashboard/delete/{id}', ['uses' => 'ArticlesController@delete'])->name('article.delete');
+//create an article
+Route::post('/dashboard/create', 'ArticlesController@create')->name('article.create');
+//publish an article
+Route::post('/dashboard/publish', 'ArticlesController@publish')->name('article.publish');
+//preview an article even before publishing
+Route::post('/dashboard/preview/{id}', ['uses' => 'ArticlesController@preview'])->name('article.preview');
+
+Route::get('/dashboard/alert/viewall', 'HomeController@viewalerts')->name('alert.viewall');
 Route::post('/dashboard/alert/create', 'HomeController@createalert')->name('alert.create');
 
-Route::get('/articles', 'ArticlesController@index')->name('articles');
-Route::get('/news', 'ArticlesController@news')->name('news');
-Route::get('/research', 'ArticlesController@research')->name('research');
-Route::get('/publications', 'ArticlesController@publications')->name('publications');
+Route::get('/articles/{id}', ['uses' => 'PagesController@articles'])->name('article.page');
+Route::get('/news', 'PagesController@news')->name('news');
+Route::get('/research', 'PagesController@research')->name('research');
+Route::get('/publications', 'PagesController@publications')->name('publications');
 
 Route::get('/secret', 'PagesController@secret')->name('secret');

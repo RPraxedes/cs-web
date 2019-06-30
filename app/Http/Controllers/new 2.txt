@@ -7,7 +7,7 @@ include calendar, transparency corner. eFOI
 ------------------------------
 
 editable courses by admin
-'add alert with lifespan/destroy datetime' function for admin
+add manage alerts by admin
 registration: generate from full name
 	if cs admin, display cs admin only
 	after registraion, give generated password. upon login, redirect user to change password screen.

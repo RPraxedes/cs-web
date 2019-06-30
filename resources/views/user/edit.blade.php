@@ -37,7 +37,7 @@
 			</div>
 			<div class="row justify-content-md-center">
 				<div class="col-md-10">
-					<form method="POST" action="{{route('article.modify')}}" enctype="multipart/form-data">
+					<form method="POST" action="{{route('article.save')}}" enctype="multipart/form-data">
 						@csrf
 						<div class="form-group">
 							<input name="title" class="form-control form-control-lg" type="text" placeholder="{{Str::title($article->type)}} Title" value="{{$article->title}}" required><br>
@@ -47,7 +47,7 @@
 									<span class="input-group-text" id="inputGroupFileAddon01">Header image</span>
 								</div>
 								<div class="custom-file">
-									<input type="file" name="header_image" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+									<input type="file" name="header_image" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" value=NULL>
 									<label class="custom-file-label" for="inputGroupFile01">{{$article->header_image}}</label>
 								</div>
 							</div>
@@ -62,7 +62,7 @@
 			</div>
 			<div class="row justify-content-md-center">
 				<div class="col-md-10">
-					<a href="{{url('/dashboard')}}" role="button" class="btn btn-primary"> &larr; Dashboard</a>
+					<a href="{{route('dash')}}" role="button" class="btn btn-primary"> &larr; Dashboard</a>
 				</div>
 			</div>
         </div>

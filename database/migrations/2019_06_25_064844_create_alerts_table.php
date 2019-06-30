@@ -16,7 +16,8 @@ class CreateAlertsTable extends Migration
         Schema::create('alerts', function (Blueprint $table) {
             $table->bigIncrements('id');
 			$table->string('body');
-			$table->string('type');	//primary, success, etc.
+			$table->string('style')->default("primary");	//primary, success, etc.
+			$table->timestamp('display_at')->nullable();
 			$table->timestamp('destroy_at')->nullable();
             $table->timestamps();
         });

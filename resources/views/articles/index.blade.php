@@ -25,7 +25,7 @@
 									{!!Str::words(strip_tags($article->body), 100)!!}
 								</div>
 								<br>
-								<a href="{{url('articles?id='.$article->id)}}" role="button" class="btn btn-primary">Read More</a>
+								<a href="{{route('article.page', ['id' => $article->id])}}" role="button" class="btn btn-primary">Read More</a>
 							</div>
 						</div>
 					</div>
