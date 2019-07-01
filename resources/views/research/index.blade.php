@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('title', 'Research')
+
+@section('header')
 <!-- USED WHEN NEWS, RESEARCH, AND PUBLICATIONS HAVE DIFFERENT LAYOUTS -->
 @section('content')
 	<div class="container-fluid">

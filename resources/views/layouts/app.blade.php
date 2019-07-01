@@ -16,6 +16,7 @@
 		<script src="{{asset('js/bootstrap/bootstrap.bundle.min.js')}}"></script>
 		<link rel="stylesheet" href="{{asset('css/bootstrap/bootstrap.min.css')}}">
 		<link rel="stylesheet" href="{{asset('css/bootstrap/bootstrap-reboot.min.css')}}">
+		<link rel="stylesheet" href="{{asset('open-iconic/font/css/open-iconic-bootstrap.css')}}">
 		<!-- CSS -->
 		<link rel="stylesheet" href="{{asset('css/styles.css')}}">
         <!-- Fonts -->
@@ -25,10 +26,10 @@
 		@yield('head')	<!-- Additional HEAD -->
     </head>
     <body>
-		<!-- Navbar -->
-        <nav class="navbar navbar-light navbar-clear navbar-expand-md">
+		@yield('header')
+        <nav class="navbar navbar-dark navbar-expand-md">
 			<div class="container">
-				<a class="navbar-brand" href="{{url('/')}}">College of Science</a>
+				<a class="navbar-brand" href="{{url('/')}}" data-toggle="tooltip" data-placement="bottom" title="Home"><span class="oi oi-home animated fadeInDown delay-8"></span></a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -99,10 +100,8 @@
 				</div>
 			</div>
 		</nav>
-		
-		<main>
-			@yield('content')
-		</main>
+		<div id="blank-navbar" class="hidden"></div>
+		@yield('content')
 		
 		<div class="container-fluid footer half-height">
 			<div class="row">
@@ -126,6 +125,5 @@
 				</div>
 			</div>
 		</div>
-		
     </body>
 </html>

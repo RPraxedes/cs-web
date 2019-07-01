@@ -2,6 +2,12 @@
 
 @section('title' , $pages->first()->title)
 
+@section('head')
+	@if($position == 'admin')
+		<script src="{{ asset('js/user.js') }}"></script>
+	@endif
+@endsection
+
 @section('content')
 	<div class="container">
 		<div class="row">

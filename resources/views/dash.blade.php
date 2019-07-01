@@ -2,6 +2,10 @@
 
 @section('title' , 'Dashboard')
 
+@section('head')
+	<script src="{{ asset('js/user.js') }}"></script>
+@endsection
+
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">

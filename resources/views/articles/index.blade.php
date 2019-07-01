@@ -2,13 +2,16 @@
 
 @section('title' , $title.' Articles')
 
+@section('header')
+<div class="row">
+	<div class="col-xl-12 display-1 title text-center">
+		{{$title}}
+	</div>
+</div>
+@endsection
+
 @section('content')
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-xl-12 display-1 title text-center">
-				{{$title}}
-			</div>
-		</div>
 		<div class="row">
 			<div class="col-md-12">
 			@foreach ($articles as $article)

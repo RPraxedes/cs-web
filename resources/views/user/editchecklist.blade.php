@@ -3,6 +3,7 @@
 @section('title' , 'Edit Checklist')
 
 @section('head')
+	<script src="{{ asset('js/user.js') }}"></script>
 	<!-- TinyMCE -->
 	<script src="{{asset('js/tinymce/tinymce.min.js')}}" crossorigin="anonymous"></script>
 	<script>
