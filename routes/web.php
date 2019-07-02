@@ -18,7 +18,7 @@ Route::get('/', 'PagesController@home')->name('welcome');
 Route::get('/academics', 'PagesController@academics')->name('academics');
 
 Route::get('/faculty', 'PagesController@faculty')->name('faculty');
-Route::get('/faculty/page/', 'PagesController@facultyprofile')->name('faculty.page');
+Route::get('/faculty/{id}', ['uses' => 'FacultyController@viewprofile'])->name('faculty.view');
 
 Route::get('/courses', 'PagesController@courses')->name('courses');
 Route::get('/courses/{name}', ['uses' => 'PagesController@getchecklist'])->name('checklist.get');
@@ -30,9 +30,14 @@ Route::get('/sinsm', 'PagesController@sinsm')->name('sinsm');
 Route::get('/about', 'PagesController@about')->name('about');
 
 Route::get('/dashboard', 'HomeController@index')->name('dash');
+
 Route::get('/dashboard/profile', 'HomeController@profile')->name('user.profile');
 Route::post('/dashboard/profile/save', 'HomeController@saveprofile')->name('user.saveprofile');
-Route::post('/dashboard/profile/faculty/save', 'HomeController@facultysaveprofile')->name('faculty.saveprofile');
+
+Route::get('/dashboard/profile/faculty/create', 'FacultyController@createprofile')->name('faculty.create');
+Route::get('/dashboard/profile/faculty/edit', 'FacultyController@editprofile')->name('faculty.edit');
+Route::post('/dashboard/profile/faculty/modify', 'FacultyController@modifyprofile')->name('faculty.modify');
+Route::post('/dashboard/profile/faculty/save', 'FacultyController@saveprofile')->name('faculty.save');
 
 //views your articles
 Route::get('/dashboard/view', 'ArticlesController@viewarticle')->name('article.view');

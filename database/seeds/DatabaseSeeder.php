@@ -27,5 +27,6 @@ class DatabaseSeeder extends Seeder
 		$this->call('GeneralBiologyChecklistSeeder');
 		$this->call('MicrobiologyChecklistSeeder');
 		$this->call('EcologySystematicsChecklistSeeder');
+		$this->call('FacultyStatusSeeder');
     }
 }

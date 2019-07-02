@@ -38,8 +38,10 @@
 				<a class="btn btn-secondary" href="{{route('article.view')}}" role="button">View Your Articles</a>
 				<a class="btn btn-secondary" href="#" role="button">Edit Checklist</a>
 				<a class="btn btn-secondary" href="#" role="button">View Courses</a>
-				<a class="btn btn-success" href="{{route('user.profile')}}" role="button">Edit Profile</a>
-				<a class="btn btn-success" href="{{route('user.profile')}}" role="button">View all Profiles</a>
+				<a class="btn btn-success" href="{{route('user.profile')}}" role="button">Edit User Profile</a>
+				<a class="btn btn-success" href="{{route('faculty.view', ['id'=> $id])}}" role="button">View Your Faculty Profile</a>
+				<a class="btn btn-success" href="{{route('faculty.create')}}" role="button">Create Your Faculty Profile</a>
+				<a class="btn btn-success" href="{{route('faculty.edit')}}" role="button">Edit Your Faculty Profile</a>
 				<a class="btn btn-success" href="#" role="button">Approve Users</a>
 				
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#alertModal">Create an Alert</button>

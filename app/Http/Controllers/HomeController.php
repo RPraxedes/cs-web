@@ -33,31 +33,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dash');
+		$user = Auth::user();
+        return view('dash', ['id' => $user->id]);
     }
 	
-	public function profile()
-    {
+	public function profile(){
+		$user = Auth::user();
         return view('user.profile', [
-		'name' => Auth::user()->name,
-		'email' => Auth::user()->email,
-		'position' => Auth::user()->position,
+			'id' => Auth::user()->id,
+			'name' => Auth::user()->name,
+			'email' => Auth::user()->email,
+			'position' => Auth::user()->position,
 		]);
     }
 	
 	public function saveprofile(EditProfileRequest $request){
-		$requestData = $request->all();
-		$user = User::find((int)Auth::user()->id);
-		$user->update([
-			'name' => $requestData['name'],
-			'email' => $requestData['email'],
-			'position' => $requestData['position'],
-			'updated_at' => Carbon::now()->toDateTimeString(),
-		]);
-		return redirect('dashboard')->with('alert-success', 'Profile successfully saved!');
-	}
-	
-	public function facultysaveprofile(EditProfileRequest $request){
 		$requestData = $request->all();
 		$user = User::find((int)Auth::user()->id);
 		$user->update([

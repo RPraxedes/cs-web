@@ -46,6 +46,6 @@ class User extends Authenticatable
 	
 	public function faculty()
     {
-        return $this->belongsTo('App\Models\Faculty');
+        return $this->belongsTo('App\Models\Faculty', 'user_id');
     }
 }

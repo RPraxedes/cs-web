@@ -22,11 +22,12 @@ class CreateFacultyTable extends Migration
 			$table->string('bs_degree')->nullable();
 			$table->string('ms_degree')->nullable();
 			$table->string('phd_degree')->nullable();
-			$table->mediumText('bio')->nullable();
 			$table->string('research_interest')->nullable();
+			$table->string('contact_info')->nullable();
 			$table->string('profile_image')->nullable();
 			$table->string('profile_alt')->nullable();		//for profile image
 			$table->bigInteger('status_id')->unsigned();
+			$table->timestamp('published_at')->nullable();
             $table->timestamps();
 			
 			$table->foreign('user_id')

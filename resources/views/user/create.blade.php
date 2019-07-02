@@ -72,7 +72,6 @@
 									</div>
 								</div>
 								<input name="header_alt" class="form-control" type="text" placeholder="Header image description" required>
-								<br>
 								<textarea name="body" id="tinytextarea" class="w-100" placeholder="What's the scoop?"></textarea>
 							</div>
 							

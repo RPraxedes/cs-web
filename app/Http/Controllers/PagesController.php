@@ -29,11 +29,6 @@ class PagesController extends Controller
 		return view('faculty.index');
 	}
 	
-	public function facultyprofile(){
-		
-		return view('faculty.page');
-	}
-	
 	public function courses(){
 		return view('academics.courses');
 	}
