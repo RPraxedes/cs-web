@@ -144,7 +144,7 @@ class HomeController extends Controller
 	public function delete($id){
 		$article = Article::find((int)$id);
 		File::delete(public_path().'\\images\\'.$article->header_image);
-		Article::find((int)request('id'))->delete();
+		Article::find((int)$id)->delete();
 		return redirect()->route('user.viewall')->with('alert-success', 'Article successfully removed!');
 	}
 	

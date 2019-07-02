@@ -42,6 +42,16 @@
 				<a class="btn btn-success" href="{{route('faculty.view', ['id'=> $id])}}" role="button">View Your Faculty Profile</a>
 				<a class="btn btn-success" href="{{route('faculty.create')}}" role="button">Create Your Faculty Profile</a>
 				<a class="btn btn-success" href="{{route('faculty.edit')}}" role="button">Edit Your Faculty Profile</a>
+				<form action="{{route('faculty.delete')}}" method="post">
+					@csrf
+					<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+					<button type="submit" class="btn btn-danger">Delete My Faculty Profile</button>
+				</form>
+				<form action="{{route('faculty.publish')}}" method="post">
+					@csrf
+					<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+					<button type="submit" class="btn btn-success">Publish My Faculty Profile</button>
+				</form>
 				<a class="btn btn-success" href="#" role="button">Approve Users</a>
 				
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#alertModal">Create an Alert</button>

@@ -10,70 +10,16 @@
 			</div>
 		</div>
 		<div class="row justify-content-md-center">
-			<div class="card col-2 no-padding">
-				<img src="{{asset('assets/images/nao-banner.png')}}" class="card-img-top" alt="...">
+		@foreach($faculty as $person)
+			<div class="card col-3 no-padding">
+				<img src="{{asset('images/'.$person->profile_image)}}" class="card-img-top" alt="{{$person->profile_alt}}">
 				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					<h5 class="card-title">{{$person->first_name}} @if(isset($person->middle_name)){{$person->middle_name}}@endif {{$person->last_name}}</h5>
+					<p class="card-text">{{$person->position}}<br>@if(isset($person->phd_degree)){{$person->phd_degree}}@elseif(isset($person->ms_degree)){{$person->ms_degree}}@else{{$person->bs_degree}}@endif</p>
 					<a href="{{route('faculty.view', ['id' => 1])}}" class="btn btn-primary">More</a>
 				</div>
 			</div>
-			<div class="card col-2 no-padding">
-				<img src="{{asset('assets/images/nao-banner.png')}}" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">More</a>
-				</div>
-			</div>
-			<div class="card col-2 no-padding">
-				<img src="{{asset('assets/images/nao-banner.jpg')}}" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">More</a>
-				</div>
-			</div>
-			<div class="card col-2 no-padding">
-				<img src="{{asset('assets/images/nao-banner.png')}}" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">More</a>
-				</div>
-			</div>
-			<div class="card col-2 no-padding">
-				<img src="{{asset('assets/images/nao-banner.png')}}" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">More</a>
-				</div>
-			</div>
-			<div class="card col-2 no-padding">
-				<img src="{{asset('assets/images/nao-banner.png')}}" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">More</a>
-				</div>
-			</div>
-			<div class="card col-2 no-padding">
-				<img src="{{asset('assets/images/nao-banner.png')}}" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">More</a>
-				</div>
-			</div>
-			<div class="card col-2 no-padding">
-				<img src="{{asset('assets/images/nao-banner.png')}}" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">More</a>
-				</div>
-			</div>
+		@endforeach
 		</div>
 	</div>
 @endsection

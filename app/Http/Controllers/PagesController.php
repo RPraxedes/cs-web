@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Models\Article;	// fetches Article model
 use App\Models\Checklist;
 use App\Models\User;
+use App\Models\Faculty;
 
 use Illuminate\Http\Request;
 
@@ -26,7 +27,8 @@ class PagesController extends Controller
 	}
 	
 	public function faculty(){
-		return view('faculty.index');
+		$faculty = Faculty::where('published_at', '!=', NULL)->get();
+		return view('faculty.index', ['faculty' => $faculty]);
 	}
 	
 	public function courses(){

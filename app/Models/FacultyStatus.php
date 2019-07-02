@@ -10,6 +10,6 @@ class FacultyStatus extends Model
 	
 	public function faculty()
 	{
-		return $this->hasMany('App\Models\Faculty', 'status_id');
+		return $this->belongsTo('App\Models\Faculty', 'status_id', 'status_id');
 	}
 }

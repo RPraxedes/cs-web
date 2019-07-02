@@ -36,8 +36,15 @@ Route::post('/dashboard/profile/save', 'HomeController@saveprofile')->name('user
 
 Route::get('/dashboard/profile/faculty/create', 'FacultyController@createprofile')->name('faculty.create');
 Route::get('/dashboard/profile/faculty/edit', 'FacultyController@editprofile')->name('faculty.edit');
+Route::get('/dashboard/profile/faculty/publications', 'FacultyController@editpublications')->name('faculty.publications');
+Route::post('/dashboard/profile/faculty/publications/add', 'FacultyController@addpublication')->name('faculty.addpub');
+Route::get('/dashboard/profile/faculty/conferences', 'FacultyController@editconferences')->name('faculty.conferences');
+Route::get('/dashboard/profile/faculty/projects', 'FacultyController@editprojects')->name('faculty.projects');
+Route::get('/dashboard/profile/faculty/others', 'FacultyController@editothers')->name('faculty.others');
 Route::post('/dashboard/profile/faculty/modify', 'FacultyController@modifyprofile')->name('faculty.modify');
 Route::post('/dashboard/profile/faculty/save', 'FacultyController@saveprofile')->name('faculty.save');
+Route::post('/dashboard/profile/faculty/delete', 'FacultyController@deleteprofile')->name('faculty.delete');
+Route::post('/dashboard/profile/faculty/publish', 'FacultyController@publishprofile')->name('faculty.publish');
 
 //views your articles
 Route::get('/dashboard/view', 'ArticlesController@viewarticle')->name('article.view');

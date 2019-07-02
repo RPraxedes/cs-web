@@ -34,7 +34,7 @@ class CreateFacultyTable extends Migration
 					->references('id')
 					->on('users');
 			$table->foreign('status_id')
-					->references('id')
+					->references('status_id')
 					->on('faculty_status');
         });
     }

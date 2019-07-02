@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFacultyStatusTable extends Migration
+class CreateConferencesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,14 @@ class CreateFacultyStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('faculty_status', function (Blueprint $table) {
-            $table->bigIncrements('status_id');// value
-			$table->string('status');	//ex. On study leave
+        Schema::create('conferences', function (Blueprint $table) {
+            $table->bigIncrements('id');
+			$table->string('paper_title');
+			$table->date('conference_date');
+			$table->string('type');
+			$table->string('venue');
+			$table->string('conference_title');
+			$table->string('link');
             $table->timestamps();
         });
     }
@@ -27,6 +32,6 @@ class CreateFacultyStatusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('faculty_status');
+        Schema::dropIfExists('conferences');
     }
 }

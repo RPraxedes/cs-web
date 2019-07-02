@@ -28,6 +28,6 @@ class Faculty extends Model
 	
 	public function status()
 	{
-		return $this->hasOne('App\Models\FacultyStatus', 'status_id');
+		return $this->hasOne('App\Models\FacultyStatus', 'status_id', 'status_id');
 	}
 }

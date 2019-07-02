@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Faculty')
+@section('title', $faculty->first_name.' '.$faculty->last_name)
 
 @section('header')
 <div class="row">
@@ -15,35 +15,34 @@
 	<div class="row align-content-md-left">
 		<div class="col-md-4">
 			<div class="card animated fadeInLeft">
-				<img src="{{asset('assets/images/nao-banner.png')}}" class="card-img-top" alt="...">
+				<img src="{{asset('images/'.$faculty->profile_image)}}" class="card-img-top" alt="{{$faculty->profile_alt}}">
 				<div class="card-body">
-					<p class="card-text">Position</p>
+					<p class="card-text">{{$faculty->position}}<br><span class="text-muted">{{$faculty->status->status}}</span></p>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-8 animated fadeInRight">
-			<h2 class="display-4">Faculty Name</h2>
+		<div class="col-md-8 animated fadeInRight delay-1">
+			<h2 class="display-4">{{$faculty->last_name.', '.$faculty->first_name.' '.$initials}}</h2>
 			<div class="card animated fadeInRight delay-3">
 				<div class="card-body">
 					<h5 class="card-title">Educational Attainment</h5>
-					<p class="card-text">
-						Some quick example text to build on the card title and make up the bulk of the card's content.
-						Some quick example text to build on the card title and make up the bulk of the card's content.
-						Some quick example text to build on the card title and make up the bulk of the card's content.
-					</p>
+					<p class="card-text">{{$faculty->bs_degree}}<br>{{$faculty->ms_degree}}<br>{{$faculty->phd_degree}}</p>
 				</div>
 			</div>
 			<div class="card animated fadeInRight delay-5">
 				<div class="card-body">
-					<h5 class="card-title">Contact Info.</h5>
-					<p class="card-text">
-						Some quick example text to build on the card title and make up the bulk of the card's content.
-						Some quick example text to build on the card title and make up the bulk of the card's content.
-					</p>
+					<h5 class="card-title">Contact Information</h5>
+					<p class="card-text">{!! preg_replace("/, /", "<br>", ($faculty->contact_info)) !!}</p>
+				</div>
+			</div>
+			<div class="card animated fadeInRight delay-7">
+				<div class="card-body">
+					<h5 class="card-title">Research Interests</h5>
+					<p class="card-text">{!! preg_replace("/, /", "<br>", ($faculty->research_interest)) !!}</p>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-12">
+		<div class="col-md-12 animated fadeInDown delay-10">
 			<h3>Works</h3>
 			<div class="accordion" id="Accord">
 				<div class="card">
