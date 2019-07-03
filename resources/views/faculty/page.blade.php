@@ -55,11 +55,13 @@
 					<div id="Publications" class="collapse" aria-labelledby="pubHeading" data-parent="#Accord">
 						<div class="card-body">
 							<ul class="list">
-								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
+						@if(!$publications->isEmpty())
+							@foreach($publications as $pub)
+								<li><a href="{{url($pub->link)}}" class="card-link">{{$pub->author.' ('.\Carbon\Carbon::parse($pub->published_date)->year.').'}} <i>{{$pub->title}}</i>. {{$pub->journal}} Volume {{$pub->volume}}</a></li>
+							@endforeach
+						@else
+								<li>None</li>
+						@endif
 							</ul>
 						</div>
 					</div>
@@ -73,11 +75,13 @@
 					<div id="Research" class="collapse" aria-labelledby="researchHeading" data-parent="#Accord">
 						<div class="card-body">
 							<ul class="list">
-								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
+						@if(!$conferences->isEmpty())
+							@foreach($conferences as $conf)
+								<li><a href="{{url($conf->link)}}" class="card-link"><i>{{$conf->paper_title}}</i>. {{$conf->author}} {{\Carbon\Carbon::parse($conf->conference_date)->format('F d, Y')}}. {{$conf->conference_title}}. {{$conf->venue}}</a></li>
+							@endforeach
+						@else
+								<li>None</li>
+						@endif
 							</ul>
 						</div>
 					</div>

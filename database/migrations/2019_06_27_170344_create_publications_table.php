@@ -22,6 +22,7 @@ class CreatePublicationsTable extends Migration
 			$table->string('journal');
 			$table->string('volume');
 			$table->string('link');
+			$table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
     }

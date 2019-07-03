@@ -16,5 +16,6 @@ class Publication extends Model
 		'journal',
 		'volume',
 		'link',
+		'published_at'
 	];
 }

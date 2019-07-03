@@ -16,7 +16,7 @@
 				<div class="card-body">
 					<h5 class="card-title">{{$person->first_name}} @if(isset($person->middle_name)){{$person->middle_name}}@endif {{$person->last_name}}</h5>
 					<p class="card-text">{{$person->position}}<br>@if(isset($person->phd_degree)){{$person->phd_degree}}@elseif(isset($person->ms_degree)){{$person->ms_degree}}@else{{$person->bs_degree}}@endif</p>
-					<a href="{{route('faculty.view', ['id' => 1])}}" class="btn btn-primary">More</a>
+					<a href="{{route('faculty.view', ['id' => 1])}}" class="btn btn-primary btn-block">More</a>
 				</div>
 			</div>
 		@endforeach

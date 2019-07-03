@@ -10,12 +10,16 @@ use App\Models\User;
 use App\Models\Faculty;
 use App\Models\FacultyStatus;
 use App\Models\Publication;
+use App\Models\Conference;
 use Illuminate\Http\Request;
 
 class FacultyController extends Controller
 {
 	public function viewprofile($id){
 		$faculty = Faculty::with('status')->where('user_id', '=', $id)->get()->first();
+		$first_name = $faculty->first_name;
+		$publications = Publication::where('author', 'like', '%'.$faculty->last_name.', '.$first_name[0].'.%')->where('published_at', '!=', NULL)->get();
+		$conferences = Conference::where('author', 'like', '%'.$faculty->last_name.', '.$first_name[0].'.%')->where('published_at', '!=', NULL)->get();
 		if($faculty){
 			$initials = "";
 			if(isset($faculty->middle_name)){
@@ -24,7 +28,11 @@ class FacultyController extends Controller
 					$initials .= $w[0].'.';
 				}
 			}
-			return view('faculty.page', ['faculty' => $faculty], ['initials' => $initials]);
+			return view('faculty.page')
+				->with('faculty', $faculty)
+				->with('publications', $publications)
+				->with('conferences', $conferences)
+				->with('initials', $initials);
 		}else{
 			return redirect()->route('dash')->with('alert-warning', 'No profile found!');
 		}
@@ -105,14 +113,13 @@ class FacultyController extends Controller
 		$requestData = $request->all();
 		$faculty = Faculty::where('user_id', '=', (int)$requestData['user_id']);
 		File::delete(public_path().'\\images\\'.$faculty->value('profile_image'));
-		Faculty::where('user_id', '=', (int)$requestData['user_id'])->delete();
+		$faculty->delete();
 		return redirect()->route('dash')->with('alert-success', 'Profile successfully removed!');
 	}
 	
 	public function publishprofile(Request $request){
 		$requestData = $request->all();
-		$faculty = Faculty::where('user_id', '=', (int)$requestData['user_id']);
-		$faculty->update([
+		Faculty::where('user_id', '=', (int)$requestData['user_id'])->update([
 			'published_at' => Carbon::now()->toDateTimeString()
 		]);
 		return redirect()->route('dash')->with('alert-success', 'Profile can now be seen publicly!');
@@ -122,6 +129,8 @@ class FacultyController extends Controller
 		$faculty = Faculty::where('user_id', '=', (int)Auth::user()->id)->get()->first();
 		$first_name = $faculty->first_name;
 		$publications = DB::table('publications')->where('author', 'like', '%'.$faculty->last_name.', '.$first_name[0].'.%')->get();
+		$category = 'Publication';
+		$short_category = 'pub';
 		$fields = [
 			[
 				'title' => 'Title',
@@ -180,7 +189,32 @@ class FacultyController extends Controller
 				'value' => NULL,
 			],
 		];
-		return view('user.viewitems', ['publications' => $publications], ['fields' => $fields]);
+		$obj_actions = [
+			[
+				'name' => 'Edit',
+				'route' => 'faculty.editpub',
+				'method' => 'post',
+				'button' => 'secondary'
+			],
+			[
+				'name' => 'Delete',
+				'route' => 'faculty.deletepub',
+				'method' => 'post',
+				'button' => 'danger'
+			],
+			[
+				'name' => 'Publish',
+				'route' => 'faculty.publishpub',
+				'method' => 'post',
+				'button' => 'primary'
+			],
+		];
+		return view('user.viewitems')
+			->with('fields', $fields)
+			->with('publications', $publications)
+			->with('short_category', $short_category)
+			->with('category', $category)
+			->with('obj_actions', $obj_actions);
 	}
 	
 	public function addpublication(Request $request){
@@ -188,11 +222,161 @@ class FacultyController extends Controller
 		$pub->created_at = Carbon::now()->toDateTimeString();
 		$pub->updated_at = Carbon::now()->toDateTimeString();
 		$pub->save();
-		return redirect()->route('faculty.publications');
+		return redirect()->route('faculty.publications')->with('alert-success', 'Publication succesfully added!');
+	}
+	
+	public function editpublication(Request $request){
+		$requestData = $request->all();
+		Publication::find((int)$requestData['id'])->update([
+			'title' => $requestData['title'],
+			'author' => $requestData['author'],
+			'published_date' => $requestData['published_date'],
+			'type' => $requestData['type'],
+			'journal' => $requestData['journal'],
+			'volume' => $requestData['volume'],
+			'link' => $requestData['link'],
+			'updated_at' => Carbon::now()->toDateTimeString(),
+		]);
+		return redirect()->route('faculty.publications')->with('alert-success', 'Publication successfully changed!');
+	}
+	
+	public function deletepublication(Request $request){
+		Publication::find((int)$request->id)->delete();
+		return redirect()->route('faculty.publications')->with('alert-success', 'Publication successfully deleted!');
+	}
+	
+	public function publishpublication(Request $request){
+		Publication::find((int)$request->id)->update([
+			'published_at' => Carbon::now()->toDateTimeString()
+		]);
+		return redirect()->route('faculty.publications')->with('alert-success', 'Publication can now be publicly seen in your profile!');
 	}
 	
 	public function editconferences(){
+		$faculty = Faculty::where('user_id', '=', (int)Auth::user()->id)->get()->first();
+		$first_name = $faculty->first_name;
+		$conferences = DB::table('conferences')->where('author', 'like', '%'.$faculty->last_name.', '.$first_name[0].'.%')->get();
+		$category = 'Conference';
+		$short_category = 'conf';
+		$fields = [
+			[
+				'title' => 'Title of the Paper Presented',
+				'name' => 'paper_title',
+				'type' => 'text',
+				'required' => 'required',
+				'placeholder' => NULL,
+				'value' => NULL,
+			],
+			[
+				'title' => 'Author/s',
+				'name' => 'author',
+				'type' => 'text',
+				'required' => 'required',
+				'placeholder' => 'Paper Author/s',
+				'value' => $faculty->last_name.', '.$first_name[0].'.',
+			],
+			[
+				'title' => 'Conference Title',
+				'name' => 'conference_title',
+				'type' => 'text',
+				'required' => 'required',
+				'placeholder' => NULL,
+				'value' => NULL,
+			],
+			[
+				'title' => 'Type',
+				'name' => 'type',
+				'type' => 'text',
+				'required' => 'required',
+				'placeholder' => '',
+				'value' => NULL,
+			],
+			[
+				'title' => 'Date of the Conference',
+				'name' => 'conference_date',
+				'type' => 'date',
+				'required' => NULL,
+				'placeholder' => 'Non-refereed, Refereed-institutional, Local, National, or International',
+				'value' => NULL,
+			],
+			[
+				'title' => 'Venue of the Conference',
+				'name' => 'venue',
+				'type' => 'text',
+				'required' => NULL,
+				'placeholder' => 'Address of the Venue',
+				'value' => NULL,
+			],
+			[
+				'title' => 'Link to the Conference Information',
+				'name' => 'link',
+				'type' => 'text',
+				'required' => NULL,
+				'placeholder' => 'http://www.example.com',
+				'value' => NULL,
+			],
+		];
+		$obj_actions = [
+			[
+				'name' => 'Edit',
+				'route' => 'faculty.editconf',
+				'method' => 'post',
+				'button' => 'secondary'
+			],
+			[
+				'name' => 'Delete',
+				'route' => 'faculty.deleteconf',
+				'method' => 'post',
+				'button' => 'danger'
+			],
+			[
+				'name' => 'Publish',
+				'route' => 'faculty.publishconf',
+				'method' => 'post',
+				'button' => 'primary'
+			],
+		];
+		return view('user.viewitems')
+			->with('fields', $fields)
+			->with('publications', $conferences)
+			->with('category', $category)
+			->with('short_category', $short_category)
+			->with('obj_actions', $obj_actions);
+	}
 	
+	public function addconference(Request $request){
+		$conf = new Conference($request->all());
+		$conf->created_at = Carbon::now()->toDateTimeString();
+		$conf->updated_at = Carbon::now()->toDateTimeString();
+		$conf->save();
+		return redirect()->route('faculty.conferences')->with('alert-success', 'Conference succesfully added!');
+	}
+	
+	public function editconference(Request $request){
+		$requestData = $request->all();
+		Conference::find((int)$requestData['id'])->update([
+			'paper_title' => $requestData['paper_title'],
+			'author' => $requestData['author'],
+			'conference_date' => $requestData['conference_date'],
+			'type' => $requestData['type'],
+			'venue' => $requestData['venue'],
+			'conference_title' => $requestData['conference_title'],
+			'link' => $requestData['link'],
+			'updated_at' => Carbon::now()->toDateTimeString(),
+		]);
+		return redirect()->route('faculty.conferences')->with('alert-success', 'Conference successfully changed!');
+	}
+	
+	public function deleteconference(Request $request){
+		Conference::find((int)$request->id)->delete();
+		return redirect()->route('faculty.conferences')->with('alert-success', 'Conference successfully deleted!');
+	}
+	
+	public function publishconference(Request $request){
+		Conference::find((int)$request->id)->update([
+			'published_at' => Carbon::now()->toDateTimeString()
+		]);
+		return redirect()->route('faculty.conferences')->with('alert-success', 'Conference can now be publicly seen in your profile!');
 	}
 	
 	public function editprojects(){

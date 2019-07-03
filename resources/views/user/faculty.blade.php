@@ -67,10 +67,12 @@
 						<br>
 						
 						<button type="submit" class="btn btn-success">Save Changes</button>
+					@if(isset($faculty_info))
 						<a role="button" href="{{route('faculty.publications')}}" class="btn btn-primary">Your Publications</a>
 						<a role="button" href="{{route('faculty.conferences')}}" class="btn btn-primary">Your Conferences</a>
 						<a role="button" href="{{route('faculty.projects')}}" class="btn btn-primary">Your Current Research Projects</a>
 						<a role="button" href="{{route('faculty.others')}}" class="btn btn-primary">Your Other Achievements</a>
+					@endif
 					</form>
 				</div>
 			</div>
