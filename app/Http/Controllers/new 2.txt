@@ -31,3 +31,19 @@ other achievements such as grants use text editor
 (dissertations, theses, grants, memberships, recognitions)
 
 implement ajax
+
+
+PRIORITY:
+	0. finish faculty profile (crude research projects, crude other achievements), fix required fields indicators (for now all fields are required. entries can be added per field if form allows empty fields)
+	1. limit operations per user type
+	2. add admin operations (add, edit, delete, approve users)
+	3. change what the news, research, and publications show
+	4. populate data with data from original website (especially faculty)
+	5. create thumbnail generator for faculty (just in case image is not portrait size)
+	6. make default faculty image (for those that do not have an image)
+	7. Add sort and search features for news, research, publications, and dashboard viewalls
+	8. redesign the website to look more like a mobile app.
+	
+	
+	
+	

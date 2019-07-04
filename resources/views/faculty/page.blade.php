@@ -43,7 +43,7 @@
 			</div>
 		</div>
 		<div class="col-md-12 animated fadeInDown delay-10">
-			<h3>Works</h3>
+			<h3>Academic Profile</h3>
 			<div class="accordion" id="Accord">
 				<div class="card">
 					<div class="card-header" id="pubHeading">
@@ -93,6 +93,24 @@
 						</h2>
 					</div>
 					<div id="Projects" class="collapse" aria-labelledby="projHeading" data-parent="#Accord">
+						<div class="card-body">
+							<ul class="list">
+								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
+								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
+								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
+								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
+								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-header" id="otherHeading">
+						<h2 class="mb-0">
+							<button class="btn btn-link stretched-link" type="button" data-toggle="collapse" data-target="#Achievements" aria-expanded="false" aria-controls="Achievements">Other Achievements</button>
+						</h2>
+					</div>
+					<div id="Achievements" class="collapse" aria-labelledby="otherHeading" data-parent="#Accord">
 						<div class="card-body">
 							<ul class="list">
 								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
