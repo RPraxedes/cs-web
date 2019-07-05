@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOthersTable extends Migration
+class CreateOtherachievementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateOthersTable extends Migration
      */
     public function up()
     {
-        Schema::create('others', function (Blueprint $table) {
+        Schema::create('otherachievements', function (Blueprint $table) {
             $table->bigIncrements('id');
+			$table->mediumText('content');
+			$table->bigInteger('user_id')->unsigned();	// so as to determine who wrote the entry
+			$table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateOthersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('others');
+        Schema::dropIfExists('otherachievements');
     }
 }

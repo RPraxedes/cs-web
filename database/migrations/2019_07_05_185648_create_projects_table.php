@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConferencesTable extends Migration
+class CreateProjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateConferencesTable extends Migration
      */
     public function up()
     {
-        Schema::create('conferences', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->string('paper_title');
+			$table->string('title');					//publication title
 			$table->string('author');
-			$table->date('conference_date');
+			$table->date('published_date');
 			$table->string('type');
-			$table->string('venue');
-			$table->string('conference_title');
+			$table->string('journal');
+			$table->string('volume');
 			$table->string('link');
 			$table->bigInteger('user_id')->unsigned();	// so as to determine who wrote the entry
 			$table->timestamp('published_at')->nullable();
@@ -35,6 +35,6 @@ class CreateConferencesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('conferences');
+        Schema::dropIfExists('projects');
     }
 }

@@ -41,21 +41,29 @@ Route::post('/dashboard/profile/faculty/save', 'FacultyController@saveprofile')-
 Route::post('/dashboard/profile/faculty/delete', 'FacultyController@deleteprofile')->name('faculty.delete');
 Route::post('/dashboard/profile/faculty/publish', 'FacultyController@publishprofile')->name('faculty.publish');
 
-Route::get('/dashboard/profile/faculty/publications', 'FacultyController@editpublications')->name('faculty.publications');
-Route::post('/dashboard/profile/faculty/publications/add', 'FacultyController@addpublication')->name('faculty.addpub');
-Route::post('/dashboard/profile/faculty/publications/edit', 'FacultyController@editpublication')->name('faculty.editpub');
-Route::post('/dashboard/profile/faculty/publications/delete', 'FacultyController@deletepublication')->name('faculty.deletepub');
-Route::post('/dashboard/profile/faculty/publications/publish', 'FacultyController@publishpublication')->name('faculty.publishpub');
+Route::get('/dashboard/profile/faculty/publications', 'PublicationController@viewall')->name('pub.viewall');
+Route::post('/dashboard/profile/faculty/publications/add', 'PublicationController@add')->name('pub.add');
+Route::post('/dashboard/profile/faculty/publications/edit', 'PublicationController@edit')->name('pub.edit');
+Route::post('/dashboard/profile/faculty/publications/delete', 'PublicationController@delete')->name('pub.delete');
+Route::post('/dashboard/profile/faculty/publications/publish', 'PublicationController@publish')->name('pub.publish');
 
-Route::get('/dashboard/profile/faculty/conferences', 'FacultyController@editconferences')->name('faculty.conferences');
-Route::post('/dashboard/profile/faculty/conferences/add', 'FacultyController@addconference')->name('faculty.addconf');
-Route::post('/dashboard/profile/faculty/conferences/edit', 'FacultyController@editconference')->name('faculty.editconf');
-Route::post('/dashboard/profile/faculty/conferences/delete', 'FacultyController@deleteconference')->name('faculty.deleteconf');
-Route::post('/dashboard/profile/faculty/conferences/publish', 'FacultyController@publishconference')->name('faculty.publishconf');
+Route::get('/dashboard/profile/faculty/conferences', 'ConferenceController@viewall')->name('conf.viewall');
+Route::post('/dashboard/profile/faculty/conferences/add', 'ConferenceController@add')->name('conf.add');
+Route::post('/dashboard/profile/faculty/conferences/edit', 'ConferenceController@edit')->name('conf.edit');
+Route::post('/dashboard/profile/faculty/conferences/delete', 'ConferenceController@delete')->name('conf.delete');
+Route::post('/dashboard/profile/faculty/conferences/publish', 'ConferenceController@publish')->name('conf.publish');
 
-Route::get('/dashboard/profile/faculty/projects', 'FacultyController@editprojects')->name('faculty.projects');
+Route::get('/dashboard/profile/faculty/projects', 'ProjectController@viewall')->name('proj.viewall');
+Route::post('/dashboard/profile/faculty/projects/add', 'ProjectController@add')->name('proj.add');
+Route::post('/dashboard/profile/faculty/projects/edit', 'ProjectController@edit')->name('proj.edit');
+Route::post('/dashboard/profile/faculty/projects/delete', 'ProjectController@delete')->name('proj.delete');
+Route::post('/dashboard/profile/faculty/projects/publish', 'ProjectController@publish')->name('proj.publish');
 
-Route::get('/dashboard/profile/faculty/others', 'FacultyController@editothers')->name('faculty.others');
+Route::get('/dashboard/profile/faculty/others', 'OtherAchievementsController@viewall')->name('other.viewall');
+Route::post('/dashboard/profile/faculty/others/add', 'OtherAchievementsController@add')->name('other.add');
+Route::post('/dashboard/profile/faculty/others/edit', 'OtherAchievementsController@edit')->name('other.edit');
+Route::post('/dashboard/profile/faculty/others/delete', 'OtherAchievementsController@delete')->name('other.delete');
+Route::post('/dashboard/profile/faculty/others/publish', 'OtherAchievementsController@publish')->name('other.publish');
 
 
 //views your articles

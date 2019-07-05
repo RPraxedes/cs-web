@@ -95,11 +95,13 @@
 					<div id="Projects" class="collapse" aria-labelledby="projHeading" data-parent="#Accord">
 						<div class="card-body">
 							<ul class="list">
-								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
+						@if(!$projects->isEmpty())
+							@foreach($projects as $proj)
+								<li><a href="{{url($proj->link)}}" class="card-link">{{$proj->author.' ('.\Carbon\Carbon::parse($proj->published_date)->year.').'}} <i>{{$proj->title}}</i>. {{$proj->journal}} Volume {{$proj->volume}}</a></li>
+							@endforeach
+						@else
+								<li>None</li>
+						@endif
 							</ul>
 						</div>
 					</div>
@@ -112,13 +114,11 @@
 					</div>
 					<div id="Achievements" class="collapse" aria-labelledby="otherHeading" data-parent="#Accord">
 						<div class="card-body">
-							<ul class="list">
-								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-								<li>Some quick example text to build on the card title and make up the bulk of the card's content.</li>
-							</ul>
+						@if(!$others->isEmpty())
+							{!!$others->first()->content!!}
+						@else
+								<li>None</li>
+						@endif
 						</div>
 					</div>
 				</div>

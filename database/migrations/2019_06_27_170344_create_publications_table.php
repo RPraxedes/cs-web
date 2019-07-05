@@ -22,6 +22,7 @@ class CreatePublicationsTable extends Migration
 			$table->string('journal');
 			$table->string('volume');
 			$table->string('link');
+			$table->bigInteger('user_id')->unsigned();	// so as to determine who wrote the entry
 			$table->timestamp('published_at')->nullable();
             $table->timestamps();
         });

@@ -4,6 +4,22 @@
 
 @section('head')
 <script src="{{ asset('js/user.js') }}"></script>
+@if($short_category == 'other')
+<!-- TinyMCE -->
+<script src="{{asset('js/tinymce/tinymce.min.js')}}" crossorigin="anonymous"></script>
+<script>
+	tinymce.init({
+		selector: '#tinytextarea',
+		plugins: ["placeholder", "autosave", "code", "link", "lists"],
+		height: '600px',
+		menubar: "file edit view insert format",
+		toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist outdent indent | link",
+		autosave_restore_when_empty: true,
+		link_assume_external_targets: true,
+		target_list: false,
+	});
+</script>
+@endif
 @endsection
 
 @section('content')
@@ -20,11 +36,27 @@
 		@endforeach
 			<div class="row">
 				<div class="col-md-12">
+			@if($short_category != 'other')
 				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#AddPub">Add</button>
+			@else
+				<form action="{{route($obj_actions[0]['route'])}}" method="{{$obj_actions[0]['method']}}" id="tinyEdit">
+					@csrf
+					<textarea name="{{$fields[0]['name']}}" id="tinytextarea" class="w-100" placeholder="{{$fields[0]['placeholder']}}"> @if(!$publications->isEmpty()) {{$publications->first()->content}} @endif </textarea>
+					<button type="submit" class="btn btn-{{$obj_actions[0]['button']}}">{{$obj_actions[0]['name']}}</button>
+				</form>
+				@foreach($obj_actions as $action)
+					@if($action['name'] != 'Save')
+					<form action="{{route($action['route'])}}" method="{{$action['method']}}" class="form-inline">
+						@csrf
+						<button type="submit" class="btn btn-{{$action['button']}}">{{$action['name']}}</button>
+					</form>
+					@endif
+				@endforeach
+			@endif
 				@foreach ($publications as $pub)
 					<div class="card" style="margin-top: 10px;">
 						<div class="card-body">
-						@if ($category == 'Publication')
+						@if ($category == 'Publication' ||$category == 'Project')
 							<a href="{{url($pub->link)}}" class="card-link">{{$pub->author.' ('.\Carbon\Carbon::parse($pub->published_date)->year.').'}} <i>{{$pub->title}}</i>. {{$pub->journal}} Volume {{$pub->volume}}</a>
 						@elseif ($category == 'Conference')
 							<a href="{{url($pub->link)}}" class="card-link"><i>{{$pub->paper_title}}</i>. {{$pub->author}} {{\Carbon\Carbon::parse($pub->conference_date)->format('F d, Y')}}. {{$pub->conference_title}}. {{$pub->venue}}</a>	
@@ -82,19 +114,16 @@
 					</div>
 				@endforeach
 				</div>
-			@if($category != 'Publication')
-				<a role="button" href="{{route('faculty.publications')}}" class="btn btn-primary">Your Publications</a>
-			@endif
-			@if($category != 'Conference')
-				<a role="button" href="{{route('faculty.conferences')}}" class="btn btn-primary">Your Conferences</a>
-			@endif
-				<a role="button" href="{{route('faculty.projects')}}" class="btn btn-primary @if($category == 'Current Research Project') disabled" aria-disabled="true" @endif">Your Current Research Projects</a>
-				<a role="button" href="{{route('faculty.others')}}" class="btn btn-primary @if($category == 'Other Achievement') disabled" aria-disabled="true" @endif">Your Other Achievements</a>
+				<a role="button" href="{{route('pub.viewall')}}" class="btn btn-primary @if($category == 'Publication')disabled" aria-disabled="true @endif ">Your Publications</a>
+				<a role="button" href="{{route('conf.viewall')}}" class="btn btn-primary @if($category == 'Conference')disabled" aria-disabled="true @endif ">Your Conferences</a>
+				<a role="button" href="{{route('proj.viewall')}}" class="btn btn-primary @if($category == 'Current Research Project')disabled" aria-disabled="true @endif ">Your Current Research Projects</a>
+				<a role="button" href="{{route('proj.viewall')}}" class="btn btn-primary @if($category == 'Other Achievement')disabled" aria-disabled="true @endif ">Your Other Achievements</a>
 			</div>
         </div>
     </div>
 </div>
 
+@if($short_category != 'other')
 <!-- Add Modal -->
 <div class="modal fade" id="AddPub" tabindex="-1" role="dialog" aria-labelledby="AddPub" aria-hidden="true">
 	<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -106,7 +135,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form id="addPubForm" action="{{route('faculty.add'.$short_category)}}" method="post">
+				<form id="addPubForm" action="{{route($short_category.'.add')}}" method="post">
 					@csrf
 				@foreach($fields as $field)
 					<label class="form-check-label" for="{{$field['name']}}">{{$field['title']}}@if($field['required'])<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span>@endif</label>
@@ -122,5 +151,6 @@
 		</div>
 	</div>
 </div>
+@endif
 
 @endsection

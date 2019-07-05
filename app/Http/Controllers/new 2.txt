@@ -34,7 +34,7 @@ implement ajax
 
 
 PRIORITY:
-	0. finish faculty profile (crude research projects, crude other achievements), fix required fields indicators (for now all fields are required. entries can be added per field if form allows empty fields)
+	0. fix required fields indicators (for now all fields are required. entries can be added per field if form allows empty fields)
 	1. limit operations per user type
 	2. add admin operations (add, edit, delete, approve users)
 	3. change what the news, research, and publications show

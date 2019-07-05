@@ -16,6 +16,7 @@ class Conference extends Model
 		'venue',
 		'conference_title',
 		'link',
+		'user_id',
 		'published_at',
 	];
 }
