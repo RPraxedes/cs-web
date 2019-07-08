@@ -15,7 +15,11 @@
 	<div class="row align-content-md-left">
 		<div class="col-md-4">
 			<div class="card animated fadeInLeft">
+			@if($faculty->profile_image != NULL)
 				<img src="{{asset('images/'.$faculty->profile_image)}}" class="card-img-top" alt="{{$faculty->profile_alt}}">
+			@else
+				<img src="{{asset('assets/images/faculty.png')}}" class="card-img-top" alt="{{$faculty->profile_alt}}">
+			@endif
 				<div class="card-body">
 					<p class="card-text">{{$faculty->position}}<br><span class="text-muted">{{$faculty->status->status}}</span></p>
 				</div>

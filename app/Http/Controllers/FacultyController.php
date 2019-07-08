@@ -62,7 +62,9 @@ class FacultyController extends Controller
 	
 	public function saveprofile(Request $request){
 		$requestData = $request->all();
-		$requestData['profile_image'] = time().'.'.request()->file('profile_image')->getClientOriginalExtension();
+		if(isset($requestData['profile_image'])){			
+			$requestData['profile_image'] = time().'.'.request()->file('profile_image')->getClientOriginalExtension();
+		}
 		Faculty::insert([
 			'user_id' => Auth::user()->id,
 			'first_name' => $requestData['first_name'],
@@ -74,7 +76,6 @@ class FacultyController extends Controller
 			'phd_degree' => $requestData['phd_degree'],
 			'research_interest' => $requestData['research_interest'],
 			'contact_info' => $requestData['contact'],
-			'profile_image' => $requestData['profile_image'],
 			'profile_alt' => $requestData['first_name'].' '.$requestData['middle_name'].' '.$requestData['last_name'],
 			'status_id' => (int)$requestData['status_id'],
 		]);
@@ -87,7 +88,12 @@ class FacultyController extends Controller
 		$faculty->update([
 			'updated_at' => Carbon::now()->toDateTimeString(),
 		]);
-		request()->file('profile_image')->move(public_path('images'), $requestData['profile_image']);
+		if(isset($requestData['profile_image'])){
+			$faculty->update([				
+				'profile_image' => $requestData['profile_image'],
+			]);
+			request()->file('profile_image')->move(public_path('images'), $requestData['profile_image']);
+		}
 		return redirect()->route('dash')->with('alert-success', 'Profile successfully saved!');
 	}
 	

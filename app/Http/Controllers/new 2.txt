@@ -4,8 +4,6 @@ include calendar, transparency corner. eFOI
 
 ------------------------------
 
-editable courses by admin
-add manage alerts by admin
 registration: generate from full name
 	if cs admin, display cs admin only
 	after registraion, give generated password. upon login, redirect user to change password screen.
@@ -13,37 +11,14 @@ registration: generate from full name
 	
 fix routing to be independent with url
 
-conference and publication format from sir lee
-
-Faculty page:
-Image (have proper default image)
-
-name
-educational attainment
-contact info
-
-(in tabs)(in bullets)
-publications (with specific fields) (Title. author.(Type))(sort accdg to publication date)
-research disseminations (with specific fields)(conference)
-current research projects (with specific fields following publications)
-
-other achievements such as grants use text editor
-(dissertations, theses, grants, memberships, recognitions)
-
 implement ajax
-
 
 PRIORITY:
 	0. fix required fields indicators (for now all fields are required. entries can be added per field if form allows empty fields)
-	1. limit operations per user type
-	2. add admin operations (add, edit, delete, approve users)
-	3. change what the news, research, and publications show
-	4. populate data with data from original website (especially faculty)
-	5. create thumbnail generator for faculty (just in case image is not portrait size)
-	6. make default faculty image (for those that do not have an image)
-	7. Add sort and search features for news, research, publications, and dashboard viewalls
-	8. redesign the website to look more like a mobile app.
-	
-	
+	1. populate data with data from original website (especially faculty)
+	2. create thumbnail generator for faculty (just in case image is not portrait size)
+	3. Add sort and search features for news, research, publications, and dashboard viewalls
+	4. redesign the website to look more like a mobile app.
+	5. add manage alerts
 	
 	

@@ -117,7 +117,7 @@
 				<a role="button" href="{{route('pub.viewall')}}" class="btn btn-primary @if($category == 'Publication')disabled" aria-disabled="true @endif ">Your Publications</a>
 				<a role="button" href="{{route('conf.viewall')}}" class="btn btn-primary @if($category == 'Conference')disabled" aria-disabled="true @endif ">Your Conferences</a>
 				<a role="button" href="{{route('proj.viewall')}}" class="btn btn-primary @if($category == 'Current Research Project')disabled" aria-disabled="true @endif ">Your Current Research Projects</a>
-				<a role="button" href="{{route('proj.viewall')}}" class="btn btn-primary @if($category == 'Other Achievement')disabled" aria-disabled="true @endif ">Your Other Achievements</a>
+				<a role="button" href="{{route('other.viewall')}}" class="btn btn-primary @if($category == 'Other Achievement')disabled" aria-disabled="true @endif ">Your Other Achievements</a>
 			</div>
         </div>
     </div>

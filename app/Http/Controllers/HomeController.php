@@ -39,23 +39,28 @@ class HomeController extends Controller
 	
 	public function profile(){
 		$user = Auth::user();
+		$from_admin = false;
         return view('user.profile', [
 			'id' => Auth::user()->id,
 			'name' => Auth::user()->name,
 			'email' => Auth::user()->email,
 			'position' => Auth::user()->position,
+			'from_admin' => $from_admin
 		]);
     }
-	
-	public function saveprofile(EditProfileRequest $request){
+	public function saveprofile(Request $request){
 		$requestData = $request->all();
-		$user = User::find((int)Auth::user()->id);
+		$user = User::find((int)$requestData['id']);
 		$user->update([
 			'name' => $requestData['name'],
 			'email' => $requestData['email'],
-			'position' => $requestData['position'],
 			'updated_at' => Carbon::now()->toDateTimeString(),
 		]);
+		if(isset($requestData['position'])){
+			$user->update([
+				'position' => $requestData['position'],
+			]);
+		}
 		return redirect('dashboard')->with('alert-success', 'Profile successfully saved!');
 	}
 	
@@ -206,5 +211,72 @@ class HomeController extends Controller
 			'updated_at' => Carbon::now()
 		]);
 		return redirect('dashboard')->with('alert-success', 'Alert successfully posted!');
+	}
+	
+	public function userviewall(){
+		$users = User::all();
+		$obj_name = "All Users";
+		$obj_columns = [
+			"id",
+			"name",
+			"email",
+			"email_verified_at",
+			"position",
+			"verified_at",
+			"created_at",
+			"updated_at",
+		];
+		$obj_actions = [
+			[
+				'name' => 'Edit',
+				'route' => 'user.edit',
+				'method' => 'post',
+				'button' => 'secondary'
+			],
+			[
+				'name' => 'Delete',
+				'route' => 'user.delete',
+				'method' => 'post',
+				'button' => 'danger'
+			],
+			[
+				'name' => 'Verify',
+				'route' => 'user.verify',
+				'method' => 'post',
+				'button' => 'warning'
+			],
+		];
+		return view('user.viewall')
+			->with('objects', $users)
+			->with('obj_columns', $obj_columns)
+			->with('obj_name', $obj_name)
+			->with('obj_actions', $obj_actions);
+	}
+	
+	public function useredit($id){
+		$user = User::find((int)$id);
+		$position = $user->position;
+		$name = $user->name;
+		$email = $user->email;
+		$from_admin = true;
+		return view('user.profile')
+			->with('id', $id)
+			->with('position', $position)
+			->with('name', $name)
+			->with('email', $email)
+			->with('from_admin', $from_admin);
+	}
+	public function userdelete($id){
+		User::find((int)$id)->delete();
+		
+	}
+	public function userverify($id){
+		User::find((int)$id)->update([
+			'verified_at' => Carbon::now()->toDateTimeString(),
+		]);
+		return redirect()->route('user.viewall')->with('alert-success', 'Profile successfully verified!');
+	}
+	public function usersave(){
+		
 	}
 }

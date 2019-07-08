@@ -94,7 +94,7 @@ class PublicationController extends Controller
 				'name' => 'Publish',
 				'route' => 'pub.publish',
 				'method' => 'post',
-				'button' => 'primary'
+				'button' => 'success'
 			],
 		];
 		return view('user.viewitems')

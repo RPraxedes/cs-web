@@ -30,9 +30,15 @@ Route::get('/sinsm', 'PagesController@sinsm')->name('sinsm');
 Route::get('/about', 'PagesController@about')->name('about');
 
 Route::get('/dashboard', 'HomeController@index')->name('dash');
-
+Route::get('/dashboard/alert/viewall', 'HomeController@viewalerts')->name('alert.viewall');
 Route::get('/dashboard/profile', 'HomeController@profile')->name('user.profile');
+Route::post('/dashboard/alert/create', 'HomeController@createalert')->name('alert.create');
 Route::post('/dashboard/profile/save', 'HomeController@saveprofile')->name('user.saveprofile');
+Route::get('/dashboard/users/view', 'HomeController@userviewall')->name('user.viewall');
+Route::post('/dashboard/users/edit/{id}', ['uses' => 'HomeController@useredit'])->name('user.edit');
+Route::post('/dashboard/users/delete/{id}', ['uses' => 'HomeController@userdelete'])->name('user.delete');
+Route::post('/dashboard/users/verify/{id}', ['uses' => 'HomeController@userverify'])->name('user.verify');
+Route::post('/dashboard/users/save', 'HomeController@usersave')->name('user.save');
 
 Route::get('/dashboard/profile/faculty/create', 'FacultyController@createprofile')->name('faculty.create');
 Route::get('/dashboard/profile/faculty/edit', 'FacultyController@editprofile')->name('faculty.edit');
@@ -65,30 +71,17 @@ Route::post('/dashboard/profile/faculty/others/edit', 'OtherAchievementsControll
 Route::post('/dashboard/profile/faculty/others/delete', 'OtherAchievementsController@delete')->name('other.delete');
 Route::post('/dashboard/profile/faculty/others/publish', 'OtherAchievementsController@publish')->name('other.publish');
 
-
-//views your articles
 Route::get('/dashboard/view', 'ArticlesController@viewarticle')->name('article.view');
-//opens article builder
 Route::get('/dashboard/create/{type}', ['uses' => 'ArticlesController@createbuilder'])->name('article.createbuilder');
-//edit an article
 Route::post('/dashboard/edit/{id}', ['uses' => 'ArticlesController@editarticle'])->name('article.edit');
-//save modified work
 Route::post('/dashboard/save', 'ArticlesController@save')->name('article.save');
-//delete an article
 Route::post('/dashboard/delete/{id}', ['uses' => 'ArticlesController@delete'])->name('article.delete');
-//create an article
 Route::post('/dashboard/create', 'ArticlesController@create')->name('article.create');
-//publish an article
 Route::post('/dashboard/publish', 'ArticlesController@publish')->name('article.publish');
-//preview an article even before publishing
 Route::post('/dashboard/preview/{id}', ['uses' => 'ArticlesController@preview'])->name('article.preview');
-
-Route::get('/dashboard/alert/viewall', 'HomeController@viewalerts')->name('alert.viewall');
-Route::post('/dashboard/alert/create', 'HomeController@createalert')->name('alert.create');
 
 Route::get('/articles/{id}', ['uses' => 'PagesController@articles'])->name('article.page');
 Route::get('/news', 'PagesController@news')->name('news');
 Route::get('/research', 'PagesController@research')->name('research');
 Route::get('/publications', 'PagesController@publications')->name('publications');
-
 Route::get('/secret', 'PagesController@secret')->name('secret');

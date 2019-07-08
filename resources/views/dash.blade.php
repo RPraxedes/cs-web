@@ -10,8 +10,9 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-10">
+		@if(Auth::user()->verified_at != NULL)
 			<div class="row">
-                <div class="display-4 title">Dashboard</div>
+                <div class="display-4 title">{{Str::title(Auth::user()->position)}} Dashboard</div>
 			</div>
 			@if (session('status'))
 				<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -30,17 +31,16 @@
 				@endforeach
 			</div>
 			<div class="row">
-				<div class="btn-group" role="group" aria-level="Article Management">
-						<a class="btn btn-secondary" href="{{route('article.createbuilder', ['type' => 'news'])}}">Create a News Article</a>
-						<a class="btn btn-secondary" href="{{route('article.createbuilder', ['type' => 'research'])}}">Create a Research Article</a>
-						<a class="btn btn-secondary" href="{{route('article.createbuilder', ['type' => 'publication'])}}">Create a Publication</a>
-				</div>
+			@if(Auth::user()->position == 'admin')
+				<a class="btn btn-secondary" href="{{route('article.createbuilder', ['type' => 'news'])}}">Create a News Article</a>
+				<a class="btn btn-secondary" href="{{route('article.createbuilder', ['type' => 'research'])}}">Create a Research Article</a>
 				<a class="btn btn-secondary" href="{{route('article.view')}}" role="button">View Your Articles</a>
-				<a class="btn btn-secondary" href="#" role="button">Edit Checklist</a>
-				<a class="btn btn-secondary" href="#" role="button">View Courses</a>
+				<a class="btn btn-secondary" href="{{route('user.viewall')}}" role="button">Manage Users</a>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#alertModal">Create an Alert</button>
+			@elseif(Auth::user()->position == 'faculty')
+				<a class="btn btn-secondary" href="{{route('article.view')}}" role="button">View Your Articles</a>
 				<a class="btn btn-success" href="{{route('user.profile')}}" role="button">Edit User Profile</a>
 				<a class="btn btn-success" href="{{route('faculty.view', ['id'=> $id])}}" role="button">View Your Faculty Profile</a>
-				<a class="btn btn-success" href="{{route('faculty.create')}}" role="button">Create Your Faculty Profile</a>
 				<a class="btn btn-success" href="{{route('faculty.edit')}}" role="button">Edit Your Faculty Profile</a>
 				<form action="{{route('faculty.delete')}}" method="post">
 					@csrf
@@ -52,9 +52,8 @@
 					<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 					<button type="submit" class="btn btn-success">Publish My Faculty Profile</button>
 				</form>
-				<a class="btn btn-success" href="#" role="button">Approve Users</a>
+			@endif
 				
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#alertModal">Create an Alert</button>
 
 				<!-- Alert Modal -->
 				<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalTitle" aria-hidden="true">
@@ -118,6 +117,11 @@
 					</div>
 				</div>
 			</div>
+		@else
+			<div class="alert alert-warning" role="alert">
+				You are not verified by an administrator. Please wait until you have been verified.
+			</div>
+		@endif
         </div>
     </div>
 </div>

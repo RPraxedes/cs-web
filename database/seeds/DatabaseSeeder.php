@@ -16,6 +16,15 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@mail.com',
 			'position' => 'admin',
             'password' => bcrypt('test'),
+			'email_verified_at' => now(),
+			'verified_at' => now(),
+        ]);
+		
+		DB::table('users')->insert([
+            'name' => 'test1',
+            'email' => 'test1@mail.com',
+			'position' => 'admin',
+            'password' => bcrypt('test1'),
         ]);
 		
 		factory(App\Models\User::class, 50)->create();

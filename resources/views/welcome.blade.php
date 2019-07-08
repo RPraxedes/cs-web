@@ -3,8 +3,8 @@
 @section('title' , 'Home')
 
 @section('header')
-<div class="container-fluid col-xl-12 half-height">
-	<div class="display-1">
+<div class="container-fluid">
+	<div class="col-xl-12 display-1 title text-center">
 		<span class="text-center display-1">College of Science</span>
 	</div>
 </div>
@@ -26,14 +26,14 @@
 		<h1 class="display-4">News</h1>
 	</div>
 		<!-- News and Announcements Section -->	
-	<div class="row">
+	<div class="row justify-content-center">
 	@foreach ($news_preview as $news)
-		<div class="card">
+		<div class="card col-md-7">
 			<div class="row">
-				<div class="col-md-2">
+				<div class="col-md-3">
 					<img src="{{asset('images/'.$news->header_image)}}" class="card-img" alt="{{$news->header_alt}}">
 				</div>
-				<div class="col-md-10">
+				<div class="col-md-9">
 					<div class="card-body">
 						<h4 class="card-title"><strong>{{$news->title}}</strong></h4>
 						<p class="card-text"><small class="text-muted">Published on {{\Carbon\Carbon::parse($news->from_date)->toFormattedDateString()}} at {{date('h:i A', strtotime($news->published_at))}} by {{$news->user->name}}</small></p>

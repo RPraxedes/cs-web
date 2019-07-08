@@ -19,9 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-			$table->string('position')->default("user");	// admin = site admins, user = faculty/staff
-			//$table->boolean('activated');
-			$table->timestamp('activated_at')->nullable();
+			$table->string('position')->default("faculty");	// admin = site admins, faculty = faculty/staff
+			$table->timestamp('verified_at')->nullable();
             $table->timestamps();
             $table->rememberToken();
         });

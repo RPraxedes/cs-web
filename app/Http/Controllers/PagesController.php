@@ -9,6 +9,7 @@ use App\Models\Article;	// fetches Article model
 use App\Models\Checklist;
 use App\Models\User;
 use App\Models\Faculty;
+use App\Models\Publication;
 
 use Illuminate\Http\Request;
 
@@ -115,7 +116,7 @@ class PagesController extends Controller
 	}
 	
 	 public function publications(){
-		$articles = Article::with('user')->whereType('publication')->where('published_at','!=',NULL)->paginate(10);
-		return view('articles.index', ['articles' => $articles], ['title' => 'Publications']);
+		$publications = Publication::where('published_at', '!=', NULL)->orderBy('published_at', 'desc')->paginate(20);
+		return view('publications.index', ['publications' => $publications]);
 	}
 }

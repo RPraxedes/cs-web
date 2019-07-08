@@ -12,6 +12,7 @@
 			<div class="row">
 				<form action="{{route('user.saveprofile')}}" class="col-md-6" method="post">
 					@csrf
+					@if($from_admin)
 					<div class="card w-75">
 						<div class="card-body">
 							<h5 class="card-title">Position</h5>
@@ -26,7 +27,9 @@
 							</div>
 						</div>
 					</div>
+					@endif
 					<label class="form-check-label" for="profName">Profile Name</label>
+					<input name="id" type="hidden" value="{{$id}}" required>
 					<input name="name" class="form-control" type="text" placeholder="Profile Name" id="profName" value="{{$name}}" required><br>
 					
 					<label class="form-check-label" for="emailAddress">E-mail address</label>

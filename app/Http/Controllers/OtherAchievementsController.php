@@ -23,7 +23,7 @@ class OtherAchievementsController extends Controller
 				'name' => 'content',
 				'type' => 'tiny',
 				'required' => NULL,
-				'placeholder' => 'Write in a bulleted list your other achievements (grants, recognitions, etc.). Use the "Insert/edit" link button on the right or right-click to create hyperlinks!',
+				'placeholder' => 'Write in a bulleted list your other achievements (grants, recognitions, etc.). Use the "Insert/edit" link button on the right or right-click to create hyperlinks. Write headings to specify type of achievement.',
 				'value' => NULL,
 			],
 		];
