@@ -15,9 +15,9 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->string('title');
+			$table->string('title')->nullable();
 			$table->bigInteger('user_id')->unsigned();
-			$table->mediumText('body');
+			$table->mediumText('body')->nullable();
 			$table->text('header_image')->nullable();
 			$table->text('header_alt')->nullable();
 			$table->string('type');	// different from category (news, research, publication)

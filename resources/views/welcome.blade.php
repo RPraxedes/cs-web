@@ -30,7 +30,7 @@
 	@foreach ($news_preview as $news)
 		<div class="card col-md-7">
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-3 no-padding">
 					<img src="{{asset('images/'.$news->header_image)}}" class="card-img" alt="{{$news->header_alt}}">
 				</div>
 				<div class="col-md-9">

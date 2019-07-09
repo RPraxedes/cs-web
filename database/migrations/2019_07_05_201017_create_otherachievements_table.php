@@ -15,7 +15,7 @@ class CreateOtherachievementsTable extends Migration
     {
         Schema::create('otherachievements', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->mediumText('content');
+			$table->mediumText('content')->nullable();
 			$table->bigInteger('user_id')->unsigned();	// so as to determine who wrote the entry
 			$table->timestamp('published_at')->nullable();
             $table->timestamps();

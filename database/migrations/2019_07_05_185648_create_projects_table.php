@@ -15,13 +15,13 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->string('title');					//publication title
-			$table->string('author');
-			$table->date('published_date');
-			$table->string('type');
-			$table->string('journal');
-			$table->string('volume');
-			$table->string('link');
+			$table->string('title')->nullable();					//publication title
+			$table->string('author')->nullable();
+			$table->date('published_date')->nullable();
+			$table->string('type')->nullable();
+			$table->string('journal')->nullable();
+			$table->string('volume')->nullable();
+			$table->string('link')->nullable();
 			$table->bigInteger('user_id')->unsigned();	// so as to determine who wrote the entry
 			$table->timestamp('published_at')->nullable();
             $table->timestamps();

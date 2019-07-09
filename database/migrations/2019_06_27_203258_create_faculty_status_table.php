@@ -15,7 +15,7 @@ class CreateFacultyStatusTable extends Migration
     {
         Schema::create('faculty_status', function (Blueprint $table) {
             $table->bigIncrements('status_id');// value
-			$table->string('status');	//ex. On study leave
+			$table->string('status')->nullable();	//ex. On study leave
             $table->timestamps();
         });
     }

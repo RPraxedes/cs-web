@@ -117,11 +117,13 @@
 						</h2>
 					</div>
 					<div id="Achievements" class="collapse" aria-labelledby="otherHeading" data-parent="#Accord">
-						<div class="card-body">
+						<div class="card-body" style="padding-left: 20px">
 						@if(!$others->isEmpty())
 							{!!$others->first()->content!!}
 						@else
+							<ul class="list">
 								<li>None</li>
+							</ul>
 						@endif
 						</div>
 					</div>

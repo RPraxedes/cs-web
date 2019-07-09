@@ -184,6 +184,11 @@ img.flip {
 	font-weight: bold;
 }
 
+.card-img {
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
 .card-img-top {
 	border-top-right-radius: 10px;
 	border-top-left-radius: 10px;

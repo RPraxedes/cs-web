@@ -14,9 +14,7 @@ fix routing to be independent with url
 implement ajax
 
 PRIORITY:
-	0. fix required fields indicators (for now all fields are required. entries can be added per field if form allows empty fields)
 	1. populate data with data from original website (especially faculty)
-	2. create thumbnail generator for faculty (just in case image is not portrait size)
 	3. Add sort and search features for news, research, publications, and dashboard viewalls
 	4. redesign the website to look more like a mobile app.
 	5. add manage alerts

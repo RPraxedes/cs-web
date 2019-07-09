@@ -90,7 +90,7 @@ class FacultyController extends Controller
 		]);
 		if(isset($requestData['profile_image'])){
 			$faculty->update([				
-				'profile_image' => $requestData['profile_image'],
+				'profile_image' => 'thumb-'.$requestData['profile_image'],
 			]);
 			request()->file('profile_image')->move(public_path('images'), $requestData['profile_image']);
 		}

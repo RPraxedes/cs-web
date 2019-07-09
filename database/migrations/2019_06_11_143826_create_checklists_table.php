@@ -15,8 +15,8 @@ class CreateChecklistsTable extends Migration
     {
         Schema::create('checklists', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->string('title');
-			$table->mediumText('body');
+			$table->string('title')->nullable();
+			$table->mediumText('body')->nullable();
             $table->timestamps();
         });
     }

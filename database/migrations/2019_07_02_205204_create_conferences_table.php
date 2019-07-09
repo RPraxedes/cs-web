@@ -15,13 +15,13 @@ class CreateConferencesTable extends Migration
     {
         Schema::create('conferences', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->string('paper_title');
-			$table->string('author');
-			$table->date('conference_date');
-			$table->string('type');
-			$table->string('venue');
-			$table->string('conference_title');
-			$table->string('link');
+			$table->string('paper_title')->nullable();
+			$table->string('author')->nullable();
+			$table->date('conference_date')->nullable();
+			$table->string('type')->nullable();
+			$table->string('venue')->nullable();
+			$table->string('conference_title')->nullable();
+			$table->string('link')->nullable();
 			$table->bigInteger('user_id')->unsigned();	// so as to determine who wrote the entry
 			$table->timestamp('published_at')->nullable();
             $table->timestamps();
