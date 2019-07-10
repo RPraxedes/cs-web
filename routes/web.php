@@ -18,7 +18,8 @@ Route::get('/', 'PagesController@home')->name('welcome');
 Route::get('/academics', 'PagesController@academics')->name('academics');
 
 Route::get('/faculty', 'PagesController@faculty')->name('faculty');
-Route::get('/faculty/{id}', ['uses' => 'FacultyController@viewprofile'])->name('faculty.view');
+Route::get('/faculty/{dept}', ['uses' => 'PagesController@department'])->name('department');
+Route::get('/faculty/roster/{id}', ['uses' => 'FacultyController@viewprofile'])->name('faculty.view');
 
 Route::get('/courses', 'PagesController@courses')->name('courses');
 Route::get('/courses/{name}', ['uses' => 'PagesController@getchecklist'])->name('checklist.get');

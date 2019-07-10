@@ -21,7 +21,7 @@
 				<img src="{{asset('assets/images/faculty.png')}}" class="card-img-top" alt="{{$faculty->profile_alt}}">
 			@endif
 				<div class="card-body">
-					<p class="card-text">{{$faculty->position}}<br><span class="text-muted">{{$faculty->status->status}}</span></p>
+					<p class="card-text">{{$faculty->position}}<br>{{$faculty->department->title}}<br><span class="text-muted">{{$faculty->status->status}}</span></p>
 				</div>
 			</div>
 		</div>
@@ -33,18 +33,22 @@
 					<p class="card-text">{{$faculty->bs_degree}}<br>{{$faculty->ms_degree}}<br>{{$faculty->phd_degree}}</p>
 				</div>
 			</div>
+			@if($faculty->contact_info != NULL)
 			<div class="card animated fadeInRight delay-5">
 				<div class="card-body">
 					<h5 class="card-title">Contact Information</h5>
 					<p class="card-text">{!! preg_replace("/, /", "<br>", ($faculty->contact_info)) !!}</p>
 				</div>
 			</div>
+			@endif
+			@if($faculty->research_interest != NULL)
 			<div class="card animated fadeInRight delay-7">
 				<div class="card-body">
 					<h5 class="card-title">Research Interests</h5>
 					<p class="card-text">{!! preg_replace("/, /", "<br>", ($faculty->research_interest)) !!}</p>
 				</div>
 			</div>
+			@endif
 		</div>
 		<div class="col-md-12 animated fadeInDown delay-10">
 			<h3>Academic Profile</h3>

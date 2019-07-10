@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+		// test accounts
 		DB::table('users')->insert([
             'name' => 'test',
             'email' => 'test@mail.com',
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('test1'),
         ]);
 		
+		// fake articles and users
 		factory(App\Models\User::class, 50)->create();
 		factory(App\Models\Article::class, 100)->create();
 		
@@ -37,5 +39,7 @@ class DatabaseSeeder extends Seeder
 		$this->call('MicrobiologyChecklistSeeder');
 		$this->call('EcologySystematicsChecklistSeeder');
 		$this->call('FacultyStatusSeeder');
+		$this->call('DepartmentSeeder');
+		$this->call('DMCSSeeder');
     }
 }

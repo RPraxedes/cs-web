@@ -8,13 +8,10 @@ registration: generate from full name
 	if cs admin, display cs admin only
 	after registraion, give generated password. upon login, redirect user to change password screen.
 	set up mailer system
-	
-fix routing to be independent with url
 
 implement ajax
 
 PRIORITY:
-	1. populate data with data from original website (especially faculty)
 	3. Add sort and search features for news, research, publications, and dashboard viewalls
 	4. redesign the website to look more like a mobile app.
 	5. add manage alerts

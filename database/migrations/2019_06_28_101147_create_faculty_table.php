@@ -26,6 +26,7 @@ class CreateFacultyTable extends Migration
 			$table->string('contact_info')->nullable();
 			$table->string('profile_image')->nullable();
 			$table->string('profile_alt')->nullable();		//for profile image
+			$table->bigInteger('dept_id')->unsigned();
 			$table->bigInteger('status_id')->unsigned();
 			$table->timestamp('published_at')->nullable();
             $table->timestamps();
@@ -33,6 +34,9 @@ class CreateFacultyTable extends Migration
 			$table->foreign('user_id')
 					->references('id')
 					->on('users');
+			$table->foreign('dept_id')
+					->references('id')
+					->on('departments');
 			$table->foreign('status_id')
 					->references('status_id')
 					->on('faculty_status');

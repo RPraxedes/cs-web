@@ -10,6 +10,7 @@ use App\Models\User;
 
 use App\Models\Faculty;
 use App\Models\FacultyStatus;
+use App\Models\Department;
 
 use App\Models\Publication;
 use App\Models\Conference;
@@ -56,7 +57,8 @@ class FacultyController extends Controller
 		$id = Auth::user()->id;
 		$faculty = Faculty::where('user_id', '=', $id)->get();
 		$status = FacultyStatus::all();
-		return view('user.faculty', ['faculty_info' => $faculty->first()], ['status' => $status]);
+		$dept = Department::all();
+		return view('user.faculty', ['faculty_info' => $faculty->first(), 'status' => $status, 'dept' => $dept]);
     }
 
 	
@@ -65,12 +67,16 @@ class FacultyController extends Controller
 		if(isset($requestData['profile_image'])){			
 			$requestData['profile_image'] = time().'.'.request()->file('profile_image')->getClientOriginalExtension();
 		}
+		if($requestData['dept_id'] == "0"){
+			return redirect()->back();
+		}
 		Faculty::insert([
 			'user_id' => Auth::user()->id,
 			'first_name' => $requestData['first_name'],
 			'middle_name' => $requestData['middle_name'],
 			'last_name' => $requestData['last_name'],
 			'position' => $requestData['faculty_position'],
+			'dept_id' => (int)$requestData['dept_id'],
 			'bs_degree' => $requestData['bs_degree'],
 			'ms_degree' => $requestData['ms_degree'],
 			'phd_degree' => $requestData['phd_degree'],
@@ -99,11 +105,15 @@ class FacultyController extends Controller
 	
 	public function modifyprofile(Request $request){
 		$requestData = $request->all();
+		if($requestData['dept_id'] == "0"){
+			return redirect()->back();
+		}
 		$faculty = Faculty::where('user_id', '=', (int)Auth::user()->id);
 		$faculty->update([
 			'first_name' => $requestData['first_name'],
 			'middle_name' => $requestData['middle_name'],
 			'last_name' => $requestData['last_name'],
+			'dept_id' => (int)$requestData['dept_id'],
 			'position' => $requestData['faculty_position'],
 			'bs_degree' => $requestData['bs_degree'],
 			'ms_degree' => $requestData['ms_degree'],
@@ -141,9 +151,5 @@ class FacultyController extends Controller
 	}
 	
 	public function viewall(){
-	}
-	
-	public function editothers(){
-	
 	}
 }

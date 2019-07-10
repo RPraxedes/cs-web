@@ -9,6 +9,7 @@ use App\Models\Article;	// fetches Article model
 use App\Models\Checklist;
 use App\Models\User;
 use App\Models\Faculty;
+use App\Models\Department;
 use App\Models\Publication;
 
 use Illuminate\Http\Request;
@@ -28,7 +29,28 @@ class PagesController extends Controller
 	}
 	
 	public function faculty(){
-		$faculty = Faculty::where('published_at', '!=', NULL)->get();
+		$faculty = Department::all();
+		return view('faculty.dept', ['faculty' => $faculty]);
+	}
+	
+	public function department($dept){
+		switch($dept){
+			case 'biology':
+				$dept = 1;
+				break;
+			case 'physical-science':
+				$dept = 2;
+				break;
+			case 'math-comsci':
+				$dept = 3;
+				break;
+			case 'hkp':
+				$dept = 4;
+			case 'executive':
+				$dept = 5;
+				break;
+		}
+		$faculty = Faculty::where('dept_id', '=', $dept)->where('published_at', '!=', NULL)->get();
 		return view('faculty.index', ['faculty' => $faculty]);
 	}
 	

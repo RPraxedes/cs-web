@@ -41,7 +41,15 @@
 								<label class="custom-file-label" for="inputGroupFile01">@if(isset($faculty_info)) {{$faculty_info->profile_image}} @else Choose file (preferably portrait image) @endif </label>
 							</div>
 						</div>
-
+						
+						<label class="form-check-label" for="department">Department</label>
+						<select name="dept_id" class="form-control" id="department" autocomplete="off" required>
+							<option value="0"><span class="text-muted">Choose a department</span></option>
+						@foreach($dept as $option)
+							<option value={{$option->id}} {{isset($faculty_info) && $faculty_info->dept_id == $option->id?'selected':''}}>{{$option->title}}</option>
+						@endforeach
+						</select><br>
+						
 						<label class="form-check-label" for="facultyPosition">Faculty Position<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span></label>
 						<input name="faculty_position" class="form-control" type="text" placeholder="Faculty Position" id="facultyPosition" @if(isset($faculty_info)) value="{{$faculty_info->position}}" @endif required><br>
 						
@@ -58,7 +66,7 @@
 						<label class="form-check-label" for="contactInfo">Contact Information</label>
 						<input name="contact" class="form-control" type="text" placeholder="Phone, Email" id="contactInfo" @if(isset($faculty_info)) value="{{$faculty_info->contact_info}}" @endif><br>
 						
-						<label for="facultyStatus">Status</label>
+						<label class="form-check-label" for="facultyStatus">Status</label>
 						<select name="status_id" class="form-control" id="facultyStatus" autocomplete="off">
 						@foreach($status as $option)
 							<option value={{$option->status_id}} {{isset($faculty_info) && $faculty_info->status_id == $option->status_id?'selected':''}}>{{$option->status}}</option>

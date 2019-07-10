@@ -30,4 +30,9 @@ class Faculty extends Model
 	{
 		return $this->hasOne('App\Models\FacultyStatus', 'status_id', 'status_id');
 	}
+	
+	public function department()
+	{
+		return $this->belongsTo('App\Models\Department', 'dept_id');
+	}
 }
