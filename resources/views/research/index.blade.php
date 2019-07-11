@@ -11,10 +11,10 @@
 				Research
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-12">
+		<div class="row justify-content-center">
+			<div class="col-md-10">
 			@foreach ($articles as $article)
-				<div class="card">
+				<div class="card margin-top">
 					<div class="row">
 						<div class="col-md-2">
 							<img src="{{asset($article->header_image)}}" class="card-img" alt="{{$article->header_alt}}">

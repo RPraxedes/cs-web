@@ -62,9 +62,9 @@
 						<li class="nav-item">
 							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-6" href="{{url('/about')}}">Gallery</a>
 						</li>
-						<li class="nav-item">
+						<!--<li class="nav-item">
 							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-7" href="{{url('/secret')}}">Secret</a>
-						</li>
+						</li>-->
 					</ul>
 				<!-- Right side of the navbar, Authentication Links -->
 					<ul class="navbar-nav ml-auto animated fadeInDown delay-7">

@@ -12,15 +12,19 @@
 
 @section('content')
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-12">
+		<div class="row justify-content-center">
+			<div class="col-md-10">
 			@foreach ($articles as $article)
-				<div class="card">
+				<div class="card margin-top">
 					<div class="row">
-						<div class="col-md-2">
-							<img src="{{asset('images/'.$article->header_image)}}" class="card-img" alt="{{$article->header_alt}}">
+						<div class="col-md-3 d-flex obj-cover">
+							@if($article->header_image != NULL)
+								<img src="{{asset('images/'.$article->header_image)}}" class="card-img" alt="{{$article->header_alt}}">
+							@else
+								<span class="oi oi-copywriting text-center" style="color: #7b1113; padding-top: 6rem; font-size: 8rem;"></span>
+							@endif
 						</div>
-						<div class="col-md-10">
+						<div class="col-md-9">
 							<div class="card-body">
 								<h4 class="card-title"><strong>{{$article->title}}</strong></h4>
 								<p class="card-text"><small class="text-muted">Published on {{\Carbon\Carbon::parse($article->published_at)->toFormattedDateString()}} at {{date('h:i A', strtotime($article->published_at))}} by {{$article->user->name}} @if(\Carbon\Carbon::parse($article->updated_at)->gt(\Carbon\Carbon::parse($article->published_at))) (Modified on {{\Carbon\Carbon::parse($article->updated_at)->toFormattedDateString()}} at {{date('h:i A', strtotime($article->updated_at))}}) @endif</small></p>
@@ -36,7 +40,7 @@
 			@endforeach
 			</div>
 		</div>
-		<div class="row justify-content-md-center">
+		<div class="row justify-content-md-center margin-top margin-bottom">
 			{{$articles->render()}}
 		</div>
 	</div>

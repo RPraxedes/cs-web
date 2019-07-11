@@ -4,34 +4,56 @@
 
 @section('header')
 <div class="container-fluid">
-	<div class="col-xl-12 display-1 title text-center">
-		<span class="text-center display-1">College of Science</span>
+	<div class="col-xl-12 display-1 d-flex justify-content-center align-items-center text-center hvr-fade" id="welcome-header">
+		<img src="{{asset('assets/images/title1.jpeg')}}" alt="title1" class="hvr-blur">
+		<span class="text-center display-3" style="z-index: 1;" id="title-text"><strong>College of Science</strong></span>
+		<div class="down-arrow bounce"></div>
 	</div>
 </div>
+<script>
+$('.hvr-fade').on('mouseenter', function(){
+});
 
+$('.hvr-fade').hover(
+	function (){
+		$('.down-arrow').show();
+		$('.down-arrow').addClass('fadeInDown');	
+	},
+	function (){
+		$('.down-arrow').hide();
+		$('.down-arrow').removeClass('fadeInDown');	
+	}
+	
+);
+</script>
 @endsection
 
 @section('content')
 <!-- Title Section-->
 <div class="container-fluid">
 	@foreach($alerts as $alert)
-	<div class="alert alert-{{$alert->style}} alert-dismissible fade show" role="alert">
+	<div class="alert alert-{{$alert->style}} alert-dismissible fade show margin-top" role="alert">
 		{!!$alert->body!!}
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 		</button>
 	</div>
 	@endforeach
-	<div class="row">
-		<h1 class="display-4">News</h1>
+	<div class="row justify-content-center">
+		<div class="col-md-10 margin-top margin-bottom">
+			<h1 class="display-3 text-center">News</h1>
+		</div>
 	</div>
-		<!-- News and Announcements Section -->	
 	<div class="row justify-content-center">
 	@foreach ($news_preview as $news)
-		<div class="card col-md-7">
+		<div class="card col-md-10 margin-bottom">
 			<div class="row">
-				<div class="col-md-3 no-padding">
+				<div class="col-md-3 no-padding text-center">
+				@if($news->header_image != NULL)
 					<img src="{{asset('images/'.$news->header_image)}}" class="card-img" alt="{{$news->header_alt}}">
+				@else
+					<span class="oi oi-copywriting text-center" style="color: #7b1113; padding-top: 6rem; font-size: 8rem;"></span>
+				@endif
 				</div>
 				<div class="col-md-9">
 					<div class="card-body">
@@ -47,7 +69,12 @@
 		</div>
 	@endforeach
 	</div>
-	<a href ="{{url('/news')}}" role="button" class="btn btn-primary">Show All News</a>
+	<div class="row justify-content-center">
+		<div class="col-md-8 margin-bottom">
+			<a href ="{{url('/news')}}" role="button" class="btn btn-secondary btn-block">Show All News</a>
+		</div>
+	</div>
+	
 <!-- Research and Publications Section-->
 </div>
 @endsection

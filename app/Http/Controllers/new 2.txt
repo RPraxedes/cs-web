@@ -13,7 +13,6 @@ implement ajax
 
 PRIORITY:
 	3. Add sort and search features for news, research, publications, and dashboard viewalls
-	4. redesign the website to look more like a mobile app.
 	5. add manage alerts
 	
 	
