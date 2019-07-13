@@ -36,6 +36,7 @@
 				<a class="btn btn-secondary" href="{{route('article.createbuilder', ['type' => 'research'])}}">Create a Research Article</a>
 				<a class="btn btn-secondary" href="{{route('article.view')}}" role="button">View Your Articles</a>
 				<a class="btn btn-secondary" href="{{route('user.viewall')}}" role="button">Manage Users</a>
+				<a class="btn btn-secondary" href="{{route('faculty.viewall')}}" role="button">Manage Faculty</a>
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#alertModal">Create an Alert</button>
 			@elseif(Auth::user()->position == 'faculty')
 				<a class="btn btn-secondary" href="{{route('article.view')}}" role="button">View Your Articles</a>

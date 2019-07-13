@@ -4,9 +4,10 @@
 
 @section('header')
 <div class="container-fluid">
-	<div class="col-xl-12 display-1 d-flex justify-content-center align-items-center text-center hvr-fade" id="welcome-header">
-		<img src="{{asset('assets/images/title1.jpeg')}}" alt="title1" class="hvr-blur">
-		<span class="text-center display-3" style="z-index: 1;" id="title-text"><strong>College of Science</strong></span>
+	<div class="col-xl-12 display-1 d-flex justify-content-center align-items-center text-center" id="welcome-header">
+		<img src="{{asset('assets/images/title1.jpeg')}}" alt="title1" class="hvr-fade">
+		<span class="d-none d-sm-block text-center display-3 title-text" style="z-index: 1; margin-bottom: 20vh;"><strong>University of the Philippines Baguio</strong></span>
+		<span class="text-center display-4 title-text" style="z-index: 1; margin-top: 20vh;">College of Science</span>
 		<div class="down-arrow bounce"></div>
 	</div>
 </div>
@@ -30,7 +31,7 @@ $('.hvr-fade').hover(
 
 @section('content')
 <!-- Title Section-->
-<div class="container-fluid">
+<div class="container-fluid card-background">
 	@foreach($alerts as $alert)
 	<div class="alert alert-{{$alert->style}} alert-dismissible fade show margin-top" role="alert">
 		{!!$alert->body!!}

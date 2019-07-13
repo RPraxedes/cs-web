@@ -21,7 +21,7 @@
 				<img src="{{asset('assets/images/faculty.png')}}" class="card-img-top" alt="{{$faculty->profile_alt}}">
 			@endif
 				<div class="card-body">
-					<p class="card-text">{{$faculty->position}}<br>{{$faculty->department->title}}<br><span class="text-muted">{{$faculty->status->status}}</span></p>
+					<p class="card-text">{{$faculty->position ?? ''}}<br>{{$faculty->department->title ?? ''}}<br><span class="text-muted">{{$faculty->status->status ?? ''}}</span></p>
 				</div>
 			</div>
 		</div>
@@ -30,7 +30,7 @@
 			<div class="card animated fadeInRight delay-3">
 				<div class="card-body">
 					<h5 class="card-title">Educational Attainment</h5>
-					<p class="card-text">{{$faculty->bs_degree}}<br>{{$faculty->ms_degree}}<br>{{$faculty->phd_degree}}</p>
+					<p class="card-text">{{$faculty->bs_degree ?? ''}}<br>{{$faculty->ms_degree ?? ''}}<br>{{$faculty->phd_degree ?? ''}}</p>
 				</div>
 			</div>
 			@if($faculty->contact_info != NULL)
@@ -65,7 +65,7 @@
 							<ul class="list">
 						@if(!$publications->isEmpty())
 							@foreach($publications as $pub)
-								<li><a href="{{url($pub->link)}}" class="card-link">{{$pub->author.' ('.\Carbon\Carbon::parse($pub->published_date)->year.').'}} <i>{{$pub->title}}</i>. {{$pub->journal}} Volume {{$pub->volume}}</a></li>
+								<li><a href="{{url($pub->link ?? '')}}" class="card-link">{{$pub->author ?? ''.' ('.\Carbon\Carbon::parse($pub->published_date)->year.').'}} <i>{{$pub->title ?? ''}}</i>. {{$pub->journal ?? ''}} Volume {{$pub->volume ?? ''}}</a></li>
 							@endforeach
 						@else
 								<li>None</li>
@@ -85,7 +85,7 @@
 							<ul class="list">
 						@if(!$conferences->isEmpty())
 							@foreach($conferences as $conf)
-								<li><a href="{{url($conf->link)}}" class="card-link"><i>{{$conf->paper_title}}</i>. {{$conf->author}} {{\Carbon\Carbon::parse($conf->conference_date)->format('F d, Y')}}. {{$conf->conference_title}}. {{$conf->venue}}</a></li>
+								<li><a href="{{url($conf->link ?? '')}}" class="card-link"><i>{{$conf->paper_title ?? ''}}</i>. {{$conf->author ?? ''}} {{\Carbon\Carbon::parse($conf->conference_date)->format('F d, Y')}}. {{$conf->conference_title ?? ''}}. {{$conf->venue ?? ''}}</a></li>
 							@endforeach
 						@else
 								<li>None</li>
@@ -105,7 +105,7 @@
 							<ul class="list">
 						@if(!$projects->isEmpty())
 							@foreach($projects as $proj)
-								<li><a href="{{url($proj->link)}}" class="card-link">{{$proj->author.' ('.\Carbon\Carbon::parse($proj->published_date)->year.').'}} <i>{{$proj->title}}</i>. {{$proj->journal}} Volume {{$proj->volume}}</a></li>
+								<li><a href="{{url($proj->link ?? '')}}" class="card-link">{{$proj->author ?? ''.' ('.\Carbon\Carbon::parse($proj->published_date)->year.').'}} <i>{{$proj->title ?? ''}}</i>. {{$proj->journal ?? ''}} Volume {{$proj->volume ?? ''}}</a></li>
 							@endforeach
 						@else
 								<li>None</li>

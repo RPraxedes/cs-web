@@ -17,7 +17,7 @@ class ProjectController extends Controller
 		$faculty = Faculty::where('user_id', '=', (int)Auth::user()->id)->get()->first();
 		$first_name = $faculty->first_name;
 		$publications = Project::where('user_id', '=', (int)Auth::user()->id)->get();
-		$category = 'Project';
+		$category = 'Current Research Project';
 		$short_category = 'proj';
 		$fields = [
 			[

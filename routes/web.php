@@ -21,7 +21,8 @@ Route::get('/faculty', 'PagesController@faculty')->name('faculty');
 Route::get('/faculty/{dept}', ['uses' => 'PagesController@department'])->name('department');
 Route::get('/faculty/roster/{id}', ['uses' => 'FacultyController@viewprofile'])->name('faculty.view');
 
-Route::get('/courses', 'PagesController@courses')->name('courses');
+Route::get('/courses/undergraduate', 'PagesController@courses')->name('courses');
+Route::get('/courses/graduate', 'PagesController@gradcourses')->name('gradcourses');
 Route::get('/courses/{name}', ['uses' => 'PagesController@getchecklist'])->name('checklist.get');
 Route::post('/courses/{id}/edit', ['uses' => 'PagesController@editchecklist'])->name('checklist.edit');
 Route::post('/courses/{id}/save', ['uses' => 'PagesController@savechecklist'])->name('checklist.save');
@@ -40,6 +41,7 @@ Route::post('/dashboard/users/edit/{id}', ['uses' => 'HomeController@useredit'])
 Route::post('/dashboard/users/delete/{id}', ['uses' => 'HomeController@userdelete'])->name('user.delete');
 Route::post('/dashboard/users/verify/{id}', ['uses' => 'HomeController@userverify'])->name('user.verify');
 Route::post('/dashboard/users/save', 'HomeController@usersave')->name('user.save');
+Route::get('/dashboard/users/faculty/view', 'FacultyController@viewall')->name('faculty.viewall');
 
 Route::get('/dashboard/profile/faculty/create', 'FacultyController@createprofile')->name('faculty.create');
 Route::get('/dashboard/profile/faculty/edit', 'FacultyController@editprofile')->name('faculty.edit');

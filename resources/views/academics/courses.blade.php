@@ -5,14 +5,14 @@
 @section('content')
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-xl-12 display-1 title text-center">
-				Courses
+			<div class="col-xl-12 display-3 title text-center margin-bottom margin-top">
+			{{$level}} Courses
 			</div>
 		</div>
 		<div class="row justify-content-md-center">
-			<div class="card col-xl-3 col-md-5 col-xs-12 no-padding tint">
+			<div class="card col-xl-3 col-md-5 col-xs-12 no-padding tint margin-left margin-right">
 				<a href="{{route('checklist.get', ['name' => 'ecology-and-systematics'])}}">
-					<img src="{{asset('assets/images/courses/ecology.png')}}" class="card-img-top">
+					<img src="{{asset('assets/images/courses/ecology.png')}}" class="card-img rounded">
 					<h3 class="card-text-over"><strong>Bachelor of Science in Biology (Ecology and Systematics)</strong></h3>
 				</a>
 			</div>

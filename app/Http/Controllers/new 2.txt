@@ -12,7 +12,10 @@ registration: generate from full name
 implement ajax
 
 PRIORITY:
-	3. Add sort and search features for news, research, publications, and dashboard viewalls
-	5. add manage alerts
-	
-	
+	1. Add sort and search features for news, research, publications, and dashboard viewalls
+	2. add manage alerts
+	4. Gallery Page
+	5. Add edit publications and faculty profile to admin (view is done)
+	6. Fix mobile layout
+	7. Gallery Page populate
+	8. Populate sir addawe's pubs (make seeder)

@@ -1,5 +1,5 @@
 html, body {
-	background-color: #610506;
+	background-color: #fff;
 	color: #636b6f;
 	font-family: sans-serif;
 	/*font-family: 'Nunito', sans-serif;*/
@@ -10,6 +10,10 @@ html, body {
 .body {
 	margin-top: 80px;
 	margin-bottom: 80px;
+}
+
+.card-background {
+	background-color: #610506;
 }
 
 nav {
@@ -150,19 +154,9 @@ img.flip {
 	z-index: 0;
 }
 
-#title-text{
+.title-text{
 	color: white;
-}
-
-.hvr-blur{
-	-webkit-transition-duration: 0.3s;
-	transition-duration: 0.3s;
-	-webkit-transition-property: filter;
-	transition-property: filter;
-	filter: blur(0px);
-}
-.hvr-blur:hover, .hvr-blur:focus, .hvr-blur:active {
-	filter: blur(5px);
+	left: 30px;
 }
 
 .hvr-fade {
@@ -276,7 +270,6 @@ img.flip {
 	border-top-right-radius: 10px;
 	border-top-left-radius: 10px;
 	width: 100%;
-    height: 25vw;
     object-fit: cover;
 	object-position: 50% 0%;
 }
@@ -466,6 +459,7 @@ strong {
 @media only screen and (min-width : 768px) {
 	.title-text{ margin-top: 90px; }
 	.bg-image { height: 320px; }
+	.h-25vw { height: 25vw; }
 }
 
 @media only screen and (min-width : 1200px) {

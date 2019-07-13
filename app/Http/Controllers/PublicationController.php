@@ -41,7 +41,7 @@ class PublicationController extends Controller
 				'name' => 'published_date',
 				'type' => 'date',
 				'required' => 'required',
-				'placeholder' => '',
+				'placeholder' => NULL,
 				'value' => NULL,
 			],
 			[

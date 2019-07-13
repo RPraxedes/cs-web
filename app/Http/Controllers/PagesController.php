@@ -55,7 +55,13 @@ class PagesController extends Controller
 	}
 	
 	public function courses(){
-		return view('academics.courses');
+		$level = "Undergraduate";
+		return view('academics.courses', ['level' => $level]);
+	}
+	
+	public function gradcourses(){
+		$level = "Graduate";
+		return view('academics.courses', ['level' => $level]);
 	}
 	
 	public function getchecklist($name){

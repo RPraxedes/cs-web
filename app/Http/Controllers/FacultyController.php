@@ -24,9 +24,9 @@ class FacultyController extends Controller
 	public function viewprofile($id){
 		$faculty = Faculty::with('status')->where('user_id', '=', $id)->get()->first();
 		$first_name = $faculty->first_name;
-		$publications = Publication::where('author', 'like', '%'.$faculty->last_name.', '.$first_name[0].'.%')->where('published_at', '!=', NULL)->get();
-		$conferences = Conference::where('author', 'like', '%'.$faculty->last_name.', '.$first_name[0].'.%')->where('published_at', '!=', NULL)->get();
-		$projects = Project::where('author', 'like', '%'.$faculty->last_name.', '.$first_name[0].'.%')->where('published_at', '!=', NULL)->get();
+		$publications = Publication::where('user_id', '=', $id)->where('published_at', '!=', NULL)->get();
+		$conferences = Conference::where('user_id', '=', $id)->where('published_at', '!=', NULL)->get();
+		$projects = Project::where('user_id', '=', $id)->where('published_at', '!=', NULL)->get();
 		$others = OtherAchievement::where('user_id', '=', $id)->where('published_at', '!=', NULL)->get();
 		if($faculty){
 			$initials = "";
@@ -46,6 +46,54 @@ class FacultyController extends Controller
 		}else{
 			return redirect()->route('dash')->with('alert-warning', 'No profile found!');
 		}
+	}
+	public function viewall(){
+		$faculty = Faculty::all();
+		$obj_name = "All Faculty";
+		$obj_columns = [
+			"user_id",
+			"first_name",
+			"middle_name",
+			"last_name",
+			"position",
+			"bs_degree",
+			"ms_degree",
+			"phd_degree",
+			"research_interest",
+			"contact_info",
+			"profile_image",
+			"profile_alt",
+			"dept_id",
+			"status_id",
+			"published_at",
+			"created_at",
+			"updated_at",
+		];
+		$obj_actions = [
+			[
+				'name' => 'Edit',
+				'route' => 'user.edit',
+				'method' => 'post',
+				'button' => 'secondary'
+			],
+			[
+				'name' => 'Delete',
+				'route' => 'user.delete',
+				'method' => 'post',
+				'button' => 'danger'
+			],
+			[
+				'name' => 'Verify',
+				'route' => 'user.verify',
+				'method' => 'post',
+				'button' => 'warning'
+			],
+		];
+		return view('user.viewall')
+			->with('objects', $faculty)
+			->with('obj_columns', $obj_columns)
+			->with('obj_name', $obj_name)
+			->with('obj_actions', $obj_actions);
 	}
 	
 	public function createprofile(){
@@ -148,8 +196,5 @@ class FacultyController extends Controller
 			'published_at' => Carbon::now()->toDateTimeString()
 		]);
 		return redirect()->route('dash')->with('alert-success', 'Profile can now be seen publicly!');
-	}
-	
-	public function viewall(){
 	}
 }

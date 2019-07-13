@@ -42,9 +42,9 @@
 							Academics
 							</a>
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAcademics">
-								<a class="dropdown-item {{request()->is('faculty')?'active':''}}" href="{{url('/faculty')}}">Faculty</a>
-								<a class="dropdown-item {{request()->is('courses')?'active':''}}" href="{{url('/courses')}}">Undergraduate Courses</a>
-								<a class="dropdown-item {{request()->is('courses')?'active':''}}" href="{{url('/courses')}}">Graduate Courses</a>
+								<a class="dropdown-item" href="{{route('faculty')}}">Faculty</a>
+								<a class="dropdown-item" href="{{route('courses')}}">Undergraduate Courses</a>
+								<a class="dropdown-item" href="{{route('gradcourses')}}">Graduate Courses</a>
 							</div>
 						</li>
 						<li class="nav-item">
