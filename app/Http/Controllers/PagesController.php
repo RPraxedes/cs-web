@@ -11,7 +11,9 @@ use App\Models\User;
 use App\Models\Faculty;
 use App\Models\Department;
 use App\Models\Publication;
+use App\Models\Course;
 
+use Storage;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -55,42 +57,25 @@ class PagesController extends Controller
 	}
 	
 	public function courses(){
-		$level = "Undergraduate";
-		return view('academics.courses', ['level' => $level]);
+		$level = 'Undergraduate';
+		$courses = Course::whereLevel($level)->get();
+		return view('academics.courses', ['courses' => $courses, 'level' => $level]);
 	}
 	
 	public function gradcourses(){
-		$level = "Graduate";
-		return view('academics.courses', ['level' => $level]);
+		$level = 'Graduate';
+		$courses = Course::whereLevel($level)->get();
+		return view('academics.courses', ['courses'=> $courses, 'level' => $level]);
 	}
 	
 	public function getchecklist($name){
-		switch($name){
-			case "ecology-and-systematics":
-				$title = "Bachelor of Science in Biology (Ecology and Systematics)";
-				break;
-			case "general-biology":
-				$title = "Bachelor of Science in Biology (General Biology)";
-				break;
-			case "microbiology":
-				$title = "Bachelor of Science in Biology (Microbiology)";
-				break;
-			case "computer-science":
-				$title = "Bachelor of Science in Computer Science";
-				break;
-			case "physics":
-				$title = "Bachelor of Science in Physics";
-				break;
-			case "mathematics":
-				$title = "Bachelor of Science in Mathematics";
-				break;
-		}
+		$pages = Checklist::join('courses', 'checklists.title', '=', 'courses.title')->where('uri', '=', $name)->get();
 		if(isset(Auth::user()->id)){	
-			$user = User::find((int)Auth::user()->id)->position;
+			$user =Auth::user()->position;
 		}else{
 			$user = NULL;
 		}
-			return view('academics.checklist', ['pages' => Checklist::whereTitle($title)->get()], ['position' =>$user]);
+		return view('academics.checklist', ['pages' => $pages, 'position' => $user]);
 	}
 	
 	public function editchecklist($id){
@@ -119,8 +104,10 @@ class PagesController extends Controller
 	public function about(){
 		return view('about.index');
 	}
-	public function secret(){
-		return view('welcome.index');
+	
+	public function gallery(){
+		$images = Storage::disk('public')->allFiles('images');
+		return view('gallery.index', ['images' => $images]);
 	}
 	
 	public function articles($id){	//display article page

@@ -13,7 +13,7 @@ class DMCSSeeder extends Seeder
     {
 		DB::table('faculty')->insert([
 		[
-			'user_id' => 1,
+			'user_id' => 3,
 			'first_name' => 'Joel',
 			'middle_name' => 'M.',
 			'last_name' => 'Addawe',
@@ -32,7 +32,7 @@ class DMCSSeeder extends Seeder
 			'updated_at' => now(),
 		],
 		[
-			'user_id' => 2,
+			'user_id' => 4,
 			'first_name' => 'Rizavel',
 			'middle_name' => 'C.',
 			'last_name' => 'Addawe',
@@ -51,7 +51,7 @@ class DMCSSeeder extends Seeder
 			'updated_at' => now(),
 		],
 		[
-			'user_id' => 3,
+			'user_id' => 5,
 			'first_name' => 'Wilfredo',
 			'middle_name' => 'V.',
 			'last_name' => 'Alangui',
@@ -70,7 +70,7 @@ class DMCSSeeder extends Seeder
 			'updated_at' => now(),
 		],
 		[
-			'user_id' => 4,
+			'user_id' => 6,
 			'first_name' => 'Gervy Marie',
 			'middle_name' => NULL,
 			'last_name' => 'Angeles',
@@ -89,7 +89,7 @@ class DMCSSeeder extends Seeder
 			'updated_at' => now(),
 		],
 		[
-			'user_id' => 5,
+			'user_id' => 7,
 			'first_name' => 'Joy',
 			'middle_name' => 'P.',
 			'last_name' => 'Ascaño',
@@ -100,7 +100,7 @@ class DMCSSeeder extends Seeder
 			'research_interest' => NULL,
 			'contact_info' => 'jpascano@up.edu.ph',
 			'profile_image' => 'jpascano.jpg',
-			'profile_alt' => 'jpascano.jpg',
+			'profile_alt' => 'jpascano',
 			'dept_id' => 3,
 			'status_id' => 1,
 			'published_at' => now(),
@@ -108,7 +108,7 @@ class DMCSSeeder extends Seeder
 			'updated_at' => now(),
 		],
 		[
-			'user_id' => 6,
+			'user_id' => 8,
 			'first_name' => 'Jerico',
 			'middle_name' => 'B.',
 			'last_name' => 'Bacani',
@@ -127,7 +127,7 @@ class DMCSSeeder extends Seeder
 			'updated_at' => now(),
 		],
 		[
-			'user_id' => 7,
+			'user_id' => 9,
 			'first_name' => 'Ashlyn Kim',
 			'middle_name' => 'D.',
 			'last_name' => 'Balangcod',
@@ -146,7 +146,7 @@ class DMCSSeeder extends Seeder
 			'updated_at' => now(),
 		],
 		[
-			'user_id' => 8,
+			'user_id' => 10,
 			'first_name' => 'Olive',
 			'middle_name' => NULL,
 			'last_name' => 'Cawiding',
@@ -165,7 +165,7 @@ class DMCSSeeder extends Seeder
 			'updated_at' => now(),
 		],
 		[
-			'user_id' => 9,
+			'user_id' => 11,
 			'first_name' => 'Juancho',
 			'middle_name' => NULL,
 			'last_name' => 'Collera',

@@ -47,7 +47,7 @@
 						@endforeach
 					@if(count($obj_actions) != 0)
 						@foreach($obj_actions as $action)
-							<td><form action="{{route($action['route'], ['id' => $obj['id']])}}" method="{{$action['method']}}">@csrf<button type="submit" class="btn btn-{{$action['button']}}">{{$action['name']}}</button></form></td>
+							<td><form action="{{route($action['route'], ['id' => $obj['id'] ?? $obj['user_id']])}}" method="{{$action['method']}}">@csrf<button type="submit" class="btn btn-{{$action['button']}}">{{$action['name']}}</button></form></td>
 						@endforeach
 					@endif
 						</tr>

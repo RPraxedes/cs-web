@@ -127,7 +127,7 @@
 									@csrf
 									<input type="hidden" name="id" value="{{$pub->id}}">
 									<button type="submit" class="btn btn-block btn-{{$action['button']}}" @if($pub->published_at != NULL) disabled @endif>
-										<span class="oi oi-task"></span> {{$action['name']}}
+										<span class="oi oi-task"></span> {{$action['name']}}@if($pub->published_at != NULL)ed @endif
 									</button>
 								</form>
 							</div>

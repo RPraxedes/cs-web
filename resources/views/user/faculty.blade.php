@@ -42,6 +42,10 @@
 							</div>
 						</div>
 						
+					@if(isset($faculty_info->user_id))
+						<input type="hidden" name="user_id" value="{{$faculty_info->user_id}}">
+					@endif
+						
 						<label class="form-check-label" for="department">Department</label>
 						<select name="dept_id" class="form-control" id="department" autocomplete="off" required>
 							<option value="0"><span class="text-muted">Choose a department</span></option>
@@ -75,7 +79,7 @@
 						<br>
 						
 						<button type="submit" class="btn btn-success">Save Changes</button>
-					@if(isset($faculty_info))
+					@if(isset($faculty_info) && Auth::user()->position == 'faculty')
 						<a role="button" href="{{route('pub.viewall')}}" class="btn btn-primary">Your Publications</a>
 						<a role="button" href="{{route('conf.viewall')}}" class="btn btn-primary">Your Conferences</a>
 						<a role="button" href="{{route('proj.viewall')}}" class="btn btn-primary">Your Current Research Projects</a>

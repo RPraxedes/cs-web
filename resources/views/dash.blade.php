@@ -37,13 +37,18 @@
 				<a class="btn btn-secondary" href="{{route('article.view')}}" role="button">View Your Articles</a>
 				<a class="btn btn-secondary" href="{{route('user.viewall')}}" role="button">Manage Users</a>
 				<a class="btn btn-secondary" href="{{route('faculty.viewall')}}" role="button">Manage Faculty</a>
+				<a class="btn btn-secondary" href="{{route('pub.vieweverything')}}" role="button">Manage Publications</a>
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#alertModal">Create an Alert</button>
 			@elseif(Auth::user()->position == 'faculty')
 				<a class="btn btn-secondary" href="{{route('article.view')}}" role="button">View Your Articles</a>
 				<a class="btn btn-success" href="{{route('user.profile')}}" role="button">Edit User Profile</a>
 				<a class="btn btn-success" href="{{route('faculty.view', ['id'=> $id])}}" role="button">View Your Faculty Profile</a>
-				<a class="btn btn-success" href="{{route('faculty.edit')}}" role="button">Edit Your Faculty Profile</a>
-				<form action="{{route('faculty.delete')}}" method="post">
+				<form action="{{route('faculty.edit', ['id' => Auth::user()->id])}}" method="post">
+					@csrf
+					<input type="hidden" name="id" value="{{Auth::user()->id}}">
+					<button class="btn btn-success" type="submit">Edit Your Faculty Profile</a>
+				</form>
+				<form action="{{route('faculty.delete', ['id' => Auth::user()->id])}}" method="post">
 					@csrf
 					<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 					<button type="submit" class="btn btn-danger">Delete My Faculty Profile</button>

@@ -15,9 +15,10 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->string('title')->nullable();
-			$table->integer('units')->nullable();		//includes table
-			$table->string('notes')->nullable();		//prereq, elective, or NULL
+			$table->string('title');
+			$table->string('uri')->nullable();
+			$table->string('level')->nullable();
+			$table->string('image')->nullable();
             $table->timestamps();
         });
     }

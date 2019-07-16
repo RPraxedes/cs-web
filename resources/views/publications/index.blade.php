@@ -15,9 +15,9 @@
 		<div class="row justify-content-md-center">
 			<div class="col-md-7">
 			@foreach ($publications as $pub)
-				<div class="card">
+				<div class="card margin-top">
 					<div class="card-body">
-						<p class="card-text"><a href="{{url($pub->link)}}" class="card-link">{{$pub->author.' ('.\Carbon\Carbon::parse($pub->published_date)->year.').'}} <i>{{$pub->title}}</i>. {{$pub->journal}} Volume {{$pub->volume}}</a></p>
+						<p class="card-text"><a href="{{url($pub->link ?? '#')}}" class="card-link">{{$pub->author ?? ''.' ('.\Carbon\Carbon::parse($pub->published_date)->year ?? ''.').'}} <i>{{$pub->title ?? ''}}</i>. {{$pub->journal ?? ''}} Volume {{$pub->volume ?? ''}}</a></p>
 						<br>
 					</div>
 				</div>

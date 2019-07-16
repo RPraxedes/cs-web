@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Models\Article;
 use App\Models\User;
 use App\Models\Checklist;
+use App\Models\Publication;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
@@ -232,7 +233,7 @@ class HomeController extends Controller
 				'name' => 'Edit',
 				'route' => 'user.edit',
 				'method' => 'post',
-				'button' => 'secondary'
+				'button' => 'secondary',
 			],
 			[
 				'name' => 'Delete',
@@ -279,5 +280,49 @@ class HomeController extends Controller
 	}
 	public function usersave(){
 		
+	}
+	
+	public function pubviewall(){
+		$users = Publication::all();
+		$obj_name = "All Publications";
+		$obj_columns = [
+			"id",
+			"title",
+			"author",
+			"published_date",
+			"type",
+			"journal",
+			"volume",
+			"link",
+			"user_id",
+			"published_at",
+			"created_at",
+			"updated_at",
+		];
+		$obj_actions = [
+			[
+				'name' => 'Edit',
+				'route' => 'user.edit',
+				'method' => 'post',
+				'button' => 'secondary',
+			],
+			[
+				'name' => 'Delete',
+				'route' => 'user.delete',
+				'method' => 'post',
+				'button' => 'danger'
+			],
+			[
+				'name' => 'Verify',
+				'route' => 'user.verify',
+				'method' => 'post',
+				'button' => 'warning'
+			],
+		];
+		return view('user.viewall')
+			->with('objects', $users)
+			->with('obj_columns', $obj_columns)
+			->with('obj_name', $obj_name)
+			->with('obj_actions', $obj_actions);
 	}
 }

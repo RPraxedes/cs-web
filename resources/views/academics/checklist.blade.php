@@ -11,7 +11,7 @@
 @section('content')
 	<div class="container">
 		<div class="row">
-			<div class="col-xl-12 display-4 title text-center">
+			<div class="col-xl-12 display-4 title text-center margin-top margin-bottom">
 				{{$pages->first()->title}}
 			</div>
 		</div>

@@ -48,19 +48,19 @@
 							</div>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('research')?'active':''}} animated fadeInDown delay-2" href="{{url('/research')}}">Research</a>
+							<a class="nav-link {{request()->is('research')?'active':''}} animated fadeInDown delay-2" href="{{route('research')}}">Research</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('publications')?'active':''}} animated fadeInDown delay-3" href="{{url('/publications')}}">Publications</a>
+							<a class="nav-link {{request()->is('publications')?'active':''}} animated fadeInDown delay-3" href="{{route('publications')}}">Publications</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('sinsm')?'active':''}} animated fadeInDown delay-4" href="{{url('/sinsm')}}">SINSM</a>
+							<a class="nav-link {{request()->is('sinsm')?'active':''}} animated fadeInDown delay-4" href="{{route('sinsm')}}">SINSM</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-5" href="{{url('/about')}}">About Us</a>
+							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-5" href="{{route('about')}}">About Us</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-6" href="{{url('/about')}}">Gallery</a>
+							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-6" href="{{route('gallery')}}">Gallery</a>
 						</li>
 						<!--<li class="nav-item">
 							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-7" href="{{url('/secret')}}">Secret</a>

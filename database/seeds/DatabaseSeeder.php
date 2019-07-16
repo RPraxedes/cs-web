@@ -28,10 +28,11 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('test1'),
         ]);
 		
-		// fake articles and users
-		factory(App\Models\User::class, 50)->create();
-		factory(App\Models\Article::class, 100)->create();
+		// --- fake articles and users
+		// factory(App\Models\User::class, 50)->create();
+		// factory(App\Models\Article::class, 100)->create();
 		
+		$this->call('CourseSeeder');
 		$this->call('CMSCChecklistSeeder');
 		$this->call('MathChecklistSeeder');
 		$this->call('PhysicsChecklistSeeder');
@@ -40,6 +41,8 @@ class DatabaseSeeder extends Seeder
 		$this->call('EcologySystematicsChecklistSeeder');
 		$this->call('FacultyStatusSeeder');
 		$this->call('DepartmentSeeder');
+		$this->call('DMCSUserSeeder');
 		$this->call('DMCSSeeder');
+		$this->call('PublicationSeeder');
     }
 }

@@ -26,15 +26,15 @@
 			</div>
 		</div>
 		<div class="col-md-8 animated fadeInRight delay-1">
-			<h2 class="display-4">{{$faculty->last_name.', '.$faculty->first_name.' '.$initials}}</h2>
-			<div class="card animated fadeInRight delay-3">
+			<h2 class="display-4 margin-bottom">{{$faculty->last_name.', '.$faculty->first_name.' '.$initials}}</h2>
+			<div class="card animated fadeInRight delay-3 margin-bottom">
 				<div class="card-body">
 					<h5 class="card-title">Educational Attainment</h5>
 					<p class="card-text">{{$faculty->bs_degree ?? ''}}<br>{{$faculty->ms_degree ?? ''}}<br>{{$faculty->phd_degree ?? ''}}</p>
 				</div>
 			</div>
 			@if($faculty->contact_info != NULL)
-			<div class="card animated fadeInRight delay-5">
+			<div class="card animated fadeInRight delay-5 margin-bottom">
 				<div class="card-body">
 					<h5 class="card-title">Contact Information</h5>
 					<p class="card-text">{!! preg_replace("/, /", "<br>", ($faculty->contact_info)) !!}</p>
@@ -42,7 +42,7 @@
 			</div>
 			@endif
 			@if($faculty->research_interest != NULL)
-			<div class="card animated fadeInRight delay-7">
+			<div class="card animated fadeInRight delay-7 margin-bottom">
 				<div class="card-body">
 					<h5 class="card-title">Research Interests</h5>
 					<p class="card-text">{!! preg_replace("/, /", "<br>", ($faculty->research_interest)) !!}</p>
@@ -51,7 +51,7 @@
 			@endif
 		</div>
 		<div class="col-md-12 animated fadeInDown delay-10">
-			<h3>Academic Profile</h3>
+			<h3 class="margin-top margin-bottom">Academic Profile</h3>
 			<div class="accordion" id="Accord">
 				<div class="card">
 					<div class="card-header" id="pubHeading">

@@ -72,19 +72,19 @@ class FacultyController extends Controller
 		$obj_actions = [
 			[
 				'name' => 'Edit',
-				'route' => 'user.edit',
+				'route' => 'faculty.edit',
 				'method' => 'post',
 				'button' => 'secondary'
 			],
 			[
 				'name' => 'Delete',
-				'route' => 'user.delete',
+				'route' => 'faculty.delete',
 				'method' => 'post',
 				'button' => 'danger'
 			],
 			[
 				'name' => 'Verify',
-				'route' => 'user.verify',
+				'route' => 'faculty.verify',
 				'method' => 'post',
 				'button' => 'warning'
 			],
@@ -101,8 +101,7 @@ class FacultyController extends Controller
 		return view('user.faculty', ['faculty_info' => NULL], ['status' => $status]);
 	}
 	
-	public function editprofile(){
-		$id = Auth::user()->id;
+	public function editprofile($id){
 		$faculty = Faculty::where('user_id', '=', $id)->get();
 		$status = FacultyStatus::all();
 		$dept = Department::all();
@@ -144,7 +143,7 @@ class FacultyController extends Controller
 		]);
 		if(isset($requestData['profile_image'])){
 			$faculty->update([				
-				'profile_image' => 'thumb-'.$requestData['profile_image'],
+				'profile_image' => $requestData['profile_image'],
 			]);
 			request()->file('profile_image')->move(public_path('images'), $requestData['profile_image']);
 		}
@@ -156,7 +155,7 @@ class FacultyController extends Controller
 		if($requestData['dept_id'] == "0"){
 			return redirect()->back();
 		}
-		$faculty = Faculty::where('user_id', '=', (int)Auth::user()->id);
+		$faculty = Faculty::where('user_id', '=', $requestData['user_id']);
 		$faculty->update([
 			'first_name' => $requestData['first_name'],
 			'middle_name' => $requestData['middle_name'],
@@ -182,9 +181,13 @@ class FacultyController extends Controller
 		return redirect()->route('dash')->with('alert-success', 'Profile successfully saved!');
 	}
 	
-	public function deleteprofile(Request $request){
+	public function deleteprofile($id, Request $request){
 		$requestData = $request->all();
-		$faculty = Faculty::where('user_id', '=', (int)$requestData['user_id']);
+		if(isset($requestData['user_id'])){
+			$faculty = Faculty::where('user_id', '=', (int)$requestData['user_id']);			
+		}else if(isset($id)){
+			$faculty = Faculty::where('user_id', '=', (int)$id);
+		}
 		File::delete(public_path().'\\images\\'.$faculty->value('profile_image'));
 		$faculty->delete();
 		return redirect()->route('dash')->with('alert-success', 'Profile successfully removed!');
@@ -196,5 +199,9 @@ class FacultyController extends Controller
 			'published_at' => Carbon::now()->toDateTimeString()
 		]);
 		return redirect()->route('dash')->with('alert-success', 'Profile can now be seen publicly!');
+	}
+	
+	public function verifyprofile(Request $request){
+		
 	}
 }
