@@ -116,7 +116,7 @@ class PublicationController extends Controller
 	
 	public function edit(Request $request){
 		$requestData = $request->all();
-		Publication::find((int)$requestData['id'])->update([
+		Publication::find((int)$id)->update([
 			'title' => $requestData['title'],
 			'author' => $requestData['author'],
 			'published_date' => $requestData['published_date'],
@@ -130,12 +130,12 @@ class PublicationController extends Controller
 	}
 	
 	public function delete(Request $request){
-		Publication::find((int)$request->id)->delete();
+		Publication::find((int)$id)->delete();
 		return redirect()->route('pub.viewall')->with('alert-success', 'Publication successfully deleted!');
 	}
 	
 	public function publish(Request $request){
-		Publication::find((int)$request->id)->update([
+		Publication::find((int)$id)->update([
 			'published_at' => Carbon::now()->toDateTimeString()
 		]);
 		return redirect()->route('pub.viewall')->with('alert-success', 'Publication can now be publicly seen in your profile!');

@@ -12,6 +12,7 @@ use App\Models\Faculty;
 use App\Models\Department;
 use App\Models\Publication;
 use App\Models\Course;
+use App\Models\Gallery;
 
 use Storage;
 use Illuminate\Http\Request;
@@ -103,11 +104,6 @@ class PagesController extends Controller
 	
 	public function about(){
 		return view('about.index');
-	}
-	
-	public function gallery(){
-		$images = Storage::disk('public')->allFiles('images');
-		return view('gallery.index', ['images' => $images]);
 	}
 	
 	public function articles($id){	//display article page

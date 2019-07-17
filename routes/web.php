@@ -32,20 +32,17 @@ Route::get('/dashboard/alert/viewall', 'HomeController@viewalerts')->name('alert
 Route::get('/dashboard/profile', 'HomeController@profile')->name('user.profile');
 Route::post('/dashboard/alert/create', 'HomeController@createalert')->name('alert.create');
 Route::post('/dashboard/profile/save', 'HomeController@saveprofile')->name('user.saveprofile');
-Route::get('/dashboard/users/view', 'HomeController@userviewall')->name('user.viewall');
 Route::post('/dashboard/users/edit/{id}', ['uses' => 'HomeController@useredit'])->name('user.edit');
 Route::post('/dashboard/users/delete/{id}', ['uses' => 'HomeController@userdelete'])->name('user.delete');
 Route::post('/dashboard/users/verify/{id}', ['uses' => 'HomeController@userverify'])->name('user.verify');
 Route::post('/dashboard/users/save', 'HomeController@usersave')->name('user.save');
-Route::get('/dashboard/users/faculty/view', 'FacultyController@viewall')->name('faculty.viewall');
-Route::get('/dashboard/publications/viewall', 'HomeController@pubviewall')->name('pub.vieweverything');
 Route::post('/dashboard/profile/faculty/verify', 'FacultyController@verifyprofile')->name('faculty.verify');
 
 Route::get('/dashboard/profile/faculty/create', 'FacultyController@createprofile')->name('faculty.create');
-Route::post('/dashboard/profile/faculty/edit/{id}', 'FacultyController@editprofile')->name('faculty.edit');
+Route::post('/dashboard/profile/faculty/edit', 'FacultyController@editprofile')->name('faculty.edit');
 Route::post('/dashboard/profile/faculty/modify', 'FacultyController@modifyprofile')->name('faculty.modify');
 Route::post('/dashboard/profile/faculty/save', 'FacultyController@saveprofile')->name('faculty.save');
-Route::post('/dashboard/profile/faculty/delete/{id}', ['uses'=> 'FacultyController@deleteprofile'])->name('faculty.delete');
+Route::post('/dashboard/profile/faculty/delete', 'FacultyController@deleteprofile')->name('faculty.delete');
 Route::post('/dashboard/profile/faculty/publish', 'FacultyController@publishprofile')->name('faculty.publish');
 
 Route::get('/dashboard/profile/faculty/publications', 'PublicationController@viewall')->name('pub.viewall');
@@ -87,4 +84,9 @@ Route::get('/research', 'PagesController@research')->name('research');
 Route::get('/publications', 'PagesController@publications')->name('publications');
 Route::get('/sinsm', 'PagesController@sinsm')->name('sinsm');
 Route::get('/about', 'PagesController@about')->name('about');
-Route::get('/gallery', 'PagesController@gallery')->name('gallery');
+
+Route::get('/gallery', 'GalleryController@viewall')->name('gallery');
+
+Route::get('/dashboard/admin/users/view', 'AdminController@userviewall')->name('admin.user.viewall');
+Route::get('/dashboard/admin/faculty/view', 'AdminController@facultyviewall')->name('admin.faculty.viewall');
+Route::get('/dashboard/admin/publications/view', 'AdminController@pubviewall')->name('admin.pub.viewall');

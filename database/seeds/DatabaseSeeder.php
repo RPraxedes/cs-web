@@ -44,5 +44,9 @@ class DatabaseSeeder extends Seeder
 		$this->call('DMCSUserSeeder');
 		$this->call('DMCSSeeder');
 		$this->call('PublicationSeeder');
+		$this->call('ConferenceSeeder');
+		$this->call('ProjectSeeder');
+		$this->call('OtherAchievementSeeder');
+		$this->call('GallerySeeder');
     }
 }

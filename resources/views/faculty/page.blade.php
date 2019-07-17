@@ -56,7 +56,7 @@
 				<div class="card">
 					<div class="card-header" id="pubHeading">
 						<h2 class="mb-0">
-							<button class="btn btn-link stretched-link" type="button" data-toggle="collapse" data-target="#Publications" aria-expanded="true" aria-controls="Publications">Publications</button>
+							<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#Publications" aria-expanded="true" aria-controls="Publications">Publications ({{count($publications)}})</button>
 						</h2>
 					</div>
 
@@ -65,7 +65,7 @@
 							<ul class="list">
 						@if(!$publications->isEmpty())
 							@foreach($publications as $pub)
-								<li><a href="{{url($pub->link ?? '')}}" class="card-link">{{$pub->author ?? ''.' ('.\Carbon\Carbon::parse($pub->published_date)->year.').'}} <i>{{$pub->title ?? ''}}</i>. {{$pub->journal ?? ''}} Volume {{$pub->volume ?? ''}}</a></li>
+								<li><a @if(isset($pub->link))href="{{url($pub->link)}}" class="card-link" @else class="text-dark" @endif>{{$pub->author ?? ''.' ('.\Carbon\Carbon::parse($pub->published_date)->year.').'}} <i>{{$pub->title ?? ''}}</i>. {{$pub->journal ?? ''}} Volume {{$pub->volume ?? ''}}</a></li>
 							@endforeach
 						@else
 								<li>None</li>
@@ -77,7 +77,7 @@
 				<div class="card">
 					<div class="card-header" id="researchHeading">
 						<h2 class="mb-0">
-							<button class="btn btn-link stretched-link" type="button" data-toggle="collapse" data-target="#Research" aria-expanded="false" aria-controls="Research">Research Disseminations</button>
+							<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#Research" aria-expanded="false" aria-controls="Research">Research Disseminations ({{count($conferences)}})</button>
 						</h2>
 					</div>
 					<div id="Research" class="collapse" aria-labelledby="researchHeading" data-parent="#Accord">
@@ -85,7 +85,7 @@
 							<ul class="list">
 						@if(!$conferences->isEmpty())
 							@foreach($conferences as $conf)
-								<li><a href="{{url($conf->link ?? '')}}" class="card-link"><i>{{$conf->paper_title ?? ''}}</i>. {{$conf->author ?? ''}} {{\Carbon\Carbon::parse($conf->conference_date)->format('F d, Y')}}. {{$conf->conference_title ?? ''}}. {{$conf->venue ?? ''}}</a></li>
+								<li><a @if(isset($conf->link))href="{{url($conf->link)}}" class="card-link" @else class="text-dark" @endif><i>“{{$conf->paper_title ?? ''}}”</i>. {{$conf->author ?? ''}} {{\Carbon\Carbon::parse($conf->conference_date)->format('F d, Y')}}. {{$conf->conference_title ?? ''}}. {{$conf->venue ?? ''}}</a></li>
 							@endforeach
 						@else
 								<li>None</li>
@@ -97,7 +97,7 @@
 				<div class="card">
 					<div class="card-header" id="projHeading">
 						<h2 class="mb-0">
-							<button class="btn btn-link stretched-link" type="button" data-toggle="collapse" data-target="#Projects" aria-expanded="false" aria-controls="Projects">Current Research Projects</button>
+							<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#Projects" aria-expanded="false" aria-controls="Projects">Current Research Projects ({{count($projects)}})</button>
 						</h2>
 					</div>
 					<div id="Projects" class="collapse" aria-labelledby="projHeading" data-parent="#Accord">
@@ -105,7 +105,7 @@
 							<ul class="list">
 						@if(!$projects->isEmpty())
 							@foreach($projects as $proj)
-								<li><a href="{{url($proj->link ?? '')}}" class="card-link">{{$proj->author ?? ''.' ('.\Carbon\Carbon::parse($proj->published_date)->year.').'}} <i>{{$proj->title ?? ''}}</i>. {{$proj->journal ?? ''}} Volume {{$proj->volume ?? ''}}</a></li>
+								<li><a @if(isset($proj->link))href="{{url($proj->link)}}" class="card-link" @else class="text-dark" @endif>{{$proj->author ?? ''.' ('.\Carbon\Carbon::parse($proj->published_date)->year.').'}} <i>{{$proj->title ?? ''}}</i>. {{$proj->journal ?? ''}} Volume {{$proj->volume ?? ''}}</a></li>
 							@endforeach
 						@else
 								<li>None</li>
@@ -117,7 +117,7 @@
 				<div class="card">
 					<div class="card-header" id="otherHeading">
 						<h2 class="mb-0">
-							<button class="btn btn-link stretched-link" type="button" data-toggle="collapse" data-target="#Achievements" aria-expanded="false" aria-controls="Achievements">Other Achievements</button>
+							<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#Achievements" aria-expanded="false" aria-controls="Achievements">Other Achievements</button>
 						</h2>
 					</div>
 					<div id="Achievements" class="collapse" aria-labelledby="otherHeading" data-parent="#Accord">

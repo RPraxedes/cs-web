@@ -10,11 +10,12 @@ registration: generate from full name
 	set up mailer system
 
 implement ajax
+conference_date must accept more than one date
+use webpack.mix.js
 
 PRIORITY:
-	1. Add sort and search features for news, research, publications, and dashboard viewalls
-	2. add manage alerts
-	3. Manage Faculty (verify not working)
-	4. Manage Publications (only view is working)
-	5. Fix mobile layout
-	6. Populate sir addawe's pubs (make seeder)
+	1. sort and search features for news, research, publications, and dashboard viewalls
+	2. manage alerts
+	3. Manage Publications (only view is working)		====> Make AdminController with all admin operations for security and clarity purposes
+	4. Fix mobile layout
+	5. gallery functions (make directory/folder, add (automatic publish), edit, delete)

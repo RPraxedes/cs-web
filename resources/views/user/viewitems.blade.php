@@ -113,7 +113,7 @@
 							</div>
 							@elseif($action['name'] == 'Delete')
 							<div class="col-md-3">
-								<form class="form-inline" action="{{route($action['route'])}}" method="{{$action['method']}}">
+								<form class="form-inline" action="{{route($action['route'], ['id' => $pub->id])}}" method="{{$action['method']}}">
 									@csrf
 									<input type="hidden" name="id" value="{{$pub->id}}">
 									<button type="submit" class="btn btn-block btn-{{$action['button']}}">
@@ -123,7 +123,7 @@
 							</div>
 							@elseif($action['name'] == 'Publish')
 							<div class="col-md-3">
-								<form class="form-inline" action="{{route($action['route'])}}" method="{{$action['method']}}">
+								<form class="form-inline" action="{{route($action['route'], ['id' => $pub->id])}}" method="{{$action['method']}}">
 									@csrf
 									<input type="hidden" name="id" value="{{$pub->id}}">
 									<button type="submit" class="btn btn-block btn-{{$action['button']}}" @if($pub->published_at != NULL) disabled @endif>
