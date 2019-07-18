@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Auth;
 use Carbon\Carbon;
@@ -10,11 +10,12 @@ use App\Models\FacultyStatus;
 use App\Models\OtherAchievement;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class OtherAchievementsController extends Controller
 {
     public function viewall(){
-		$others = OtherAchievement::where('user_id', '=', (int)Auth::user()->id)->get();
+		$others = OtherAchievement::all();
 		$category = 'Other Achievement';
 		$short_category = 'other';
 		$fields = [
@@ -45,7 +46,7 @@ class OtherAchievementsController extends Controller
 				'name' => 'Publish',
 				'route' => 'other.publish',
 				'method' => 'post',
-				'button' => 'primary'
+				'button' => 'success'
 			],
 		];
 		return view('user.viewitems')
@@ -57,10 +58,10 @@ class OtherAchievementsController extends Controller
 	}
 	
 	public function edit(Request $request){
-		$others = OtherAchievement::where('user_id', '=', (int)Auth::user()->id)->first();
+		$others = OtherAchievement::where('user_id', '=', (int)$request->id)->first();
 		if($others == NULL){
 			$others = new OtherAchievement($request->all());
-			$others->user_id = Auth::user()->id;
+			$others->user_id = $request->id;
 			$others->created_at = Carbon::now()->toDateTimeString();
 			$others->updated_at = Carbon::now()->toDateTimeString();
 			$others->save();
@@ -74,12 +75,12 @@ class OtherAchievementsController extends Controller
 	}
 	
 	public function delete(Request $request){
-		OtherAchievement::where('user_id', '=', (int)Auth::user()->id)->first()->delete();
+		OtherAchievement::where('user_id', '=', (int)$request->id)->first()->delete();
 		return redirect()->route('other.viewall')->with('alert-success', 'Achievements successfully deleted!');
 	}
 	
 	public function publish(Request $request){
-		OtherAchievement::where('user_id', '=', (int)Auth::user()->id)->first()->update([
+		OtherAchievement::where('user_id', '=', (int)$request->id)->first()->update([
 			'published_at' => Carbon::now()->toDateTimeString()
 		]);
 		return redirect()->route('other.viewall')->with('alert-success', 'Achievements can now be publicly seen in your profile!');

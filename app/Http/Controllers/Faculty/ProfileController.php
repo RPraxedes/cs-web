@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Faculty;
 
 use DB;
 use Auth;
@@ -18,10 +18,12 @@ use App\Models\Project;
 use App\Models\OtherAchievement;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
-class FacultyController extends Controller
+class ProfileController extends Controller
 {
-	public function viewprofile($id){
+	public function view($id){
 		$faculty = Faculty::with('status')->where('user_id', '=', $id)->get()->first();
 		$first_name = $faculty->first_name;
 		$publications = Publication::where('user_id', '=', $id)->where('published_at', '!=', NULL)->get();
@@ -48,20 +50,21 @@ class FacultyController extends Controller
 		}
 	}
 	
-	public function createprofile(){
+	public function create(){
 		$status = FacultyStatus::all();
 		return view('user.faculty', ['faculty_info' => NULL], ['status' => $status]);
 	}
 	
-	public function editprofile(){
+	public function edit(){
 		$faculty = Faculty::where('user_id', '=', Auth::user()->id)->get();
 		$status = FacultyStatus::all();
 		$dept = Department::all();
-		return view('user.faculty', ['faculty_info' => $faculty->first(), 'status' => $status, 'dept' => $dept]);
+		$routeprefix = "faculty";
+		return view('user.faculty', ['faculty_info' => $faculty->first(), 'status' => $status, 'dept' => $dept, 'routeprefix' => $routeprefix]);
     }
 
 	
-	public function saveprofile(Request $request){
+	public function save(Request $request){
 		$requestData = $request->all();
 		if(isset($requestData['profile_image'])){			
 			$requestData['profile_image'] = time().'.'.request()->file('profile_image')->getClientOriginalExtension();
@@ -102,7 +105,7 @@ class FacultyController extends Controller
 		return redirect()->route('dash')->with('alert-success', 'Profile successfully saved!');
 	}
 	
-	public function modifyprofile(Request $request){
+	public function modify(Request $request){
 		$requestData = $request->all();
 		if($requestData['dept_id'] == "0"){
 			return redirect()->back();
@@ -133,7 +136,7 @@ class FacultyController extends Controller
 		return redirect()->route('dash')->with('alert-success', 'Profile successfully saved!');
 	}
 	
-	public function deleteprofile(Request $request){
+	public function delete(Request $request){
 		$requestData = $request->all();
 		$faculty = Faculty::where('user_id', '=', (int)Auth::user()->id);
 		File::delete(public_path().'\\images\\'.$faculty->value('profile_image'));
@@ -141,7 +144,7 @@ class FacultyController extends Controller
 		return redirect()->route('dash')->with('alert-success', 'Profile successfully removed!');
 	}
 	
-	public function publishprofile(Request $request){
+	public function publish(Request $request){
 		$requestData = $request->all();
 		Faculty::where('user_id', '=', (int)$requestData['user_id'])->update([
 			'published_at' => Carbon::now()->toDateTimeString()
@@ -149,7 +152,7 @@ class FacultyController extends Controller
 		return redirect()->route('dash')->with('alert-success', 'Profile can now be seen publicly!');
 	}
 	
-	public function verifyprofile(Request $request){
+	public function verify(Request $request){
 		
 	}
 }

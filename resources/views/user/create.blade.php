@@ -31,7 +31,7 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-10">
-			<div class="row justify-content-md-center title">
+			<div class="row justify-content-md-center title margin-top margin-bottom">
 			@if (!isset($type))
 				<div class="col-md-5 alert alert-info" role="alert">
 					Choose a type of article below!
@@ -43,13 +43,10 @@
 				<div class="col-md-12">
 					<div class="row justify-content-center">
 						<div class="col-md-auto text-center">
-							<a href="{{route('article.createbuilder', ['type' => 'news'])}}">News</a>
+							<a href="{{route('admin.article.createbuilder', ['type' => 'news'])}}">News</a>
 						</div>
 						<div class="col-md-auto text-center">
-							<a href="{{route('article.createbuilder', ['type' => 'research'])}}">Research</a>
-						</div>
-						<div class="col-md-auto text-center">
-							<a href="{{route('article.createbuilder', ['type' => 'publication'])}}">Publication</a>
+							<a href="{{route('admin.article.createbuilder', ['type' => 'research'])}}">Research</a>
 						</div>
 					</div>
 				</div>
@@ -57,7 +54,7 @@
 			@if (isset($type))
 				<div class="row justify-content-md-center">
 					<div class="col-md-10">
-						<form method="POST" action="{{route('article.create')}}" enctype="multipart/form-data">
+						<form method="POST" action="{{route('admin.article.create')}}" enctype="multipart/form-data">
 							@csrf
 							<div class="form-group">
 								<input name="title" class="form-control form-control-lg" type="text" placeholder="{{Str::title($type)}} Title" required>
@@ -71,7 +68,7 @@
 										<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
 									</div>
 								</div>
-								<input name="header_alt" class="form-control" type="text" placeholder="Header image description" required>
+								<input name="header_alt" class="form-control" type="text" placeholder="Header image caption">
 								<textarea name="body" id="tinytextarea" class="w-100" placeholder="What's the scoop?"></textarea>
 							</div>
 							
@@ -81,7 +78,7 @@
 				</div>
 			@else
 				<div class="half-height text-center">
-				Wa ha ha!
+				Select a type!
 				</div>
 			@endif
 			<div class="row justify-content-md-center">

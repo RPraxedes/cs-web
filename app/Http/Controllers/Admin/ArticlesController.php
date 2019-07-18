@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use DB;
 use Auth;
@@ -9,9 +9,9 @@ use Carbon\Carbon;
 use App\Models\Article;
 use App\Models\User;
 
+use Illuminate\Http\ArticleRequest;
 use Illuminate\Http\Request;
-use App\Http\Requests\ArticleRequest;
-
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class ArticlesController extends Controller
@@ -34,30 +34,30 @@ class ArticlesController extends Controller
 		$obj_actions = [
 			[
 				'name' => 'Publish',
-				'route' => 'article.publish',
+				'route' => 'admin.article.publish',
 				'method' => 'post',
 				'button' => 'success'
 			],
 			[
 				'name' => 'Preview',
-				'route' => 'article.preview',
+				'route' => 'admin.article.preview',
 				'method' => 'post',
 				'button' => 'primary'
 			],
 			[
 				'name' => 'Edit',
-				'route' => 'article.edit',
+				'route' => 'admin.article.edit',
 				'method' => 'post',
 				'button' => 'info'
 			],
 			[
 				'name' => 'Delete',
-				'route' => 'article.delete',
+				'route' => 'admin.article.delete',
 				'method' => 'post',
 				'button' => 'warning'
 			],
 		];
-		return view('user.viewall')
+		return view('admin.viewall')
 			->with('objects', $userArray)
 			->with('obj_columns', $obj_columns)
 			->with('obj_name', $obj_name)
@@ -65,15 +65,15 @@ class ArticlesController extends Controller
 	}
 	
 	public function createbuilder($type){	// returns article builder page
-		if($type == 'news' || $type == 'research' || $type == 'publication'){
+		if($type == 'news' || $type == 'research'){
 			return view('user.create', ['article' => NULL], ['type' => $type]);
 		}else{
 			return response(view('errors.405'), 405);
 		}
 	}
 	
-	public function editarticle($id){
-		$article = Article::find((int)$id);
+	public function editarticle(Request $request){
+		$article = Article::find((int)$request->id);
 		return view('user.edit', ['article' => $article]);
 	}
 	
@@ -100,35 +100,39 @@ class ArticlesController extends Controller
 				'updated_at' => Carbon::now()->toDateTimeString(),
 			]);
 		}
-		return redirect()->route('article.view')->with('alert-success', 'Article successfully saved!');
+		return redirect()->route('admin.article.view')->with('alert-success', 'Article successfully saved!');
 	}
 	
-	public function delete($id){
-		$article = Article::find((int)$id);
+	public function delete(Request $request){
+		$article = Article::find((int)$request->id);
 		File::delete(public_path().'\\images\\'.$article->header_image);
 		Article::find((int)request('id'))->delete();
-		return redirect()->route('article.view')->with('alert-success', 'Article successfully removed!');
+		return redirect()->route('admin.article.view')->with('alert-success', 'Article successfully removed!');
 	}
 	
-	public function create(ArticleRequest $request){	// first time save
+	public function create(Request $request){	// first time save
 		$requestData = $request->all();
-		$imageName = time().'.'.request()->file('header_image')->getClientOriginalExtension();
-		$requestData['header_image'] = $imageName;
+		if(isset($requestData['header_image'])){
+			$imageName = time().'.'.request()->file('header_image')->getClientOriginalExtension();
+			$requestData['header_image'] = $imageName;
+		}
 		$article = new Article($requestData);
-		request()->file('header_image')->move(public_path('images'), $imageName);
+		if(isset($requestData['header_image'])){
+			request()->file('header_image')->move(public_path('images'), $imageName);
+		}
 		Auth::user()->articles()->save($article);
-		return redirect()->route('article.view')->with('alert-success', 'Article successfully saved!');
+		return redirect()->route('admin.article.view')->with('alert-success', 'Article successfully saved!');
 	}
 	
 	public function publish(){
 		$article = Article::find((int)request('id'));
 		$article->published_at = Carbon::now()->toDateTimeString();
 		$article->save();
-		return redirect('dashboard')->with('alert-success', 'Article successfully published!');
+		return redirect()->route('dash')->with('alert-success', 'Article successfully published!');
 	}
 	
-	public function preview($id){
-		$article = Article::find((int)$id);
+	public function preview(Request $request){
+		$article = Article::find((int)$request->id);
 		return view('articles.page', ['article' => $article]);
 	}
 }

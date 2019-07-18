@@ -9,7 +9,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-10 margin-top">
 		@if(Auth::user()->verified_at != NULL)
 			<div class="row">
                 <div class="display-4 title">{{Str::title(Auth::user()->position)}} Dashboard</div>
@@ -32,20 +32,21 @@
 			</div>
 			<div class="row">
 			@if(Auth::user()->position == 'admin')
-				<a class="btn btn-secondary" href="{{route('article.createbuilder', ['type' => 'news'])}}">Create a News Article</a>
-				<a class="btn btn-secondary" href="{{route('article.createbuilder', ['type' => 'research'])}}">Create a Research Article</a>
-				<a class="btn btn-secondary" href="{{route('article.view')}}" role="button">View Your Articles</a>
+				<a class="btn btn-secondary" href="{{route('admin.article.createbuilder', ['type' => 'news'])}}">Create a News Article</a>
+				<a class="btn btn-secondary" href="{{route('admin.article.createbuilder', ['type' => 'research'])}}">Create a Research Article</a>
+				<a class="btn btn-secondary" href="{{route('admin.article.view')}}" role="button">View Your Articles</a>
 				<a class="btn btn-secondary" href="{{route('admin.user.viewall')}}" role="button">Manage Users</a>
 				<a class="btn btn-secondary" href="{{route('admin.faculty.viewall')}}" role="button">Manage Faculty</a>
 				<a class="btn btn-secondary" href="{{route('admin.pub.viewall')}}" role="button">Manage Publications</a>
+				<a class="btn btn-secondary" href="{{route('admin.conf.viewall')}}" role="button">Manage Conferences</a>
+				<a class="btn btn-secondary" href="{{route('admin.proj.viewall')}}" role="button">Manage Current Research Projects</a>
+				<a class="btn btn-secondary" href="{{route('admin.other.viewall')}}" role="button">Manage Other Achievements</a>
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#alertModal">Create an Alert</button>
 			@elseif(Auth::user()->position == 'faculty')
-				<a class="btn btn-secondary" href="{{route('article.view')}}" role="button">View Your Articles</a>
 				<a class="btn btn-success" href="{{route('user.profile')}}" role="button">Edit User Profile</a>
 				<a class="btn btn-success" href="{{route('faculty.view', ['id'=> $id])}}" role="button">View Your Faculty Profile</a>
-				<form action="{{route('faculty.edit', ['id' => Auth::user()->id])}}" method="post">
+				<form action="{{route('faculty.edit')}}" method="post">
 					@csrf
-					<input type="hidden" name="id" value="{{Auth::user()->id}}">
 					<button class="btn btn-success" type="submit">Edit Your Faculty Profile</a>
 				</form>
 				<form action="{{route('faculty.delete', ['id' => Auth::user()->id])}}" method="post">

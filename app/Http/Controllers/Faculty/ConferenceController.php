@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Faculty;
 
 use Auth;
 use Carbon\Carbon;
@@ -10,6 +10,8 @@ use App\Models\FacultyStatus;
 use App\Models\Conference;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
 class ConferenceController extends Controller
 {
@@ -94,7 +96,7 @@ class ConferenceController extends Controller
 				'name' => 'Publish',
 				'route' => 'conf.publish',
 				'method' => 'post',
-				'button' => 'primary'
+				'button' => 'success'
 			],
 		];
 		return view('user.viewitems')

@@ -15,7 +15,42 @@ use webpack.mix.js
 
 PRIORITY:
 	1. sort and search features for news, research, publications, and dashboard viewalls
-	2. manage alerts
-	3. Manage Publications (only view is working)		====> Make AdminController with all admin operations for security and clarity purposes
-	4. Fix mobile layout
-	5. gallery functions (make directory/folder, add (automatic publish), edit, delete)
+	2. Fix mobile layout
+	3. add confirmation modals to delete and publish functions
+	4. fix faculty functions after admin functions
+	5. Other Achievements should have another blade template so viewitems can still be used for Other Achievements Management (cards system)
+	
+	Admin Controllers functions:
+	Faculty								(done)
+	User								(done)
+	Articles							(done)
+	Publications						(done except add)
+	Conferences							(done except add)
+	Projects							(done except add)
+	Other Achievements
+		add
+		viewall
+		edit
+		delete
+		publish
+	Alerts
+		viewall
+		edit
+		delete
+	Departments
+		viewall
+		edit
+		delete
+		add members
+		remove members
+	Gallery
+		add
+		edit
+		delete
+		make folder
+	Courses
+		view
+		add
+		edit
+		delete
+		

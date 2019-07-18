@@ -10,7 +10,7 @@
                 <div class="display-4 title">Your Profile</div>
 			</div>
 			<div class="row">
-				<form action="{{route('user.saveprofile')}}" class="col-md-6" method="post">
+				<form action="{{route($routeprefix.'.saveprofile')}}" class="col-md-6" method="post">
 					@csrf
 					@if($from_admin)
 					<div class="card w-75">
@@ -37,10 +37,6 @@
 					
 					<button type="submit" class="btn btn-success">Save Changes</button>
 				</form>
-				
-			</div>
-			<div class="row justify-content-center">
-				<a class="btn btn-primary" href="{{route('faculty.view', ['id' => $id])}}" role="button">Go to Faculty Page</a>
 			</div>
         </div>
     </div>

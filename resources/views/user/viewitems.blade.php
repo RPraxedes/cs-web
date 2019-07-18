@@ -32,20 +32,22 @@
 			<p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
 			@endif
 		@endforeach
+		@if(Auth::user()->position != 'admin')
 			<ul class="nav nav-tabs nav-justified flex-column flex-sm-row margin-bottom">
 				<li class="flex-sm-fill nav-item">
-					<a class="text-sm-center nav-link @if($category == 'Publication')active @endif" href="{{route('pub.viewall')}}">Your Publications</a>
+					<a class="text-sm-center nav-link @if($category == 'Publication')active @endif" href="{{route('pub.viewall')}}">Publications</a>
 				</li>
 				<li class="flex-sm-fill nav-item">
-					<a class="text-sm-center nav-link @if($category == 'Conference')active @endif" href="{{route('conf.viewall')}}">Your Conferences</a>
+					<a class="text-sm-center nav-link @if($category == 'Conference')active @endif" href="{{route('conf.viewall')}}">Conferences</a>
 				</li>
 				<li class="flex-sm-fill nav-item">
-					<a class="text-sm-center nav-link @if($category == 'Current Research Project')active @endif" href="{{route('proj.viewall')}}">Your Current Research Projects</a>
+					<a class="text-sm-center nav-link @if($category == 'Current Research Project')active @endif" href="{{route('proj.viewall')}}">Current Research Projects</a>
 				</li>
 				<li class="flex-sm-fill nav-item">
-					<a class="text-sm-center nav-link @if($category == 'Other Achievement')active @endif" href="{{route('other.viewall')}}">Your Other Achievements</a>
+					<a class="text-sm-center nav-link @if($category == 'Other Achievement')active @endif" href="{{route('other.viewall')}}">Other Achievements</a>
 				</li>
 			</ul>
+		@endif
 		</div>
 	</div>
     <div class="row justify-content-center">
@@ -68,10 +70,10 @@
 				@foreach ($publications as $pub)
 				<div class="card" style="margin-top: 10px;">
 					<div class="card-body">
-					@if ($category == 'Publication' ||$category == 'Project')
+					@if ($category == 'Publication' || $category == 'Current Research Project')
 						<a href="{{url($pub->link ?? '')}}" class="card-link">{{$pub->author ?? ''}} ({{(\Carbon\Carbon::parse($pub->published_date)->year)}}). <i>{{$pub->title ?? ''}}</i>. {{$pub->journal ?? ''}} Volume {{$pub->volume ?? ''}}</a>
 					@elseif ($category == 'Conference')
-						<a href="{{url($pub->link ?? '')}}" class="card-link"><i>{{$pub->paper_title ?? ''}}</i>. {{$pub->author ?? ''}} {{\Carbon\Carbon::parse($pub->conference_date)->format('F d, Y')}}. {{$pub->conference_title ?? ''}}. {{$pub->venue ?? ''}}</a>	
+						<a href="{{url($pub->link ?? '')}}" class="card-link"><i>{{$pub->paper_title ?? ''}}</i>. {{$pub->author ?? ''}} {{\Carbon\Carbon::parse($pub->conference_date)->format('F d, Y')}}. {{$pub->conference_title ?? ''}}. {{$pub->venue ?? ''}}</a>				
 					@endif
 						<div class="row justify-content-md-center" style="margin-top: 20px;">
 						@foreach($obj_actions as $action)
@@ -94,7 +96,7 @@
 												@csrf
 											@foreach($fields as $field)
 												<label class="form-check-label" for="{{$field['name']}}">{{$field['title']}}@if($field['required'])<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span>@endif</label>
-												@if($category == 'Publication')
+												@if($category == 'Publication' || $category == 'Current Research Project')
 												<input type="{{$field['type']}}" name="{{$field['name']}}" id="{{$field['name']}}" class="form-control" placeholder="{{$field['placeholder']}}" value=@if($field['name'] == 'title') "{{$pub->title ?? ''}}" @elseif($field['name'] == 'author') "{{$pub->author ?? ''}}" @elseif($field['name'] == 'published_date') "{{$pub->published_date ?? ''}}" @elseif($field['name'] == 'type') "{{$pub->type ?? ''}}" @elseif($field['name'] == 'journal') "{{$pub->journal ?? ''}}" @elseif($field['name'] == 'volume') "{{$pub->volume ?? ''}}" @elseif($field['name'] == 'link') "{{$pub->link ?? ''}}" @endif {{$field['required']}}>
 												@elseif($category == 'Conference')
 												<input type="{{$field['type']}}" name="{{$field['name']}}" id="{{$field['name']}}" class="form-control" placeholder="{{$field['placeholder']}}" value=@if($field['name'] == 'paper_title') "{{$pub->paper_title ?? ''}}" @elseif($field['name'] == 'author') "{{$pub->author ?? ''}}" @elseif($field['name'] == 'oonference_title') "{{$pub->conference_title ?? ''}}"  @elseif($field['name'] == 'conference_date') "{{$pub->conference_date ?? ''}}" @elseif($field['name'] == 'type') "{{$pub->type ?? ''}}" @elseif($field['name'] == 'venue') "{{$pub->venue ?? ''}}" @elseif($field['name'] == 'link') "{{$pub->link ?? ''}}" @endif {{$field['required']}}>
@@ -113,7 +115,7 @@
 							</div>
 							@elseif($action['name'] == 'Delete')
 							<div class="col-md-3">
-								<form class="form-inline" action="{{route($action['route'], ['id' => $pub->id])}}" method="{{$action['method']}}">
+								<form class="form-inline" action="{{route($action['route'])}}" method="{{$action['method']}}">
 									@csrf
 									<input type="hidden" name="id" value="{{$pub->id}}">
 									<button type="submit" class="btn btn-block btn-{{$action['button']}}">
@@ -123,7 +125,7 @@
 							</div>
 							@elseif($action['name'] == 'Publish')
 							<div class="col-md-3">
-								<form class="form-inline" action="{{route($action['route'], ['id' => $pub->id])}}" method="{{$action['method']}}">
+								<form class="form-inline" action="{{route($action['route'])}}" method="{{$action['method']}}">
 									@csrf
 									<input type="hidden" name="id" value="{{$pub->id}}">
 									<button type="submit" class="btn btn-block btn-{{$action['button']}}" @if($pub->published_at != NULL) disabled @endif>

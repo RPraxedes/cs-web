@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Faculty;
 
 use Auth;
 use Carbon\Carbon;
@@ -10,6 +10,8 @@ use App\Models\FacultyStatus;
 use App\Models\Publication;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
 class PublicationController extends Controller
 {
@@ -116,7 +118,7 @@ class PublicationController extends Controller
 	
 	public function edit(Request $request){
 		$requestData = $request->all();
-		Publication::find((int)$id)->update([
+		Publication::find((int)$request->id)->update([
 			'title' => $requestData['title'],
 			'author' => $requestData['author'],
 			'published_date' => $requestData['published_date'],
@@ -130,12 +132,12 @@ class PublicationController extends Controller
 	}
 	
 	public function delete(Request $request){
-		Publication::find((int)$id)->delete();
+		Publication::find((int)$request->id)->delete();
 		return redirect()->route('pub.viewall')->with('alert-success', 'Publication successfully deleted!');
 	}
 	
 	public function publish(Request $request){
-		Publication::find((int)$id)->update([
+		Publication::find((int)$request->id)->update([
 			'published_at' => Carbon::now()->toDateTimeString()
 		]);
 		return redirect()->route('pub.viewall')->with('alert-success', 'Publication can now be publicly seen in your profile!');

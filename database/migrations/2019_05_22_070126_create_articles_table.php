@@ -19,7 +19,7 @@ class CreateArticlesTable extends Migration
 			$table->bigInteger('user_id')->unsigned();
 			$table->mediumText('body')->nullable();
 			$table->text('header_image')->nullable();
-			$table->text('header_alt')->nullable();
+			$table->text('header_alt')->default('...');
 			$table->string('type');	// different from category (news, research, publication)
 			$table->timestamp('published_at')->nullable();
             $table->timestamps();

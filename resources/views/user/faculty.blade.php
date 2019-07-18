@@ -10,12 +10,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
-			<div class="row">
-                <div class="display-4 title">Faculty Profile</div>
+			<div class="row justify-content-center margin-top margin-bottom">
+                <span class="display-4">Faculty Profile</span>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<form action="{{isset($faculty_info)?route('faculty.modify'):route('faculty.save')}}" method="post" enctype="multipart/form-data">
+					<form action="{{isset($faculty_info)?route($routeprefix.'.modify'):route($routeprefix.'.save')}}" method="post" enctype="multipart/form-data">
 						@csrf
 						<div class="form-row">
 							<div class="col">
@@ -34,7 +34,7 @@
 						
 						<div class="input-group">
 							<div class="input-group-prepend">
-								<span class="input-group-text" id="inputGroupFileAddon01">Profile image</span>
+								<span class="input-group-text" id="inputGroupFileAddon01">Profile Image</span>
 							</div>
 							<div class="custom-file">
 								<input type="file" name="profile_image" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
@@ -42,15 +42,15 @@
 							</div>
 						</div>
 						
-					@if(isset($faculty_info->user_id))
-						<input type="hidden" name="user_id" value="{{$faculty_info->user_id}}">
+					@if(Auth::user()->position == 'admin')
+						<input type="hidden" name="id" value="{{$faculty_info->user_id}}">
 					@endif
 						
 						<label class="form-check-label" for="department">Department</label>
 						<select name="dept_id" class="form-control" id="department" autocomplete="off" required>
 							<option value="0"><span class="text-muted">Choose a department</span></option>
 						@foreach($dept as $option)
-							<option value={{$option->id}} {{isset($faculty_info) && $faculty_info->dept_id == $option->id?'selected':''}}>{{$option->title}}</option>
+							<option value={{$option->id}} {{isset($faculty_info) && $faculty_info->dept_id == $option->id?'selected':''}}>{{$option->department}}</option>
 						@endforeach
 						</select><br>
 						

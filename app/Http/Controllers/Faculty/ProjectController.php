@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Faculty;
 
 use Auth;
 use Carbon\Carbon;
@@ -10,6 +10,8 @@ use App\Models\FacultyStatus;
 use App\Models\Project;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
 class ProjectController extends Controller
 {
@@ -94,7 +96,7 @@ class ProjectController extends Controller
 				'name' => 'Publish',
 				'route' => 'proj.publish',
 				'method' => 'post',
-				'button' => 'primary'
+				'button' => 'success'
 			],
 		];
 		return view('user.viewitems')

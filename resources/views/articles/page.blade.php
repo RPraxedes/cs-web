@@ -12,8 +12,10 @@
 						<small class="text-muted">Published on {{date('F d, Y', strtotime($article->published_at))}} at {{date('h:i A', strtotime($article->published_at))}} by {{$article->user->name}} @if(\Carbon\Carbon::parse($article->updated_at)->gt(\Carbon\Carbon::parse($article->published_at)))(Modified on {{\Carbon\Carbon::parse($article->updated_at)->toFormattedDateString()}} at {{date('h:i A', strtotime($article->updated_at))}}) @endif</small><br>
 						<p>{!!$article->body!!}</p>
 					</div>
-					<div class="col-md-5">
+					<div class="col-md-5 text-center">
+					@if($article->header_image != NULL)
 						<img src="{{asset('images/'.$article->header_image)}}" class="card-img" alt="{{$article->header_alt}}">
+					@endif
 					</div>
 				</div>
 				<div class="row">				

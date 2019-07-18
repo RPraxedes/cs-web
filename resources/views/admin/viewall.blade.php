@@ -5,7 +5,7 @@
 @section('content')
 	<!--General purpose view all blade template-->
 	<div class="container-fluid">
-		<div class="row">
+		<div class="row margin-top margin-bottom">
 			<div class="col-xl-12 display-4 title text-center">
 				View {{$obj_name}}
 			</div>
@@ -47,7 +47,7 @@
 						@endforeach
 					@if(count($obj_actions) != 0)
 						@foreach($obj_actions as $action)
-							<td><form action="{{route($action['route'], ['id' => $obj['id'] ?? $obj['user_id']])}}" method="{{$action['method']}}">@csrf<button type="submit" class="btn btn-{{$action['button']}}">{{$action['name']}}</button></form></td>
+							<td><form action="{{route($action['route'])}}" method="{{$action['method']}}">@csrf<input type="hidden" name="id" value="{{$obj['id'] ?? $obj['user_id']}}"><button type="submit" class="btn btn-{{$action['button']}}">{{$action['name']}}</button></form></td>
 						@endforeach
 					@endif
 						</tr>

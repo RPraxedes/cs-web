@@ -42,27 +42,24 @@ class HomeController extends Controller
 	public function profile(){
 		$user = Auth::user();
 		$from_admin = false;
+		$routeprefix = "user";
         return view('user.profile', [
 			'id' => Auth::user()->id,
 			'name' => Auth::user()->name,
 			'email' => Auth::user()->email,
 			'position' => Auth::user()->position,
-			'from_admin' => $from_admin
+			'from_admin' => $from_admin,
+			'routeprefix' => $routeprefix,
 		]);
     }
 	public function saveprofile(Request $request){
-		$requestData = $request->all();
-		$user = User::find((int)$requestData['id']);
+		$user = User::find((int)$request->id);
 		$user->update([
-			'name' => $requestData['name'],
-			'email' => $requestData['email'],
+			'name' => $request->name,
+			'email' => $request->email,
+			'position' => $request->position,
 			'updated_at' => Carbon::now()->toDateTimeString(),
 		]);
-		if(isset($requestData['position'])){
-			$user->update([
-				'position' => $requestData['position'],
-			]);
-		}
 		return redirect('dashboard')->with('alert-success', 'Profile successfully saved!');
 	}
 	
@@ -213,32 +210,5 @@ class HomeController extends Controller
 			'updated_at' => Carbon::now()
 		]);
 		return redirect('dashboard')->with('alert-success', 'Alert successfully posted!');
-	}
-	
-	public function useredit($id){
-		$user = User::find((int)$id);
-		$position = $user->position;
-		$name = $user->name;
-		$email = $user->email;
-		$from_admin = true;
-		return view('user.profile')
-			->with('id', $id)
-			->with('position', $position)
-			->with('name', $name)
-			->with('email', $email)
-			->with('from_admin', $from_admin);
-	}
-	public function userdelete($id){
-		User::find((int)$id)->delete();
-		
-	}
-	public function userverify($id){
-		User::find((int)$id)->update([
-			'verified_at' => Carbon::now()->toDateTimeString(),
-		]);
-		return redirect()->route('user.viewall')->with('alert-success', 'Profile successfully verified!');
-	}
-	public function usersave(){
-		
 	}
 }
