@@ -41,6 +41,8 @@
 				<a class="btn btn-secondary" href="{{route('admin.conf.viewall')}}" role="button">Manage Conferences</a>
 				<a class="btn btn-secondary" href="{{route('admin.proj.viewall')}}" role="button">Manage Current Research Projects</a>
 				<a class="btn btn-secondary" href="{{route('admin.other.viewall')}}" role="button">Manage Other Achievements</a>
+				<a class="btn btn-secondary" href="{{route('admin.alert.viewall')}}" role="button">Manage Alerts</a>
+				<a class="btn btn-secondary" href="{{route('admin.gallery.viewall')}}" role="button">Manage Gallery</a>
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#alertModal">Create an Alert</button>
 			@elseif(Auth::user()->position == 'faculty')
 				<a class="btn btn-success" href="{{route('user.profile')}}" role="button">Edit User Profile</a>
@@ -73,7 +75,7 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form action="{{route('alert.create')}}" method="post">
+								<form action="{{route('admin.alert.add')}}" method="post">
 									@csrf
 									<label class="form-check-label" for="alertBody">Alert Body</label>
 									<input name="alert_body" class="form-control" type="text" placeholder="What do you urgently want to say? (HTML tags allowed)" id="alertBody" required><br>

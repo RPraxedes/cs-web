@@ -35,4 +35,9 @@ class Faculty extends Model
 	{
 		return $this->belongsTo('App\Models\Department', 'dept_id');
 	}
+	
+	public function achievements()
+	{
+		return $this->hasOne('App\Models\OtherAchievement', 'user_id', 'user_id');
+	}
 }

@@ -32,6 +32,11 @@ $('.hvr-fade').hover(
 @section('content')
 <!-- Title Section-->
 <div class="container-fluid card-background">
+	<div class="row justify-content-center">
+		<div class="col-md-10 margin-top margin-bottom">
+			<h1 class="display-3 text-center">News</h1>
+		</div>
+	</div>
 	@foreach($alerts as $alert)
 	<div class="alert alert-{{$alert->style}} alert-dismissible fade show margin-top" role="alert">
 		{!!$alert->body!!}
@@ -40,11 +45,6 @@ $('.hvr-fade').hover(
 		</button>
 	</div>
 	@endforeach
-	<div class="row justify-content-center">
-		<div class="col-md-10 margin-top margin-bottom">
-			<h1 class="display-3 text-center">News</h1>
-		</div>
-	</div>
 	<div class="row justify-content-center">
 	@foreach ($news_preview as $news)
 		<div class="card col-md-10 margin-bottom">

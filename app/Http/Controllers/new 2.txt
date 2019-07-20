@@ -9,7 +9,6 @@ registration: generate from full name
 	after registraion, give generated password. upon login, redirect user to change password screen.
 	set up mailer system
 
-implement ajax
 conference_date must accept more than one date
 use webpack.mix.js
 
@@ -18,25 +17,9 @@ PRIORITY:
 	2. Fix mobile layout
 	3. add confirmation modals to delete and publish functions
 	4. fix faculty functions after admin functions
-	5. Other Achievements should have another blade template so viewitems can still be used for Other Achievements Management (cards system)
 	
 	Admin Controllers functions:
-	Faculty								(done)
-	User								(done)
-	Articles							(done)
-	Publications						(done except add)
-	Conferences							(done except add)
-	Projects							(done except add)
-	Other Achievements
-		add
-		viewall
-		edit
-		delete
-		publish
-	Alerts
-		viewall
-		edit
-		delete
+	Projects							(done except moveToPublications)
 	Departments
 		viewall
 		edit
@@ -44,9 +27,10 @@ PRIORITY:
 		add members
 		remove members
 	Gallery
+		viewall							(done)
 		add
 		edit
-		delete
+		delete							(done)
 		make folder
 	Courses
 		view

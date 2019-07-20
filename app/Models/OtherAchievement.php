@@ -14,4 +14,9 @@ class OtherAchievement extends Model
 		'published_at',
 		'updated_at'
 	];
+	
+	public function faculty()
+	{
+		return $this->belongsTo('App\Models\Faculty', 'user_id', 'user_id');
+	}
 }

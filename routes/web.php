@@ -102,31 +102,41 @@ Route::post('/dashboard/admin/users/save', 'Admin\UserController@saveprofile')->
 // ADMIN PUBLICATIONS MANAGEMENT
 Route::get('/dashboard/admin/publications/view', 'Admin\PublicationController@viewall')->name('admin.pub.viewall');
 Route::post('/dashboard/admin/publications/add', 'Admin\PublicationController@add')->name('admin.pub.add');
-Route::post('/dashboard/admin/publications/edit', 'Admin\PublicationController@edit')->name('admin.pub.edit');
-Route::post('/dashboard/admin/publications/delete', 'Admin\PublicationController@delete')->name('admin.pub.delete');
-Route::post('/dashboard/admin/publications/publish', 'Admin\PublicationController@publish')->name('admin.pub.publish');
+Route::get('/dashboard/admin/publications/edit/{id}', ['uses' => 'Admin\PublicationController@edit'])->name('admin.pub.edit');
+Route::patch('/dashboard/admin/publications/save/{id}', ['uses' => 'Admin\PublicationController@save'])->name('admin.pub.save');
+Route::delete('/dashboard/admin/publications/delete/{id}', ['uses' => 'Admin\PublicationController@delete'])->name('admin.pub.delete');
+Route::patch('/dashboard/admin/publications/publish/{id}', ['uses' => 'Admin\PublicationController@publish'])->name('admin.pub.publish');
 // ADMIN CONFERENCES MANAGEMENT
 Route::get('/dashboard/admin/conferences/view', 'Admin\ConferenceController@viewall')->name('admin.conf.viewall');
 Route::post('/dashboard/admin/conferences/add', 'Admin\ConferenceController@add')->name('admin.conf.add');
-Route::post('/dashboard/admin/conferences/edit', 'Admin\ConferenceController@edit')->name('admin.conf.edit');
-Route::post('/dashboard/admin/conferences/delete', 'Admin\ConferenceController@delete')->name('admin.conf.delete');
-Route::post('/dashboard/admin/conferences/publish', 'Admin\ConferenceController@publish')->name('admin.conf.publish');
+Route::get('/dashboard/admin/conferences/edit/{id}', ['uses' => 'Admin\ConferenceController@edit'])->name('admin.conf.edit');
+Route::patch('/dashboard/admin/conferences/save/{id}', ['uses' => 'Admin\ConferenceController@save'])->name('admin.conf.save');
+Route::delete('/dashboard/admin/conferences/delete/{id}', ['uses' => 'Admin\ConferenceController@delete'])->name('admin.conf.delete');
+Route::patch('/dashboard/admin/conferences/publish/{id}', ['uses' => 'Admin\ConferenceController@publish'])->name('admin.conf.publish');
 // ADMIN PROJECTS MANAGEMENT
 Route::get('/dashboard/admin/projects/view', 'Admin\ProjectController@viewall')->name('admin.proj.viewall');
 Route::post('/dashboard/admin/projects/add', 'Admin\ProjectController@add')->name('admin.proj.add');
-Route::post('/dashboard/admin/projects/edit', 'Admin\ProjectController@edit')->name('admin.proj.edit');
-Route::post('/dashboard/admin/projects/delete', 'Admin\ProjectController@delete')->name('admin.proj.delete');
-Route::post('/dashboard/admin/projects/publish', 'Admin\ProjectController@publish')->name('admin.proj.publish');
+Route::get('/dashboard/admin/projects/edit/{id}', ['uses' => 'Admin\ProjectController@edit'])->name('admin.proj.edit');
+Route::patch('/dashboard/admin/projects/save/{id}', ['uses' => 'Admin\ProjectController@save'])->name('admin.proj.save');
+Route::delete('/dashboard/admin/projects/delete/{id}', ['uses' => 'Admin\ProjectController@delete'])->name('admin.proj.delete');
+Route::patch('/dashboard/admin/projects/publish/{id}', ['uses' => 'Admin\ProjectController@publish'])->name('admin.proj.publish');
 // ADMIN OTHER ACHIEVEMENTS MANAGEMENT
 Route::get('/dashboard/admin/others/view', 'Admin\OtherAchievementsController@viewall')->name('admin.other.viewall');
 Route::post('/dashboard/admin/others/add', 'Admin\OtherAchievementsController@add')->name('admin.other.add');
-Route::post('/dashboard/admin/others/edit', 'Admin\OtherAchievementsController@edit')->name('admin.other.edit');
-Route::post('/dashboard/admin/others/delete', 'Admin\OtherAchievementsController@delete')->name('admin.other.delete');
-Route::post('/dashboard/admin/others/publish', 'Admin\OtherAchievementsController@publish')->name('admin.other.publish');
-
-
-Route::get('/dashboard/alert/viewall', 'HomeController@viewalerts')->name('alert.viewall');	// echoes Wa ha ha!
-Route::post('/dashboard/alert/create', 'HomeController@createalert')->name('alert.create');
+Route::get('/dashboard/admin/others/edit/{id}', ['uses' => 'Admin\OtherAchievementsController@edit'])->name('admin.other.edit');
+Route::patch('/dashboard/admin/others/save/{id}', ['uses' => 'Admin\OtherAchievementsController@save'])->name('admin.other.save');
+Route::delete('/dashboard/admin/others/delete/{id}', ['uses' => 'Admin\OtherAchievementsController@delete'])->name('admin.other.delete');
+Route::patch('/dashboard/admin/others/publish/{id}', ['uses' => 'Admin\OtherAchievementsController@publish'])->name('admin.other.publish');
+// ADMIN ALERTS MANAGEMENT
+Route::get('/dashboard/admin/alert/view', 'Admin\AlertController@viewall')->name('admin.alert.viewall');	// echoes Wa ha ha!
+Route::post('/dashboard/admin/alert/add', 'Admin\AlertController@add')->name('admin.alert.add');
+Route::delete('/dashboard/admin/alert/delete/{id}', ['uses' => 'Admin\AlertController@delete'])->name('admin.alert.delete');
+// ADMIN GALLERY MANAGEMENT
+Route::get('dashboard/admin/gallery/view', 'Admin\GalleryController@viewall')->name('admin.gallery.viewall');
+Route::post('dashboard/admin/gallery/add', 'Admin\GalleryController@add')->name('admin.gallery.add');
+Route::get('dashboard/admin/gallery/edit', ['uses' => 'Admin\GalleryController@edit'])->name('admin.gallery.edit');
+Route::patch('dashboard/admin/gallery/save', ['uses' => 'Admin\GalleryController@save'])->name('admin.gallery.save');
+Route::delete('dashboard/admin/gallery/delete', ['uses' => 'Admin\GalleryController@delete'])->name('admin.gallery.delete');
 
 Route::post('/courses/{id}/edit', ['uses' => 'PagesController@editchecklist'])->name('checklist.edit');
 Route::post('/courses/{id}/save', ['uses' => 'PagesController@savechecklist'])->name('checklist.save');

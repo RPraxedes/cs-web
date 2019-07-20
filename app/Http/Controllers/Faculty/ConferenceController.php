@@ -23,11 +23,11 @@ class ConferenceController extends Controller
 		$short_category = 'conf';
 		$fields = [
 			[
-				'title' => 'Title of the Paper Presented',
+				'title' => 'Paper Title',
 				'name' => 'paper_title',
 				'type' => 'text',
 				'required' => 'required',
-				'placeholder' => NULL,
+				'placeholder' => 'Title of the Paper Presented',
 				'value' => NULL,
 			],
 			[
@@ -51,7 +51,7 @@ class ConferenceController extends Controller
 				'name' => 'type',
 				'type' => 'text',
 				'required' => 'required',
-				'placeholder' => '',
+				'placeholder' => NULL,
 				'value' => NULL,
 			],
 			[

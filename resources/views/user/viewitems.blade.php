@@ -79,10 +79,10 @@
 						@foreach($obj_actions as $action)
 							@if($action['name'] == 'Edit')
 							<div class="col-md-3">
-								<button type="button" class="btn btn-block btn-{{$action['button']}}" data-toggle="modal" data-target="#{{$action['name']}}Pub"><span class="oi oi-pencil"></span> {{$action['name']}}</button>
+								<button type="button" class="btn btn-block btn-{{$action['button']}}" data-toggle="modal" data-target="#{{$action['name']}}Pub{{$pub->id}}"><span class="oi oi-pencil"></span> {{$action['name']}}</button>
 							</div>
 							<!-- Edit Modal -->
-							<div class="modal fade" id="{{$action['name']}}Pub" tabindex="-1" role="dialog" aria-labelledby="{{$action['name']}}Pub" aria-hidden="true">
+							<div class="modal fade" id="{{$action['name']}}Pub{{$pub->id}}" tabindex="-1" role="dialog" aria-labelledby="{{$action['name']}}Pub{{$pub->id}}" aria-hidden="true">
 								<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 									<div class="modal-content">
 										<div class="modal-header">
@@ -95,13 +95,22 @@
 											<form id="{{$action['name']}}PubForm" action="{{route($action['route'])}}" method="{{$action['method']}}">
 												@csrf
 											@foreach($fields as $field)
+											@if($field['name'] == 'user_id')
+												<label class="form-check-label" for="{{$field['name']}}">{{$field['title']}}@if($field['required'])<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span>@endif</label>
+												<select name="{{$field['name']}}" class="form-control" id="{{$field['name']}}" autocomplete="off">
+												@foreach($faculty as $author)
+													<option value="{{$author->user_id}}" @if($pub->user_id == $author->user_id) selected @endif>{{$author->first_name ?? ''}} {{$author->middle_name ?? ''}} {{$author->last_name ?? ''}}</option>
+												@endforeach
+												</select>
+											@else
 												<label class="form-check-label" for="{{$field['name']}}">{{$field['title']}}@if($field['required'])<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span>@endif</label>
 												@if($category == 'Publication' || $category == 'Current Research Project')
 												<input type="{{$field['type']}}" name="{{$field['name']}}" id="{{$field['name']}}" class="form-control" placeholder="{{$field['placeholder']}}" value=@if($field['name'] == 'title') "{{$pub->title ?? ''}}" @elseif($field['name'] == 'author') "{{$pub->author ?? ''}}" @elseif($field['name'] == 'published_date') "{{$pub->published_date ?? ''}}" @elseif($field['name'] == 'type') "{{$pub->type ?? ''}}" @elseif($field['name'] == 'journal') "{{$pub->journal ?? ''}}" @elseif($field['name'] == 'volume') "{{$pub->volume ?? ''}}" @elseif($field['name'] == 'link') "{{$pub->link ?? ''}}" @endif {{$field['required']}}>
 												@elseif($category == 'Conference')
-												<input type="{{$field['type']}}" name="{{$field['name']}}" id="{{$field['name']}}" class="form-control" placeholder="{{$field['placeholder']}}" value=@if($field['name'] == 'paper_title') "{{$pub->paper_title ?? ''}}" @elseif($field['name'] == 'author') "{{$pub->author ?? ''}}" @elseif($field['name'] == 'oonference_title') "{{$pub->conference_title ?? ''}}"  @elseif($field['name'] == 'conference_date') "{{$pub->conference_date ?? ''}}" @elseif($field['name'] == 'type') "{{$pub->type ?? ''}}" @elseif($field['name'] == 'venue') "{{$pub->venue ?? ''}}" @elseif($field['name'] == 'link') "{{$pub->link ?? ''}}" @endif {{$field['required']}}>
+												<input type="{{$field['type']}}" name="{{$field['name']}}" id="{{$field['name']}}" class="form-control" placeholder="{{$field['placeholder']}}" value=@if($field['name'] == 'paper_title') "{{$pub->paper_title ?? ''}}" @elseif($field['name'] == 'author') "{{$pub->author ?? ''}}" @elseif($field['name'] == 'conference_title') "{{$pub->conference_title ?? ''}}"  @elseif($field['name'] == 'conference_date') "{{$pub->conference_date ?? ''}}" @elseif($field['name'] == 'type') "{{$pub->type ?? ''}}" @elseif($field['name'] == 'venue') "{{$pub->venue ?? ''}}" @elseif($field['name'] == 'link') "{{$pub->link ?? ''}}" @endif {{$field['required']}}>
 												@endif
 												<br>
+											@endif
 											@endforeach
 												<input type="hidden" name="id" value="{{$pub->id}}">
 											</form>
@@ -161,12 +170,22 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form id="addPubForm" action="{{route($short_category.'.add')}}" method="post">
+				<form id="addPubForm" action="{{route($routeprefix.'.'.$short_category.'.add')}}" method="post">
 					@csrf
 				@foreach($fields as $field)
+				@if($field['name'] == 'user_id')
+					<label class="form-check-label" for="{{$field['name']}}">{{$field['title']}}@if($field['required'])<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span>@endif</label>
+					<select name="{{$field['name']}}" class="form-control" id="{{$field['name']}}" autocomplete="off">
+						<option>Select an Entry Author</option>
+					@foreach($faculty as $author)
+						<option value="{{$author->user_id}}">{{$author->first_name ?? ''}} {{$author->middle_name ?? ''}} {{$author->last_name ?? ''}}</option>
+					@endforeach
+					</select>
+				@else
 					<label class="form-check-label" for="{{$field['name']}}">{{$field['title']}}@if($field['required'])<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span>@endif</label>
 					<input type="{{$field['type']}}" name="{{$field['name']}}" id="{{$field['name']}}" class="form-control" placeholder="{{$field['placeholder']}}" value="{{$field['value']}}" {{$field['required']}}>
 					<br>
+				@endif
 				@endforeach
 				</form>
 			</div>
