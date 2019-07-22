@@ -26,15 +26,8 @@ PRIORITY:
 		delete
 		add members
 		remove members
-	Gallery
-		viewall							(done)
-		add
-		edit
-		delete							(done)
-		make folder
 	Courses
 		view
 		add
 		edit
 		delete
-		

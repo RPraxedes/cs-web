@@ -134,9 +134,9 @@ Route::delete('/dashboard/admin/alert/delete/{id}', ['uses' => 'Admin\AlertContr
 // ADMIN GALLERY MANAGEMENT
 Route::get('dashboard/admin/gallery/view', 'Admin\GalleryController@viewall')->name('admin.gallery.viewall');
 Route::post('dashboard/admin/gallery/add', 'Admin\GalleryController@add')->name('admin.gallery.add');
-Route::get('dashboard/admin/gallery/edit', ['uses' => 'Admin\GalleryController@edit'])->name('admin.gallery.edit');
-Route::patch('dashboard/admin/gallery/save', ['uses' => 'Admin\GalleryController@save'])->name('admin.gallery.save');
-Route::delete('dashboard/admin/gallery/delete', ['uses' => 'Admin\GalleryController@delete'])->name('admin.gallery.delete');
+Route::get('dashboard/admin/gallery/edit/{id}', ['uses' => 'Admin\GalleryController@edit'])->name('admin.gallery.edit');
+Route::patch('dashboard/admin/gallery/save/{id}', ['uses' => 'Admin\GalleryController@save'])->name('admin.gallery.save');
+Route::delete('dashboard/admin/gallery/delete/{id}', ['uses' => 'Admin\GalleryController@delete'])->name('admin.gallery.delete');
 
 Route::post('/courses/{id}/edit', ['uses' => 'PagesController@editchecklist'])->name('checklist.edit');
 Route::post('/courses/{id}/save', ['uses' => 'PagesController@savechecklist'])->name('checklist.save');

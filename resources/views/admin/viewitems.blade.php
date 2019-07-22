@@ -53,6 +53,9 @@
 						Created at: {{$pub->display_at}}
 						<br>
 						Destroy at: {{$pub->destroy_at ?? 'No expiry'}}
+					@elseif($category == 'Gallery Item')
+						<img src="{{asset('images/'.$pub->filename)}}" alt="{{$pub->alt}}" class="img-thumbnail"><br>
+						<p>{{$pub->caption}}</p>
 					@endif
 						<div class="row justify-content-md-center" style="margin-top: 20px;">
 						@foreach($obj_actions as $action)
@@ -107,7 +110,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form id="addPubForm" action="{{route($routeprefix.'.'.$short_category.'.add')}}" method="post">
+				<form id="addPubForm" action="{{route($routeprefix.'.'.$short_category.'.add')}}" method="post" enctype="multipart/form-data">
 					@csrf
 				@foreach($fields as $field)
 				@if($field['name'] == 'user_id')
@@ -120,6 +123,16 @@
 					</select>
 				@elseif($field['type'] == 'tiny')
 					<textarea name="{{$field['name']}}" id="tinytextarea" class="w-100" placeholder="{{$field['placeholder']}}"></textarea><br>
+				@elseif($field['type'] == 'file')
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="inputGroupFileAddon01">{{$field['title']}}</span>
+						</div>
+						<div class="custom-file">
+							<input type="file" name="{{$field['name']}}" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+							<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+						</div>
+					</div>
 				@else
 					<label class="form-check-label" for="{{$field['name']}}">{{$field['title']}}@if($field['required'])<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span>@endif</label>
 					<input type="{{$field['type']}}" name="{{$field['name']}}" id="{{$field['name']}}" class="form-control" placeholder="{{$field['placeholder']}}" value="{{$field['value']}}" {{$field['required']}}>

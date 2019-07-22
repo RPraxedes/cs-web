@@ -104,6 +104,7 @@ class PublicationController extends Controller
 			->with('publications', $publications)
 			->with('short_category', $short_category)
 			->with('category', $category)
+			->with('routeprefix', '')
 			->with('obj_actions', $obj_actions);
 	}
 	
