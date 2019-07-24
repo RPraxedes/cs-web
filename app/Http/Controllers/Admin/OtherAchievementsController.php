@@ -16,10 +16,43 @@ class OtherAchievementsController extends Controller
 {
     public function viewall(){
 		$others = OtherAchievement::with('faculty')->get();
+		$obj_actions = [
+			[
+				'name' => 'Add',
+				'route' => 'new',
+				'method' => 'get',
+				'button' => 'success'
+			],
+			[
+				'name' => 'Edit',
+				'route' => 'edit',
+				'method' => 'post',
+				'button' => 'success'
+			],
+			[
+				'name' => 'Delete',
+				'route' => 'delete',
+				'method' => 'post',
+				'button' => 'danger'
+			],
+			[
+				'name' => 'Publish',
+				'route' => 'publish',
+				'method' => 'post',
+				'button' => 'success'
+			],
+		];
+		return view('admin.viewitems')
+			->with('publications', $others)
+			->with('obj_actions', $obj_actions)
+			->with('short_category', 'other')
+			->with('routeprefix', 'admin')
+			->with('category', 'Other Achievement')
+			->with('addExists', true);
+	}
+	
+	public function new(){
 		$faculty = Faculty::all();		//for user_id in add function
-		$category = 'Other Achievement';
-		$short_category = 'other';
-		$routeprefix = 'admin';
 		$fields = [
 			[
 				'title' => 'Entry Author',
@@ -37,35 +70,21 @@ class OtherAchievementsController extends Controller
 				'value' => NULL,
 			],
 		];
-		$obj_actions = [
-		
-			[
-				'name' => 'Edit',
-				'route' => 'admin.other.edit',
-				'method' => 'post',
-				'button' => 'success'
-			],
-			[
-				'name' => 'Delete',
-				'route' => 'admin.other.delete',
-				'method' => 'post',
-				'button' => 'danger'
-			],
-			[
-				'name' => 'Publish',
-				'route' => 'admin.other.publish',
-				'method' => 'post',
-				'button' => 'success'
-			],
+		$action = [
+			'name' => 'Add',
+			'route' => 'add',
+			'method' => 'put',
+			'button' => 'success'
 		];
-		return view('admin.viewitems')
-			->with('fields', $fields)
-			->with('publications', $others)
-			->with('short_category', $short_category)
-			->with('category', $category)
-			->with('obj_actions', $obj_actions)
-			->with('faculty', $faculty)
-			->with('routeprefix', $routeprefix);
+		return view('admin.edittextarea')
+		->with('pub', NULL)
+		->with('faculty', $faculty)
+		->with('fields', $fields)
+		->with('action', $action)
+		->with('category', 'Other Achievement')
+		->with('short_category', 'other')
+		->with('routeprefix', 'admin')
+		->with('page_action', 'Add');
 	}
 	
 	public function edit($id){
@@ -88,21 +107,21 @@ class OtherAchievementsController extends Controller
 				'value' => NULL,
 			],
 		];
-		$action =
-			[
-				'name' => 'Save',
-				'route' => 'admin.other.save',
-				'method' => 'post',
-				'button' => 'success'
-			];
+		$action = [
+			'name' => 'Save',
+			'route' => 'save',
+			'method' => 'patch',
+			'button' => 'success'
+		];
 		return view('admin.edittextarea')
 		->with('pub', $others)
+		->with('faculty', $faculty)
+		->with('fields', $fields)
+		->with('action', $action)
 		->with('category', 'Other Achievement')
 		->with('short_category', 'other')
 		->with('routeprefix', 'admin')
-		->with('faculty', $faculty)
-		->with('fields', $fields)
-		->with('action', $action);
+		->with('page_action', 'Edit');
 	}
 	
 	public function add(Request $request){

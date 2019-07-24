@@ -15,10 +15,43 @@ class PublicationController extends Controller
 {
     public function viewall(){
 		$publications = Publication::all();
+		$obj_actions = [
+			[
+				'name' => 'Add',
+				'route' => 'new',
+				'method' => 'get',
+				'button' => 'success'
+			],
+			[
+				'name' => 'Edit',
+				'route' => 'edit',
+				'method' => 'get',
+				'button' => 'secondary'
+			],
+			[
+				'name' => 'Delete',
+				'route' => 'delete',
+				'method' => 'post',
+				'button' => 'danger'
+			],
+			[
+				'name' => 'Publish',
+				'route' => 'publish',
+				'method' => 'post',
+				'button' => 'success'
+			],
+		];
+		return view('admin.viewitems')
+			->with('publications', $publications)
+			->with('obj_actions', $obj_actions)
+			->with('routeprefix', 'admin')
+			->with('short_category', 'pub')
+			->with('category', 'Publication')
+			->with('addExists', true);
+	}
+	
+	public function new(){
 		$faculty = Faculty::all();		//for user_id in add function
-		$category = 'Publication';
-		$short_category = 'pub';
-		$routeprefix = 'admin';
 		$fields = [
 			[
 				'title' => 'Title',
@@ -84,34 +117,21 @@ class PublicationController extends Controller
 				'placeholder' => NULL,
 			],
 		];
-		$obj_actions = [
-			[
-				'name' => 'Edit',
-				'route' => 'admin.pub.edit',
-				'method' => 'get',
-				'button' => 'secondary'
-			],
-			[
-				'name' => 'Delete',
-				'route' => 'admin.pub.delete',
-				'method' => 'post',
-				'button' => 'danger'
-			],
-			[
-				'name' => 'Publish',
-				'route' => 'admin.pub.publish',
-				'method' => 'post',
-				'button' => 'success'
-			],
+		$action = [
+			'name' => 'Add',
+			'route' => 'add',
+			'method' => 'put',
+			'button' => 'success'
 		];
-		return view('admin.viewitems')
-			->with('fields', $fields)
-			->with('publications', $publications)
-			->with('short_category', $short_category)
-			->with('category', $category)
-			->with('obj_actions', $obj_actions)
+		return view('admin.editentry')
+			->with('pub', NULL)
 			->with('faculty', $faculty)
-			->with('routeprefix', $routeprefix);
+			->with('fields', $fields)
+			->with('action', $action)
+			->with('category', 'Publication')
+			->with('short_category', 'pub')
+			->with('routeprefix', 'admin')
+			->with('page_action', 'Add');
 	}
 	
 	public function edit($id){
@@ -182,21 +202,21 @@ class PublicationController extends Controller
 				'placeholder' => NULL,
 			],
 		];
-		$action =
-			[
-				'name' => 'Save',
-				'route' => 'admin.pub.save',
-				'method' => 'post',
-				'button' => 'success'
-			];
+		$action = [
+			'name' => 'Save',
+			'route' => 'save',
+			'method' => 'patch',
+			'button' => 'success'
+		];
 		return view('admin.editentry')
 		->with('pub', $publication)
+		->with('faculty', $faculty)
+		->with('fields', $fields)
+		->with('action', $action)
 		->with('category', 'Publication')
 		->with('short_category', 'pub')
 		->with('routeprefix', 'admin')
-		->with('faculty', $faculty)
-		->with('fields', $fields)
-		->with('action', $action);
+		->with('page_action', 'Edit');
 	}
 	
 	public function add(Request $request){

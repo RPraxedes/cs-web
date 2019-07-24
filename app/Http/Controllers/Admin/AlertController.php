@@ -13,38 +13,53 @@ class AlertController extends Controller
 {
     public function viewall(){
 		$alerts = Alert::all();
-		$faculty = NULL;
-		$category = 'Alert';
-		$short_category = 'alert';
-		$routeprefix = 'admin';
-		$fields = NULL;
 		$obj_actions = [
 			[
+				'name' => 'Add',
+				'route' => 'new',
+				'method' => 'get',
+				'button' => 'success'
+			],
+			[
 				'name' => 'Delete',
-				'route' => 'admin.alert.delete',
+				'route' => 'delete',
 				'method' => 'post',
 				'button' => 'danger'
 			],
 		];
 		return view('admin.viewitems')
-			->with('fields', $fields)
 			->with('publications', $alerts)
-			->with('short_category', $short_category)
-			->with('category', $category)
 			->with('obj_actions', $obj_actions)
-			->with('faculty', $faculty)
-			->with('routeprefix', $routeprefix);
+			->with('routeprefix', 'admin')
+			->with('short_category', 'alert')
+			->with('category', 'Alert')
+			->with('addExists', true);
 	}
 	
-	public function add(){
-		if(request()->has('start_date', 'start_time')){
-			$starttime = Carbon::createFromFormat('Y-m-d H:i:s', request('start_date').' '.request('start_time').':00')->toDateTimeString();
-		}else if(request()->has('startNow')){
+	public function new(){
+		$action = [
+			'name' => 'Add',
+			'route' => 'add',
+			'method' => 'put',
+			'button' => 'success'
+		];
+		return view('admin.editalert')
+			->with('action', $action)
+			->with('category', 'Alert')
+			->with('short_category', 'alert')
+			->with('routeprefix', 'admin')
+			->with('page_action', 'Add');
+	}
+	
+	public function add(Request $request){
+		if(isset($request->start_date) && isset($request->start_time)){
+			$starttime = Carbon::createFromFormat('Y-m-d H:i:s', $request->start_date.' '.$request->start_time.':00')->toDateTimeString();
+		}else if(isset($request->startNow)){
 			$starttime = Carbon::createFromTime(Carbon::now()->hour, Carbon::now()->minute, 00);
 		}
-		if(request()->has('end_date', 'end_time')){
-			$endtime = Carbon::createFromFormat('Y-m-d H:i:s', request('end_date').' '.request('end_time').':00')->toDateTimeString();
-		}else if(request()->has('endNever')){
+		if(isset($request->end_date) && isset($request->end_time)){
+			$endtime = Carbon::createFromFormat('Y-m-d H:i:s', $request->end_date.' '.$request->end_time.':00')->toDateTimeString();
+		}else if(isset($request->endNever)){
 			$endtime = NULL;
 		}
 		

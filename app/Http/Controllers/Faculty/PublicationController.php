@@ -16,11 +16,45 @@ use App\Http\Controllers\Controller;
 class PublicationController extends Controller
 {
     public function viewall(){
+		$publications = Publication::where('user_id', '=', (int)Auth::user()->id)->get();
+		$obj_actions = [
+			[
+				'name' => 'Add',
+				'route' => 'new',
+				'method' => 'get',
+				'button' => 'success',
+			],
+			[
+				'name' => 'Edit',
+				'route' => 'edit',
+				'method' => 'post',
+				'button' => 'secondary'
+			],
+			[
+				'name' => 'Delete',
+				'route' => 'delete',
+				'method' => 'post',
+				'button' => 'danger'
+			],
+			[
+				'name' => 'Publish',
+				'route' => 'publish',
+				'method' => 'post',
+				'button' => 'success'
+			],
+		];
+		return view('user.viewitems')
+			->with('publications', $publications)
+			->with('obj_actions', $obj_actions)
+			->with('routeprefix', 'faculty')
+			->with('short_category', 'pub')
+			->with('category', 'Publication')
+			->with('addExists', true);
+	}
+	
+	public function new(){
 		$faculty = Faculty::where('user_id', '=', (int)Auth::user()->id)->get()->first();
 		$first_name = $faculty->first_name;
-		$publications = Publication::where('user_id', '=', (int)Auth::user()->id)->get();
-		$category = 'Publication';
-		$short_category = 'pub';
 		$fields = [
 			[
 				'title' => 'Title',
@@ -79,33 +113,20 @@ class PublicationController extends Controller
 				'value' => NULL,
 			],
 		];
-		$obj_actions = [
-			[
-				'name' => 'Edit',
-				'route' => 'pub.edit',
-				'method' => 'post',
-				'button' => 'secondary'
-			],
-			[
-				'name' => 'Delete',
-				'route' => 'pub.delete',
-				'method' => 'post',
-				'button' => 'danger'
-			],
-			[
-				'name' => 'Publish',
-				'route' => 'pub.publish',
-				'method' => 'post',
-				'button' => 'success'
-			],
+		$action = [
+			'name' => 'Save',
+			'route' => 'save',
+			'method' => 'patch',
+			'button' => 'success'
 		];
-		return view('user.viewitems')
+		return view('user.editentry')
+			->with('pub', NULL)
 			->with('fields', $fields)
-			->with('publications', $publications)
-			->with('short_category', $short_category)
-			->with('category', $category)
-			->with('routeprefix', '')
-			->with('obj_actions', $obj_actions);
+			->with('action', $action)
+			->with('category', 'Publication')
+			->with('short_category', 'pub')
+			->with('routeprefix', 'admin')
+			->with('page_action', 'Add');
 	}
 	
 	public function add(Request $request){
@@ -114,33 +135,32 @@ class PublicationController extends Controller
 		$pub->created_at = Carbon::now()->toDateTimeString();
 		$pub->updated_at = Carbon::now()->toDateTimeString();
 		$pub->save();
-		return redirect()->route('pub.viewall')->with('alert-success', 'Publication successfully added!');
+		return redirect()->route('faculty.pub.viewall')->with('alert-success', 'Publication successfully added!');
 	}
 	
-	public function edit(Request $request){
-		$requestData = $request->all();
+	public function save($id, Request $request){
 		Publication::find((int)$request->id)->update([
-			'title' => $requestData['title'],
-			'author' => $requestData['author'],
-			'published_date' => $requestData['published_date'],
-			'type' => $requestData['type'],
-			'journal' => $requestData['journal'],
-			'volume' => $requestData['volume'],
-			'link' => $requestData['link'],
+			'title' => $request->title,
+			'author' => $request->author,
+			'published_date' => $request->published_date,
+			'type' => $request->type,
+			'journal' => $request->journal,
+			'volume' => $request->volume,
+			'link' => $request->link,
 			'updated_at' => Carbon::now()->toDateTimeString(),
 		]);
-		return redirect()->route('pub.viewall')->with('alert-success', 'Publication successfully changed!');
+		return redirect()->route('faculty.pub.viewall')->with('alert-success', 'Publication successfully changed!');
 	}
 	
-	public function delete(Request $request){
-		Publication::find((int)$request->id)->delete();
-		return redirect()->route('pub.viewall')->with('alert-success', 'Publication successfully deleted!');
+	public function delete($id, Request $request){
+		Publication::find((int)$id)->delete();
+		return redirect()->route('faculty.pub.viewall')->with('alert-success', 'Publication successfully deleted!');
 	}
 	
-	public function publish(Request $request){
-		Publication::find((int)$request->id)->update([
+	public function publish($id, Request $request){
+		Publication::find((int)$id)->update([
 			'published_at' => Carbon::now()->toDateTimeString()
 		]);
-		return redirect()->route('pub.viewall')->with('alert-success', 'Publication can now be publicly seen in your profile!');
+		return redirect()->route('faculty.pub.viewall')->with('alert-success', 'Publication can now be publicly seen in your profile!');
 	}
 }

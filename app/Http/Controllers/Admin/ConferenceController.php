@@ -16,10 +16,43 @@ class ConferenceController extends Controller
 {
     public function viewall(){
 		$conferences = Conference::all();
+		$obj_actions = [
+			[
+				'name' => 'Add',
+				'route' => 'new',
+				'method' => 'get',
+				'button' => 'success'
+			],
+			[
+				'name' => 'Edit',
+				'route' => 'edit',
+				'method' => 'post',
+				'button' => 'secondary'
+			],
+			[
+				'name' => 'Delete',
+				'route' => 'delete',
+				'method' => 'post',
+				'button' => 'danger'
+			],
+			[
+				'name' => 'Publish',
+				'route' => 'publish',
+				'method' => 'post',
+				'button' => 'success'
+			],
+		];
+		return view('admin.viewitems')
+			->with('publications', $conferences)
+			->with('obj_actions', $obj_actions)
+			->with('routeprefix', 'admin')
+			->with('short_category', 'conf')
+			->with('category', 'Conference')
+			->with('addExists', true);
+	}
+	
+	public function new(){
 		$faculty = Faculty::all();		//for user_id in add function
-		$category = 'Conference';
-		$short_category = 'conf';
-		$routeprefix = 'admin';
 		$fields = [
 			[
 				'title' => 'Paper Title',
@@ -50,7 +83,7 @@ class ConferenceController extends Controller
 				'name' => 'type',
 				'type' => 'text',
 				'required' => 'required',
-				'placeholder' => NULL,
+				'placeholder' => 'International, National, Local',
 				'value' => NULL,
 			],
 			[
@@ -85,34 +118,23 @@ class ConferenceController extends Controller
 				'placeholder' => NULL,
 			],
 		];
-		$obj_actions = [
-			[
-				'name' => 'Edit',
-				'route' => 'admin.conf.edit',
-				'method' => 'post',
-				'button' => 'secondary'
-			],
-			[
-				'name' => 'Delete',
-				'route' => 'admin.conf.delete',
-				'method' => 'post',
-				'button' => 'danger'
-			],
-			[
-				'name' => 'Publish',
-				'route' => 'admin.conf.publish',
-				'method' => 'post',
-				'button' => 'success'
-			],
+		
+		$action = [
+			'name' => 'Add',
+			'route' => 'add',
+			'method' => 'put',
+			'button' => 'success'
 		];
-		return view('admin.viewitems')
-			->with('fields', $fields)
-			->with('publications', $conferences)
-			->with('category', $category)
-			->with('short_category', $short_category)
-			->with('obj_actions', $obj_actions)
+		
+		return view('admin.editentry')
+			->with('pub', NULL)
 			->with('faculty', $faculty)
-			->with('routeprefix', $routeprefix);
+			->with('fields', $fields)
+			->with('action', $action)
+			->with('category', 'Conference')
+			->with('short_category', 'conf')
+			->with('routeprefix', 'admin')
+			->with('page_action', 'Add');
 	}
 	
 	public function edit($id){
@@ -183,22 +205,22 @@ class ConferenceController extends Controller
 				'placeholder' => NULL,
 			],
 		];
-		$action =
-			[
-				'name' => 'Save',
-				'route' => 'admin.conf.save',
-				'method' => 'post',
-				'button' => 'success'
-			];
-			
+		
+		$action = [
+			'name' => 'Save',
+			'route' => 'save',
+			'method' => 'patch',
+			'button' => 'success'
+		];
 		return view('admin.editentry')
 		->with('pub', $conference)
+		->with('faculty', $faculty)
+		->with('fields', $fields)
+		->with('action', $action)
 		->with('category', 'Conference')
 		->with('short_category', 'conf')
 		->with('routeprefix', 'admin')
-		->with('faculty', $faculty)
-		->with('fields', $fields)
-		->with('action', $action);
+		->with('page_action', 'Edit');
 	}
 	
 	public function add(Request $request){

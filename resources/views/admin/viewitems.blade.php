@@ -4,22 +4,6 @@
 
 @section('head')
 <script src="{{ asset('js/user.js') }}"></script>
-@if($short_category == 'other')
-<!-- TinyMCE -->
-<script src="{{asset('js/tinymce/tinymce.min.js')}}" crossorigin="anonymous"></script>
-<script>
-	tinymce.init({
-		selector: '#tinytextarea',
-		plugins: ["placeholder", "autosave", "code", "link", "lists"],
-		height: '600px',
-		menubar: "file edit view insert format",
-		toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist outdent indent | link",
-		autosave_restore_when_empty: true,
-		link_assume_external_targets: true,
-		target_list: false,
-	});
-</script>
-@endif
 @endsection
 
 @section('content')
@@ -61,11 +45,11 @@
 						@foreach($obj_actions as $action)
 							@if($action['name'] == 'Edit')
 							<div class="col-md-3">
-								<a href="{{route($action['route'], ['id' => $pub->id])}}" role="button" class="btn btn-block btn-{{$action['button']}}">{{$action['name']}}</a>
+								<a href="{{route($routeprefix.'.'.$short_category.'.'.$action['route'], ['id' => $pub->id])}}" role="button" class="btn btn-block btn-{{$action['button']}}">{{$action['name']}}</a>
 							</div>
 							@elseif($action['name'] == 'Delete')
 							<div class="col-md-3">
-								<form class="form-inline" action="{{route($action['route'], ['id' => $pub->id])}}" method="{{$action['method']}}">
+								<form class="form-inline" action="{{route($routeprefix.'.'.$short_category.'.'.$action['route'], ['id' => $pub->id])}}" method="{{$action['method']}}">
 									@csrf
 									@method('delete')
 									<button type="submit" class="btn btn-block btn-{{$action['button']}}">
@@ -75,7 +59,7 @@
 							</div>
 							@elseif($action['name'] == 'Publish')
 							<div class="col-md-3">
-								<form class="form-inline" action="{{route($action['route'], ['id' => $pub->id])}}" method="{{$action['method']}}">
+								<form class="form-inline" action="{{route($routeprefix.'.'.$short_category.'.'.$action['route'], ['id' => $pub->id])}}" method="{{$action['method']}}">
 									@csrf
 									@method('patch')
 									<button type="submit" class="btn btn-block btn-{{$action['button']}}" @if($pub->published_at != NULL) disabled @endif>
@@ -89,66 +73,18 @@
 					</div>
 				</div>
 				@endforeach
+			@if($addExists)
 			<div class="row justify-content-center">
 				<div class="col-md-3">
-					<button type="button" class="btn btn-success btn-block margin-top margin-bottom" data-toggle="modal" data-target="#AddPub"><span class="oi oi-plus"></span> Add</button>
+					<a role="button" class="btn btn-{{$obj_actions[0]['button']}} btn-block margin-top margin-bottom" href="{{route($routeprefix.'.'.$short_category.'.'.$obj_actions[0]['route'])}}"><span class="oi oi-plus"></span> Add</a>
 				</div>
 			</div>
+			@endif
 		</div>
 	</div>
 </div>
 
-@if($category != 'Alert')
-<!-- Add Modal -->
-<div class="modal fade" id="AddPub" tabindex="-1" role="dialog" aria-labelledby="AddPub" aria-hidden="true">
-	<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Add a {{$category}}</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<form id="addPubForm" action="{{route($routeprefix.'.'.$short_category.'.add')}}" method="post" enctype="multipart/form-data">
-					@csrf
-				@foreach($fields as $field)
-				@if($field['name'] == 'user_id')
-					<label class="form-check-label" for="{{$field['name']}}">{{$field['title']}}@if($field['required'])<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span>@endif</label>
-					<select name="{{$field['name']}}" class="form-control" id="{{$field['name']}}" autocomplete="off">
-						<option>Select an Entry Author</option>
-					@foreach($faculty as $author)
-						<option value="{{$author->user_id}}">{{$author->first_name ?? ''}} {{$author->middle_name ?? ''}} {{$author->last_name ?? ''}}</option>
-					@endforeach
-					</select>
-				@elseif($field['type'] == 'tiny')
-					<textarea name="{{$field['name']}}" id="tinytextarea" class="w-100" placeholder="{{$field['placeholder']}}"></textarea><br>
-				@elseif($field['type'] == 'file')
-					<div class="input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text" id="inputGroupFileAddon01">{{$field['title']}}</span>
-						</div>
-						<div class="custom-file">
-							<input type="file" name="{{$field['name']}}" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-							<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-						</div>
-					</div>
-				@else
-					<label class="form-check-label" for="{{$field['name']}}">{{$field['title']}}@if($field['required'])<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span>@endif</label>
-					<input type="{{$field['type']}}" name="{{$field['name']}}" id="{{$field['name']}}" class="form-control" placeholder="{{$field['placeholder']}}" value="{{$field['value']}}" {{$field['required']}}>
-					<br>
-				@endif
-				@endforeach
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-				<button type="submit" class="btn btn-success" form="addPubForm">Add</button>
-			</div>
-		</div>
-	</div>
-</div>
-@else
+@if($category == 'Alert')
 <!-- Alert Modal -->
 <div class="modal fade" id="AddPub" tabindex="-1" role="dialog" aria-labelledby="alertModalTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
@@ -179,11 +115,11 @@
 					</div>
 					<div class="form-row">
 						<div class="col">
-							<label class="form-check-label" for="alertStartDate">Date Alert Starts</label>
+							<label class="form-check-label" for="alertStartDate">Date Alert Start</label>
 							<input name="start_date" class="form-control start-input" type="date" id="alertStartDate" required><br>
 						</div>
 						<div class="col">
-							<label class="form-check-label" for="alertStartTime">Time Alert Starts</label>
+							<label class="form-check-label" for="alertStartTime">Time Alert Start</label>
 							<input name="start_time" class="form-control start-input" type="time" id="alertStartTime" required><br>
 						</div>
 					</div>
@@ -197,7 +133,7 @@
 							<input name="end_date" class="form-control end-input" type="date" id="alertEndDate" required><br>
 						</div>
 						<div class="col">
-							<label class="form-check-label" for="alertEndTime">Time Alert Ends</label>
+							<label class="form-check-label" for="alertEndTime">Time Alert End</label>
 							<input name="end_time" class="form-control end-input" type="time" id="alertEndTime" required><br>
 						</div>
 					</div>

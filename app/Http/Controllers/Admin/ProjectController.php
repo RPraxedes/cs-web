@@ -17,10 +17,43 @@ class ProjectController extends Controller
 {
     public function viewall(){
 		$publications = Project::all();
+		$obj_actions = [
+			[
+				'name' => 'Add',
+				'route' => 'new',
+				'method' => 'get',
+				'button' => 'success'
+			],
+			[
+				'name' => 'Edit',
+				'route' => 'edit',
+				'method' => 'post',
+				'button' => 'secondary'
+			],
+			[
+				'name' => 'Delete',
+				'route' => 'delete',
+				'method' => 'post',
+				'button' => 'danger'
+			],
+			[
+				'name' => 'Publish',
+				'route' => 'publish',
+				'method' => 'post',
+				'button' => 'success'
+			],
+		];
+		return view('admin.viewitems')
+			->with('publications', $publications)
+			->with('obj_actions', $obj_actions)
+			->with('routeprefix', 'admin')
+			->with('short_category', 'proj')
+			->with('category', 'Current Research Project')
+			->with('addExists', true);
+	}
+	
+	public function new(){
 		$faculty = Faculty::all();
-		$category = 'Current Research Project';
-		$short_category = 'proj';
-		$routeprefix = 'admin';
 		$fields = [
 			[
 				'title' => 'Title',
@@ -86,34 +119,21 @@ class ProjectController extends Controller
 				'placeholder' => NULL,
 			],
 		];
-		$obj_actions = [
-			[
-				'name' => 'Edit',
-				'route' => 'admin.proj.edit',
-				'method' => 'post',
-				'button' => 'secondary'
-			],
-			[
-				'name' => 'Delete',
-				'route' => 'admin.proj.delete',
-				'method' => 'post',
-				'button' => 'danger'
-			],
-			[
-				'name' => 'Publish',
-				'route' => 'admin.proj.publish',
-				'method' => 'post',
-				'button' => 'success'
-			],
+		$action = [
+			'name' => 'Add',
+			'route' => 'add',
+			'method' => 'put',
+			'button' => 'success'
 		];
-		return view('admin.viewitems')
-			->with('fields', $fields)
-			->with('publications', $publications)
-			->with('short_category', $short_category)
-			->with('category', $category)
-			->with('obj_actions', $obj_actions)
+		return view('admin.editentry')
+			->with('pub', NULL)
 			->with('faculty', $faculty)
-			->with('routeprefix', $routeprefix);
+			->with('fields', $fields)
+			->with('action', $action)
+			->with('category', 'Current Research Project')
+			->with('short_category', 'proj')
+			->with('routeprefix', 'admin')
+			->with('page_action', 'Add');
 	}
 	
 	public function edit($id){
@@ -187,23 +207,24 @@ class ProjectController extends Controller
 		$action =
 			[
 				'name' => 'Save',
-				'route' => 'admin.proj.save',
-				'method' => 'post',
+				'route' => 'save',
+				'method' => 'patch',
 				'button' => 'success'
 			];
 		return view('admin.editentry')
 		->with('pub', $publication)
+		->with('faculty', $faculty)
+		->with('fields', $fields)
+		->with('action', $action)
 		->with('category', 'Current Research Project')
 		->with('short_category', 'proj')
 		->with('routeprefix', 'admin')
-		->with('faculty', $faculty)
-		->with('fields', $fields)
-		->with('action', $action);
+		->with('page_action', 'Edit');
 	}
 	
 	public function add(Request $request){
 		$proj = new Project($request->all());
-		$proj->user_id = Auth::user()->id;
+		$proj->user_id = (int)$request->user_id;
 		$proj->created_at = Carbon::now()->toDateTimeString();
 		$proj->updated_at = Carbon::now()->toDateTimeString();
 		$proj->save();

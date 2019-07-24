@@ -4,22 +4,6 @@
 
 @section('head')
 <script src="{{ asset('js/user.js') }}"></script>
-@if($short_category == 'other')
-<!-- TinyMCE -->
-<script src="{{asset('js/tinymce/tinymce.min.js')}}" crossorigin="anonymous"></script>
-<script>
-	tinymce.init({
-		selector: '#tinytextarea',
-		plugins: ["placeholder", "autosave", "code", "link", "lists"],
-		height: '600px',
-		menubar: "file edit view insert format",
-		toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist outdent indent | link",
-		autosave_restore_when_empty: true,
-		link_assume_external_targets: true,
-		target_list: false,
-	});
-</script>
-@endif
 @endsection
 
 @section('content')
@@ -32,101 +16,46 @@
 			<p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
 			@endif
 		@endforeach
-		@if(Auth::user()->position != 'admin')
-			<ul class="nav nav-tabs nav-justified flex-column flex-sm-row margin-bottom">
-				<li class="flex-sm-fill nav-item">
-					<a class="text-sm-center nav-link @if($category == 'Publication')active @endif" href="{{route('pub.viewall')}}">Publications</a>
-				</li>
-				<li class="flex-sm-fill nav-item">
-					<a class="text-sm-center nav-link @if($category == 'Conference')active @endif" href="{{route('conf.viewall')}}">Conferences</a>
-				</li>
-				<li class="flex-sm-fill nav-item">
-					<a class="text-sm-center nav-link @if($category == 'Current Research Project')active @endif" href="{{route('proj.viewall')}}">Current Research Projects</a>
-				</li>
-				<li class="flex-sm-fill nav-item">
-					<a class="text-sm-center nav-link @if($category == 'Other Achievement')active @endif" href="{{route('other.viewall')}}">Other Achievements</a>
-				</li>
-			</ul>
-		@endif
+		<ul class="nav nav-tabs nav-justified flex-column flex-sm-row margin-bottom">
+			<li class="flex-sm-fill nav-item">
+				<a class="text-sm-center nav-link @if($category == 'Publication')active @endif" href="{{route('faculty.pub.viewall')}}">Publications</a>
+			</li>
+			<li class="flex-sm-fill nav-item">
+				<a class="text-sm-center nav-link @if($category == 'Conference')active @endif" href="{{route('faculty.conf.viewall')}}">Conferences</a>
+			</li>
+			<li class="flex-sm-fill nav-item">
+				<a class="text-sm-center nav-link @if($category == 'Current Research Project')active @endif" href="{{route('faculty.proj.viewall')}}">Current Research Projects</a>
+			</li>
+			<li class="flex-sm-fill nav-item">
+				<a class="text-sm-center nav-link @if($category == 'Other Achievement')active @endif" href="{{route('faculty.other.viewall')}}">Other Achievements</a>
+			</li>
+		</ul>
 		</div>
 	</div>
     <div class="row justify-content-center">
         <div class="col-md-9">
-			@if($short_category == 'other')
-				<form action="{{route($obj_actions[0]['route'])}}" method="{{$obj_actions[0]['method']}}" id="tinyEdit">
-					@csrf
-					<textarea name="{{$fields[0]['name']}}" id="tinytextarea" class="w-100" placeholder="{{$fields[0]['placeholder']}}"> @if(!$publications->isEmpty()) {{$publications->first()->content}} @endif </textarea>
-					<button type="submit" class="btn btn-{{$obj_actions[0]['button']}}">{{$obj_actions[0]['name']}}</button>
-				</form>
-				@foreach($obj_actions as $action)
-				@if($action['name'] != 'Save')
-				<form action="{{route($action['route'])}}" method="{{$action['method']}}" class="form-inline">
-					@csrf
-					<button type="submit" class="btn btn-{{$action['button']}}">{{$action['name']}}</button>
-				</form>
-				@endif
-				@endforeach
-			@else
 				@foreach ($publications as $pub)
-				<div class="card" style="margin-top: 10px;">
+				<div class="card margin-top">
 					<div class="card-body">
 					@if ($category == 'Publication' || $category == 'Current Research Project')
 						<a href="{{url($pub->link ?? '')}}" class="card-link">{{$pub->author ?? ''}} ({{(\Carbon\Carbon::parse($pub->published_date)->year)}}). <i>{{$pub->title ?? ''}}</i>. {{$pub->journal ?? ''}} Volume {{$pub->volume ?? ''}}</a>
 					@elseif ($category == 'Conference')
-						<a href="{{url($pub->link ?? '')}}" class="card-link"><i>{{$pub->paper_title ?? ''}}</i>. {{$pub->author ?? ''}} {{\Carbon\Carbon::parse($pub->conference_date)->format('F d, Y')}}. {{$pub->conference_title ?? ''}}. {{$pub->venue ?? ''}}</a>				
+						<a href="{{url($pub->link ?? '')}}" class="card-link"><i>{{$pub->paper_title ?? ''}}</i>. {{$pub->author ?? ''}} {{\Carbon\Carbon::parse($pub->conference_date)->format('F d, Y')}}. {{$pub->conference_title ?? ''}}. {{$pub->venue ?? ''}}</a>
+					@elseif ($category == 'Other Achievement')
+						<h4>{{$pub->faculty->first_name ?? ''}} {{$pub->faculty->middle_name ?? ''}} {{$pub->faculty->last_name ?? ''}}</h4>
+						{!!$pub->content!!}
 					@endif
 						<div class="row justify-content-md-center" style="margin-top: 20px;">
 						@foreach($obj_actions as $action)
 							@if($action['name'] == 'Edit')
 							<div class="col-md-3">
-								<button type="button" class="btn btn-block btn-{{$action['button']}}" data-toggle="modal" data-target="#{{$action['name']}}Pub{{$pub->id}}"><span class="oi oi-pencil"></span> {{$action['name']}}</button>
-							</div>
-							<!-- Edit Modal -->
-							<div class="modal fade" id="{{$action['name']}}Pub{{$pub->id}}" tabindex="-1" role="dialog" aria-labelledby="{{$action['name']}}Pub{{$pub->id}}" aria-hidden="true">
-								<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title">{{$action['name']}} {{$category}}</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<form id="{{$action['name']}}PubForm" action="{{route($action['route'])}}" method="{{$action['method']}}">
-												@csrf
-											@foreach($fields as $field)
-											@if($field['name'] == 'user_id')
-												<label class="form-check-label" for="{{$field['name']}}">{{$field['title']}}@if($field['required'])<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span>@endif</label>
-												<select name="{{$field['name']}}" class="form-control" id="{{$field['name']}}" autocomplete="off">
-												@foreach($faculty as $author)
-													<option value="{{$author->user_id}}" @if($pub->user_id == $author->user_id) selected @endif>{{$author->first_name ?? ''}} {{$author->middle_name ?? ''}} {{$author->last_name ?? ''}}</option>
-												@endforeach
-												</select>
-											@else
-												<label class="form-check-label" for="{{$field['name']}}">{{$field['title']}}@if($field['required'])<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span>@endif</label>
-												@if($category == 'Publication' || $category == 'Current Research Project')
-												<input type="{{$field['type']}}" name="{{$field['name']}}" id="{{$field['name']}}" class="form-control" placeholder="{{$field['placeholder']}}" value=@if($field['name'] == 'title') "{{$pub->title ?? ''}}" @elseif($field['name'] == 'author') "{{$pub->author ?? ''}}" @elseif($field['name'] == 'published_date') "{{$pub->published_date ?? ''}}" @elseif($field['name'] == 'type') "{{$pub->type ?? ''}}" @elseif($field['name'] == 'journal') "{{$pub->journal ?? ''}}" @elseif($field['name'] == 'volume') "{{$pub->volume ?? ''}}" @elseif($field['name'] == 'link') "{{$pub->link ?? ''}}" @endif {{$field['required']}}>
-												@elseif($category == 'Conference')
-												<input type="{{$field['type']}}" name="{{$field['name']}}" id="{{$field['name']}}" class="form-control" placeholder="{{$field['placeholder']}}" value=@if($field['name'] == 'paper_title') "{{$pub->paper_title ?? ''}}" @elseif($field['name'] == 'author') "{{$pub->author ?? ''}}" @elseif($field['name'] == 'conference_title') "{{$pub->conference_title ?? ''}}"  @elseif($field['name'] == 'conference_date') "{{$pub->conference_date ?? ''}}" @elseif($field['name'] == 'type') "{{$pub->type ?? ''}}" @elseif($field['name'] == 'venue') "{{$pub->venue ?? ''}}" @elseif($field['name'] == 'link') "{{$pub->link ?? ''}}" @endif {{$field['required']}}>
-												@endif
-												<br>
-											@endif
-											@endforeach
-												<input type="hidden" name="id" value="{{$pub->id}}">
-											</form>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-											<button type="submit" class="btn btn-success" form="{{$action['name']}}PubForm">{{$action['name']}}</button>
-										</div>
-									</div>
-								</div>
+								<a href="{{route($routeprefix.'.'.$short_category.'.'.$action['route'], ['id' => $pub->id])}}" role="button" class="btn btn-block btn-{{$action['button']}}">{{$action['name']}}</a>
 							</div>
 							@elseif($action['name'] == 'Delete')
 							<div class="col-md-3">
-								<form class="form-inline" action="{{route($action['route'])}}" method="{{$action['method']}}">
+								<form class="form-inline" action="{{route($routeprefix.'.'.$short_category.'.'.$action['route'], ['id' => $pub->id])}}" method="{{$action['method']}}">
 									@csrf
-									<input type="hidden" name="id" value="{{$pub->id}}">
+									@method('delete')
 									<button type="submit" class="btn btn-block btn-{{$action['button']}}">
 										<span class="oi oi-trash"></span> {{$action['name']}}
 									</button>
@@ -134,9 +63,9 @@
 							</div>
 							@elseif($action['name'] == 'Publish')
 							<div class="col-md-3">
-								<form class="form-inline" action="{{route($action['route'])}}" method="{{$action['method']}}">
+								<form class="form-inline" action="{{route($routeprefix.'.'.$short_category.'.'.$action['route'], ['id' => $pub->id])}}" method="{{$action['method']}}">
 									@csrf
-									<input type="hidden" name="id" value="{{$pub->id}}">
+									@method('patch')
 									<button type="submit" class="btn btn-block btn-{{$action['button']}}" @if($pub->published_at != NULL) disabled @endif>
 										<span class="oi oi-task"></span> {{$action['name']}}@if($pub->published_at != NULL)ed @endif
 									</button>
@@ -148,54 +77,14 @@
 					</div>
 				</div>
 				@endforeach
+			@if($addExists)
 			<div class="row justify-content-center">
 				<div class="col-md-3">
-					<button type="button" class="btn btn-success btn-block margin-top margin-bottom" data-toggle="modal" data-target="#AddPub"><span class="oi oi-plus"></span> Add</button>
+					<a role="button" class="btn btn-{{$obj_actions[0]['button']}} btn-block margin-top margin-bottom" href="{{route($routeprefix.'.'.$short_category.'.'.$obj_actions[0]['route'])}}"><span class="oi oi-plus"></span> Add</a>
 				</div>
 			</div>
 			@endif
 		</div>
 	</div>
 </div>
-
-@if($short_category != 'other')
-<!-- Add Modal -->
-<div class="modal fade" id="AddPub" tabindex="-1" role="dialog" aria-labelledby="AddPub" aria-hidden="true">
-	<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Add a {{$category}}</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<form id="addPubForm" action="{{route($routeprefix.'.'.$short_category.'.add')}}" method="post">
-					@csrf
-				@foreach($fields as $field)
-				@if($field['name'] == 'user_id')
-					<label class="form-check-label" for="{{$field['name']}}">{{$field['title']}}@if($field['required'])<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span>@endif</label>
-					<select name="{{$field['name']}}" class="form-control" id="{{$field['name']}}" autocomplete="off">
-						<option>Select an Entry Author</option>
-					@foreach($faculty as $author)
-						<option value="{{$author->user_id}}">{{$author->first_name ?? ''}} {{$author->middle_name ?? ''}} {{$author->last_name ?? ''}}</option>
-					@endforeach
-					</select>
-				@else
-					<label class="form-check-label" for="{{$field['name']}}">{{$field['title']}}@if($field['required'])<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span>@endif</label>
-					<input type="{{$field['type']}}" name="{{$field['name']}}" id="{{$field['name']}}" class="form-control" placeholder="{{$field['placeholder']}}" value="{{$field['value']}}" {{$field['required']}}>
-					<br>
-				@endif
-				@endforeach
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-				<button type="submit" class="btn btn-success" form="addPubForm">Add</button>
-			</div>
-		</div>
-	</div>
-</div>
-@endif
-
 @endsection

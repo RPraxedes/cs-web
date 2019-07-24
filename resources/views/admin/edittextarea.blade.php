@@ -26,14 +26,18 @@
         <div class="col-md-10">
 			<div class="row justify-content-md-center title margin-top margin-bottom">
 				<div class="col-md-12">
-					<div class="display-3 text-center">Edit {{$category}}</div>
+					<div class="display-3 text-center">{{$page_action}} {{$category}}s</div>
 				</div>
 			</div>
 			<div class="row justify-content-md-center">
 				<div class="col-md-12">
-					<form id="{{$action['name']}}Form" action="{{route($action['route'], ['id' => $pub['id']])}}" method="{{$action['method']}}">
+				@if(isset($pub['id']))
+					<form id="{{$action['name']}}Form" action="{{route($routeprefix.'.'.$short_category.'.'.$action['route'], ['id' => $pub['id']])}}" method="post" enctype="multipart/form-data">
+				@else
+					<form id="{{$action['name']}}Form" action="{{route($routeprefix.'.'.$short_category.'.'.$action['route'])}}" method="post" enctype="multipart/form-data">
+				@endif
 						@csrf
-						@method('patch')
+						@method($action['method'])
 					@foreach($fields as $field)
 					@if($field['name'] == 'user_id')
 						<label class="form-check-label" for="{{$field['name']}}">{{$field['title']}}@if($field['required'])<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span>@endif</label>
@@ -42,7 +46,9 @@
 							<option value="{{$author->user_id}}" @if($pub['user_id'] == $author->user_id) selected @endif>{{$author->first_name ?? ''}} {{$author->middle_name ?? ''}} {{$author->last_name ?? ''}}</option>
 						@endforeach
 						</select>
+						<br>
 					@elseif($field['type'] == 'tiny')
+						<label class="form-check-label" for="{{$field['name']}}">{{$field['title']}}@if($field['required'])<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span>@endif</label>
 						<textarea name="{{$field['name']}}" id="tinytextarea" class="w-100" placeholder="{{$field['placeholder']}}">{{$pub['content'] ?? ''}}</textarea><br>
 					@else
 						<label class="form-check-label" for="{{$field['name']}}">{{$field['title']}}@if($field['required'])<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span>@endif</label>

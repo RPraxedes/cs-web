@@ -13,6 +13,36 @@ class GalleryController extends Controller
 {
     public function viewall(){
 		$gallery = Gallery::all();
+		$obj_actions = [
+			[
+				'name' => 'Add',
+				'route' => 'new',
+				'method' => 'get',
+				'button' => 'success'
+			],
+			[
+				'name' => 'Edit',
+				'route' => 'edit',
+				'method' => 'get',
+				'button' => 'secondary',
+			],
+			[
+				'name' => 'Delete',
+				'route' => 'delete',
+				'method' => 'post',
+				'button' => 'danger'
+			],
+		];
+		return view('admin.viewitems')
+			->with('publications', $gallery)
+			->with('obj_actions', $obj_actions)
+			->with('routeprefix', 'admin')
+			->with('short_category', 'gallery')
+			->with('category', 'Gallery Item')
+			->with('addExists', true);
+	}
+	
+	public function new(){
 		$fields = [
 			[
 				'title' => 'Gallery Image',
@@ -39,28 +69,21 @@ class GalleryController extends Controller
 				'value' => NULL,
 			],
 		];
-		$obj_actions = [
-			[
-				'name' => 'Edit',
-				'route' => 'admin.gallery.edit',
-				'method' => 'get',
-				'button' => 'secondary',
-			],
-			[
-				'name' => 'Delete',
-				'route' => 'admin.gallery.delete',
-				'method' => 'post',
-				'button' => 'danger'
-			],
+		$action = [
+			'name' => 'Add',
+			'route' => 'add',
+			'method' => 'put',
+			'button' => 'success'
 		];
-		return view('admin.viewitems')
+		return view('admin.editentry')
+			->with('pub', NULL)
+			->with('faculty', Auth::user())
 			->with('fields', $fields)
-			->with('publications', $gallery)
+			->with('action', $action)
+			->with('routeprefix', 'admin')
 			->with('short_category', 'gallery')
 			->with('category', 'Gallery Item')
-			->with('obj_actions', $obj_actions)
-			->with('faculty', Auth::user())
-			->with('routeprefix', 'admin');
+			->with('page_action', 'Add');
 	}
 	
 	public function add(Request $request){
@@ -80,7 +103,7 @@ class GalleryController extends Controller
 		$pub->updated_at = Carbon::now()->toDateTimeString();
 		$pub->save();
 		
-		request()->file('filename')->move(public_path('images'), $imageName);
+		request()->file('filename')->move(public_path('images\gallery'), $imageName);
 		
 		return redirect()->route('admin.gallery.viewall')->with('alert-success', 'Image successfully added!');
 	}
@@ -117,18 +140,19 @@ class GalleryController extends Controller
 		$action =
 			[
 				'name' => 'Save',
-				'route' => 'admin.gallery.save',
-				'method' => 'post',
+				'route' => 'save',
+				'method' => 'patch',
 				'button' => 'success'
 			];
 		return view('admin.editentry')
 		->with('pub', $image)
+		->with('faculty', $faculty)
+		->with('fields', $fields)
+		->with('action', $action)
 		->with('category', 'Gallery Item')
 		->with('short_category', 'gallery')
 		->with('routeprefix', 'admin')
-		->with('faculty', $faculty)
-		->with('fields', $fields)
-		->with('action', $action);
+		->with('page_action', 'Edit');
 	}
 	
 	public function save($id, Request $request){
@@ -144,7 +168,7 @@ class GalleryController extends Controller
 				'caption' => $requestData['caption'],
 				'updated_at' => Carbon::now()->toDateTimeString(),
 			]);
-			request()->file('filename')->move(public_path('images'), $imageName);
+			request()->file('filename')->move(public_path('images\gallery'), $imageName);
 		}else{
 			$image->update([
 				'alt' => $requestData['alt'],

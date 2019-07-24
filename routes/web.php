@@ -44,29 +44,37 @@ Route::post('/dashboard/profile/faculty/save', 'Faculty\ProfileController@save')
 Route::post('/dashboard/profile/faculty/delete', 'Faculty\ProfileController@delete')->name('faculty.delete');
 Route::post('/dashboard/profile/faculty/publish', 'Faculty\ProfileController@publish')->name('faculty.publish');
 
-Route::get('/dashboard/profile/faculty/publications', 'Faculty\PublicationController@viewall')->name('pub.viewall');
-Route::post('/dashboard/profile/faculty/publications/add', 'Faculty\PublicationController@add')->name('pub.add');
-Route::post('/dashboard/profile/faculty/publications/edit', 'Faculty\PublicationController@edit')->name('pub.edit');
-Route::post('/dashboard/profile/faculty/publications/delete', 'Faculty\PublicationController@delete')->name('pub.delete');
-Route::post('/dashboard/profile/faculty/publications/publish', 'Faculty\PublicationController@publish')->name('pub.publish');
+Route::get('/dashboard/profile/faculty/publications/view', 'Faculty\PublicationController@viewall')->name('faculty.pub.viewall');
+Route::get('/dashboard/profile/faculty/publications/new', 'Faculty\PublicationController@new')->name('faculty.pub.new');
+Route::put('/dashboard/profile/faculty/publications/add', 'Faculty\PublicationController@add')->name('faculty.pub.add');
+Route::get('/dashboard/profile/faculty/publications/edit/{id}', ['uses' => 'Faculty\PublicationController@edit'])->name('faculty.pub.edit');
+Route::patch('/dashboard/profile/faculty/publications/save/{id}', ['uses' => 'Faculty\PublicationController@save'])->name('faculty.pub.save');
+Route::delete('/dashboard/profile/faculty/publications/delete/{id}', ['uses' => 'Faculty\PublicationController@delete'])->name('faculty.pub.delete');
+Route::patch('/dashboard/profile/faculty/publications/publish/{id}', ['uses' => 'Faculty\PublicationController@publish'])->name('faculty.pub.publish');
 
-Route::get('/dashboard/profile/faculty/conferences', 'Faculty\ConferenceController@viewall')->name('conf.viewall');
-Route::post('/dashboard/profile/faculty/conferences/add', 'Faculty\ConferenceController@add')->name('conf.add');
-Route::post('/dashboard/profile/faculty/conferences/edit', 'Faculty\ConferenceController@edit')->name('conf.edit');
-Route::post('/dashboard/profile/faculty/conferences/delete', 'Faculty\ConferenceController@delete')->name('conf.delete');
-Route::post('/dashboard/profile/faculty/conferences/publish', 'Faculty\ConferenceController@publish')->name('conf.publish');
+Route::get('/dashboard/profile/faculty/conferences/view', 'Faculty\ConferenceController@viewall')->name('faculty.conf.viewall');
+Route::get('/dashboard/profile/faculty/conferences/new', 'Faculty\ConferenceController@new')->name('faculty.conf.new');
+Route::put('/dashboard/profile/faculty/conferences/add', 'Faculty\ConferenceController@add')->name('faculty.conf.add');
+Route::get('/dashboard/profile/faculty/conferences/edit/{id}', ['uses' => 'Faculty\ConferenceController@edit'])->name('faculty.conf.edit');
+Route::patch('/dashboard/profile/faculty/conferences/save/{id}', ['uses' => 'Faculty\ConferenceController@save'])->name('faculty.conf.save');
+Route::delete('/dashboard/profile/faculty/conferences/delete/{id}', ['uses' => 'Faculty\ConferenceController@delete'])->name('faculty.conf.delete');
+Route::patch('/dashboard/profile/faculty/conferences/publish/{id}', ['uses' => 'Faculty\ConferenceController@publish'])->name('faculty.conf.publish');
 
-Route::get('/dashboard/profile/faculty/projects', 'Faculty\ProjectController@viewall')->name('proj.viewall');
-Route::post('/dashboard/profile/faculty/projects/add', 'Faculty\ProjectController@add')->name('proj.add');
-Route::post('/dashboard/profile/faculty/projects/edit', 'Faculty\ProjectController@edit')->name('proj.edit');
-Route::post('/dashboard/profile/faculty/projects/delete', 'Faculty\ProjectController@delete')->name('proj.delete');
-Route::post('/dashboard/profile/faculty/projects/publish', 'Faculty\ProjectController@publish')->name('proj.publish');
+Route::get('/dashboard/profile/faculty/projects/view', 'Faculty\ProjectController@viewall')->name('faculty.proj.viewall');
+Route::get('/dashboard/profile/faculty/projects/new', 'Faculty\ProjectController@new')->name('faculty.proj.new');
+Route::put('/dashboard/profile/faculty/projects/add', 'Faculty\ProjectController@add')->name('faculty.proj.add');
+Route::get('/dashboard/profile/faculty/projects/edit/{id}', ['uses' => 'Faculty\ProjectController@edit'])->name('faculty.proj.edit');
+Route::patch('/dashboard/profile/faculty/projects/save/{id}', ['uses' => 'Faculty\ProjectController@save'])->name('faculty.proj.save');
+Route::delete('/dashboard/profile/faculty/projects/delete/{id}', ['uses' => 'Faculty\ProjectController@delete'])->name('faculty.proj.delete');
+Route::patch('/dashboard/profile/faculty/projects/publish/{id}', ['uses' => 'Faculty\ProjectController@publish'])->name('faculty.proj.publish');
 
-Route::get('/dashboard/profile/faculty/others', 'Faculty\OtherAchievementsController@viewall')->name('other.viewall');
-Route::post('/dashboard/profile/faculty/others/add', 'Faculty\OtherAchievementsController@add')->name('other.add');
-Route::post('/dashboard/profile/faculty/others/edit', 'Faculty\OtherAchievementsController@edit')->name('other.edit');
-Route::post('/dashboard/profile/faculty/others/delete', 'Faculty\OtherAchievementsController@delete')->name('other.delete');
-Route::post('/dashboard/profile/faculty/others/publish', 'Faculty\OtherAchievementsController@publish')->name('other.publish');
+Route::get('/dashboard/profile/faculty/others/view', 'Faculty\OtherAchievementsController@viewall')->name('faculty.other.viewall');
+Route::get('/dashboard/profile/faculty/others/new', 'Faculty\OtherAchievementsController@new')->name('faculty.other.new');
+Route::put('/dashboard/profile/faculty/others/add', 'Faculty\OtherAchievementsController@add')->name('faculty.other.add');
+Route::get('/dashboard/profile/faculty/others/edit/{id}', ['uses' => 'Faculty\OtherAchievementsController@edit'])->name('faculty.other.edit');
+Route::patch('/dashboard/profile/faculty/others/save/{id}', ['uses' => 'Faculty\OtherAchievementsController@save'])->name('faculty.other.save');
+Route::delete('/dashboard/profile/faculty/others/delete/{id}', ['uses' => 'Faculty\OtherAchievementsController@delete'])->name('faculty.other.delete');
+Route::patch('/dashboard/profile/faculty/others/publish/{id}', ['uses' => 'Faculty\OtherAchievementsController@publish'])->name('faculty.other.publish');
 
 Route::get('/articles/{id}', ['uses' => 'PagesController@articles'])->name('article.page');
 Route::get('/news', 'PagesController@news')->name('news');
@@ -101,39 +109,45 @@ Route::post('/dashboard/admin/users/verify', 'Admin\UserController@verify')->nam
 Route::post('/dashboard/admin/users/save', 'Admin\UserController@saveprofile')->name('admin.user.saveprofile');
 // ADMIN PUBLICATIONS MANAGEMENT
 Route::get('/dashboard/admin/publications/view', 'Admin\PublicationController@viewall')->name('admin.pub.viewall');
-Route::post('/dashboard/admin/publications/add', 'Admin\PublicationController@add')->name('admin.pub.add');
+Route::get('/dashboard/admin/publications/new', 'Admin\PublicationController@new')->name('admin.pub.new');
+Route::put('/dashboard/admin/publications/add', 'Admin\PublicationController@add')->name('admin.pub.add');
 Route::get('/dashboard/admin/publications/edit/{id}', ['uses' => 'Admin\PublicationController@edit'])->name('admin.pub.edit');
 Route::patch('/dashboard/admin/publications/save/{id}', ['uses' => 'Admin\PublicationController@save'])->name('admin.pub.save');
 Route::delete('/dashboard/admin/publications/delete/{id}', ['uses' => 'Admin\PublicationController@delete'])->name('admin.pub.delete');
 Route::patch('/dashboard/admin/publications/publish/{id}', ['uses' => 'Admin\PublicationController@publish'])->name('admin.pub.publish');
 // ADMIN CONFERENCES MANAGEMENT
 Route::get('/dashboard/admin/conferences/view', 'Admin\ConferenceController@viewall')->name('admin.conf.viewall');
-Route::post('/dashboard/admin/conferences/add', 'Admin\ConferenceController@add')->name('admin.conf.add');
+Route::get('/dashboard/admin/conferences/new', 'Admin\ConferenceController@new')->name('admin.conf.new');
+Route::put('/dashboard/admin/conferences/add', 'Admin\ConferenceController@add')->name('admin.conf.add');
 Route::get('/dashboard/admin/conferences/edit/{id}', ['uses' => 'Admin\ConferenceController@edit'])->name('admin.conf.edit');
 Route::patch('/dashboard/admin/conferences/save/{id}', ['uses' => 'Admin\ConferenceController@save'])->name('admin.conf.save');
 Route::delete('/dashboard/admin/conferences/delete/{id}', ['uses' => 'Admin\ConferenceController@delete'])->name('admin.conf.delete');
 Route::patch('/dashboard/admin/conferences/publish/{id}', ['uses' => 'Admin\ConferenceController@publish'])->name('admin.conf.publish');
 // ADMIN PROJECTS MANAGEMENT
 Route::get('/dashboard/admin/projects/view', 'Admin\ProjectController@viewall')->name('admin.proj.viewall');
-Route::post('/dashboard/admin/projects/add', 'Admin\ProjectController@add')->name('admin.proj.add');
+Route::get('/dashboard/admin/projects/new', 'Admin\ProjectController@new')->name('admin.proj.new');
+Route::put('/dashboard/admin/projects/add', 'Admin\ProjectController@add')->name('admin.proj.add');
 Route::get('/dashboard/admin/projects/edit/{id}', ['uses' => 'Admin\ProjectController@edit'])->name('admin.proj.edit');
 Route::patch('/dashboard/admin/projects/save/{id}', ['uses' => 'Admin\ProjectController@save'])->name('admin.proj.save');
 Route::delete('/dashboard/admin/projects/delete/{id}', ['uses' => 'Admin\ProjectController@delete'])->name('admin.proj.delete');
 Route::patch('/dashboard/admin/projects/publish/{id}', ['uses' => 'Admin\ProjectController@publish'])->name('admin.proj.publish');
 // ADMIN OTHER ACHIEVEMENTS MANAGEMENT
 Route::get('/dashboard/admin/others/view', 'Admin\OtherAchievementsController@viewall')->name('admin.other.viewall');
-Route::post('/dashboard/admin/others/add', 'Admin\OtherAchievementsController@add')->name('admin.other.add');
+Route::get('/dashboard/admin/others/new', 'Admin\OtherAchievementsController@new')->name('admin.other.new');
+Route::put('/dashboard/admin/others/add', 'Admin\OtherAchievementsController@add')->name('admin.other.add');
 Route::get('/dashboard/admin/others/edit/{id}', ['uses' => 'Admin\OtherAchievementsController@edit'])->name('admin.other.edit');
 Route::patch('/dashboard/admin/others/save/{id}', ['uses' => 'Admin\OtherAchievementsController@save'])->name('admin.other.save');
 Route::delete('/dashboard/admin/others/delete/{id}', ['uses' => 'Admin\OtherAchievementsController@delete'])->name('admin.other.delete');
 Route::patch('/dashboard/admin/others/publish/{id}', ['uses' => 'Admin\OtherAchievementsController@publish'])->name('admin.other.publish');
 // ADMIN ALERTS MANAGEMENT
 Route::get('/dashboard/admin/alert/view', 'Admin\AlertController@viewall')->name('admin.alert.viewall');	// echoes Wa ha ha!
-Route::post('/dashboard/admin/alert/add', 'Admin\AlertController@add')->name('admin.alert.add');
+Route::get('/dashboard/admin/alert/new', 'Admin\AlertController@new')->name('admin.alert.new');	// echoes Wa ha ha!
+Route::put('/dashboard/admin/alert/add', 'Admin\AlertController@add')->name('admin.alert.add');
 Route::delete('/dashboard/admin/alert/delete/{id}', ['uses' => 'Admin\AlertController@delete'])->name('admin.alert.delete');
 // ADMIN GALLERY MANAGEMENT
 Route::get('dashboard/admin/gallery/view', 'Admin\GalleryController@viewall')->name('admin.gallery.viewall');
-Route::post('dashboard/admin/gallery/add', 'Admin\GalleryController@add')->name('admin.gallery.add');
+Route::get('dashboard/admin/gallery/new', 'Admin\GalleryController@new')->name('admin.gallery.new');
+Route::put('dashboard/admin/gallery/add', 'Admin\GalleryController@add')->name('admin.gallery.add');
 Route::get('dashboard/admin/gallery/edit/{id}', ['uses' => 'Admin\GalleryController@edit'])->name('admin.gallery.edit');
 Route::patch('dashboard/admin/gallery/save/{id}', ['uses' => 'Admin\GalleryController@save'])->name('admin.gallery.save');
 Route::delete('dashboard/admin/gallery/delete/{id}', ['uses' => 'Admin\GalleryController@delete'])->name('admin.gallery.delete');

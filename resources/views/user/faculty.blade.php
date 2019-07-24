@@ -80,10 +80,10 @@
 						
 						<button type="submit" class="btn btn-success">Save Changes</button>
 					@if(isset($faculty_info) && Auth::user()->position == 'faculty')
-						<a role="button" href="{{route('pub.viewall')}}" class="btn btn-primary">Your Publications</a>
-						<a role="button" href="{{route('conf.viewall')}}" class="btn btn-primary">Your Conferences</a>
-						<a role="button" href="{{route('proj.viewall')}}" class="btn btn-primary">Your Current Research Projects</a>
-						<a role="button" href="{{route('other.viewall')}}" class="btn btn-primary">Your Other Achievements</a>
+						<a role="button" href="{{route('faculty.pub.viewall')}}" class="btn btn-primary">Your Publications</a>
+						<a role="button" href="{{route('faculty.conf.viewall')}}" class="btn btn-primary">Your Conferences</a>
+						<a role="button" href="{{route('faculty.proj.viewall')}}" class="btn btn-primary">Your Current Research Projects</a>
+						<a role="button" href="{{route('faculty.other.viewall')}}" class="btn btn-primary">Your Other Achievements</a>
 					@endif
 					</form>
 				</div>
