@@ -60,14 +60,14 @@
 			<div class="row">
 				<div class="col-12 margin-bottom">
 					<h3>Your User Profile</h3>
-					<a class="btn btn-secondary" href="{{route('user.profile')}}" role="button">Edit</a>
+					<a class="btn btn-secondary btn-block col-3" href="{{route('user.profile')}}" role="button">Edit</a>
 				</div>
 				<div class="col-12 margin-bottom">
 					<h3>Your Faculty Profile</h3>
-					<a class="btn btn-secondary" href="{{route('faculty.view', ['id'=> $id])}}" role="button">View</a>
-					<form action="{{route('faculty.edit')}}" method="post">@csrf<button class="btn btn-secondary" type="submit">Edit</button></form>
-					<form action="{{route('faculty.publish')}}" method="post">@csrf<input type="hidden" name="user_id" value="{{Auth::user()->id}}"><button type="submit" class="btn btn-success">Publish</button></form>
-					<form action="{{route('faculty.delete', ['id' => Auth::user()->id])}}" method="post">@csrf<input type="hidden" name="user_id" value="{{Auth::user()->id}}"><button type="submit" class="btn btn-danger">Delete</button></form>
+					<a class="btn btn-secondary btn-block col-3 margin-bottom" href="{{route('faculty.view', ['id'=> $id])}}" role="button">View</a>
+					<form class="form-inline margin-bottom" action="{{route('faculty.edit')}}" method="post">@csrf<button class="btn btn-secondary btn-block col-3" type="submit">Edit</button></form>
+					<form class="form-inline margin-bottom" action="{{route('faculty.publish')}}" method="post">@csrf<input type="hidden" name="user_id" value="{{Auth::user()->id}}"><button type="submit" class="btn btn-success btn-block col-3">Publish</button></form>
+					<form class="form-inline margin-bottom" action="{{route('faculty.delete', ['id' => Auth::user()->id])}}" method="post">@csrf<input type="hidden" name="user_id" value="{{Auth::user()->id}}"><button type="submit" class="btn btn-danger btn-block col-3">Delete</button></form>
 				</div>
 			</div>
 			@endif

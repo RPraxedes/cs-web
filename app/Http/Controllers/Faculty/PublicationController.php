@@ -114,9 +114,9 @@ class PublicationController extends Controller
 			],
 		];
 		$action = [
-			'name' => 'Save',
-			'route' => 'save',
-			'method' => 'patch',
+			'name' => 'Add',
+			'route' => 'add',
+			'method' => 'put',
 			'button' => 'success'
 		];
 		return view('user.editentry')
@@ -125,7 +125,7 @@ class PublicationController extends Controller
 			->with('action', $action)
 			->with('category', 'Publication')
 			->with('short_category', 'pub')
-			->with('routeprefix', 'admin')
+			->with('routeprefix', 'faculty')
 			->with('page_action', 'Add');
 	}
 	
@@ -138,8 +138,84 @@ class PublicationController extends Controller
 		return redirect()->route('faculty.pub.viewall')->with('alert-success', 'Publication successfully added!');
 	}
 	
+	public function edit($id) {
+		$publication = Publication::find((int)$id)->attributesToArray();
+		$fields = [
+			[
+				'title' => 'Title',
+				'name' => 'title',
+				'type' => 'text',
+				'required' => 'required',
+				'placeholder' => 'Publication Title',
+				'value' => NULL,
+			],
+			[
+				'title' => 'Author/s',
+				'name' => 'author',
+				'type' => 'text',
+				'required' => 'required',
+				'placeholder' => 'Publication Author/s',
+				'value' => NULL,
+			],
+			[
+				'title' => 'Date Published',
+				'name' => 'published_date',
+				'type' => 'date',
+				'required' => 'required',
+				'placeholder' => NULL,
+				'value' => NULL,
+			],
+			[
+				'title' => 'Type',
+				'name' => 'type',
+				'type' => 'text',
+				'required' => NULL,
+				'placeholder' => 'Non-refereed, Refereed-institutional, Local, National, or International',
+				'value' => NULL,
+			],
+			[
+				'title' => 'Journal',
+				'name' => 'journal',
+				'type' => 'text',
+				'required' => 'required',
+				'placeholder' => 'Name of Journal',
+				'value' => NULL,
+			],
+			[
+				'title' => 'Volume',
+				'name' => 'volume',
+				'type' => 'text',
+				'required' => NULL,
+				'placeholder' => 'Volume of Journal',
+				'value' => NULL,
+			],
+			[
+				'title' => 'Link to Publisher or Paper',
+				'name' => 'link',
+				'type' => 'text',
+				'required' => NULL,
+				'placeholder' => 'http://www.example.com',
+				'value' => NULL,
+			],
+		];
+		$action = [
+			'name' => 'Save',
+			'route' => 'save',
+			'method' => 'patch',
+			'button' => 'success'
+		];
+		return view('user.editentry')
+		->with('pub', $publication)
+		->with('fields', $fields)
+		->with('action', $action)
+		->with('category', 'Publication')
+		->with('short_category', 'pub')
+		->with('routeprefix', 'faculty')
+		->with('page_action', 'Edit');
+	}
+	
 	public function save($id, Request $request){
-		Publication::find((int)$request->id)->update([
+		Publication::find((int)$id)->update([
 			'title' => $request->title,
 			'author' => $request->author,
 			'published_date' => $request->published_date,

@@ -45,8 +45,8 @@ class OtherAchievementsController extends Controller
 		return view('admin.viewitems')
 			->with('publications', $others)
 			->with('obj_actions', $obj_actions)
-			->with('short_category', 'other')
 			->with('routeprefix', 'admin')
+			->with('short_category', 'other')
 			->with('category', 'Other Achievement')
 			->with('addExists', true);
 	}

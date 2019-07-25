@@ -32,8 +32,12 @@
 		</ul>
 		</div>
 	</div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center margin-bottom">
         <div class="col-md-9">
+				@if($category == 'Other Achievement' && $publications->isEmpty())
+				You currently have nothing written.
+				
+				@endif
 				@foreach ($publications as $pub)
 				<div class="card margin-top">
 					<div class="card-body">
@@ -42,7 +46,6 @@
 					@elseif ($category == 'Conference')
 						<a href="{{url($pub->link ?? '')}}" class="card-link"><i>{{$pub->paper_title ?? ''}}</i>. {{$pub->author ?? ''}} {{\Carbon\Carbon::parse($pub->conference_date)->format('F d, Y')}}. {{$pub->conference_title ?? ''}}. {{$pub->venue ?? ''}}</a>
 					@elseif ($category == 'Other Achievement')
-						<h4>{{$pub->faculty->first_name ?? ''}} {{$pub->faculty->middle_name ?? ''}} {{$pub->faculty->last_name ?? ''}}</h4>
 						{!!$pub->content!!}
 					@endif
 						<div class="row justify-content-md-center" style="margin-top: 20px;">
