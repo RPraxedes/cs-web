@@ -7,6 +7,7 @@
 > XAMPP (or just PHP and MySQL)
 
 # Installation:
+0. Run XAMPP's MySQL and Apache Server (optional).
 
 1. open cmd with this folder as directory (e.g C:\xampp\htdocs\cs-web)
 
@@ -16,7 +17,11 @@
 
 4. run 'php artisan db:seed' so DB has real entries.
 
-5. run 'php artisan serve' to open the dev server.
+5. copy '.env.example' contents and save to a file '.env' since renaming does not work properly.
+
+6. run 'php artisan key:generate'.
+
+7. run 'php artisan serve' to open the dev server.
 
 # Admin Login:
 
