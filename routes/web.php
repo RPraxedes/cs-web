@@ -11,7 +11,7 @@
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 	// START PAGE
 Route::get('/', 'PagesController@home')->name('welcome');

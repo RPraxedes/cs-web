@@ -30,7 +30,7 @@
 		@yield('header')
         <nav class="navbar navbar-dark navbar-expand-md">
 			<div class="container">
-				<a class="navbar-brand" href="{{url('/')}}" data-toggle="tooltip" data-placement="bottom" title="Home"><span class="oi oi-home animated fadeInDown delay-8"></span></a>
+				<a class="navbar-brand" href="{{url('/')}}" data-toggle="tooltip" data-placement="bottom" title="Home"><span class="oi oi-home animated fadeInDown delay-9"></span></a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -49,19 +49,22 @@
 							</div>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('research')?'active':''}} animated fadeInDown delay-2" href="{{route('research')}}">Research</a>
+							<a class="nav-link {{request()->is('research')?'active':''}} animated fadeInDown delay-2" href="{{route('news')}}">News</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('publications')?'active':''}} animated fadeInDown delay-3" href="{{route('publications')}}">Publications</a>
+							<a class="nav-link {{request()->is('research')?'active':''}} animated fadeInDown delay-3" href="{{route('research')}}">Research</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('sinsm')?'active':''}} animated fadeInDown delay-4" href="{{route('sinsm')}}">SINSM</a>
+							<a class="nav-link {{request()->is('publications')?'active':''}} animated fadeInDown delay-4" href="{{route('publications')}}">Publications</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-5" href="{{route('about')}}">About Us</a>
+							<a class="nav-link {{request()->is('sinsm')?'active':''}} animated fadeInDown delay-5" href="{{route('sinsm')}}">SINSM</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-6" href="{{route('gallery')}}">Gallery</a>
+							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-6" href="{{route('about')}}">About Us</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-7" href="{{route('gallery')}}">Gallery</a>
 						</li>
 						<!--<li class="nav-item">
 							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-7" href="{{url('/secret')}}">Secret</a>
