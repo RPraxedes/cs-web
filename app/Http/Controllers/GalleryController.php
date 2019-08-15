@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class GalleryController extends Controller
 {
 	public function viewall(){
-		$images = Gallery::paginate(16);
+		$images = Gallery::paginate(12);
 		return view('gallery.index', ['images' => $images]);
 	}
 }
