@@ -15,7 +15,7 @@
 	<div class="row justify-content-center margin-top margin-bottom">
 		@foreach($images as $image)
 			<div class="col-md-3">
-				<a href="{{asset('images/'.$image->filename)}}" data-lightbox="gallery" data-title="{{$image->caption}}" data-alt="{{$image->alt}}"><img src="{{asset('images/'.$image->filename)}}" class="img-thumbnail" style="object-fit: cover; width: auto; height: 100%;" alt="{{$image->alt}}"></a>
+				<a href="{{asset('images/'.$image->filename)}}" data-lightbox="gallery" data-title="{{$image->caption}}" data-alt="{{$image->alt}}"><img src="{{asset('images/'.$image->filename)}}" class="img-thumbnail" style="object-fit: cover; width: auto;" alt="{{$image->alt}}"></a>
 			</div>
 		@endforeach
 	</div>
