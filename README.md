@@ -25,12 +25,12 @@
 
 # Admin Login:
 
-> user: 'test', pass: 'test'
+> user: 'test@mail.com', pass: 'test'
 
-> user: 'test1', pass: 'test1'
+> user: 'test1@mail.com', pass: 'test1' (not admin verified)
 
 # Faculty Login:
 
-> user: 'jmaddawe', pass: 'jmaddawe'
+> user: 'jmaddawe@up.edu.ph', pass: 'jmaddawe'
 
 > The pattern is the same for the rest of the faculty (first_initial+middle_initial+last_full)
