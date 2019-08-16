@@ -31,3 +31,7 @@ PRIORITY:
 		add
 		edit
 		delete
+	
+Missing pages:
+	PhD Courses
+	RGEP Courses
