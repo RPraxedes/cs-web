@@ -55,7 +55,7 @@ class OtherAchievementsController extends Controller
 		$faculty = Faculty::all();		//for user_id in add function
 		$fields = [
 			[
-				'title' => 'Entry Author',
+				'title' => 'Associated Author',
 				'name' => 'user_id',
 				'type' => 'select',
 				'required' => 'required',
@@ -92,7 +92,7 @@ class OtherAchievementsController extends Controller
 		$faculty = Faculty::all();		//for user_id in add function
 		$fields = [
 			[
-				'title' => 'Entry Author',
+				'title' => 'Associated Author',
 				'name' => 'user_id',
 				'type' => 'select',
 				'required' => 'required',

@@ -71,7 +71,7 @@ class ProjectController extends Controller
 				'placeholder' => 'Project Author/s',
 				'value' => NULL,
 			],
-			[
+			/* [
 				'title' => 'Date Published',
 				'name' => 'published_date',
 				'type' => 'date',
@@ -110,9 +110,23 @@ class ProjectController extends Controller
 				'required' => NULL,
 				'placeholder' => 'http://www.example.com',
 				'value' => NULL,
+			], */
+			[
+				'title' => 'Research Project Status',
+				'name' => 'status_id',
+				'type' => 'select',
+				'required' => NULL,
+				'placeholder' => NULL,
 			],
 			[
-				'title' => 'Entry Author',
+				'title' => 'Description',
+				'name' => 'description',
+				'type' => 'textarea',
+				'required' => NULL,
+				'placeholder' => 'What is the research project all about?',
+			],
+			[
+				'title' => 'Associated Author',
 				'name' => 'user_id',
 				'type' => 'select',
 				'required' => 'required',
@@ -128,6 +142,7 @@ class ProjectController extends Controller
 		return view('admin.editentry')
 			->with('pub', NULL)
 			->with('faculty', $faculty)
+			/* ->with('status', $status) */
 			->with('fields', $fields)
 			->with('action', $action)
 			->with('category', 'Current Research Project')
@@ -197,7 +212,7 @@ class ProjectController extends Controller
 				'value' => NULL,
 			],
 			[
-				'title' => 'Entry Author',
+				'title' => 'Associated Author',
 				'name' => 'user_id',
 				'type' => 'select',
 				'required' => 'required',

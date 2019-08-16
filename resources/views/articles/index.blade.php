@@ -21,7 +21,7 @@
 							@if($article->header_image != NULL)
 								<img src="{{asset('images/'.$article->header_image)}}" class="card-img" alt="{{$article->header_alt}}">
 							@else
-								<span class="oi oi-copywriting text-center" style="color: #7b1113; padding-top: 6rem; font-size: 8rem;"></span>
+								<span class="oi oi-copywriting text-center" style="color: #7b1113; padding-top: 6rem; padding-bottom: 6rem; font-size: 8rem; left: 30%"></span>
 							@endif
 						</div>
 						<div class="col-md-9">

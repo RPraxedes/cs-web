@@ -65,7 +65,7 @@
 							<ul class="list">
 						@if(!$publications->isEmpty())
 							@foreach($publications as $pub)
-								<li><a @if(isset($pub->link))href="{{url($pub->link)}}" class="card-link" @else class="text-dark" @endif>{{$pub->author ?? ''.' ('.\Carbon\Carbon::parse($pub->published_date)->year.').'}} <i>{{$pub->title ?? ''}}</i>. {{$pub->journal ?? ''}} Volume {{$pub->volume ?? ''}}</a></li>
+								<li>{{$pub->author ?? ''.' ('.\Carbon\Carbon::parse($pub->published_date)->year.').'}} <i>{{$pub->title ?? ''}}</i>. {{$pub->journal ?? ''}} Volume {{$pub->volume ?? ''}} @if($pub->link)<a href="{{url($pub->link ?? '')}}" class="card-link">[link]</a>@endif</li>
 							@endforeach
 						@else
 								<li>None</li>
@@ -85,7 +85,7 @@
 							<ul class="list">
 						@if(!$conferences->isEmpty())
 							@foreach($conferences as $conf)
-								<li><a @if(isset($conf->link))href="{{url($conf->link)}}" class="card-link" @else class="text-dark" @endif><i>“{{$conf->paper_title ?? ''}}”</i>. {{$conf->author ?? ''}} {{\Carbon\Carbon::parse($conf->conference_date)->format('F d, Y')}}. {{$conf->conference_title ?? ''}}. {{$conf->venue ?? ''}}</a></li>
+								<li><i>“{{$conf->paper_title ?? ''}}”</i>. {{$conf->author ?? ''}} {{\Carbon\Carbon::parse($conf->conference_date)->format('F d, Y')}}. {{$conf->conference_title ?? ''}}. {{$conf->venue ?? ''}} @if($pub->link)<a href="{{url($pub->link ?? '')}}" class="card-link">[link]</a>@endif</li>
 							@endforeach
 						@else
 								<li>None</li>
@@ -105,7 +105,7 @@
 							<ul class="list">
 						@if(!$projects->isEmpty())
 							@foreach($projects as $proj)
-								<li><a @if(isset($proj->link))href="{{url($proj->link)}}" class="card-link" @else class="text-dark" @endif>{{$proj->author ?? ''.' ('.\Carbon\Carbon::parse($proj->published_date)->year.').'}} <i>{{$proj->title ?? ''}}</i>. {{$proj->journal ?? ''}} Volume {{$proj->volume ?? ''}}</a></li>
+								<li>{{$proj->author ?? ''.' ('.\Carbon\Carbon::parse($proj->published_date)->year.').'}} <i>{{$proj->title ?? ''}}</i>. {{$proj->journal ?? ''}} Volume {{$proj->volume ?? ''}} @if($pub->link)<a href="{{url($pub->link ?? '')}}" class="card-link">[link]</a>@endif</li>
 							@endforeach
 						@else
 								<li>None</li>

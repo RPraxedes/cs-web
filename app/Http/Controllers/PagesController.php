@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Faculty;
 use App\Models\Department;
 use App\Models\Publication;
+use App\Models\Project;
 use App\Models\Course;
 use App\Models\Gallery;
 
@@ -64,7 +65,7 @@ class PagesController extends Controller
 	}
 	
 	public function gradcourses(){
-		$level = 'Graduate';
+		$level = 'Post-graduate';
 		$courses = Course::whereLevel($level)->get();
 		return view('academics.courses', ['courses'=> $courses, 'level' => $level]);
 	}
@@ -72,11 +73,16 @@ class PagesController extends Controller
 	public function getchecklist($name){
 		$pages = Checklist::join('courses', 'checklists.title', '=', 'courses.title')->where('uri', '=', $name)->get();
 		if(isset(Auth::user()->id)){	
-			$user =Auth::user()->position;
+			$user = Auth::user()->position;
 		}else{
 			$user = NULL;
 		}
-		return view('academics.checklist', ['pages' => $pages, 'position' => $user]);
+		if($pages->first()->level != 'Undergraduate'){
+			return view('academics.gradchecklist', ['pages' => $pages, 'position' => $user]);
+		}else{
+			return view('academics.checklist', ['pages' => $pages, 'position' => $user]);			
+		}
+		return view('academics.checklist', ['pages' => $pages, 'position' => $user]);			
 	}
 	
 	public function editchecklist($id){
@@ -122,8 +128,8 @@ class PagesController extends Controller
 	}
 	
 	 public function research(){
-		$articles = Article::with('user')->whereType('research')->where('published_at','!=',NULL)->paginate(10);
-		return view('articles.index', ['articles' => $articles], ['title' => 'Research']);
+		$publications = Project::where('published_at', '!=', NULL)->orderBy('published_at', 'desc')->paginate(20);
+		return view('research.index', ['publications' => $publications]);
 	}
 	
 	 public function publications(){

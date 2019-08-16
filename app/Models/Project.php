@@ -11,12 +11,19 @@ class Project extends Model
 	protected $fillable = [
 		'title',
 		'author',
-		'published_date',
+		/* 'published_date',
 		'type',
 		'journal',
 		'volume',
-		'link',
+		'link', */
+		'status_id',
+		'description',
 		'user_id',
 		'published_at'
 	];
+	
+	public function status()
+	{
+		return $this->hasOne('App\Models\ResearchStatus', 'id', 'status_id');
+	}
 }

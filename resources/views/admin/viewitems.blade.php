@@ -23,10 +23,12 @@
 				@foreach ($publications as $pub)
 				<div class="card margin-top">
 					<div class="card-body">
-					@if ($category == 'Publication' || $category == 'Current Research Project')
-						<a href="{{url($pub->link ?? '')}}" class="card-link">{{$pub->author ?? ''}} ({{(\Carbon\Carbon::parse($pub->published_date)->year)}}). <i>{{$pub->title ?? ''}}</i>. {{$pub->journal ?? ''}} Volume {{$pub->volume ?? ''}}</a>
+					@if ($category == 'Publication')
+						{{$pub->author ?? ''}} ({{(\Carbon\Carbon::parse($pub->published_date)->year)}}). <i>{{$pub->title ?? ''}}</i>. {{$pub->journal ?? ''}} Volume {{$pub->volume ?? ''}} @if($pub->link)<a href="{{url($pub->link ?? '')}}" class="card-link">[link]</a>@endif
+					@elseif ($category == 'Current Research Project')
+						{{$pub->author ?? ''}}. <i>{{$pub->title ?? ''}}</i>. Description: {{$pub->description ?? ''}} ( Status: @if($pub->status_id == 1) Ongoing @else Finished @endif) @if($pub->link)<a href="{{url($pub->link ?? '')}}" class="card-link">[link]</a>@endif
 					@elseif ($category == 'Conference')
-						<a href="{{url($pub->link ?? '')}}" class="card-link"><i>{{$pub->paper_title ?? ''}}</i>. {{$pub->author ?? ''}} {{\Carbon\Carbon::parse($pub->conference_date)->format('F d, Y')}}. {{$pub->conference_title ?? ''}}. {{$pub->venue ?? ''}}</a>
+						<i>{{$pub->paper_title ?? ''}}</i>. {{$pub->author ?? ''}} {{\Carbon\Carbon::parse($pub->conference_date)->format('F d, Y')}}. {{$pub->conference_title ?? ''}}. {{$pub->venue ?? ''}} @if($pub->link)<a href="{{url($pub->link ?? '')}}" class="card-link">[link]</a>@endif
 					@elseif ($category == 'Other Achievement')
 						<h4>{{$pub->faculty->first_name ?? ''}} {{$pub->faculty->middle_name ?? ''}} {{$pub->faculty->last_name ?? ''}}</h4>
 						{!!$pub->content!!}

@@ -111,7 +111,7 @@ class ConferenceController extends Controller
 				'value' => NULL,
 			],
 			[
-				'title' => 'Entry Author',
+				'title' => 'Associated Author',
 				'name' => 'user_id',
 				'type' => 'select',
 				'required' => 'required',
@@ -198,7 +198,7 @@ class ConferenceController extends Controller
 				'value' => NULL,
 			],
 			[
-				'title' => 'Entry Author',
+				'title' => 'Associated Author',
 				'name' => 'user_id',
 				'type' => 'select',
 				'required' => 'required',

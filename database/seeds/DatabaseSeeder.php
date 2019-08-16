@@ -25,12 +25,13 @@ class DatabaseSeeder extends Seeder
             'name' => 'test1',
             'email' => 'test1@mail.com',
 			'position' => 'admin',
+			'email_verified_at' => now(),
             'password' => bcrypt('test1'),
         ]);
 		
 		// --- fake articles and users
 		// factory(App\Models\User::class, 50)->create();
-		// factory(App\Models\Article::class, 100)->create();
+		factory(App\Models\Article::class, 20)->create();
 		
 		$this->call('CourseSeeder');
 		$this->call('CMSCChecklistSeeder');
@@ -48,5 +49,7 @@ class DatabaseSeeder extends Seeder
 		$this->call('ProjectSeeder');
 		$this->call('OtherAchievementSeeder');
 		$this->call('GallerySeeder');
+		$this->call('ResearchStatusSeeder');
+		$this->call('MasterMathChecklistSeeder');
     }
 }

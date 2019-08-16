@@ -48,6 +48,12 @@ class CourseSeeder extends Seeder
 				'level' => 'Undergraduate',
 				'image' => 'physics.png',
 			],
+			[
+				'title' => 'Master of Science in Mathematics',
+				'uri' => 'master-mathematics',
+				'level' => 'Post-graduate',
+				'image' => 'mathematics.jpg',
+			],
 			/* [
 				'title' => '',
 				'uri' => '',

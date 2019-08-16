@@ -32,6 +32,13 @@
 							<option value="{{$author->user_id}}" @if($pub['user_id'] == $author->user_id) selected @endif>{{$author->first_name ?? ''}} {{$author->middle_name ?? ''}} {{$author->last_name ?? ''}}</option>
 						@endforeach
 						</select>
+					@elseif($field['name'] == 'status_id')
+						<label class="form-check-label" for="{{$field['name']}}">{{$field['title']}}@if($field['required'])<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span>@endif</label>
+						<select name="{{$field['name']}}" class="form-control" id="{{$field['name']}}" autocomplete="off">
+
+							<option value="1" @if($pub['status_id'] == 1) selected @endif>Ongoing</option>
+							<option value="12" @if($pub['status_id'] == 2) selected @endif>Finished</option>
+						</select>
 					@elseif($field['type'] == 'file')
 						<div class="input-group">
 							<div class="input-group-prepend">

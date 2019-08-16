@@ -6,8 +6,7 @@
 <div class="container-fluid">
 	<div class="col-xl-12 display-1 d-flex justify-content-center align-items-center text-center" id="welcome-header">
 		<img src="{{asset('assets/images/title1.jpeg')}}" alt="title1" class="hvr-fade">
-		<span class="d-none d-sm-block text-center display-3 title-text" style="z-index: 1; margin-bottom: 20vh;"><strong>University of the Philippines Baguio</strong></span>
-		<span class="text-center display-4 title-text" style="z-index: 1; margin-top: 20vh;">College of Science</span>
+		<span class="d-none d-sm-block text-center display-3 title-text" style="z-index: 1; margin-bottom: 20vh;"><strong>University of the Philippines Baguio<br>College of Science</strong></span>
 		<div class="down-arrow bounce"></div>
 	</div>
 </div>

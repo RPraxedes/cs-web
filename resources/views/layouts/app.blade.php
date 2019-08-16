@@ -49,7 +49,7 @@
 							</div>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('research')?'active':''}} animated fadeInDown delay-2" href="{{route('news')}}">News</a>
+							<a class="nav-link {{request()->is('news')?'active':''}} animated fadeInDown delay-2" href="{{route('news')}}">News</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link {{request()->is('research')?'active':''}} animated fadeInDown delay-3" href="{{route('research')}}">Research</a>
@@ -64,7 +64,7 @@
 							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-6" href="{{route('about')}}">About Us</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-7" href="{{route('gallery')}}">Gallery</a>
+							<a class="nav-link {{request()->is('gallery')?'active':''}} animated fadeInDown delay-7" href="{{route('gallery')}}">Gallery</a>
 						</li>
 						<!--<li class="nav-item">
 							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-7" href="{{url('/secret')}}">Secret</a>
@@ -110,11 +110,11 @@
 		<div class="container-fluid footer half-height">
 			<div class="row">
 				<div class="col-sm-6 float-left text-right">
-					<h3><strong>UPB Links</strong></h3>
+					<h3><strong>UP Baguio Links</strong></h3>
 					<ul class="list-unstyled">
-						<li>UPB iLib</li>
-						<li>UPB Learning Resource Center</li>
-						<li>UPB Graduate Program Office</li>
+						<li>UP Baguio iLib</li>
+						<li>UP Baguio Learning Resource Center</li>
+						<li>UP Baguio Graduate Program Office</li>
 						<li>SAIS Website</li>
 						<li>SFA Online</li>
 					</ul>

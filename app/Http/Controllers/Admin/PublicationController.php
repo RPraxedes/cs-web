@@ -110,7 +110,7 @@ class PublicationController extends Controller
 				'value' => NULL,
 			],
 			[
-				'title' => 'Entry Author',
+				'title' => 'Associated Author',
 				'name' => 'user_id',
 				'type' => 'select',
 				'required' => 'required',
@@ -195,7 +195,7 @@ class PublicationController extends Controller
 				'value' => NULL,
 			],
 			[
-				'title' => 'Entry Author',
+				'title' => 'Associated Author',
 				'name' => 'user_id',
 				'type' => 'select',
 				'required' => 'required',
