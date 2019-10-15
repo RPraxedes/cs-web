@@ -19,10 +19,6 @@
 				class: 'table table-striped'
 			},
 			image_advtab: true,
-			/* Automatic Image Upload (wip)
-			image_uploadtab: true,
-			images_upload_url: true,
-			*/
 		});
 	</script>
 @endsection
@@ -44,7 +40,7 @@
 							<input name="title" class="form-control form-control-lg" type="text" placeholder="Course Title" value="{{$page->title}}" required data-toggle="tooltip" data-placement="top" title="Which degree program checklist does this belong?"><br>
 							<textarea name="body" id="tinytextarea" class="w-100" placeholder="What's the scoop?">{{$page->body}}</textarea>
 						</div>
-						
+
 						<button type="submit" class="btn btn-primary float-right">Save</button>
 					</form>
 				</div>

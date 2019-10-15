@@ -12,7 +12,8 @@ use App\Http\Controllers\Controller;
 class GalleryController extends Controller
 {
     public function viewall(){
-		$gallery = Gallery::all();
+      // should order by created_at(latest first), paginate this
+		$gallery = Gallery::orderBy('created_at', 'asc')->get();
 		$obj_actions = [
 			[
 				'name' => 'Add',
@@ -41,7 +42,7 @@ class GalleryController extends Controller
 			->with('category', 'Gallery Item')
 			->with('addExists', true);
 	}
-	
+
 	public function new(){
 		$fields = [
 			[
@@ -85,13 +86,13 @@ class GalleryController extends Controller
 			->with('category', 'Gallery Item')
 			->with('page_action', 'Add');
 	}
-	
+
 	public function add(Request $request){
 		$requestData = $request->all();
-		
+
 		$imageName = 'gallery\\'.time().'.'.request()->file('filename')->getClientOriginalExtension();
 		$requestData['filename'] = $imageName;
-		
+
 		$pub = new Gallery($requestData);
 		if(!isset($pub->alt)){
 			$pub->alt = '...';
@@ -102,12 +103,12 @@ class GalleryController extends Controller
 		$pub->created_at = Carbon::now()->toDateTimeString();
 		$pub->updated_at = Carbon::now()->toDateTimeString();
 		$pub->save();
-		
-		request()->file('filename')->move(public_path('images\gallery'), $imageName);
-		
+
+		request()->file('filename')->move(public_path('images/gallery'), $imageName);
+
 		return redirect()->route('admin.gallery.viewall')->with('alert-success', 'Image successfully added!');
 	}
-	
+
 	public function edit($id, Request $request){
 		$image = Gallery::find($id)->attributesToArray();
 		$faculty = Auth::user();
@@ -154,7 +155,7 @@ class GalleryController extends Controller
 		->with('routeprefix', 'admin')
 		->with('page_action', 'Edit');
 	}
-	
+
 	public function save($id, Request $request){
 		$requestData = $request->all();
 		$image = Gallery::find((int)$id);
@@ -178,7 +179,7 @@ class GalleryController extends Controller
 		}
 		return redirect()->route('admin.gallery.viewall')->with('alert-success', 'Image successfully changed!');
 	}
-	
+
 	public function delete($id){
 		$image = Gallery::find((int)$id);
 		File::delete(public_path().'\\images\\'.$image->filename);

@@ -49,6 +49,15 @@
 				</div>
 			</div>
 			@endif
+      @if($faculty->current_courses == '' || $faculty->current_courses == NULL)
+      @else
+  			<div class="card animated fadeInRight delay-7 margin-bottom">
+  				<div class="card-body">
+  					<h5 class="card-title">Courses Currently Teaching</h5>
+              {!!$faculty->current_courses!!}
+  				</div>
+  			</div>
+      @endif
 		</div>
 		<div class="col-md-12 animated fadeInDown delay-10">
 			<h3 class="margin-top margin-bottom">Academic Profile</h3>

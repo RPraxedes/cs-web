@@ -49,12 +49,12 @@ class ProfileController extends Controller
 			return redirect()->route('dash')->with('alert-warning', 'No profile found!');
 		}
 	}
-	
+
 	public function create(){
 		$status = FacultyStatus::all();
 		return view('user.faculty', ['faculty_info' => NULL], ['status' => $status]);
 	}
-	
+
 	public function edit(){
 		$faculty = Faculty::where('user_id', '=', Auth::user()->id)->get();
 		$status = FacultyStatus::all();
@@ -63,10 +63,10 @@ class ProfileController extends Controller
 		return view('user.faculty', ['faculty_info' => $faculty->first(), 'status' => $status, 'dept' => $dept, 'routeprefix' => $routeprefix]);
     }
 
-	
+
 	public function save(Request $request){
 		$requestData = $request->all();
-		if(isset($requestData['profile_image'])){			
+		if(isset($requestData['profile_image'])){
 			$requestData['profile_image'] = time().'.'.request()->file('profile_image')->getClientOriginalExtension();
 		}
 		if($requestData['dept_id'] == "0"){
@@ -84,6 +84,7 @@ class ProfileController extends Controller
 			'phd_degree' => $requestData['phd_degree'],
 			'research_interest' => $requestData['research_interest'],
 			'contact_info' => $requestData['contact'],
+      'current_courses' => $requestData['current_courses'],
 			'profile_alt' => $requestData['first_name'].' '.$requestData['middle_name'].' '.$requestData['last_name'],
 			'status_id' => (int)$requestData['status_id'],
 		]);
@@ -97,14 +98,14 @@ class ProfileController extends Controller
 			'updated_at' => Carbon::now()->toDateTimeString(),
 		]);
 		if(isset($requestData['profile_image'])){
-			$faculty->update([				
+			$faculty->update([
 				'profile_image' => $requestData['profile_image'],
 			]);
 			request()->file('profile_image')->move(public_path('images'), $requestData['profile_image']);
 		}
 		return redirect()->route('dash')->with('alert-success', 'Profile successfully saved!');
 	}
-	
+
 	public function modify(Request $request){
 		$requestData = $request->all();
 		if($requestData['dept_id'] == "0"){
@@ -122,6 +123,7 @@ class ProfileController extends Controller
 			'phd_degree' => $requestData['phd_degree'],
 			'research_interest' => $requestData['research_interest'],
 			'contact_info' => $requestData['contact'],
+      'current_courses' => $requestData['current_courses'],
 			'status_id' => (int)$requestData['status_id'],
 			'updated_at' => Carbon::now()->toDateTimeString(),
 		]);
@@ -135,7 +137,7 @@ class ProfileController extends Controller
 		}
 		return redirect()->route('dash')->with('alert-success', 'Profile successfully saved!');
 	}
-	
+
 	public function delete(Request $request){
 		$requestData = $request->all();
 		$faculty = Faculty::where('user_id', '=', (int)Auth::user()->id);
@@ -143,7 +145,7 @@ class ProfileController extends Controller
 		$faculty->delete();
 		return redirect()->route('dash')->with('alert-success', 'Profile successfully removed!');
 	}
-	
+
 	public function publish(Request $request){
 		$requestData = $request->all();
 		Faculty::where('user_id', '=', (int)$requestData['user_id'])->update([
@@ -151,8 +153,8 @@ class ProfileController extends Controller
 		]);
 		return redirect()->route('dash')->with('alert-success', 'Profile can now be seen publicly!');
 	}
-	
+
 	public function verify(Request $request){
-		
+
 	}
 }

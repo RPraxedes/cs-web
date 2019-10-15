@@ -11,20 +11,17 @@
 @endsection
 
 @section('content')
-	<div class="container-fluid">
-		<div class="row justify-content-md-center">
-			<div class="col-md-7">
-			@foreach ($publications as $pub)
-				<div class="card margin-top">
-					<div class="card-body">
-						<p class="card-text">{{$pub->author ?? ''}}. <i>{{$pub->title ?? ''}}</i>. Description: {{$pub->description ?? ''}} ( Status: @if($pub->status_id == 1) Ongoing @else Finished @endif)</p>
-					</div>
-				</div>
-			@endforeach
+<div class="container-fluid">
+	<div class="row justify-content-md-center">
+	@foreach($departments as $dept)
+		<div class="card col-md-3 no-padding" style="margin-left: 20px;">
+			<div class="card-body d-flex flex-column">
+				<img src="{{asset('assets/images/upbcs-logo.png')}}" alt="dept" class=" card-img rounded">
+				<h5 class="card-title" style="margin-top: 30px;">{{$dept->department}}</h5>
+				<a href="{{route('research_by_department', ['department' => $dept->short_title])}}" class="btn btn-primary btn-block mt-auto">More</a>
 			</div>
 		</div>
-		<div class="row justify-content-md-center">
-			{{$publications->render()}}
-		</div>
+	@endforeach
 	</div>
+</div>
 @endsection

@@ -51,7 +51,7 @@ class ProjectController extends Controller
 			->with('category', 'Current Research Project')
 			->with('addExists', true);
 	}
-	
+
 	public function new(){
 		$faculty = Faculty::all();
 		$fields = [
@@ -60,57 +60,29 @@ class ProjectController extends Controller
 				'name' => 'title',
 				'type' => 'text',
 				'required' => 'required',
-				'placeholder' => 'Project Title',
-				'value' => NULL,
+				'placeholder' => 'Project Title'
 			],
 			[
 				'title' => 'Author/s',
 				'name' => 'author',
 				'type' => 'text',
 				'required' => 'required',
-				'placeholder' => 'Project Author/s',
-				'value' => NULL,
+				'placeholder' => 'Project Author/s'
 			],
-			/* [
-				'title' => 'Date Published',
-				'name' => 'published_date',
+			[
+				'title' => 'Date Started',
+				'name' => 'started_date',
 				'type' => 'date',
 				'required' => 'required',
-				'placeholder' => '',
-				'value' => NULL,
+				'placeholder' => ''
 			],
 			[
-				'title' => 'Type',
-				'name' => 'type',
+				'title' => 'Funding',
+				'name' => 'funding',
 				'type' => 'text',
 				'required' => NULL,
-				'placeholder' => 'Non-refereed, Refereed-institutional, Local, National, or International',
-				'value' => NULL,
+				'placeholder' => ''
 			],
-			[
-				'title' => 'Journal',
-				'name' => 'journal',
-				'type' => 'text',
-				'required' => 'required',
-				'placeholder' => 'Name of Journal',
-				'value' => NULL,
-			],
-			[
-				'title' => 'Volume',
-				'name' => 'volume',
-				'type' => 'text',
-				'required' => NULL,
-				'placeholder' => 'Volume of Journal',
-				'value' => NULL,
-			],
-			[
-				'title' => 'Link to Publisher or Paper',
-				'name' => 'link',
-				'type' => 'text',
-				'required' => NULL,
-				'placeholder' => 'http://www.example.com',
-				'value' => NULL,
-			], */
 			[
 				'title' => 'Research Project Status',
 				'name' => 'status_id',
@@ -142,7 +114,6 @@ class ProjectController extends Controller
 		return view('admin.editentry')
 			->with('pub', NULL)
 			->with('faculty', $faculty)
-			/* ->with('status', $status) */
 			->with('fields', $fields)
 			->with('action', $action)
 			->with('category', 'Current Research Project')
@@ -150,7 +121,7 @@ class ProjectController extends Controller
 			->with('routeprefix', 'admin')
 			->with('page_action', 'Add');
 	}
-	
+
 	public function edit($id){
 		$publication = Project::find((int)$id)->attributesToArray();
 		$faculty = Faculty::all();		//for user_id in add function
@@ -171,45 +142,34 @@ class ProjectController extends Controller
 				'placeholder' => 'Publication Author/s',
 				'value' => NULL,
 			],
-			[
-				'title' => 'Date Published',
-				'name' => 'published_date',
+      [
+				'title' => 'Date Started',
+				'name' => 'started_date',
 				'type' => 'date',
 				'required' => 'required',
+        'placeholder' => NULL,
+        'value' => NULL,
+			],
+			[
+				'title' => 'Funding',
+				'name' => 'funding',
+				'type' => 'text',
+				'required' => NULL,
+				'placeholder' => '',
+			],
+      [
+				'title' => 'Research Project Status',
+				'name' => 'status_id',
+				'type' => 'select',
+				'required' => NULL,
 				'placeholder' => NULL,
-				'value' => NULL,
 			],
-			[
-				'title' => 'Type',
-				'name' => 'type',
-				'type' => 'text',
+      [
+				'title' => 'Description',
+				'name' => 'description',
+				'type' => 'textarea',
 				'required' => NULL,
-				'placeholder' => 'Non-refereed, Refereed-institutional, Local, National, or International',
-				'value' => NULL,
-			],
-			[
-				'title' => 'Journal',
-				'name' => 'journal',
-				'type' => 'text',
-				'required' => 'required',
-				'placeholder' => 'Name of Journal',
-				'value' => NULL,
-			],
-			[
-				'title' => 'Volume',
-				'name' => 'volume',
-				'type' => 'text',
-				'required' => NULL,
-				'placeholder' => 'Volume of Journal',
-				'value' => NULL,
-			],
-			[
-				'title' => 'Link to Publisher or Paper',
-				'name' => 'link',
-				'type' => 'text',
-				'required' => NULL,
-				'placeholder' => 'http://www.example.com',
-				'value' => NULL,
+				'placeholder' => 'What is the research project all about?',
 			],
 			[
 				'title' => 'Associated Author',
@@ -236,7 +196,7 @@ class ProjectController extends Controller
 		->with('routeprefix', 'admin')
 		->with('page_action', 'Edit');
 	}
-	
+
 	public function add(Request $request){
 		$proj = new Project($request->all());
 		$proj->user_id = (int)$request->user_id;
@@ -245,34 +205,31 @@ class ProjectController extends Controller
 		$proj->save();
 		return redirect()->route('admin.proj.viewall')->with('alert-success', 'Project successfully added!');
 	}
-	
+
 	public function save($id, Request $request){
 		Project::find((int)$id)->update([
 			'title' => $request->title,
 			'author' => $request->author,
-			'published_date' => $request->published_date,
-			'type' => $request->type,
-			'journal' => $request->journal,
-			'volume' => $request->volume,
-			'link' => $request->link,
+      'started_date' => $request->started_date,
+			'funding' => $request->funding,
 			'user_id' => $request->user_id,
 			'updated_at' => Carbon::now()->toDateTimeString(),
 		]);
 		return redirect()->route('admin.proj.viewall')->with('alert-success', 'Project successfully changed!');
 	}
-	
+
 	public function delete($id){
 		Project::find((int)$id)->delete();
 		return redirect()->route('admin.proj.viewall')->with('alert-success', 'Project successfully deleted!');
 	}
-	
+
 	public function publish($id){
 		Project::find((int)$id)->update([
 			'published_at' => Carbon::now()->toDateTimeString()
 		]);
 		return redirect()->route('admin.proj.viewall')->with('alert-success', 'Project can now be publicly seen in your profile!');
 	}
-	
+
 	public function moveToPublication($id){
 		$proj = Project::find((int)$id);
 		$proj->id = NULL;

@@ -3,13 +3,13 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="icon" href="{{asset('favicon.ico')}}" type="image/gif"> 
+		<link rel="icon" href="{{asset('favicon.ico')}}" type="image/gif">
 
 		<title>@yield('title') - College of Science</title>
-		
+
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
-		
+
 		<!-- JQuery -->
 		<script src="{{asset('js/jquery/jquery-3.4.1.min.js')}}"></script>
 		<!-- Bootstrap -->
@@ -34,7 +34,7 @@
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-			
+
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<!-- Left side of the navbar, Page Links -->
 					<ul class="navbar-nav mr-auto">
@@ -65,6 +65,9 @@
 						</li>
 						<li class="nav-item">
 							<a class="nav-link {{request()->is('gallery')?'active':''}} animated fadeInDown delay-7" href="{{route('gallery')}}">Gallery</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link {{request()->is('src')?'active':''}} animated fadeInDown delay-8" href="{{route('src')}}">Science Research Center</a>
 						</li>
 						<!--<li class="nav-item">
 							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-7" href="{{url('/secret')}}">Secret</a>
@@ -106,7 +109,7 @@
 		</nav>
 		<div id="blank-navbar" class="hidden"></div>
 		@yield('content')
-		
+
 		<div class="container-fluid footer half-height">
 			<div class="row">
 				<div class="col-sm-6 float-left text-right">

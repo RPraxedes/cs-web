@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Publication extends Model
 {
-    protected $table = 'publications';
-	
+  protected $table = 'publications';
+
 	protected $fillable = [
 		'title',
 		'author',
@@ -19,4 +19,9 @@ class Publication extends Model
 		'user_id',
 		'published_at'
 	];
+
+  public function faculty()
+  {
+      return $this->belongsTo('App\Models\Faculty', 'user_id', 'user_id');
+  }
 }

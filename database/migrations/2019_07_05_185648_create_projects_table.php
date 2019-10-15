@@ -17,17 +17,14 @@ class CreateProjectsTable extends Migration
             $table->bigIncrements('id');
 			$table->string('title')->nullable();					//publication title
 			$table->string('author')->nullable();
-			/* $table->date('published_date')->nullable();
-			$table->string('type')->nullable();
-			$table->string('journal')->nullable();
-			$table->string('volume')->nullable();
-			$table->string('link')->nullable(); */
+			$table->date('started_date')->nullable();
+			$table->string('funding')->nullable();
 			$table->bigInteger('status_id')->unsigned();
 			$table->mediumText('description')->nullable();
 			$table->bigInteger('user_id')->unsigned();	// so as to determine who wrote the entry
-			$table->timestamp('published_at')->nullable();
+      $table->timestamp('published_at')->nullable();
             $table->timestamps();
-			
+
 			$table->foreign('status_id')
 					->references('id')
 					->on('research_project_status');

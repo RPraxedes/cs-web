@@ -24,13 +24,14 @@ class CreateFacultyTable extends Migration
 			$table->string('phd_degree')->nullable();
 			$table->string('research_interest')->nullable();
 			$table->string('contact_info')->nullable();
+      $table->mediumText('current_courses')->nullable();
 			$table->string('profile_image')->nullable();
 			$table->string('profile_alt')->nullable();		//for profile image
 			$table->bigInteger('dept_id')->unsigned();
 			$table->bigInteger('status_id')->unsigned();
 			$table->timestamp('published_at')->nullable();
             $table->timestamps();
-			
+
 			$table->foreign('user_id')
 					->references('id')
 					->on('users');

@@ -36,13 +36,15 @@
         <div class="col-md-9">
 				@if($category == 'Other Achievement' && $publications->isEmpty())
 				You currently have nothing written.
-				
+
 				@endif
 				@foreach ($publications as $pub)
 				<div class="card margin-top">
 					<div class="card-body">
-					@if ($category == 'Publication' || $category == 'Current Research Project')
+					@if ($category == 'Publication')
 						<a href="{{url($pub->link ?? '')}}" class="card-link">{{$pub->author ?? ''}} ({{(\Carbon\Carbon::parse($pub->published_date)->year)}}). <i>{{$pub->title ?? ''}}</i>. {{$pub->journal ?? ''}} Volume {{$pub->volume ?? ''}}</a>
+          @elseif ($category == 'Current Research Project')
+						{{$pub->author ?? ''}}, <i>{{$pub->title ?? ''}}</i>. <br>Description: {{$pub->description ?? ''}} ( Status: @if($pub->status_id == 1) Ongoing @else Finished @endif) @if($pub->link)<a href="{{url($pub->link ?? '')}}" class="card-link">[link]</a>@endif
 					@elseif ($category == 'Conference')
 						<a href="{{url($pub->link ?? '')}}" class="card-link"><i>{{$pub->paper_title ?? ''}}</i>. {{$pub->author ?? ''}} {{\Carbon\Carbon::parse($pub->conference_date)->format('F d, Y')}}. {{$pub->conference_title ?? ''}}. {{$pub->venue ?? ''}}</a>
 					@elseif ($category == 'Other Achievement')

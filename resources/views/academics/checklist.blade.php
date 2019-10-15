@@ -8,14 +8,17 @@
 	@endif
 @endsection
 
+@section('header')
+<div class="row">
+	<div class="col-xl-12 display-4 title text-center margin-top margin-bottom">
+		{{$pages->first()->title}}
+	</div>
+</div>
+@endsection
+
 @section('content')
 	<div class="container">
-		<div class="row">
-			<div class="col-xl-12 display-4 title text-center margin-top margin-bottom">
-				{{$pages->first()->title}}
-			</div>
-		</div>
-		<div class="row">
+		<div class="row margin-top">
 			<div class="col-md-4 offset-md-7 highlight">
 				{!!$pages->first()->body!!}
 			@if($position == 'admin')
@@ -31,7 +34,7 @@
 			<div class="col-md-5 highlight">
 				{!!$pages[$i]->body!!}
 				@if($position == 'admin')
-					<form action="{{route('checklist.edit', ['id' => $pages[$i]->id])}}" method="post">
+					<form action="{{route('checklist.edit', ['id' => $pages[$i]->checklists_id])}}" method="post">
 						@csrf
 						<button type="submit" class="btn btn-secondary btn-sm edit-button float-right">Edit Section</a>
 					</form>

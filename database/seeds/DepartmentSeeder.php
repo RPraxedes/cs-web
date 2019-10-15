@@ -25,7 +25,7 @@ class DepartmentSeeder extends Seeder
 				'short_title' => 'math-comsci',
 			],
 			[
-				'department' => 'HKP Faculty',
+				'department' => 'Human Kinetics Program Faculty',
 				'short_title' => 'hkp',
 			],
 			[

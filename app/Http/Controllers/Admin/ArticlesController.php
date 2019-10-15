@@ -17,11 +17,15 @@ use App\Http\Controllers\Controller;
 class ArticlesController extends Controller
 {
 	public function viewarticle(){
-		$user = Auth::user();
-		$userArray = $user->articles->makeHidden('user_id');
+		$users = User::wherePosition('admin')->get();
+		$userArray = [];
+		foreach ($users as $user) {
+			$userArray = Article::with('user')->get();
+		}
 		$obj_name = "My Articles";
 		$obj_columns = [
 			"id",
+			"user_id",
 			"title",
 			"body",
 			"header_image",
@@ -63,7 +67,7 @@ class ArticlesController extends Controller
 			->with('obj_name', $obj_name)
 			->with('obj_actions', $obj_actions);
 	}
-	
+
 	public function createbuilder($type){	// returns article builder page
 		if($type == 'news' || $type == 'research'){
 			return view('user.create', ['article' => NULL], ['type' => $type]);
@@ -71,12 +75,12 @@ class ArticlesController extends Controller
 			return response(view('errors.405'), 405);
 		}
 	}
-	
+
 	public function editarticle(Request $request){
 		$article = Article::find((int)$request->id);
 		return view('user.edit', ['article' => $article]);
 	}
-	
+
 	public function save(Request $request){	// modification
 		$requestData = $request->all();
 		$article = Article::find((int)$requestData['id']);
@@ -92,7 +96,7 @@ class ArticlesController extends Controller
 				'header_alt' => $requestData['header_alt'],
 				'updated_at' => Carbon::now()->toDateTimeString(),
 			]);
-		}else{	// no change to header image 
+		}else{	// no change to header image
 			$article->update([
 				'title' => $requestData['title'],
 				'body' => $requestData['body'],
@@ -102,14 +106,14 @@ class ArticlesController extends Controller
 		}
 		return redirect()->route('admin.article.view')->with('alert-success', 'Article successfully saved!');
 	}
-	
+
 	public function delete(Request $request){
 		$article = Article::find((int)$request->id);
 		File::delete(public_path().'\\images\\'.$article->header_image);
 		Article::find((int)request('id'))->delete();
 		return redirect()->route('admin.article.view')->with('alert-success', 'Article successfully removed!');
 	}
-	
+
 	public function create(Request $request){	// first time save
 		$requestData = $request->all();
 		if(isset($requestData['header_image'])){
@@ -123,14 +127,14 @@ class ArticlesController extends Controller
 		Auth::user()->articles()->save($article);
 		return redirect()->route('admin.article.view')->with('alert-success', 'Article successfully saved!');
 	}
-	
+
 	public function publish(){
 		$article = Article::find((int)request('id'));
 		$article->published_at = Carbon::now()->toDateTimeString();
 		$article->save();
 		return redirect()->route('dash')->with('alert-success', 'Article successfully published!');
 	}
-	
+
 	public function preview(Request $request){
 		$article = Article::find((int)$request->id);
 		return view('articles.page', ['article' => $article]);

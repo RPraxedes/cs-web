@@ -25,6 +25,15 @@
 						@csrf
 						@method($action['method'])
 					@foreach($fields as $field)
+            @if($field['name'] == 'status_id')
+            <label class="form-check-label" for="{{$field['name']}}">{{$field['title']}}@if($field['required'])<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span>@endif</label>
+            <select name="{{$field['name']}}" class="form-control" id="{{$field['name']}}" autocomplete="off">
+
+              <option value="1" @if($pub['status_id'] == 1) selected @endif>Ongoing</option>
+              <option value="2" @if($pub['status_id'] == 2) selected @endif>Finished</option>
+            </select>
+              @continue
+            @endif
 						<label class="form-check-label" for="{{$field['name']}}">{{$field['title']}}@if($field['required'])<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span>@endif</label>
 						<input type="{{$field['type']}}" name="{{$field['name']}}" id="{{$field['name']}}" class="form-control" placeholder="{{$field['placeholder']}}" value="{{$pub[$field['name']] ?? $field['value']}}" {{$field['required']}}>
 						<br>

@@ -4,6 +4,20 @@
 
 @section('head')
 <script src="{{ asset('js/user.js') }}"></script>
+<!-- TinyMCE -->
+<script src="{{asset('js/tinymce/tinymce.min.js')}}" crossorigin="anonymous"></script>
+<script>
+	tinymce.init({
+		selector: '#tinytextarea',
+		plugins: ["placeholder", "autosave", "code", "link", "lists"],
+		height: '600px',
+		menubar: "file edit view insert format",
+		toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist outdent indent | link",
+		autosave_restore_when_empty: true,
+		link_assume_external_targets: true,
+		target_list: false,
+	});
+</script>
 @endsection
 
 @section('content')
@@ -31,7 +45,7 @@
 								<input name="last_name" class="form-control" type="text" placeholder="Last Name" id="lname" @if(isset($faculty_info)) value="{{$faculty_info->last_name}}" @endif required><br>
 							</div>
 						</div>
-						
+
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text" id="inputGroupFileAddon01">Profile Image</span>
@@ -41,11 +55,9 @@
 								<label class="custom-file-label" for="inputGroupFile01">@if(isset($faculty_info)) {{$faculty_info->profile_image}} @else Choose file (preferably portrait image) @endif </label>
 							</div>
 						</div>
-						
-					@if(Auth::user()->position == 'admin')
-						<input type="hidden" name="id" value="{{$faculty_info->user_id}}">
-					@endif
-						
+
+						<input type="hidden" name="user_id" value="{{$faculty_info->user_id}}">
+
 						<label class="form-check-label" for="department">Department</label>
 						<select name="dept_id" class="form-control" id="department" autocomplete="off" required>
 							<option value="0"><span class="text-muted">Choose a department</span></option>
@@ -53,23 +65,26 @@
 							<option value={{$option->id}} {{isset($faculty_info) && $faculty_info->dept_id == $option->id?'selected':''}}>{{$option->department}}</option>
 						@endforeach
 						</select><br>
-						
+
 						<label class="form-check-label" for="facultyPosition">Faculty Position<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span></label>
 						<input name="faculty_position" class="form-control" type="text" placeholder="Faculty Position" id="facultyPosition" @if(isset($faculty_info)) value="{{$faculty_info->position}}" @endif required><br>
-						
+
 						<label class="form-check-label" for="facultyBSDegree">B.S. Degree<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span></label>
 						<input name="bs_degree" class="form-control" type="text" placeholder="Example: B.S. Math, cum laude, University of the Philippines, 2015" id="facultyBSDegree" @if(isset($faculty_info)) value="{{$faculty_info->bs_degree}}" @endif data-toggle="tooltip" data-placement="top" title="B.S. Degree, College or University, Year obtained" required><br>
 						<label class="form-check-label" for="facultyMSDegree">M.S. Degree</label>
 						<input name="ms_degree" class="form-control" type="text" placeholder="Example: M.S. Math, University of the Philippines, 2018" id="facultyMSDegree" @if(isset($faculty_info)) value="{{$faculty_info->ms_degree}}" @endif data-toggle="tooltip" data-placement="top" title="M.S. Degree, College or University, Year obtained"><br>
 						<label class="form-check-label" for="facultyPhDDegree">Ph.D. Degree</label>
 						<input name="phd_degree" class="form-control" type="text" placeholder="Example: Ph.D. Math, University of the Philippines, 2020" id="facultyPhDDegree" @if(isset($faculty_info)) value="{{$faculty_info->phd_degree}}" @endif  data-toggle="tooltip" data-placement="top" title="Ph.D. Degree, College or University, Year obtained"><br>
-						
+
 						<label class="form-check-label" for="researchInterest">Research Interest/s</label>
 						<input name="research_interest" class="form-control" type="text" placeholder="Topic/s (separated by commas)" id="researchInterest" @if(isset($faculty_info)) value="{{$faculty_info->research_interest}}" @endif><br>
-						
+
 						<label class="form-check-label" for="contactInfo">Contact Information</label>
 						<input name="contact" class="form-control" type="text" placeholder="Phone, Email" id="contactInfo" @if(isset($faculty_info)) value="{{$faculty_info->contact_info}}" @endif><br>
-						
+
+            <label class="form-check-label" for="currentCourses">Courses Currently Teaching</label>
+						<textarea name="current_courses" id="tinytextarea" class="w-100" placeholder='Write in a bulleted list the courses you are currently teaching this semester.'>{{$faculty_info->current_courses}}</textarea><br>
+
 						<label class="form-check-label" for="facultyStatus">Status</label>
 						<select name="status_id" class="form-control" id="facultyStatus" autocomplete="off">
 						@foreach($status as $option)
@@ -77,7 +92,7 @@
 						@endforeach
 						</select>
 						<br>
-						
+
 						<button type="submit" class="btn btn-success">Save Changes</button>
 					@if(isset($faculty_info) && Auth::user()->position == 'faculty')
 						<a role="button" href="{{route('faculty.pub.viewall')}}" class="btn btn-primary">Your Publications</a>

@@ -54,7 +54,7 @@ class FacultyController extends Controller
 			->with('obj_name', $obj_name)
 			->with('obj_actions', $obj_actions);
 	}
-	
+
 	public function edit(Request $request){
 		$faculty = Faculty::where('user_id', '=', $request->id)->get();
 		$status = FacultyStatus::all();
@@ -62,10 +62,10 @@ class FacultyController extends Controller
 		$routeprefix = "admin.faculty";
 		return view('user.faculty', ['faculty_info' => $faculty->first(), 'status' => $status, 'dept' => $dept, 'routeprefix' => $routeprefix]);
 	}
-	
+
 	public function save(Request $request){
 		$requestData = $request->all();
-		if(isset($requestData['profile_image'])){			
+		if(isset($requestData['profile_image'])){
 			$requestData['profile_image'] = time().'.'.request()->file('profile_image')->getClientOriginalExtension();
 		}
 		if($requestData['dept_id'] == "0"){
@@ -83,10 +83,11 @@ class FacultyController extends Controller
 			'phd_degree' => $requestData['phd_degree'],
 			'research_interest' => $requestData['research_interest'],
 			'contact_info' => $requestData['contact'],
+      'current_courses' => $requestData['current_courses'],
 			'profile_alt' => $requestData['first_name'].' '.$requestData['middle_name'].' '.$requestData['last_name'],
 			'status_id' => (int)$requestData['status_id'],
 		]);
-		$faculty = Faculty::where('user_id', '=', (int)$request->id);
+		$faculty = Faculty::where('user_id', '=', (int)$request->user_id);
 		if($faculty->value('created_at') == NULL){
 			$faculty->update([
 				'created_at' => Carbon::now()->toDateTimeString(),
@@ -96,20 +97,20 @@ class FacultyController extends Controller
 			'updated_at' => Carbon::now()->toDateTimeString(),
 		]);
 		if(isset($requestData['profile_image'])){
-			$faculty->update([				
+			$faculty->update([
 				'profile_image' => $requestData['profile_image'],
 			]);
 			request()->file('profile_image')->move(public_path('images'), $requestData['profile_image']);
 		}
 		return redirect()->route('dash')->with('alert-success', 'Profile successfully saved!');
 	}
-	
+
 	public function modify(Request $request){
 		$requestData = $request->all();
 		if($requestData['dept_id'] == "0"){
 			return redirect()->back();
 		}
-		$faculty = Faculty::where('user_id', '=', (int)$request->id);
+		$faculty = Faculty::where('user_id', '=', (int)$request->user_id);
 		$faculty->update([
 			'first_name' => $requestData['first_name'],
 			'middle_name' => $requestData['middle_name'],
@@ -121,6 +122,7 @@ class FacultyController extends Controller
 			'phd_degree' => $requestData['phd_degree'],
 			'research_interest' => $requestData['research_interest'],
 			'contact_info' => $requestData['contact'],
+      'current_courses' => $requestData['current_courses'],
 			'status_id' => (int)$requestData['status_id'],
 			'updated_at' => Carbon::now()->toDateTimeString(),
 		]);
@@ -134,7 +136,7 @@ class FacultyController extends Controller
 		}
 		return redirect()->route('dash')->with('alert-success', 'Profile successfully saved!');
 	}
-	
+
 	public function delete(Request $request){
 		$requestData = $request->all();
 		$faculty = Faculty::where('user_id', '=', (int)$request->id);
@@ -142,7 +144,7 @@ class FacultyController extends Controller
 		$faculty->delete();
 		return redirect()->route('dash')->with('alert-success', 'Profile successfully removed!');
 	}
-	
+
 	public function publish(Request $request){
 		$requestData = $request->all();
 		Faculty::where('user_id', '=', (int)$request->id)->update([
@@ -150,48 +152,4 @@ class FacultyController extends Controller
 		]);
 		return redirect()->route('dash')->with('alert-success', 'Profile can now be seen publicly!');
 	}
-	
-	/* public function pubviewall(){
-		$users = Publication::all();
-		$obj_name = "All Publications";
-		$obj_columns = [
-			"id",
-			"title",
-			"author",
-			"published_date",
-			"type",
-			"journal",
-			"volume",
-			"link",
-			"user_id",
-			"published_at",
-			"created_at",
-			"updated_at",
-		];
-		$obj_actions = [
-			[
-				'name' => 'Edit',
-				'route' => 'pub.edit',
-				'method' => 'post',
-				'button' => 'secondary'
-			],
-			[
-				'name' => 'Delete',
-				'route' => 'pub.delete',
-				'method' => 'post',
-				'button' => 'danger'
-			],
-			[
-				'name' => 'Publish',
-				'route' => 'pub.publish',
-				'method' => 'post',
-				'button' => 'success'
-			],
-		];
-		return view('user.viewall')
-			->with('objects', $users)
-			->with('obj_columns', $obj_columns)
-			->with('obj_name', $obj_name)
-			->with('obj_actions', $obj_actions);
-	} */
 }

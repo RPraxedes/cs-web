@@ -6,20 +6,18 @@ include calendar, transparency corner. eFOI
 
 registration: generate from full name
 	if cs admin, display cs admin only
-	after registraion, give generated password. upon login, redirect user to change password screen.
+	after registration, give generated password. upon login, redirect user to change password screen.
 	set up mailer system
 
 conference_date must accept more than one date
-use webpack.mix.js
 
 PRIORITY:
 	1. sort and search features for news, research, publications, and dashboard viewalls
 	2. Fix mobile layout
 	3. add confirmation modals to delete and publish functions
 	4. fix faculty functions after admin functions
-	
+
 	Admin Controllers functions:
-	Projects							(done except moveToPublications)
 	Departments
 		viewall
 		edit
@@ -31,7 +29,14 @@ PRIORITY:
 		add
 		edit
 		delete
-	
+
 Missing pages:
 	PhD Courses
 	RGEP Courses
+
+**TEDIOUS**
+  add chem
+  add faculty info
+	add more graduate Courses
+	--		add at end of checklist
+		( for more info. link to gpo )
