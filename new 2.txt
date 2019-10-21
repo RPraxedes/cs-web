@@ -35,17 +35,9 @@ Missing pages:
 	RGEP Courses
 Add "For more info, check the GPO website" link.
 
-**TEDIOUS**
+**BIG TASKS**
   add faculty info
-	add more graduate Courses
-	--		add at end of checklist
-		( for more info. link to gpo )
   add SRC and other photos to gallery
-
-
-**DONE**
-  added phd math
-  (missing: ms care)
 
 **PROBLEMS**
     GPO has incomplete information on the courses e.g. no description, no prereq, no units
