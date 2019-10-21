@@ -71,7 +71,7 @@ class PagesController extends Controller
 	}
 
 	public function phdcourses(){
-		$level = 'PhD';
+		$level = 'Doctorate';
 		$courses = Course::whereLevel($level)->get();
 		return view('academics.courses', ['courses'=> $courses, 'level' => $level]);
 	}

@@ -30,7 +30,7 @@
 			</div>
 		</div>
 		<div class="row justify-content-md-center">
-			@for ($i=1; $i<9; $i++)	<!--consists of total units and subjects per sem-->
+			@for ($i=1; $i<9; $i++)
 			<div class="col-md-5 highlight">
 				{!!$pages[$i]->body!!}
 				@if($position == 'admin')

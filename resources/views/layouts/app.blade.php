@@ -46,6 +46,7 @@
 								<a class="dropdown-item" href="{{route('faculty')}}">Faculty</a>
 								<a class="dropdown-item" href="{{route('courses')}}">Undergraduate Courses</a>
 								<a class="dropdown-item" href="{{route('gradcourses')}}">Graduate Courses</a>
+								<a class="dropdown-item" href="{{route('phdcourses')}}">Doctorate Courses</a>
 							</div>
 						</li>
 						<li class="nav-item">

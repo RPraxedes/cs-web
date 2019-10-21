@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
 			'email_verified_at' => now(),
 			'verified_at' => now(),
         ]);
-		
+
 		DB::table('users')->insert([
             'name' => 'test1',
             'email' => 'test1@mail.com',
@@ -28,11 +28,11 @@ class DatabaseSeeder extends Seeder
 			'email_verified_at' => now(),
             'password' => bcrypt('test1'),
         ]);
-		
+
 		// --- fake articles and users
 		// factory(App\Models\User::class, 50)->create();
 		factory(App\Models\Article::class, 20)->create();
-		
+
 		$this->call('CourseSeeder');
 		$this->call('CMSCChecklistSeeder');
 		$this->call('MathChecklistSeeder');
@@ -51,5 +51,7 @@ class DatabaseSeeder extends Seeder
 		$this->call('GallerySeeder');
 		$this->call('ResearchStatusSeeder');
 		$this->call('MasterMathChecklistSeeder');
+    $this->call('PhdMathChecklistSeeder');
+    $this->call('MasterCareChecklistSeeder');
     }
 }

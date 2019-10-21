@@ -64,13 +64,25 @@ class CourseSeeder extends Seeder
 				'title' => 'Master of Science in Mathematics',
 				'uri' => 'master-mathematics',
 				'level' => 'Graduate',
-				'image' => 'mathematics.jpg',
+				'image' => 'master-math.jpg',
 			],
 			[
 				'title' => 'Human Kinetics Program',
 				'uri' => 'hkp',
 				'level' => 'Undergraduate',
 				'image' => 'human-kinetics.jpg',
+			],
+			[
+				'title' => 'Doctor of Philosophy in Mathematics',
+				'uri' => 'phd-mathematics',
+				'level' => 'Doctorate',
+				'image' => 'phd-math.jpg',
+			],
+			[
+				'title' => 'Master of Science in Conservation and Restoration Ecology',
+				'uri' => 'master-care',
+				'level' => 'Graduate',
+				'image' => 'master-care.jpg',
 			],
 			/* [
 				'title' => '',
