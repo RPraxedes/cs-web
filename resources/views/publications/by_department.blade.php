@@ -4,7 +4,7 @@
 
 @section('header')
 <div class="row">
-	<div class="col-xl-12 display-1 title text-center">
+	<div class="col-xl-12 display-4 title header text-center">
 		Publications
 	</div>
 </div>

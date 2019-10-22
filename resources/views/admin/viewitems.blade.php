@@ -10,7 +10,7 @@
 <div class="container-fluid">
 	<div class="row justify-content-center">
 		<div class="col-md-10">
-		<div class="display-4 title margin-top margin-bottom">{{$category}}s</div>
+		<div class="display-2 title margin-top margin-bottom">{{$category}}s</div>
 		@foreach (['danger', 'warning', 'success', 'info'] as $msg)
 			@if(Session::has('alert-' . $msg))
 			<p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>

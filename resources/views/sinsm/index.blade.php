@@ -5,7 +5,7 @@
 @section('content')
 	<div class="container">
 		<div class="row">
-			<div class="col-xl-12 display-1 title text-center">
+			<div class="col-xl-12 display-4 title text-center">
 				SINSM
 				<h1>Summer Institute in the Natural Sciences and Mathematics</h1>
 			</div>

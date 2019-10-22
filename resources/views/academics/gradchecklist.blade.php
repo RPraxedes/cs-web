@@ -10,7 +10,7 @@
 
 @section('header')
 <div class="row">
-	<div class="col-xl-12 display-4 title text-center margin-top margin-bottom">
+	<div class="col-xl-12 display-4 title header text-center">
 		{{$pages->first()->title}}
 	</div>
 </div>

@@ -4,7 +4,7 @@
 
 @section('header')
 <div class="row">
-	<div class="col-xl-12 display-1 title text-center margin-bottom margin-top">
+	<div class="col-xl-12 display-4 title header text-center">
 		The College of Science
 	</div>
 </div>

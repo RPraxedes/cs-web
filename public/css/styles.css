@@ -76,6 +76,13 @@ nav {
 	align-items: center;
 }
 
+.header {
+  padding: 40px 0px;
+  background-color: #7B1815;
+  letter-spacing: 0.12rem;
+  font-weight: normal;
+}
+
 .title-text {
 	position: absolute;
 	z-index: 1;

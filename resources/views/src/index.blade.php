@@ -4,7 +4,7 @@
 
 @section('header')
 <div class="row">
-	<div class="col-xl-12 display-1 title text-center margin-top margin-bottom">
+	<div class="col-xl-12 display-4 title header text-center">
 		Science Research Center
 	</div>
 </div>
@@ -12,6 +12,6 @@
 
 @section('content')
 <div class="container-fluid">
-	
+
 </div>
 @endsection
