@@ -30,11 +30,6 @@ PRIORITY:
 		edit
 		delete
 
-**PRIORITY**
-Missing pages:
-	RGEP Courses
-Add "For more info, check the GPO website" link.
-
 **BIG TASKS**
   add faculty info
   add SRC and other photos to gallery
