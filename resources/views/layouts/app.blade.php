@@ -44,6 +44,7 @@
 							</a>
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAcademics">
 								<a class="dropdown-item" href="{{route('faculty')}}">Faculty</a>
+								<a class="dropdown-item" href="{{route('checklist.get', ['name' => 'rgep'])}}">RGEP Courses</a>
 								<a class="dropdown-item" href="{{route('courses')}}">Undergraduate Courses</a>
 								<a class="dropdown-item" href="{{route('gradcourses')}}">Graduate Courses</a>
 								<a class="dropdown-item" href="{{route('phdcourses')}}">Doctorate Courses</a>

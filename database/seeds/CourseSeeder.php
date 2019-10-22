@@ -84,6 +84,12 @@ class CourseSeeder extends Seeder
 				'level' => 'Graduate',
 				'image' => 'master-care.jpg',
 			],
+      [
+        'title' => 'The Revitalized General Education Program',
+        'uri' => 'rgep',
+        'level' => 'RGEP',
+        'image' => ''
+      ]
 			/* [
 				'title' => '',
 				'uri' => '',

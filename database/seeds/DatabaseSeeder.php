@@ -53,5 +53,6 @@ class DatabaseSeeder extends Seeder
 		$this->call('MasterMathChecklistSeeder');
     $this->call('PhdMathChecklistSeeder');
     $this->call('MasterCareChecklistSeeder');
+    $this->call('RgepChecklistSeeder');
     }
 }

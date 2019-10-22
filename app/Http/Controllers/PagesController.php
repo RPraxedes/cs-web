@@ -87,7 +87,9 @@ class PagesController extends Controller
 			$user = NULL;
 		}
 
-		if($pages->first()->level != 'Undergraduate'){
+    if($pages->first()->level == 'RGEP'){
+      return view('academics.rgepchecklist', ['pages' => $pages, 'position' => $user]);
+    }elseif($pages->first()->level != 'Undergraduate'){
 			return view('academics.gradchecklist', ['pages' => $pages, 'position' => $user]);
 		}else{
 			return view('academics.checklist', ['pages' => $pages, 'position' => $user]);
