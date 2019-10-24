@@ -3,7 +3,7 @@
 @section('title' , 'Your Articles')
 
 @section('content')
-	<div class="container-fluid">
+	<div class="container-fluid margin-top-80">
 		<div class="row">
 			<div class="col-xl-12 display-4 title text-center">
 				Your Articles

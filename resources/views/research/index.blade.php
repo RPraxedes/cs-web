@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid margin-top-80">
 	<div class="row justify-content-md-center">
 	@foreach($departments as $dept)
 		<div class="card col-md-3 no-padding" style="margin-left: 20px;">

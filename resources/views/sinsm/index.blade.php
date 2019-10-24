@@ -2,15 +2,22 @@
 
 @section('title' , 'SINSM')
 
+@section('header')
+<div class="row">
+	<div class="col-xl-12 display-4 title header text-center">
+		SINSM
+	</div>
+</div>
+@endsection
+
 @section('content')
-	<div class="container">
+	<div class="container margin-top-80">
 		<div class="row">
 			<div class="col-xl-12 display-4 title text-center">
-				SINSM
 				<h1>Summer Institute in the Natural Sciences and Mathematics</h1>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row margin-top-80">
 			<div class="col-md-12">
 				<div class="text-justify">
 					<p>

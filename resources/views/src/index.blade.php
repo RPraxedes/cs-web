@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid margin-top-80">
 
 </div>
 @endsection

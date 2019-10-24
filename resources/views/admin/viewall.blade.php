@@ -4,7 +4,7 @@
 
 @section('content')
 	<!--General purpose view all blade template-->
-	<div class="container-fluid">
+	<div class="container-fluid margin-top-80">
 		<div class="row margin-top margin-bottom">
 			<div class="col-xl-12 display-4 title text-center">
 				View {{$obj_name}}

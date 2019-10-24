@@ -63,7 +63,7 @@
 							<a class="nav-link {{request()->is('sinsm')?'active':''}} animated fadeInDown delay-5" href="{{route('sinsm')}}">SINSM</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-6" href="{{route('about')}}">About Us</a>
+							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-6" href="{{route('about')}}">About</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link {{request()->is('gallery')?'active':''}} animated fadeInDown delay-7" href="{{route('gallery')}}">Gallery</a>
@@ -112,7 +112,7 @@
 		<div id="blank-navbar" class="hidden"></div>
 		@yield('content')
 
-		<div class="container-fluid footer half-height">
+		<div class="container-fluid footer half-height margin-top-80">
 			<div class="row">
 				<div class="col-sm-6 float-left text-right">
 					<h3><strong>UP Baguio Links</strong></h3>

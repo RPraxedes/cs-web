@@ -1,15 +1,23 @@
 @extends('layouts.app')
 
-@section('title', 'About Us')
+@section('title', 'About')
+
+@section('header')
+<div class="row">
+	<div class="col-xl-12 display-4 title header text-center">
+		About
+	</div>
+</div>
+@endsection
 
 @section('content')
-	<div class="container">
+	<div class="container margin-top-80">
 		<div class="row">
 			<div class="col-xl-12 display-4 title text-center">
 				The College of Science
 			</div>
 		</div>
-		<div class="row">
+		<div class="row margin-top-80">
 			<div class="col-md-4 text-center">
 				<img src="{{asset('assets/images/upbcs-logo.png')}}">
 			</div>

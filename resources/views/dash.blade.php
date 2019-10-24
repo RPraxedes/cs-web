@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid margin-top-80">
     <div class="row justify-content-center">
         <div class="col-md-10 margin-top">
 		@if(Auth::user()->verified_at != NULL)
