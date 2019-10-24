@@ -68,11 +68,8 @@
 						<li class="nav-item">
 							<a class="nav-link {{request()->is('gallery')?'active':''}} animated fadeInDown delay-7" href="{{route('gallery')}}">Gallery</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link {{request()->is('src')?'active':''}} animated fadeInDown delay-8" href="{{route('src')}}">Science Research Center</a>
-						</li>
 						<!--<li class="nav-item">
-							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-7" href="{{url('/secret')}}">Secret</a>
+							<a class="nav-link {{request()->is('src')?'active':''}} animated fadeInDown delay-8" href="{{route('src')}}">Science Research Center</a>
 						</li>-->
 					</ul>
 				<!-- Right side of the navbar, Authentication Links -->
