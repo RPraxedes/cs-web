@@ -68,9 +68,9 @@
 						<li class="nav-item">
 							<a class="nav-link {{request()->is('gallery')?'active':''}} animated fadeInDown delay-7" href="{{route('gallery')}}">Gallery</a>
 						</li>
-						<!--<li class="nav-item">
+						<li class="nav-item">
 							<a class="nav-link {{request()->is('src')?'active':''}} animated fadeInDown delay-8" href="{{route('src')}}">Science Research Center</a>
-						</li>-->
+						</li>
 					</ul>
 				<!-- Right side of the navbar, Authentication Links -->
 					<ul class="navbar-nav ml-auto animated fadeInDown delay-7">
