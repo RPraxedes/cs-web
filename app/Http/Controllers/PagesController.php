@@ -125,7 +125,7 @@ class PagesController extends Controller
 	}
 
 	public function src(){
-    $images = Gallery::paginate(12);
+    $images = Gallery::where('filename', 'regexp', '^(SRC)')->paginate(12);
 		return view('src.index', ['images' => $images]);
 	}
 
