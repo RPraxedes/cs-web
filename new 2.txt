@@ -33,7 +33,6 @@ PRIORITY:
 **BIG TASKS**
   add faculty info
   add SRC and other photos to gallery
-  add SRS content
 
 **PROBLEMS**
     GPO has incomplete information on the courses e.g. no description, no prereq, no units

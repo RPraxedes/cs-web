@@ -125,7 +125,8 @@ class PagesController extends Controller
 	}
 
 	public function src(){
-		return view('src.index');
+    $images = Gallery::paginate(12);
+		return view('src.index', ['images' => $images]);
 	}
 
 	public function articles($id){	//display article page
