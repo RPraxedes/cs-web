@@ -89,6 +89,12 @@ class CourseSeeder extends Seeder
         'uri' => 'rgep',
         'level' => 'RGEP',
         'image' => ''
+      ],
+      [
+        'title' => 'Science Research Center',
+        'uri' => 'src',
+        'level' => 'SRC',
+        'image' => ''
       ]
 			/* [
 				'title' => '',

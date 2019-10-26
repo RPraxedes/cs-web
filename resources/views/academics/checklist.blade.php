@@ -36,7 +36,7 @@
 				@if($position == 'admin')
 					<form action="{{route('checklist.edit', ['id' => $pages[$i]->checklists_id])}}" method="post">
 						@csrf
-						<button type="submit" class="btn btn-secondary btn-sm edit-button float-right">Edit Section</a>
+						<button type="submit" class="btn btn-secondary btn-sm edit-button float-right">Edit Section</button>
 					</form>
 				@endif
 			</div>
@@ -49,7 +49,7 @@
 				@if($position == 'admin')
 					<form action="{{route('checklist.edit', ['id' => $pages[$i]->id])}}" method="post">
 						@csrf
-						<button type="submit" class="btn btn-secondary btn-sm edit-button float-right">Edit Section</a>
+						<button type="submit" class="btn btn-secondary btn-sm edit-button float-right">Edit Section</button>
 					</form>
 				@endif
 			</div>

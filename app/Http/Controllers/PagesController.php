@@ -125,8 +125,18 @@ class PagesController extends Controller
 	}
 
 	public function src(){
+    $pages = Checklist::join('courses', 'checklists.title', '=', 'courses.title')
+               ->where('uri', '=', 'src')
+               ->select('*','checklists.id as checklists_id')
+               ->get();
+		if(isset(Auth::user()->id)){
+			$user = Auth::user()->position;
+		}else{
+			$user = NULL;
+		}
+
     $images = Gallery::where('filename', 'regexp', '^(SRC)')->paginate(12);
-		return view('src.index', ['images' => $images]);
+		return view('src.index', ['images' => $images, 'pages' => $pages, 'position' => $user]);
 	}
 
 	public function articles($id){	//display article page
