@@ -1,38 +1,10 @@
-website should have all info on the courses, checklists, course description
-
 include calendar, transparency corner. eFOI
-
-------------------------------
 
 registration: generate from full name
 	if cs admin, display cs admin only
 	after registration, give generated password. upon login, redirect user to change password screen.
 	set up mailer system
 
-conference_date must accept more than one date
-
-PRIORITY:
-	1. sort and search features for news, research, publications, and dashboard viewalls
-	2. Fix mobile layout
-	3. add confirmation modals to delete and publish functions
-	4. fix faculty functions after admin functions
-
-	Admin Controllers functions:
-	Departments
-		viewall
-		edit
-		delete
-		add members
-		remove members
-	Courses
-		view
-		add
-		edit
-		delete
-
-**BIG TASKS**
+**TASKS**
   add faculty info
-  add SRC and other photos to gallery
-
-**PROBLEMS**
-    GPO has incomplete information on the courses e.g. no description, no prereq, no units
+  add RGEP courses with new subjects
