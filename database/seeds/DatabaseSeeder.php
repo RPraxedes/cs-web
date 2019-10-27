@@ -46,10 +46,10 @@ class DatabaseSeeder extends Seeder
 		$this->call('DMCSSeeder');
 		$this->call('PublicationSeeder');
 		$this->call('ConferenceSeeder');
+    $this->call('ResearchStatusSeeder');
 		$this->call('ProjectSeeder');
 		$this->call('OtherAchievementSeeder');
 		$this->call('GallerySeeder');
-		$this->call('ResearchStatusSeeder');
 		$this->call('MasterMathChecklistSeeder');
     $this->call('PhdMathChecklistSeeder');
     $this->call('MasterCareChecklistSeeder');
