@@ -20,12 +20,12 @@
 	<div class="container">
 		<div class="row justify-content-md-center margin-top">
       @foreach($pages as $page)
-  			<div class="col-md-12">
+  			<div class="col-md-12 highlight">
   				{!!$page->body!!}
   			@if($position == 'admin')
-  				<form action="{{route('checklist.edit', ['id' => $pages->first()->id])}}" method="post">
+  				<form action="{{route('checklist.edit', ['id' => $page->checklists_id])}}" method="post">
   					@csrf
-  					<button type="submit" class="btn btn-secondary btn-sm edit-button float-right">Edit Section</a>
+  					<button type="submit" class="btn btn-secondary btn-sm edit-button float-right">Edit Section</button>
   				</form>
   			@endif
   			</div>

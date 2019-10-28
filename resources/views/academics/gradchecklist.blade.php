@@ -22,7 +22,7 @@
 			<div class="col-md-4 offset-md-7 highlight">
 				{!!$pages->first()->body!!}
 			@if($position == 'admin')
-				<form action="{{route('checklist.edit', ['id' => $pages->first()->id])}}" method="post">
+				<form action="{{route('checklist.edit', ['id' => $pages->first()->checklists_id])}}" method="post">
 					@csrf
 					<button type="submit" class="btn btn-secondary btn-sm edit-button float-right">Edit Section</a>
 				</form>
@@ -34,7 +34,7 @@
 			<div class="col-md-5 highlight">
 				{!!$pages[$i]->body!!}
 				@if($position == 'admin')
-					<form action="{{route('checklist.edit', ['id' => $pages[$i]->id])}}" method="post">
+					<form action="{{route('checklist.edit', ['id' => $pages[$i]->checklists_id])}}" method="post">
 						@csrf
 						<button type="submit" class="btn btn-secondary btn-sm edit-button float-right">Edit Section</a>
 					</form>
@@ -46,7 +46,7 @@
       <div class="col-md-12 highlight"> <!-- #list-courses -->
         {!!$pages[$pages->count()-2]->body!!}
         @if($position == 'admin')
-					<form action="{{route('checklist.edit', ['id' => $pages->last()->id])}}" method="post">
+					<form action="{{route('checklist.edit', ['id' => $pages[$pages->count()-2]->checklists_id])}}" method="post">
 						@csrf
 						<button type="submit" class="btn btn-secondary btn-sm edit-button float-right">Edit Section</a>
 					</form>
@@ -57,7 +57,7 @@
 			<div class="col-md-12 highlight">
 				{!!$pages->last()->body!!} <!-- required for graduate courses since a link to GPO is required -->
 				@if($position == 'admin')
-					<form action="{{route('checklist.edit', ['id' => $pages->last()->id])}}" method="post">
+					<form action="{{route('checklist.edit', ['id' => $pages->last()->checklists_id])}}" method="post">
 						@csrf
 						<button type="submit" class="btn btn-secondary btn-sm edit-button float-right">Edit Section</a>
 					</form>
