@@ -31,22 +31,10 @@ class CourseSeeder extends Seeder
 				'image' => 'microbio.png',
 			],
 			[
-				'title' => 'Bachelor of Science in Chemistry',
-				'uri' => 'chemistry',
-				'level' => 'Undergraduate',
-				'image' => 'chemistry.jpg',
-			],
-			[
 				'title' => 'Bachelor of Science in Computer Science',
 				'uri' => 'computer-science',
 				'level' => 'Undergraduate',
 				'image' => 'comsci.png',
-			],
-			[
-				'title' => 'Bachelor of Science in Geology',
-				'uri' => 'geology',
-				'level' => 'Undergraduate',
-				'image' => 'geology.jpg',
 			],
 			[
 				'title' => 'Bachelor of Science in Mathematics',
@@ -75,7 +63,7 @@ class CourseSeeder extends Seeder
 			[
 				'title' => 'Doctor of Philosophy in Mathematics',
 				'uri' => 'phd-mathematics',
-				'level' => 'Doctorate',
+				'level' => 'Graduate',
 				'image' => 'phd-math.jpg',
 			],
 			[
@@ -94,6 +82,12 @@ class CourseSeeder extends Seeder
         'title' => 'Science Research Center',
         'uri' => 'src',
         'level' => 'SRC',
+        'image' => ''
+      ],
+      [
+        'title' => 'Himnasyo Amianan',
+        'uri' => 'himnasyo',
+        'level' => 'Himnasyo',
         'image' => ''
       ]
 			/* [
