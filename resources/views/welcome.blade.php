@@ -5,8 +5,8 @@
 @section('header')
 <div class="container-fluid">
 	<div class="col-xl-12 display-1 d-flex justify-content-center align-items-center text-center" id="welcome-header">
-		<img src="{{asset('assets/images/title1.jpeg')}}" alt="title1" class="hvr-fade">
-		<span class="d-none d-sm-block text-center display-3 title-text" style="z-index: 1; margin-bottom: 20vh;"><strong>University of the Philippines Baguio<br>College of Science</strong></span>
+		<img src="{{asset('assets/images/title2.png')}}" alt="title2" class="hvr-fade">
+		<span class="d-none d-sm-block text-center display-3 title-text" style="z-index: 1; margin-bottom: 20vh;"><strong>College of Science<br>University of the Philippines Baguio</strong></span>
 		<div class="down-arrow bounce"></div>
 	</div>
 </div>
@@ -17,13 +17,13 @@ $('.hvr-fade').on('mouseenter', function(){
 $('.hvr-fade').hover(
 	function (){
 		$('.down-arrow').show();
-		$('.down-arrow').addClass('fadeInDown');	
+		$('.down-arrow').addClass('fadeInDown');
 	},
 	function (){
 		$('.down-arrow').hide();
-		$('.down-arrow').removeClass('fadeInDown');	
+		$('.down-arrow').removeClass('fadeInDown');
 	}
-	
+
 );
 </script>
 @endsection
@@ -74,7 +74,7 @@ $('.hvr-fade').hover(
 			<a href ="{{url('/news')}}" role="button" class="btn btn-secondary btn-block">Show All News</a>
 		</div>
 	</div>
-	
+
 <!-- Research and Publications Section-->
 </div>
 @endsection
