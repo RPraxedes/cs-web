@@ -29,7 +29,7 @@
         <div class="col-md-10">
 			<div class="row justify-content-md-center title">
 				<div class="col-md-12">
-					<div class="display-4 text-center">Checklist Editor</div>
+					<div class="display-4 text-center">Editor</div>
 				</div>
 			</div>
 			<div class="row justify-content-md-center">
