@@ -55,5 +55,6 @@ class DatabaseSeeder extends Seeder
     $this->call('MasterCareChecklistSeeder');
     $this->call('RgepChecklistSeeder');
     $this->call('SrcSeeder');
+    $this->call('HimnasyoSeeder');
     }
 }
