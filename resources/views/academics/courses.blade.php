@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Courses')
+@section('title', 'Programs')
 
 @section('header')
 <div class="row">
 	<div class="col-xl-12 display-4 title header text-center">
-		{{$level}} Courses
+		{{$level}} Programs
 	</div>
 </div>
 @endsection
