@@ -30,7 +30,7 @@
 		@yield('header')
         <nav class="navbar navbar-dark navbar-expand-md">
 			<div class="container">
-				<a class="navbar-brand" href="{{url('/')}}" data-toggle="tooltip" data-placement="bottom" title="Home"><span class="oi oi-home animated fadeInDown delay-9"></span></a>
+				<a class="navbar-brand" href="{{url('/')}}" data-toggle="tooltip" data-placement="bottom" title="Home"><span class="oi oi-home animated fadeInDown delay-10"></span></a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -43,37 +43,41 @@
 							Academics
 							</a>
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAcademics">
-								<a class="dropdown-item" href="{{route('faculty')}}">Faculty</a>
-								<a class="dropdown-item" href="{{route('checklist.get', ['name' => 'rgep'])}}">RGEP Courses</a>
-								<a class="dropdown-item" href="{{route('courses')}}">Undergraduate Courses</a>
-								<a class="dropdown-item" href="{{route('gradcourses')}}">Graduate Courses</a>
-								<a class="dropdown-item" href="{{route('phdcourses')}}">Doctorate Courses</a>
+								<a class="dropdown-item" href="{{route('checklist.get', ['name' => 'rgep'])}}">RGEP Programs</a>
+								<a class="dropdown-item" href="{{route('courses')}}">Undergraduate Programs</a>
+								<a class="dropdown-item" href="{{route('gradcourses')}}">Graduate Programs</a>
 							</div>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link {{request()->is('news')?'active':''}} animated fadeInDown delay-2" href="{{route('news')}}">News</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('research')?'active':''}} animated fadeInDown delay-3" href="{{route('research')}}">Research</a>
+							<a class="nav-link {{request()->is('faculty')?'active':''}} animated fadeInDown delay-3" href="{{route('faculty')}}">Departments</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('publications')?'active':''}} animated fadeInDown delay-4" href="{{route('publications')}}">Publications</a>
+							<a class="nav-link {{request()->is('research')?'active':''}} animated fadeInDown delay-4" href="{{route('research')}}">Research</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('sinsm')?'active':''}} animated fadeInDown delay-5" href="{{route('sinsm')}}">SINSM</a>
+							<a class="nav-link {{request()->is('publications')?'active':''}} animated fadeInDown delay-5" href="{{route('publications')}}">Publications</a>
+						</li>
+            <li class="nav-item">
+							<a class="nav-link {{request()->is('src')?'active':''}} animated fadeInDown delay-6" href="{{route('src')}}">SRC</a>
+						</li>
+            <li class="nav-item">
+							<a class="nav-link {{request()->is('src')?'active':''}} animated fadeInDown delay-7" href="{{route('himnasyo_amianan')}}">Himnasyo Amianan</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-6" href="{{route('about')}}">About</a>
+							<a class="nav-link {{request()->is('sinsm')?'active':''}} animated fadeInDown delay-8" href="{{route('sinsm')}}">SINSM</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{request()->is('gallery')?'active':''}} animated fadeInDown delay-7" href="{{route('gallery')}}">Gallery</a>
+							<a class="nav-link {{request()->is('gallery')?'active':''}} animated fadeInDown delay-9" href="{{route('gallery')}}">Gallery</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link {{request()->is('src')?'active':''}} animated fadeInDown delay-8" href="{{route('src')}}">Science Research Center</a>
-						</li>
+            <li class="nav-item">
+              <a class="nav-link {{request()->is('about')?'active':''}} animated fadeInDown delay-10" href="{{route('about')}}">About</a>
+            </li>
 					</ul>
 				<!-- Right side of the navbar, Authentication Links -->
-					<ul class="navbar-nav ml-auto animated fadeInDown delay-7">
+					<ul class="navbar-nav ml-auto animated fadeInDown delay-10">
 					<!-- Authentication Links -->
 						@guest
 							<li class="nav-item">
