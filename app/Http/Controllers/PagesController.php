@@ -39,20 +39,21 @@ class PagesController extends Controller
 
 	public function department($dept){
 		switch($dept){
-			case 'biology':
+      case 'executive':
 				$dept = 1;
 				break;
-			case 'physical-science':
+			case 'biology':
 				$dept = 2;
 				break;
-			case 'math-comsci':
-				$dept = 3;
-				break;
-			case 'hkp':
+      case 'math-comsci':
+        $dept = 3;
+        break;
+			case 'physical-science':
 				$dept = 4;
-			case 'executive':
-				$dept = 5;
 				break;
+      case 'hkp':
+        $dept = 5;
+        break;
 		}
 		$faculty = Faculty::where('dept_id', '=', $dept)->where('published_at', '!=', NULL)->get();
 		return view('faculty.index', ['faculty' => $faculty]);
@@ -66,12 +67,6 @@ class PagesController extends Controller
 
 	public function gradcourses(){
 		$level = 'Graduate';
-		$courses = Course::whereLevel($level)->get();
-		return view('academics.courses', ['courses'=> $courses, 'level' => $level]);
-	}
-
-	public function phdcourses(){
-		$level = 'Doctorate';
 		$courses = Course::whereLevel($level)->get();
 		return view('academics.courses', ['courses'=> $courses, 'level' => $level]);
 	}
@@ -113,7 +108,7 @@ class PagesController extends Controller
 			'body' => request('body'),
 			'updated_at' => Carbon::now()->toDateTimeString(),
 		]);
-		return redirect('/');
+		return view('user.editchecklist', ['page' => Checklist::find((int)$id)]);
 	}
 
 	public function sinsm(){
@@ -137,6 +132,21 @@ class PagesController extends Controller
 
     $images = Gallery::where('filename', 'regexp', '^(SRC)')->paginate(12);
 		return view('src.index', ['images' => $images, 'pages' => $pages, 'position' => $user]);
+	}
+
+  public function himnasyo_amianan(){
+    $pages = Checklist::join('courses', 'checklists.title', '=', 'courses.title')
+               ->where('uri', '=', 'himnasyo')
+               ->select('*','checklists.id as checklists_id')
+               ->get();
+		if(isset(Auth::user()->id)){
+			$user = Auth::user()->position;
+		}else{
+			$user = NULL;
+		}
+
+    $images = Gallery::where('filename', 'regexp', '^(Himnasyo)')->paginate(12);
+		return view('himnasyo.index', ['images' => $images, 'pages' => $pages, 'position' => $user]);
 	}
 
 	public function articles($id){	//display article page
