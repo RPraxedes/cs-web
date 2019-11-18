@@ -27,8 +27,6 @@ Route::get('/faculty/roster/{id}', ['uses' => 'Faculty\ProfileController@view'])
 Route::get('/courses/undergraduate', 'PagesController@courses')->name('courses');
 	// VIEW GRADUATE PROGRAMS
 Route::get('/courses/graduate', 'PagesController@gradcourses')->name('gradcourses');
-	// VIEW PHD PROGRAMS
-Route::get('/courses/phd', 'PagesController@phdcourses')->name('phdcourses');
 	// VIEW PROGRAM/COURSE CHECKLIST
 Route::get('/courses/{name}', ['uses' => 'PagesController@getchecklist'])->name('checklist.get');
 
@@ -87,6 +85,7 @@ Route::get('/publications/{department}', 'PagesController@publications_by_depart
 Route::get('/sinsm', 'PagesController@sinsm')->name('sinsm');
 Route::get('/about', 'PagesController@about')->name('about');
 Route::get('/src', 'PagesController@src')->name('src');
+Route::get('/himnasyo-amianan', 'PagesController@himnasyo_amianan')->name('himnasyo_amianan');
 
 Route::get('/gallery', 'GalleryController@viewall')->name('gallery');
 
