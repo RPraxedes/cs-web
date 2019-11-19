@@ -33,7 +33,7 @@
 					<button type="button" class="btn btn-info" data-container="body" data-toggle="popover" data-placement="left" data-content="cs.upbaguio@up.edu.ph">
 						E-mail
 					</button>
-					<button type="button" class="btn btn-info" data-container="body" data-toggle="popover" data-placement="right" data-content="(074) XXX XXXX">
+					<button type="button" class="btn btn-info" data-container="body" data-toggle="popover" data-placement="right" data-content="(074) 444 8719">
 						Telephone
 					</button>
 				</div>
