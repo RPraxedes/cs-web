@@ -366,7 +366,14 @@ class PhdMathChecklistSeeder extends Seeder
 ',
 			'created_at' => now(),
 			'updated_at' => now()
-        ]
+    ],
+    [
+      'title' => 'Doctor of Philosophy in Mathematics',
+			'body' =>
+'<p>For older checklists, refer to the <a href="https://www.upb.edu.ph/images/2017_CS_Matters/PhD_Math_Brochure.pdf" target="_blank">University of the Philippines Baguio website.</a></p>',
+			'created_at' => now(),
+			'updated_at' => now()
+		],
 		]);
     }
 }

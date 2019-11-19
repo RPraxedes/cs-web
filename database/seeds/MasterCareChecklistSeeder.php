@@ -688,7 +688,14 @@ class MasterCareChecklistSeeder extends Seeder
         ',
 			'created_at' => now(),
 			'updated_at' => now()
-        ]
+    ],
+    [
+      'title' => 'Master of Science in Conservation and Restoration Ecology',
+			'body' =>
+'<p>For older checklists, refer to the <a href="https://www.upb.edu.ph/cs-menu-degr-progs/ms-care" target="_blank">University of the Philippines Baguio website.</a></p>',
+			'created_at' => now(),
+			'updated_at' => now()
+		],
 		]);
     }
 }

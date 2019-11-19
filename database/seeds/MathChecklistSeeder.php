@@ -15,14 +15,14 @@ class MathChecklistSeeder extends Seeder
         DB::table('checklists')->insert([
 		[
             'title' => 'Bachelor of Science in Mathematics',
-			'body' => 
+			'body' =>
 '<strong>Total number of units: 135 units</strong>',
 			'created_at' => now(),
 			'updated_at' => now()
         ],
 		[
             'title' => 'Bachelor of Science in Mathematics',
-			'body' => 
+			'body' =>
 '<table class="table table-striped" id="1st-1st" style="border-collapse: collapse;">
 	<thead>
 		<tr>
@@ -71,7 +71,7 @@ class MathChecklistSeeder extends Seeder
         ],
 		[
             'title' => 'Bachelor of Science in Mathematics',
-			'body' => 
+			'body' =>
 '<table class="table table-striped" id="1st-2nd" style="border-collapse: collapse;">
 	<thead>
 		<tr>
@@ -120,7 +120,7 @@ class MathChecklistSeeder extends Seeder
         ],
 		[
             'title' => 'Bachelor of Science in Mathematics',
-			'body' => 
+			'body' =>
 '<table class="table table-striped" id="2nd-1st" style="border-collapse: collapse;">
 	<thead>
 		<tr>
@@ -177,7 +177,7 @@ class MathChecklistSeeder extends Seeder
         ],
 		[
             'title' => 'Bachelor of Science in Mathematics',
-			'body' => 
+			'body' =>
 '<table class="table table-striped" id="2nd-2nd" style="border-collapse: collapse;">
 	<thead>
 		<tr>
@@ -234,7 +234,7 @@ class MathChecklistSeeder extends Seeder
         ],
 		[
             'title' => 'Bachelor of Science in Mathematics',
-			'body' => 
+			'body' =>
 '<table class="table table-striped" id="3rd-1st" style="border-collapse: collapse;">
 	<thead>
 		<tr>
@@ -283,7 +283,7 @@ class MathChecklistSeeder extends Seeder
         ],
 		[
             'title' => 'Bachelor of Science in Mathematics',
-			'body' => 
+			'body' =>
 '<table class="table table-striped" id="3rd-2nd" style="border-collapse: collapse;">
 	<thead>
 		<tr>
@@ -332,7 +332,7 @@ class MathChecklistSeeder extends Seeder
         ],
 		[
             'title' => 'Bachelor of Science in Mathematics',
-			'body' => 
+			'body' =>
 '<table class="table table-striped" id="4th-1st" style="border-collapse: collapse;">
 	<thead>
 		<tr>
@@ -382,7 +382,7 @@ class MathChecklistSeeder extends Seeder
         ],
 		[
             'title' => 'Bachelor of Science in Mathematics',
-			'body' => 
+			'body' =>
 '<table class="table table-striped" id="4th-2nd" style="border-collapse: collapse;">
 	<thead>
 		<tr>
@@ -428,7 +428,7 @@ class MathChecklistSeeder extends Seeder
         ],
 		[
 			'title' => 'Bachelor of Science in Mathematics',
-			'body' => 
+			'body' =>
 '<table class="table table-striped" id="core-course" style="border-collapse: collapse;">
 	<tbody>
 		<thead>
@@ -473,7 +473,7 @@ class MathChecklistSeeder extends Seeder
 		],
 		[
 			'title' => 'Bachelor of Science in Mathematics',
-			'body' => 
+			'body' =>
 '<table class="table table-striped" id="list-course" style="border-collapse: collapse;">
 	<thead>
 		<tr>
@@ -749,6 +749,13 @@ class MathChecklistSeeder extends Seeder
 		</tr>
 	</tbody>
 </table>',
+			'created_at' => now(),
+			'updated_at' => now()
+		],
+    [
+      'title' => 'Bachelor of Science in Mathematics',
+			'body' =>
+'<p>For older checklists, refer to the <a href="https://www.upb.edu.ph/cs-menu-degr-progs/bachelor-of-science-in-mathematics" target="_blank">University of the Philippines Baguio website.</a></p>',
 			'created_at' => now(),
 			'updated_at' => now()
 		],

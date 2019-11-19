@@ -15,14 +15,14 @@ class PhysicsChecklistSeeder extends Seeder
         DB::table('checklists')->insert([
 		[
             'title' => 'Bachelor of Science in Physics',
-			'body' => 
+			'body' =>
 '<strong>Total number of units: 143 units</strong>',
 			'created_at' => now(),
 			'updated_at' => now()
         ],
 		[
             'title' => 'Bachelor of Science in Physics',
-			'body' => 
+			'body' =>
 '<table class="table table-striped" id="1st-1st" style="border-collapse: collapse;">
 	<thead>
 		<tr>
@@ -75,7 +75,7 @@ class PhysicsChecklistSeeder extends Seeder
         ],
 		[
 			'title' => 'Bachelor of Science in Physics',
-			'body' => 
+			'body' =>
 '<table class="table table-striped" id="1st-2nd" style="border-collapse: collapse;">
 	<thead>
 		<tr>
@@ -124,7 +124,7 @@ class PhysicsChecklistSeeder extends Seeder
 		],
 		[
 			'title' => 'Bachelor of Science in Physics',
-			'body' => 
+			'body' =>
 '<table class="table table-striped" id="2nd-1st" style="border-collapse: collapse;">
 	<thead>
 		<tr>
@@ -181,7 +181,7 @@ class PhysicsChecklistSeeder extends Seeder
 		],
 		[
 			'title' => 'Bachelor of Science in Physics',
-			'body' => 
+			'body' =>
 '<table class="table table-striped" id="2nd-2nd" style="border-collapse: collapse;">
 	<thead>
 		<tr>
@@ -238,7 +238,7 @@ class PhysicsChecklistSeeder extends Seeder
 		],
 		[
 			'title' => 'Bachelor of Science in Physics',
-			'body' => 
+			'body' =>
 '<table class="table table-striped" id="3rd-1st" style="border-collapse: collapse;">
 	<thead>
 		<tr>
@@ -287,7 +287,7 @@ class PhysicsChecklistSeeder extends Seeder
 		],
 		[
 			'title' => 'Bachelor of Science in Physics',
-			'body' => 
+			'body' =>
 '<table class="table table-striped" id="3rd-2nd" style="border-collapse: collapse;">
 	<thead>
 		<tr>
@@ -336,7 +336,7 @@ class PhysicsChecklistSeeder extends Seeder
 		],
 		[
 			'title' => 'Bachelor of Science in Physics',
-			'body' => 
+			'body' =>
 '<table class="table table-striped" id="4th-1st" style="border-collapse: collapse;">
 	<thead>
 		<tr>
@@ -389,7 +389,7 @@ class PhysicsChecklistSeeder extends Seeder
 		],
 		[
 			'title' => 'Bachelor of Science in Physics',
-			'body' => 
+			'body' =>
 '<table class="table table-striped" id="4th-2nd" style="border-collapse: collapse;">
 	<thead>
 		<tr>
@@ -434,7 +434,7 @@ class PhysicsChecklistSeeder extends Seeder
 		],
 		[
 			'title' => 'Bachelor of Science in Physics',
-			'body' => 
+			'body' =>
 '<table class="table table-striped" id="list-course" style="border-collapse: collapse;">
 	<thead>
 		<tr>
@@ -668,13 +668,20 @@ class PhysicsChecklistSeeder extends Seeder
 		],
 		[
             'title' => 'Bachelor of Science in Physics',
-			'body' => 
+			'body' =>
 '<h3>Retention Policy</h3><br>
 <p>A student who obtains failing grades in <strong>more than six (6) units of Mathematics and/or Physics at the end of a school year</strong> shall be removed from the program, unless he/she is of senior standing. (A senior standing BS Physics student should have at least 70 units of Physics and Math courses.) Students are subject to evaluation at the end of every academic year.</p>
 ',
+  		'created_at' => now(),
+  		'updated_at' => now()
+    ],
+    [
+      'title' => 'Bachelor of Science in Physics',
+			'body' =>
+'<p>For older checklists, refer to the <a href="https://www.upb.edu.ph/cs-menu-degr-progs/cs-physics" target="_blank">University of the Philippines Baguio website.</a></p>',
 			'created_at' => now(),
 			'updated_at' => now()
-        ]
+		],
 		]);
     }
 }
