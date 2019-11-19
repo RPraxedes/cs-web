@@ -89,7 +89,37 @@ class CourseSeeder extends Seeder
         'uri' => 'himnasyo',
         'level' => 'Himnasyo',
         'image' => ''
-      ]
+      ],
+      [
+        'title' => 'Department of Biology',
+        'uri' => 'dept-bio',
+        'level' => 'Department',
+        'image' => ''
+      ],
+      [
+        'title' => 'Department of Mathematics and Computer Science',
+        'uri' => 'dept-mcs',
+        'level' => 'Department',
+        'image' => ''
+      ],
+      [
+        'title' => 'Department of Mathematics and Physical Sciences',
+        'uri' => 'dept-phys',
+        'level' => 'Department',
+        'image' => ''
+      ],
+      [
+        'title' => 'Human Kinetics Program Faculty',
+        'uri' => 'dept-hkp',
+        'level' => 'Department',
+        'image' => ''
+      ],
+      [
+        'title' => 'College Executive Board',
+        'uri' => 'college-exec',
+        'level' => 'Department',
+        'image' => ''
+      ],
 			/* [
 				'title' => '',
 				'uri' => '',

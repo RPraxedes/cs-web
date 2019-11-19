@@ -41,22 +41,52 @@ class PagesController extends Controller
 		switch($dept){
       case 'executive':
 				$dept = 1;
+        $dept_info = 'College Executive Board';
+        $courses = [];
 				break;
 			case 'biology':
 				$dept = 2;
+        $dept_info = 'Department of Biology';
+        $courses = [
+          'Bachelor of Science in Biology (Ecology and Systematics)',
+          'Bachelor of Science in Biology (General Biology)',
+          'Bachelor of Science in Biology (Microbiology)'
+        ];
 				break;
       case 'math-comsci':
         $dept = 3;
+        $dept_info = 'Department of Mathematics and Computer Science';
+        $courses = [
+          'Bachelor of Science in Computer Science',
+          'Bachelor of Science in Mathematics',
+          'Master of Science in Mathematics',
+          'Doctor of Philosophy in Mathematics'
+        ];
         break;
 			case 'physical-science':
 				$dept = 4;
+        $dept_info = 'Department of Mathematics and Physical Sciences';
+        $courses = [
+          'Bachelor of Science in Physics',
+          'Master of Science in Conservation and Restoration Ecology'
+        ];
 				break;
       case 'hkp':
         $dept = 5;
+        $dept_info = 'Human Kinetics Program Faculty';
+        $courses = ['Human Kinetics Program'];
         break;
 		}
+    $department_courses = new Course;
+    $department_info = Checklist::where('title', '=', $dept_info)->get();
+    $all_courses = Course::all();
 		$faculty = Faculty::where('dept_id', '=', $dept)->where('published_at', '!=', NULL)->get();
-		return view('faculty.index', ['faculty' => $faculty]);
+		return view('faculty.index', [
+      'faculty' => $faculty,
+      'department_info' => $department_info,
+      'courses' => $courses,
+      'all_courses' => $all_courses
+    ]);
 	}
 
 	public function courses(){
