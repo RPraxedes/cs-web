@@ -20,6 +20,13 @@
 	</div>
     <div class="row justify-content-center">
         <div class="col-md-9">
+        @if($addExists)
+  			<div class="row justify-content-center">
+  				<div class="col-md-3">
+  					<a role="button" class="btn btn-{{$obj_actions[0]['button']}} btn-block margin-top margin-bottom" href="{{route($routeprefix.'.'.$short_category.'.'.$obj_actions[0]['route'])}}"><span class="oi oi-plus"></span> Add</a>
+  				</div>
+  			</div>
+  			@endif
 				@foreach ($publications as $pub)
 				<div class="card margin-top">
 					<div class="card-body">
