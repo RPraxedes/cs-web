@@ -64,7 +64,7 @@
 							<a class="nav-link {{request()->is('src')?'active':''}} animated fadeInDown delay-6" href="{{route('src')}}">SRC</a>
 						</li>
             <li class="nav-item">
-							<a class="nav-link {{request()->is('src')?'active':''}} animated fadeInDown delay-7" href="{{route('himnasyo_amianan')}}">Himnasyo Amianan</a>
+							<a class="nav-link {{request()->is('himnasyo-amianan')?'active':''}} animated fadeInDown delay-7" href="{{route('himnasyo_amianan')}}">Himnasyo Amianan</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link {{request()->is('sinsm')?'active':''}} animated fadeInDown delay-8" href="{{route('sinsm')}}">SINSM</a>
