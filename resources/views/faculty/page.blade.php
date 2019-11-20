@@ -74,7 +74,7 @@
 							<ul class="list">
 						@if(!$publications->isEmpty())
 							@foreach($publications as $pub)
-								<li>{{$pub->author ?? ''.' ('.\Carbon\Carbon::parse($pub->published_date)->year.').'}} <i>{{$pub->title ?? ''}}</i>. {{$pub->journal ?? ''}} Volume {{$pub->volume ?? ''}} @if($pub->link)<a href="{{url($pub->link ?? '')}}" class="card-link">[link]</a>@endif</li>
+								<li>{{$pub->author ?? ''}} ({{\Carbon\Carbon::parse($pub->published_date)->year.').'}} <i>{{$pub->title ?? ''}}</i>. {{$pub->journal ?? ''}} @if(isset($pub->volume)) Volume {{$pub->volume}} @endif @if($pub->link)<a href="{{url($pub->link ?? '')}}" class="card-link">[link]</a>@endif</li>
 							@endforeach
 						@else
 								<li>None</li>
@@ -94,7 +94,7 @@
 							<ul class="list">
 						@if(!$conferences->isEmpty())
 							@foreach($conferences as $conf)
-								<li><i>“{{$conf->paper_title ?? ''}}”</i>. {{$conf->author ?? ''}} {{\Carbon\Carbon::parse($conf->conference_date)->format('F d, Y')}}. {{$conf->conference_title ?? ''}}. {{$conf->venue ?? ''}} @if($pub->link)<a href="{{url($pub->link ?? '')}}" class="card-link">[link]</a>@endif</li>
+								<li><i>“{{$conf->paper_title ?? ''}}”</i>. {{$conf->author ?? ''}} ({{\Carbon\Carbon::parse($conf->conference_date)->format('F d, Y')}}). {{$conf->conference_title ?? ''}}. {{$conf->venue ?? ''}} @if($pub->link)<a href="{{url($pub->link ?? '')}}" class="card-link">[link]</a>@endif</li>
 							@endforeach
 						@else
 								<li>None</li>
