@@ -34,3 +34,17 @@
 > user: 'jmaddawe@up.edu.ph', pass: 'jmaddawe'
 
 > The pattern is the same for the rest of the faculty (first_initial+middle_initial+last_full)
+
+# Mailer:
+
+Configurations are in the .env file (in .env.example here in GitHub which must be copied to .env).
+
+```
+MAIL_DRIVER=smtp
+MAIL_HOST={SMTP_HOST}
+MAIL_PORT=2525
+MAIL_USERNAME={MAILER_USERNAME_CREDENTIAL}
+MAIL_PASSWORD={MAILER_PASSWORD_CREDENTIAL}
+MAIL_FROM_ADDRESS={MAILER_EMAIL_ADDRESS}
+MAIL_FROM_NAME={SENDER_NAME}
+```
