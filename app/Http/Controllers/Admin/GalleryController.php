@@ -54,11 +54,19 @@ class GalleryController extends Controller
 				'value' => NULL,
 			],
 			[
+				'title' => 'Image Folder',
+				'name' => 'folder',
+				'type' => 'text',
+				'required' => 'required',
+				'placeholder' => "Default is 'gallery'",
+				'value' => NULL,
+			],
+			[
 				'title' => 'Alt',
 				'name' => 'alt',
 				'type' => 'text',
 				'required' => NULL,
-				'placeholder' => 'Alt',
+				'placeholder' => 'A brief description on the image',
 				'value' => NULL,
 			],
 			[
@@ -88,9 +96,16 @@ class GalleryController extends Controller
 	}
 
 	public function add(Request $request){
+    $folder = '';
 		$requestData = $request->all();
 
-		$imageName = 'gallery\\'.time().'.'.request()->file('filename')->getClientOriginalExtension();
+    if(!isset($requestData['folder'])){
+      $folder = 'gallery';
+    }else{
+      $folder = $requestData['folder'];
+    }
+
+		$imageName = $folder.'/'.time().'.'.request()->file('filename')->getClientOriginalExtension();
 		$requestData['filename'] = $imageName;
 
 		$pub = new Gallery($requestData);
@@ -104,13 +119,14 @@ class GalleryController extends Controller
 		$pub->updated_at = Carbon::now()->toDateTimeString();
 		$pub->save();
 
-		request()->file('filename')->move(public_path('images/gallery'), $imageName);
+		request()->file('filename')->move(public_path('images/'.$folder), $imageName);
 
 		return redirect()->route('admin.gallery.viewall')->with('alert-success', 'Image successfully added!');
 	}
 
 	public function edit($id, Request $request){
 		$image = Gallery::find($id)->attributesToArray();
+    $folder = preg_split("/\//", $image['filename'])[0];
 		$faculty = Auth::user();
 		$fields = [
 			[
@@ -120,6 +136,14 @@ class GalleryController extends Controller
 				'required' => 'required',
 				'placeholder' => NULL,
 				'value' => NULL,
+			],
+      [
+				'title' => 'Image Folder (updating this field without a new image does not move the image)',
+				'name' => 'folder',
+				'type' => 'text',
+				'required' => NULL,
+				'placeholder' => "Default is 'gallery'",
+				'value' => $folder,
 			],
 			[
 				'title' => 'Alt',
@@ -160,8 +184,8 @@ class GalleryController extends Controller
 		$requestData = $request->all();
 		$image = Gallery::find((int)$id);
 		if(isset($requestData['filename'])){
-			File::delete(public_path().'\\images\\'.$image->filename);	// delete old image
-			$imageName = 'gallery\\'.time().'.'.request()->file('filename')->getClientOriginalExtension();
+			File::delete(public_path().'/images/'.$image->filename);	// delete old image
+			$imageName = $requestData['folder'].'/'.time().'.'.request()->file('filename')->getClientOriginalExtension();
 			$requestData['filename'] = $imageName;
 			$image->update([
 				'filename' => $requestData['filename'],
@@ -169,7 +193,7 @@ class GalleryController extends Controller
 				'caption' => $requestData['caption'],
 				'updated_at' => Carbon::now()->toDateTimeString(),
 			]);
-			request()->file('filename')->move(public_path('images\gallery'), $imageName);
+			request()->file('filename')->move(public_path('images/'.$requestData['folder']), $imageName);
 		}else{
 			$image->update([
 				'alt' => $requestData['alt'],
@@ -182,7 +206,7 @@ class GalleryController extends Controller
 
 	public function delete($id){
 		$image = Gallery::find((int)$id);
-		File::delete(public_path().'\\images\\'.$image->filename);
+		File::delete(public_path().'/images/'.$image->filename);
 		$image->delete();
 		return redirect()->route('admin.gallery.viewall')->with('Image removed from the Gallery!');
 	}
