@@ -41,9 +41,9 @@
 	@foreach($faculty as $person)
 		<div class="card col-md-2 no-padding margin-right margin-left margin-bottom">
 		@if($person->profile_image != NULL)
-			<img src="{{asset('images/'.$person->profile_image)}}" class="card-img-top h-25vw" alt="{{$person->profile_alt}}">
+			<img src="{{asset('images/'.$person->profile_image)}}" class="card-img-top h-17vw" alt="{{$person->profile_alt}}">
 		@else
-			<img src="{{asset('assets/images/faculty.png')}}" class="card-img-top h-25vw" alt="{{$person->profile_alt}}">
+			<img src="{{asset('assets/images/faculty.png')}}" class="card-img-top h-17vw" alt="{{$person->profile_alt}}">
 		@endif
 			<div class="card-body d-flex flex-column">
 				<h5 class="card-title">{{$person->first_name}} {{$person->last_name}}</h5>
