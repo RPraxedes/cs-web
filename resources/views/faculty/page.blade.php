@@ -13,7 +13,7 @@
 @section('content')
 <div class="body container">
 	<div class="row align-content-md-left">
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<div class="card animated fadeInLeft">
 			@if($faculty->profile_image != NULL)
 				<img src="{{asset('images/'.$faculty->profile_image)}}" class="card-img-top" alt="{{$faculty->profile_alt}}">
@@ -25,7 +25,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-8 animated fadeInRight delay-1">
+		<div class="col-md-9 animated fadeInRight delay-1">
 			<h2 class="display-4 margin-bottom">{{$faculty->last_name.', '.$faculty->first_name.' '.$initials}}</h2>
 			<div class="card animated fadeInRight delay-3 margin-bottom">
 				<div class="card-body">
