@@ -118,19 +118,25 @@
 				<div class="col-sm-6 float-left text-right">
 					<h3><strong>UP Baguio Links</strong></h3>
 					<ul class="list-unstyled">
-						<li>UP Baguio iLib</li>
-						<li>UP Baguio Learning Resource Center</li>
-						<li>UP Baguio Graduate Program Office</li>
-						<li>SAIS Website</li>
-						<li>SFA Online</li>
+						<li><a href="http://ilib.upb.edu.ph/" target="_blank">UP Baguio iLib</a></li>
+						<li><a href="https://mainlib.upb.edu.ph/" target="_blank">UP Baguio Learning Resource Center</a></li>
+						<li><a href="http://gpo.upb.edu.ph/" target="_blank">UP Baguio Graduate Program Office</a></li>
+						<li><a href="https://sais.up.edu.ph/" target="_blank">SAIS Website</a></li>
+						<li><a href="https://sfaonline.up.edu.ph/" target="_blank">SFA Online</a></li>
 					</ul>
 				</div>
 				<div class="col-sm-4 float-right text-left">
 					<h3><strong>University of the Philippines</strong></h3>
 					<ul class="list-unstyled">
-						<li>UP Baguio</li>
-						<li>UP Diliman</li>
-						<li>UP Los Baños</li>
+						<li><a href="https://www.upb.edu.ph/" target="_blank">UP Baguio</a></li>
+            <li><a href="https://upcebu.edu.ph/" target="_blank">UP Cebu</a></li>
+						<li><a href="https://upd.edu.ph/" target="_blank">UP Diliman</a></li>
+						<li><a href="https://uplb.edu.ph/" target="_blank">UP Los Baños</a></li>
+						<li><a href="https://www.upm.edu.ph/" target="_blank">UP Manila</a></li>
+            <li><a href="https://www2.upmin.edu.ph/" target="_blank">UP Mindanao</a></li>
+            <li><a href="https://www.upou.edu.ph/" target="_blank">UP Open University</a></li>
+            <li><a href="https://www.up.edu.ph/" target="_blank">UP System</a></li>
+						<li><a href="https://www.upv.edu.ph/" target="_blank">UP Visayas</a></li>
 					</ul>
 				</div>
 			</div>
