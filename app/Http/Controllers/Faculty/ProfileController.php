@@ -52,7 +52,10 @@ class ProfileController extends Controller
 
 	public function create(){
 		$status = FacultyStatus::all();
-		return view('user.faculty', ['faculty_info' => NULL], ['status' => $status]);
+    $routeprefix = "faculty";
+    $dept = Department::all();
+
+		return view('user.faculty', ['faculty_info' => NULL, 'status' => $status, 'dept' => $dept, 'routeprefix' => $routeprefix]);
 	}
 
 	public function edit(){

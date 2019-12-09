@@ -64,8 +64,13 @@
 				</div>
 				<div class="col-12 margin-bottom">
 					<h3>Your Faculty Profile</h3>
-					<a class="btn btn-secondary btn-block col-3 margin-bottom" href="{{route('faculty.view', ['id'=> $id])}}" role="button">View</a>
-					<form class="form-inline margin-bottom" action="{{route('faculty.edit')}}" method="post">@csrf<button class="btn btn-secondary btn-block col-3" type="submit">Edit</button></form>
+					<a class="btn btn-primary btn-block col-3 margin-bottom" href="{{route('faculty.view', ['id'=> $id])}}" role="button">View</a>
+          @if($faculty == true)
+            <form class="form-inline margin-bottom" action="{{route('faculty.edit')}}" method="post">@csrf<button class="btn btn-secondary btn-block col-3" type="submit">Edit</button></form>
+          @else
+            <a class="btn btn-secondary btn-block col-3 margin-bottom" href="{{route('faculty.create')}}" role="button">Create</a>
+          @endif
+
 					<form class="form-inline margin-bottom" action="{{route('faculty.publish')}}" method="post">@csrf<input type="hidden" name="user_id" value="{{Auth::user()->id}}"><button type="submit" class="btn btn-success btn-block col-3">Publish</button></form>
 					<form class="form-inline margin-bottom" action="{{route('faculty.delete', ['id' => Auth::user()->id])}}" method="post">@csrf<input type="hidden" name="user_id" value="{{Auth::user()->id}}"><button type="submit" class="btn btn-danger btn-block col-3">Delete</button></form>
 				</div>

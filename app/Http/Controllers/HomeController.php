@@ -8,6 +8,7 @@ use File;
 use Carbon\Carbon;
 use App\Models\Article;
 use App\Models\User;
+use App\Models\Faculty;
 use App\Models\Checklist;
 use App\Models\Publication;
 
@@ -33,12 +34,18 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-		$user = Auth::user();
-        return view('dash', ['id' => $user->id]);
+    public function index(){
+      $faculty_exists = false;
+      $user = Auth::user();
+      $faculty = Faculty::where('user_id', '=', $user->id)->first();
+
+      if (isset($faculty)) {
+        $faculty_exists = true;
+      }
+
+      return view('dash', ['id' => $user->id], ['faculty' => $faculty_exists]);
     }
-	
+
 	public function profile(){
 		$user = Auth::user();
 		$from_admin = false;
@@ -62,7 +69,7 @@ class HomeController extends Controller
 		]);
 		return redirect('dashboard')->with('alert-success', 'Profile successfully saved!');
 	}
-	
+
 	public function viewarticle(){
 		$user = Auth::user();
 		$userArray = $user->articles->makeHidden('user_id');
@@ -104,7 +111,7 @@ class HomeController extends Controller
 			->with('obj_name', $obj_name)
 			->with('obj_actions', $obj_actions);
 	}
-	
+
 	public function createbuilder(){	// returns article builder page
 		$type = request('type');
 		if($type == 'news' || $type == 'research' || $type == 'publication'){
@@ -113,12 +120,12 @@ class HomeController extends Controller
 			return response(view('errors.405'), 405);
 		}
 	}
-	
+
 	public function editarticle($id){
 		$article = Article::find((int)$id);
 		return view('user.edit', ['article' => $article]);
 	}
-	
+
 	public function save(ArticleEditRequest $request){	// modification
 		$requestData = $request->all();
 		$article = Article::find((int)$requestData['id']);
@@ -134,7 +141,7 @@ class HomeController extends Controller
 				'header_alt' => $requestData['header_alt'],
 				'updated_at' => Carbon::now()->toDateTimeString(),
 			]);
-		}else{	// no change to header image 
+		}else{	// no change to header image
 			$article->update([
 				'title' => $requestData['title'],
 				'body' => $requestData['body'],
@@ -144,14 +151,14 @@ class HomeController extends Controller
 		}
 		return redirect()->route('user.viewall')->with('alert-success', 'Article successfully saved!');
 	}
-	
+
 	public function delete($id){
 		$article = Article::find((int)$id);
 		File::delete(public_path().'\\images\\'.$article->header_image);
 		Article::find((int)$id)->delete();
 		return redirect()->route('user.viewall')->with('alert-success', 'Article successfully removed!');
 	}
-	
+
 	public function create(ArticleRequest $request){	// first time save
 		$requestData = $request->all();
 		$imageName = time().'.'.request()->file('header_image')->getClientOriginalExtension();
@@ -161,29 +168,29 @@ class HomeController extends Controller
 		Auth::user()->articles()->save($article);
 		return redirect()->route('user.viewall')->with('alert-success', 'Article successfully saved!');
 	}
-	
+
 	public function publish(){
 		$article = Article::find((int)request('id'));
 		$article->published_at = Carbon::now()->toDateTimeString();
 		$article->save();
 		return redirect('dashboard')->with('alert-success', 'Article successfully published!');
 	}
-	
+
 	public function preview($id){
 		$article = Article::find((int)$id);
 		return view('articles.page', ['article' => $article]);
 	}
-	
+
 	public function viewchecklist(){
 	$articles = Checklist::all();
 	return view('user.view', ['articles' => $articles]);
 	}
-	
+
 	public function editchecklist(){
 		$article = Checklist::find((int)request('id'));
 		return view('user.edit', ['article' => $article]);
 	}
-	
+
 	public function viewalerts(){
 		echo "Wa ha ha!";
 		//return view('');
