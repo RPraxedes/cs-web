@@ -38,7 +38,7 @@
 							</div>
 							<div class="col">
 								<label class="form-check-label" for="mname">Middle Name</label>
-								<input name="middle_name" class="form-control" type="text" placeholder="Middle Name" id="mname" @if(isset($faculty_info)) value="{{$faculty_info->middle_name}}" @endif required><br>
+								<input name="middle_name" class="form-control" type="text" placeholder="Middle Name" id="mname" @if(isset($faculty_info)) value="{{$faculty_info->middle_name}}" @endif><br>
 							</div>
 							<div class="col">
 								<label class="form-check-label" for="lname">Last Name<span class="text-danger" data-toggle="tooltip" data-placement="top" title="Required">*</span></label>
@@ -56,7 +56,7 @@
 							</div>
 						</div>
 
-						<input type="hidden" name="user_id" value="{{$faculty_info->user_id}}">
+						<input type="hidden" name="user_id" value="{{$faculty_info->user_id ?? Auth::user()->id}}">
 
 						<label class="form-check-label" for="department">Department</label>
 						<select name="dept_id" class="form-control" id="department" autocomplete="off" required>
@@ -83,7 +83,7 @@
 						<input name="contact" class="form-control" type="text" placeholder="Phone, Email" id="contactInfo" @if(isset($faculty_info)) value="{{$faculty_info->contact_info}}" @endif><br>
 
             <label class="form-check-label" for="currentCourses">Courses Currently Teaching</label>
-						<textarea name="current_courses" id="tinytextarea" class="w-100" placeholder='Write in a bulleted list the courses you are currently teaching this semester.'>{{$faculty_info->current_courses}}</textarea><br>
+						<textarea name="current_courses" id="tinytextarea" class="w-100" placeholder='Write in a bulleted list the courses you are currently teaching this semester.'>{{$faculty_info->current_courses ?? ''}}</textarea><br>
 
 						<label class="form-check-label" for="facultyStatus">Status</label>
 						<select name="status_id" class="form-control" id="facultyStatus" autocomplete="off">
