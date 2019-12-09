@@ -12,10 +12,6 @@ class DepartmentSeeder extends Seeder
     public function run()
     {
       DB::table('departments')->insert([
-        [
-  				'department' => 'College Executive Board',
-  				'short_title' => 'executive',
-  			],
   			[
   				'department' => 'Department of Biology',
   				'short_title' => 'biology',
@@ -32,6 +28,10 @@ class DepartmentSeeder extends Seeder
           'department' => 'Human Kinetics Program Faculty',
           'short_title' => 'hkp',
         ],
+        [
+  				'department' => 'College Executive Board',
+  				'short_title' => 'executive',
+  			],
 		  ]);
 
       DB::table('checklists')->insert([
