@@ -39,13 +39,8 @@ class PagesController extends Controller
 
 	public function department($dept){
 		switch($dept){
-      case 'executive':
-				$dept = 1;
-        $dept_info = 'College Executive Board';
-        $courses = [];
-				break;
 			case 'biology':
-				$dept = 2;
+				$dept = 1;
         $dept_info = 'Department of Biology';
         $courses = [
           'Bachelor of Science in Biology (Ecology and Systematics)',
@@ -54,7 +49,7 @@ class PagesController extends Controller
         ];
 				break;
       case 'math-comsci':
-        $dept = 3;
+        $dept = 2;
         $dept_info = 'Department of Mathematics and Computer Science';
         $courses = [
           'Bachelor of Science in Computer Science',
@@ -64,7 +59,7 @@ class PagesController extends Controller
         ];
         break;
 			case 'physical-science':
-				$dept = 4;
+				$dept = 3;
         $dept_info = 'Department of Mathematics and Physical Sciences';
         $courses = [
           'Bachelor of Science in Physics',
@@ -72,10 +67,15 @@ class PagesController extends Controller
         ];
 				break;
       case 'hkp':
-        $dept = 5;
+        $dept = 4;
         $dept_info = 'Human Kinetics Program Faculty';
         $courses = ['Human Kinetics Program'];
         break;
+      case 'executive':
+				$dept = 5;
+        $dept_info = 'College Executive Board';
+        $courses = [];
+				break;
 		}
     $department_courses = new Course;
     $department_info = Checklist::where('title', '=', $dept_info)->get();
