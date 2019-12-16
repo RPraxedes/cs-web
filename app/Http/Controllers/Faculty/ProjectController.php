@@ -94,13 +94,15 @@ class ProjectController extends Controller
 				'type' => 'select',
 				'required' => NULL,
 				'placeholder' => NULL,
+        'value' => NULL
 			],
       [
 				'title' => 'Description',
 				'name' => 'description',
 				'type' => 'textarea',
 				'required' => NULL,
-				'placeholder' => 'What is the research project all about?',
+        'placeholder' => 'What is the research project all about?',
+        'value' => NULL
 			],
 		];
 		$action = [
@@ -169,6 +171,7 @@ class ProjectController extends Controller
 				'type' => 'select',
 				'required' => NULL,
 				'placeholder' => NULL,
+        'value' => NULL
 			],
       [
 				'title' => 'Description',
@@ -176,6 +179,7 @@ class ProjectController extends Controller
 				'type' => 'textarea',
 				'required' => NULL,
 				'placeholder' => 'What is the research project all about?',
+        'value' => NULL
 			],
 		];
 		$action = [
